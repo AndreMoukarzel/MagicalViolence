@@ -11,6 +11,9 @@ var btn_melee = input_states.new("ui_melee")
 var current_anim = ""
 onready var anim_player = get_node("Sprite/AnimationPlayer")
 
+var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
+
+
 func _ready():
 	set_process(true)
 
@@ -35,12 +38,18 @@ func _process(delta):
 
 	if direction == Vector2( 0, 0 ):
 		new_anim = current_anim # use regex or some shit to get the idle version of old anim
-	update_anim( new_anim )
 
 	# should take external forces into consideration
 	move( direction )
 
 	################################################
+
+	if btn_magic.state() == 3: #release spell
+		var fireball = fireball_scn.instance()
+		fireball.fire( Vector2( 0, 1 ), self )
+		get_parent().add_child( fireball )
+
+	update_anim( new_anim )
 
 
 func update_anim( new_animation ):
