@@ -27,6 +27,10 @@ func _process(delta):
 
 
 func home():
+	if !weakref(target).get_ref(): # target was freed
+		target = null
+		return
+
 	var target_pos = target.get_pos()
 	var dif = target_pos - get_pos()
 	direction += dif.normalized() / 20
