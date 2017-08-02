@@ -8,7 +8,9 @@ var input_states = preload("res://scripts/input_states.gd")
 var btn_magic = input_states.new("ui_magic")
 var btn_melee = input_states.new("ui_melee")
 
-var current_anim = ""
+# We may need to initialize this differently later.
+# For now, we shall keep it as such.
+var current_anim = "idle_down"
 onready var anim_player = get_node("Sprite/AnimationPlayer")
 
 var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
@@ -37,7 +39,9 @@ func _process(delta):
 		new_anim = "run_down"
 
 	if direction == Vector2( 0, 0 ):
-		new_anim = current_anim # use regex or some shit to get the idle version of old anim
+		# Temporary solution to this issue, will probably be
+		# replaced when other animations come into play.
+		new_anim = str("idle_", current_anim.split("_")[1])
 
 	# should take external forces into consideration
 	move( direction )
