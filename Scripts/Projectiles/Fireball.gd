@@ -27,6 +27,15 @@ func _process(delta):
 func _on_Area2D_body_enter( body ):
 	# does damage if take damage function exists
 	# dies out
-	print( body )
 	if body != parent:
-		queue_free()
+		die()
+
+func _on_LifeTimer_timeout():
+	die()
+
+func die():
+	get_node( "AnimationPlayer" ).play( "death" )
+	set_process( false )
+
+func free():
+	queue_free()

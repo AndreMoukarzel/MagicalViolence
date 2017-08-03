@@ -26,6 +26,7 @@ func _process(delta):
 		home()
 
 
+# Given the conditions, homes in the direction of the target
 func home():
 	if !weakref(target).get_ref(): # target was freed
 		target = null
@@ -33,7 +34,7 @@ func home():
 
 	var target_pos = target.get_pos()
 	var dif = target_pos - get_pos()
-	direction += dif.normalized() / 20
+	direction += dif.normalized() / 40
 	
 	if direction.x > 1.1:
 		direction.x = 1.1
@@ -49,12 +50,23 @@ func home():
 func _on_Area2D_body_enter( body ):
 	# does damage if take damage function exists
 	# dies out
-	print( body )
 	if body != parent:
-		queue_free()
+		die()
 
 
-func _on_DetectionArea_area_enter( area ):
-	if area.get_parent() != parent:
-		target = area.get_parent()
+func _on_DetectionArea_body_enter( body ):
+	if body.is_in_group("Player") and body != parent:
+		target = body
 		get_node("DetectionArea").queue_free()
+
+
+func _on_LifeTimer_timeout():
+	die()
+
+func die():
+	get_node( "AnimationPlayer" ).play( "death" )
+	set_process( false )
+
+func free():
+	queue_free()
+

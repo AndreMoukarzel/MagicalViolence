@@ -19,6 +19,7 @@ var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
 
 
 func _ready():
+	add_to_group("Player")
 	set_process(true)
 
 func _process(delta):
@@ -55,6 +56,7 @@ func _process(delta):
 	if btn_magic.state() == 3: #release spell
 		var fireball = scorching_scn.instance()
 		fireball.fire( current_direction, self )
+		fireball.set_name("ball") # test
 		get_parent().add_child( fireball )
 
 	update_anim( new_anim )
