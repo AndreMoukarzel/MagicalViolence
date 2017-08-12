@@ -27,5 +27,39 @@ margin/bottom = 40.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
+params/resize_mode = 0
+params/stretch_mode = 0
+
+[node name="Controllers" type="HBoxContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 34.0
+margin/top = 400.0
+margin/right = 982.0
+margin/bottom = 600.0
+alignment = 1
+
+[node name="0" type="Sprite" parent="Controllers"]
+
+transform/pos = Vector2( 100, 150 )
+transform/scale = Vector2( 0.5, 0.5 )
+
+[node name="1" type="Sprite" parent="Controllers"]
+
+transform/pos = Vector2( 350, 150 )
+transform/scale = Vector2( 0.5, 0.5 )
+
+[node name="2" type="Sprite" parent="Controllers"]
+
+transform/pos = Vector2( 600, 150 )
+transform/scale = Vector2( 0.5, 0.5 )
+
+[node name="3" type="Sprite" parent="Controllers"]
+
+transform/pos = Vector2( 850, 150 )
+transform/scale = Vector2( 0.5, 0.5 )
 
 
