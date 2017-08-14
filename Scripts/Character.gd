@@ -22,6 +22,7 @@ var health = 100
 # Spells
 var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
 var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
+var watersplash_scn = preload("res://Scenes/Projectiles/WalterSplash.tscn")
 
 
 func _ready():
@@ -29,7 +30,7 @@ func _ready():
 	set_process(true)
 	set_fixed_process(true)
 
-	magic = fireball_scn
+	magic = watersplash_scn
 
 
 func _process(delta):
