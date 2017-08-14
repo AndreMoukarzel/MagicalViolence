@@ -1,17 +1,11 @@
 
-
 extends KinematicBody2D
 
 const SPEED = 6
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent
-
-func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
-
+var alive = true
 
 func fire( direction, parent ):
 	self.direction = direction
@@ -25,21 +19,24 @@ func _process(delta):
 	move( direction * SPEED )
 
 
-	# does damage if take damage function exists in body
-	# dies out
 func _on_Area2D_body_enter( body ):
+	# does damage if take damage function exists
+	# dies out
 	if body != parent:
 		if body.has_method("take_damage"):
-			body.take_damage(10)
-		die()
+			body.take_damage(30)
+#			get_node( "AnimationPlayer" ).play( "explosion" )
+		if (alive):
+			explosion()
+		
 
 
 func _on_LifeTimer_timeout():
-	die()
+	explosion()
 
-
-func die():
-	get_node( "AnimationPlayer" ).play( "death" )
+func explosion():
+	alive = false
+	get_node( "AnimationPlayer" ).play( "explosion" )
 	set_process( false )
 
 

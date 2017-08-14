@@ -5,7 +5,10 @@ const RUN_SPEED = 4
 
 var input_states = preload("res://Scripts/input_states.gd")
 
-var btn_magic = input_states.new("ui_magic")
+# Id has to coincide with port, in our model
+var controller_id = 0
+
+var btn_magic = input_states.new(name_adapter("char_magic"))
 var btn_melee = input_states.new("ui_melee")
 
 var current_anim = "idle_down"
@@ -20,13 +23,19 @@ var ready_to_spell = true
 var health = 100
 
 # Spells
-var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
+var firebolt_scn = preload("res://Scenes/Projectiles/Firebolt.tscn")
 var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
+var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
 var watersplash_scn = preload("res://Scenes/Projectiles/WalterSplash.tscn")
-
 
 func _ready():
 	add_to_group("Player")
+	
+	#test
+	var node_name = self.get_name()
+	controller_id = node_name.substr(node_name.length() - 1, node_name.length()).to_int()
+	btn_magic = input_states.new(name_adapter("char_magic"))
+	
 	set_process(true)
 	set_fixed_process(true)
 
@@ -39,16 +48,16 @@ func _process(delta):
 	var direction = Vector2( 0, 0 )
 	var new_anim
 	
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed(name_adapter("char_left")):
 		direction -= Vector2( RUN_SPEED, 0 )
 		new_anim = "run_left"
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed(name_adapter("char_right")):
 		direction += Vector2( RUN_SPEED, 0 )
 		new_anim = "run_right"
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed(name_adapter("char_up")):
 		direction -= Vector2( 0, RUN_SPEED )
 		new_anim = "run_up"
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed(name_adapter("char_down")):
 		direction += Vector2( 0, RUN_SPEED )
 		new_anim = "run_down"
 
@@ -75,8 +84,10 @@ func _fixed_process(delta):
 	if btn_magic.state() == 2:
 		charge += 1
 		get_node("ChargeBar").set_value(charge)
-		if charge >= 50:
+		if charge >= 50 and charge < 100:
 			magic = scorching_scn
+		elif charge >= 100:
+			magic = firebolt_scn
 
 	var cd_bar = get_node("CooldownBar")
 	cd_bar.set_value( cd_bar.get_value() - 1 )
@@ -90,7 +101,7 @@ func release_spell():
 	# Resets spell
 	ready_to_spell = false
 	set_cooldown(0.5) # set cooldown DEPENDING oN SpElL
-	magic = fireball_scn
+	magic = watersplash_scn
 
 
 func set_cooldown(time):
@@ -132,4 +143,9 @@ func update_anim( new_animation ):
 
 	if new_animation != current_anim:
 		anim_player.play(new_animation)
-
+		
+# Function that adds controller_id to the end of
+# the name srnt, so that it can be understood by
+# the input map.
+func name_adapter(name):
+	return str(name, "_", controller_id)

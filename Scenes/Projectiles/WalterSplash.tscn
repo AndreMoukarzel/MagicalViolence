@@ -24,13 +24,15 @@ wait_time = 2.4
 one_shot = false
 autostart = true
 
-[node name="Projectile" parent="." instance=ExtResource( 2 )]
-
 [node name="Projectile1" parent="." instance=ExtResource( 2 )]
 
 [node name="Projectile2" parent="." instance=ExtResource( 2 )]
 
 [node name="Projectile3" parent="." instance=ExtResource( 2 )]
+
+[node name="Projectile4" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( -30, 15 )
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]
 

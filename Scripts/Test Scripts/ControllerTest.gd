@@ -2,18 +2,80 @@
 extends Control
 
 var connected_joysticks = []
+#var real_joysticks = []
 
+#var controllers_locked = false
+
+# Os controles funcionarao da seguinte maneira:
+# Todo joystick conectado sera testado pelo Input.is_joy_known().
+# Se algum falhar no teste, bloqueia os comandos do jogador
+# (pause a cena), e coloque um aviso que o controle nao e suportado
+# ainda.
 
 func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
+	
+	# Controller conectivity test
 	for node in get_node("Controllers").get_children():
 		node.set_texture(load("res://Sprites/TestSprites/NoController.png"))
 	
 	connected_joysticks = Input.get_connected_joysticks()
+	
+	# Controller validity test
+	
+	for joy in connected_joysticks:
+		if not Input.is_joy_known(joy):
+			# Instance Warning
+			var warning_scn = load("res://Scenes/Warnings/ControllerWarning.tscn")
+			var wrn_scn = warning_scn.instance()
+			add_child(wrn_scn)
+			get_tree().set_pause(true)
+			
+	
+	
+	# This was the consistency test for the previous format.
+	# There is no more consistency test, for we do not care
+	# if the controller connected is the same as before, only
+	# if it is valid.
+#	# Controller consistency test
+#	
+#	if (not controllers_locked):
+#		real_joysticks.clear()
+#		
+#		var joysticks = 0
+#		# Consider only 4 real joysticks
+#		for joy in connected_joysticks:
+#			if (Input.is_joy_known(joy)):
+#				real_joysticks.append(joy)
+#				joysticks += 1
+#			if (joysticks == 4):
+#				break
+#				
+#	else:
+#		# Procura todos os joysticks do real no vetor dos
+#		# conectados. Se algum deles nao estiver la, acuse
+#		# que foi desconectado.
+#		var missing_joysticks = []
+#		
+#		for joy in real_joysticks:
+#			if (connected_joysticks.find(joy) == -1):
+#				missing_joysticks.append(real_joysticks.find(joy))
+#		
+#		if (missing_joysticks.size() != 0):
+#			print(str("Controllers ", missing_joysticks, " are missing"))
+		
+		
+	# Input tests
+	
 	for joy in connected_joysticks:
 		#print (Input.is_joy_known(joy))
+		# The controller port is different from the joystick identifier.
+		# The controller port is what is kept consistent on our node structure,
+		# but the controller identifier can differ since we are ignoring joysticks
+		# that godot consider as not known.
+		
 		get_node(str("Controllers/", joy)).set_texture(load(str("res://Sprites/TestSprites/Yes", joy, "Controller.png")))
 		
 		# Face button check
