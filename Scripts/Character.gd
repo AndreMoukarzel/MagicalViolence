@@ -25,6 +25,7 @@ var health = 100
 # Spells
 var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
 var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
+var firebolt_scn = preload("res://Scenes/Projectiles/Firebolt.tscn")
 
 
 func _ready():
@@ -33,6 +34,7 @@ func _ready():
 	#test
 	var node_name = self.get_name()
 	controller_id = node_name.substr(node_name.length() - 1, node_name.length()).to_int()
+	btn_magic = input_states.new(name_adapter("char_magic"))
 	
 	set_process(true)
 	set_fixed_process(true)
@@ -82,8 +84,10 @@ func _fixed_process(delta):
 	if btn_magic.state() == 2:
 		charge += 1
 		get_node("ChargeBar").set_value(charge)
-		if charge >= 50:
+		if charge >= 50 and charge < 100:
 			magic = scorching_scn
+		elif charge >= 100:
+			magic = firebolt_scn
 
 	var cd_bar = get_node("CooldownBar")
 	cd_bar.set_value( cd_bar.get_value() - 1 )
