@@ -63,9 +63,11 @@ func _on_DetectionArea_body_enter( body ):
 func _on_LifeTimer_timeout():
 	die()
 
+
 func die():
 	get_node( "AnimationPlayer" ).play( "death" )
 	set_process( false )
+
 
 func free():
 	queue_free()
