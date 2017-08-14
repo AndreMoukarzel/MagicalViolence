@@ -8,7 +8,7 @@ var input_states = preload("res://Scripts/input_states.gd")
 # Id has to coincide with port, in our model
 var controller_id = 0
 
-var btn_magic = input_states.new("ui_magic")
+var btn_magic = input_states.new(name_adapter("char_magic"))
 var btn_melee = input_states.new("ui_melee")
 
 var current_anim = "idle_down"
