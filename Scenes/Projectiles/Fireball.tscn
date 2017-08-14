@@ -49,6 +49,8 @@ tracks/2/keys = {
 
 [node name="Fireball" type="KinematicBody2D"]
 
+visibility/opacity = 0.0
+transform/scale = Vector2( 2, 2 )
 input/pickable = false
 collision/layers = 1
 collision/mask = 1
@@ -99,7 +101,7 @@ autoplay = ""
 process_mode = 1
 wait_time = 2.0
 one_shot = false
-autostart = false
+autostart = true
 
 [connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
 
