@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://Scripts/Warnings/ControllerWarning.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/GUI/Warning/Black.jpg" type="Texture" id=2]
+[ext_resource path="res://Resources/Fonts/prototype32.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://Sprites/GUI/Warning/warning.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/GUI/Warning/retro-controller.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/GUI/Warning/thumb-down.png" type="Texture" id=6]
+
+[node name="ControllerWarning" type="Control"]
+
+process/pause_mode = 2
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 40.0
+margin/bottom = 40.0
+script/script = ExtResource( 1 )
+
+[node name="TextureFrame" type="TextureFrame" parent="."]
+
+visibility/opacity = 0.9
+rect/scale = Vector2( 0.55, 0.6 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1920.0
+margin/bottom = 1080.0
+texture = ExtResource( 2 )
+stretch_mode = 0
+
+[node name="WarningText" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 302.0
+margin/top = 78.0
+margin/right = 936.0
+margin/bottom = 223.0
+custom_fonts/font = ExtResource( 3 )
+text = "We\'re terribly sorry, but your controller is not\ncurrently supported in this platform.\n\nPlease disconnect it before continuing."
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="WarningSign" type="Sprite" parent="."]
+
+transform/pos = Vector2( 153.749, 146.212 )
+texture = ExtResource( 4 )
+
+[node name="RedController" type="Sprite" parent="."]
+
+transform/pos = Vector2( 400, 390 )
+texture = ExtResource( 5 )
+
+[node name="RedThumbsDown" type="Sprite" parent="."]
+
+transform/pos = Vector2( 600, 390 )
+texture = ExtResource( 6 )
+
+

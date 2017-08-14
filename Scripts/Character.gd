@@ -5,6 +5,9 @@ const RUN_SPEED = 4
 
 var input_states = preload("res://Scripts/input_states.gd")
 
+# Id has to coincide with port, in our model
+var controller_id = 0
+
 var btn_magic = input_states.new("ui_magic")
 var btn_melee = input_states.new("ui_melee")
 
@@ -20,6 +23,11 @@ var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
 
 func _ready():
 	add_to_group("Player")
+	
+	#test
+	var node_name = self.get_name()
+	controller_id = node_name.substr(node_name.length() - 1, node_name.length()).to_int()
+	
 	set_process(true)
 
 func _process(delta):
@@ -28,16 +36,16 @@ func _process(delta):
 	var direction = Vector2( 0, 0 )
 	var new_anim
 	
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed(name_adapter("char_left")):
 		direction -= Vector2( RUN_SPEED, 0 )
 		new_anim = "run_left"
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed(name_adapter("char_right")):
 		direction += Vector2( RUN_SPEED, 0 )
 		new_anim = "run_right"
-	if Input.is_action_pressed("ui_up"):
+	if Input.is_action_pressed(name_adapter("char_up")):
 		direction -= Vector2( 0, RUN_SPEED )
 		new_anim = "run_up"
-	if Input.is_action_pressed("ui_down"):
+	if Input.is_action_pressed(name_adapter("char_down")):
 		direction += Vector2( 0, RUN_SPEED )
 		new_anim = "run_down"
 
@@ -67,3 +75,9 @@ func update_anim( new_animation ):
 
 	if new_animation != current_anim:
 		anim_player.play(new_animation)
+		
+# Function that adds controller_id to the end of
+# the name srnt, so that it can be understood by
+# the input map.
+func name_adapter(name):
+	return str(name, "_", controller_id)
