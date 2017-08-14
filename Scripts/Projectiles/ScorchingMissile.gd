@@ -48,10 +48,12 @@ func home():
 		direction.y = - 1.1
 
 
-func _on_Area2D_body_enter( body ):
-	# does damage if take damage function exists
+	# does damage if take damage function exists in body
 	# dies out
+func _on_Area2D_body_enter( body ):
 	if body != parent:
+		if body.has_method("take_damage"):
+			body.take_damage(15)
 		die()
 
 
