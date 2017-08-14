@@ -33,7 +33,7 @@ tracks/2/type = "method"
 tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"free" } ] }
+tracks/2/keys = { "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"free_scn" } ] }
 
 [node name="ScorchingMissile" type="KinematicBody2D"]
 
@@ -46,6 +46,7 @@ script/script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 
 texture = ExtResource( 2 )
+modulate = Color( 0.276184, 0.214844, 1, 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 

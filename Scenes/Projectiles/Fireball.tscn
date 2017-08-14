@@ -11,7 +11,7 @@ radius = 12.0
 [sub_resource type="Animation" id=2]
 
 resource/name = "death"
-length = 0.4
+length = 0.5
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -28,7 +28,7 @@ tracks/2/type = "method"
 tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"free()" } ] }
+tracks/2/keys = { "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"free_scn" } ] }
 
 [node name="Fireball" type="KinematicBody2D"]
 
