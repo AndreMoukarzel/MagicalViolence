@@ -33,6 +33,7 @@ func _ready():
 	#test
 	var node_name = self.get_name()
 	controller_id = node_name.substr(node_name.length() - 1, node_name.length()).to_int()
+	btn_magic = input_states.new(name_adapter("char_magic"))
 	
 	set_process(true)
 	set_fixed_process(true)
