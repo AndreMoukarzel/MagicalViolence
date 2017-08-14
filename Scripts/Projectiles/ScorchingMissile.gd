@@ -69,6 +69,5 @@ func die():
 	set_process( false )
 
 
-func free():
+func free_scn():
 	queue_free()
-

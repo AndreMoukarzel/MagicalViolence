@@ -30,12 +30,15 @@ func _on_Area2D_body_enter( body ):
 	if body != parent:
 		die()
 
+
 func _on_LifeTimer_timeout():
 	die()
+
 
 func die():
 	get_node( "AnimationPlayer" ).play( "death" )
 	set_process( false )
 
-func free():
+
+func free_scn():
 	queue_free()
