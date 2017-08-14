@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=1]
+[gd_scene load_steps=48 format=1]
 
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Characters/Sage/idles0000.png" type="Texture" id=2]
@@ -158,13 +158,26 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
+[sub_resource type="StyleBoxFlat" id=14]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.851562, 0.119751, 0.720065, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
 [sub_resource type="StyleBoxFlat" id=13]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-bg_color = Color( 0.163651, 0.253906, 0.150757, 1 )
+bg_color = Color( 0.746094, 0.131149, 0.131149, 1 )
 light_color = Color( 0.8, 0.8, 0.8, 1 )
 dark_color = Color( 0.8, 0.8, 0.8, 1 )
 border_size = 0
@@ -248,7 +261,7 @@ margin/left = -20.0
 margin/top = 58.0
 margin/right = 20.0
 margin/bottom = 74.0
-custom_styles/fg = SubResource( 13 )
+custom_styles/fg = SubResource( 14 )
 custom_styles/bg = SubResource( 12 )
 range/min = 0.0
 range/max = 100.0
@@ -265,6 +278,27 @@ process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = false
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -20.0
+margin/top = -65.0
+margin/right = 20.0
+margin/bottom = -49.0
+custom_styles/fg = SubResource( 13 )
+custom_styles/bg = SubResource( 12 )
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 100.0
+range/exp_edit = false
+range/rounded = false
+percent/visible = false
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
 

@@ -3,6 +3,7 @@
 extends KinematicBody2D
 
 const SPEED = 5
+const HOMING_FACTOR = 40 # the lowest the factor is, the fastest the homing
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent
@@ -34,7 +35,7 @@ func home():
 
 	var target_pos = target.get_pos()
 	var dif = target_pos - get_pos()
-	direction += dif.normalized() / 40
+	direction += dif.normalized() / HOMING_FACTOR
 	
 	if direction.x > 1.1:
 		direction.x = 1.1

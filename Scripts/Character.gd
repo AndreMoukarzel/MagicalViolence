@@ -17,6 +17,8 @@ var magic
 var charge = 0
 var ready_to_spell = true
 
+var health = 100
+
 # Spells
 var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
 var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
@@ -113,6 +115,16 @@ func _on_Cooldown_timeout():
 	get_node("ChargeBar").set_value(charge)
 	get_node("ChargeBar").show()
 
+
+func take_damage(damage):
+	health -= damage
+	get_node("HealthBar").set_value(health)
+	if health <= 0:
+		die()
+
+
+func die():
+	queue_free()
 
 func update_anim( new_animation ):
 	current_anim = anim_player.get_current_animation()
