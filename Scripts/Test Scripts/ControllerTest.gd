@@ -24,18 +24,9 @@ func _input(event):
 	if (key_mapping and event.type == InputEvent.JOYSTICK_BUTTON and event.pressed):
 		print(str("Recieved joystick button. The key was: ", event.button_index, ", and the device was: ", event.device))
 		
-		for ev in range (0, 17):
-#			var temporary_event = event
-#			temporary_event.button_index = ev
-			var temporary_event = InputEvent()
-			temporary_event.type = InputEvent.JOYSTICK_BUTTON
-			temporary_event.button_index = ev
-			temporary_event.device = 0
-			InputMap.action_erase_event("char_fire_0", temporary_event)
-		
-		print(InputMap.has_action("char_fire_0"))
-		InputMap.action_add_event("char_fire_0", event)
-		print(InputMap.event_is_action(event, "char_fire_0"))
+		var config = ConfigFile.new()
+		config.set_value("Joystick Button", "char_fire_0", event)
+		config.save("user://tagconfig.cfg")
 		
 #		InputMap.load_from_globals()
 #		print(InputMap.get_actions())
@@ -143,3 +134,28 @@ func _on_KeyMapping_pressed():
 	else:
 		get_node("Options/KeyMapping").set_text("Key Mapping: On")
 		key_mapping = true
+
+
+func _on_Load_Config_pressed():
+	
+	var event
+	
+	var config = ConfigFile.new()
+	if (config.load("user://tagconfig.cfg") == OK):
+		event = config.get_value("Joystick Button", "char_fire_0")
+	
+	if event == null:
+		return
+	
+	for ev in range (0, 17):
+#		var temporary_event = event
+#		temporary_event.button_index = ev
+		var temporary_event = InputEvent()
+		temporary_event.type = InputEvent.JOYSTICK_BUTTON
+		temporary_event.button_index = ev
+		temporary_event.device = 0
+		InputMap.action_erase_event("char_fire_0", temporary_event)
+	
+	print(InputMap.has_action("char_fire_0"))
+	InputMap.action_add_event("char_fire_0", event)
+	print(InputMap.event_is_action(event, "char_fire_0"))

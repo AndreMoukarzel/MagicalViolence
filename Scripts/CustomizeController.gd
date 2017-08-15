@@ -28,9 +28,20 @@ extends Control
 
 
 func _ready():
-	pass
+	get_node("SelectTag/TagSelector").add_item("Select a Tag")
 
 func _on_TagSelector_item_selected( id ):
-	if ( id != -1):
+	print(id)
+	if ( id != -1 and id != 0):
 		get_node("SelectTag").hide()
-		# Continuar logica quando puder
+		get_node("SelectTag/TagSelector").select(0)
+		
+		get_node("Customization").show()
+
+
+func _on_CreateTag_pressed():
+	var tag = get_node("SelectTag/TextEdit").get_text()
+	
+	if (tag != ""):
+		get_node("SelectTag/TagSelector").add_item(tag)
+		get_node("SelectTag/TextEdit").set_text("")
