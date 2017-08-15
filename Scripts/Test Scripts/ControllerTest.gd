@@ -2,6 +2,8 @@
 extends Control
 
 var connected_joysticks = []
+
+var key_mapping = false
 #var real_joysticks = []
 
 #var controllers_locked = false
@@ -14,7 +16,30 @@ var connected_joysticks = []
 
 func _ready():
 	set_fixed_process(true)
-
+	
+	set_process_input(true)
+	
+func _input(event):
+	
+	if (key_mapping and event.type == InputEvent.JOYSTICK_BUTTON and event.pressed):
+		print(str("Recieved joystick button. The key was: ", event.button_index, ", and the device was: ", event.device))
+		
+		for ev in range (0, 17):
+#			var temporary_event = event
+#			temporary_event.button_index = ev
+			var temporary_event = InputEvent()
+			temporary_event.type = InputEvent.JOYSTICK_BUTTON
+			temporary_event.button_index = ev
+			temporary_event.device = 0
+			InputMap.action_erase_event("char_fire_0", temporary_event)
+		
+		print(InputMap.has_action("char_fire_0"))
+		InputMap.action_add_event("char_fire_0", event)
+		print(InputMap.event_is_action(event, "char_fire_0"))
+		
+#		InputMap.load_from_globals()
+#		print(InputMap.get_actions())
+		
 func _fixed_process(delta):
 	
 	# Controller conectivity test
@@ -80,7 +105,7 @@ func _fixed_process(delta):
 		
 		# Face button check
 		
-		if (Input.is_joy_button_pressed(joy, JOY_BUTTON_0)):
+		if (Input.is_action_pressed("char_fire_0")):
 			get_node(str("FaceButtons/", joy, "/A")).set_texture(load("res://Sprites/TestSprites/APressed.png"))
 		else:
 			get_node(str("FaceButtons/", joy, "/A")).set_texture(load("res://Sprites/TestSprites/ANormal.png"))
@@ -108,3 +133,13 @@ func _fixed_process(delta):
 		#print (str("h = ", horizontal))
 		#print (str("v = ", vertical))
 		get_node(str("LeftJoystick/", joy, "/Center")).set_pos(Vector2(horizontal + 132, vertical + 320))
+
+
+func _on_KeyMapping_pressed():
+	if (key_mapping):
+		get_node("Options/KeyMapping").set_text("Key Mapping: Off")
+		key_mapping = false
+	
+	else:
+		get_node("Options/KeyMapping").set_text("Key Mapping: On")
+		key_mapping = true
