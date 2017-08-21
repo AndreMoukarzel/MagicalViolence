@@ -85,7 +85,6 @@ _update_shape_index = 0
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
-editor/display_folded = true
 transform/scale = Vector2( 3, 3 )
 input/pickable = true
 shapes/0/shape = SubResource( 2 )

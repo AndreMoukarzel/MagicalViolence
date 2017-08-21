@@ -15,8 +15,8 @@ var accel
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent
-	set_rot( rad2deg( direction.angle() ) )
-#	add_collision_exception_with( parent )
+
+	set_rot( direction.angle() )
 	set_pos( parent.get_pos() )
 	set_process( true )
 
@@ -48,10 +48,10 @@ func home():
 		direction.y = - 1.1
 
 
-	# does damage if take damage function exists in body
-	# dies out
+# does damage if take damage function exists in body
 func _on_Area2D_body_enter( body ):
 	if body != parent:
+		get_node("Area2D").queue_free()
 		if body.has_method("take_damage"):
 			body.take_damage(15)
 		die()
