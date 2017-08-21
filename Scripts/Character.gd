@@ -84,9 +84,11 @@ func _fixed_process(delta):
 	if btn_magic.state() == 2:
 		charge += 1
 		get_node("ChargeBar").set_value(charge)
-		if charge >= 50 and charge < 100:
+		if charge < 50:
+			magic = fireball_scn
+		elif charge < 100:
 			magic = scorching_scn
-		elif charge >= 100:
+		else:
 			magic = firebolt_scn
 
 	var cd_bar = get_node("CooldownBar")
@@ -102,6 +104,11 @@ func release_spell():
 	ready_to_spell = false
 	set_cooldown(0.5) # set cooldown DEPENDING oN SpElL
 	magic = watersplash_scn
+	if (magic == scorching_scn):
+		set_cooldown(0.75)
+	elif (magic == firebolt_scn):
+		set_cooldown(1)
+	magic = fireball_scn
 
 
 func set_cooldown(time):
