@@ -32,7 +32,7 @@ extends Control
 var selected_tag = null
 var selected_input = null
 
-var config = ConfigFile.new()
+var config = null
 
 func _ready():
 	
@@ -108,9 +108,13 @@ func check_repeat_button(button, input_name):
 	for node in get_node("GameCustomization").get_children():
 		for child in node.get_children():
 			if (child.get_name() == "Text"):
-				if (child.get_text().find(str(button)) >= 0):
-					child.set_text("[Unassigned]")
-					config.set_value("Joystick Button", str("char_", child.get_parent().get_name().to_lower()), "Unassigned")
+				# We need to do this because 0 and 10 were both found, as well as 10, 11, 12, 13, 14, 15 and 16, and 1, so on and so forth 
+				var find_index = child.get_text().find(str(button))
+				if (find_index != -1):
+					var check_num = child.get_text().substr(find_index, find_index + 1).to_int()
+					if (button == check_num):
+						child.set_text("[Unassigned]")
+						config.set_value("Joystick Button", str("char_", child.get_parent().get_name().to_lower()), "Unassigned")
 	
 	
 ################### Menu Flow ###################
@@ -130,7 +134,7 @@ func _on_TagSelector_item_selected( id ):
 		get_node("GameCustomization").show()
 		
 		# Carregar os controles da tag, se existirem
-		var config = ConfigFile.new()
+		config = ConfigFile.new()
 		if (config.load(str("user://", selected_tag, "_tagconfig.cfg")) != OK):
 			print ("Error, could not load tag data!")
 			return
@@ -158,8 +162,8 @@ func _on_CreateTag_pressed():
 		get_node("SelectTag/TagSelector").set_disabled(false)
 		
 		# Create config file
-		var config = ConfigFile.new()
-		config.save(str("user://", tag, "_tagconfig.cfg"))
+		var new_config = ConfigFile.new()
+		new_config.save(str("user://", tag, "_tagconfig.cfg"))
 		
 func _on_TextEdit_text_changed():
 	if (get_node("SelectTag/TextEdit").get_text() == ""):
@@ -186,7 +190,7 @@ func _on_GCSave_pressed():
 	config.save(str("user://", selected_tag, "_tagconfig.cfg"))
 	
 	selected_tag = null
-	config = ConfigFile.new()
+	config = null
 	
 	reset_gc_display()
 	get_node("GameCustomization").hide()
@@ -195,7 +199,7 @@ func _on_GCSave_pressed():
 func _on_GCBack_pressed():
 	
 	selected_tag = null
-	config = ConfigFile.new()
+	config = null
 	
 	reset_gc_display()
 	get_node("GameCustomization").hide()
