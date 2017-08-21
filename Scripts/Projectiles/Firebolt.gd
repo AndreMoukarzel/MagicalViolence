@@ -17,6 +17,7 @@ func fire( direction, parent ):
 
 func _process(delta):
 	move( direction * SPEED )
+	
 
 
 func _on_Area2D_body_enter( body ):
@@ -28,12 +29,20 @@ func _on_Area2D_body_enter( body ):
 #			get_node( "AnimationPlayer" ).play( "explosion" )
 		if (alive):
 			explosion()
-		
 
 
 func _on_LifeTimer_timeout():
 	explosion()
 
+
+func _on_Trail_Timer_timeout():
+	if (alive):
+		var Trail_scn = preload("res://Scenes/Projectiles/FireTrail.tscn")
+		var Trail = Trail_scn.instance()
+		Trail.set_pos(get_pos())
+		get_parent().add_child(Trail)
+	
+	
 func explosion():
 	alive = false
 	get_node( "AnimationPlayer" ).play( "explosion" )
