@@ -31,8 +31,7 @@ transform/pos = Vector2( 250, 150 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-editor/display_folded = true
-transform/pos = Vector2( 989.987, 280.16 )
+transform/pos = Vector2( 800, 250 )
 transform/scale = Vector2( 1, 7 )
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
@@ -44,7 +43,6 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-__meta__ = { "_edit_group_":true }
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
 

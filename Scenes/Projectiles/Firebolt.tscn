@@ -18,47 +18,87 @@ tracks/0/type = "value"
 tracks/0/path = NodePath(".:transform/scale")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1, 1 ), Vector2( 2, 2 ) ] }
+tracks/0/keys = {
+"times": FloatArray( 0, 0.4 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 2, 2 ) ]
+}
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:visibility/opacity")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0, 0.4 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
+tracks/1/keys = {
+"times": FloatArray( 0, 0.4 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"free_scn" } ] }
+tracks/2/keys = {
+"times": FloatArray( 0.4 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "free_scn"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 
 resource/name = "explosion"
-length = 0.4
+length = 1.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:transform/scale")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1, 1 ), Vector2( 6, 6 ) ] }
+tracks/0/keys = {
+"times": FloatArray( 0, 0.9 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 6, 6 ) ]
+}
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:visibility/opacity")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0, 0.2, 0.4 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 1.0, 1.0, 0.0 ] }
+tracks/1/keys = {
+"times": FloatArray( 0, 0.7, 1 ),
+"transitions": FloatArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0, 0.0 ]
+}
 tracks/2/type = "value"
 tracks/2/path = NodePath("Area2D:transform/scale")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1, 1 ), Vector2( 6, 6 ) ] }
+tracks/2/keys = {
+"times": FloatArray( 0, 0.9 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 6, 6 ) ]
+}
 tracks/3/type = "method"
 tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/imported = false
-tracks/3/keys = { "times":FloatArray( 0.4 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"free_scn" } ] }
+tracks/3/keys = {
+"times": FloatArray( 1 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "free_scn"
+} ]
+}
 
 [node name="Firebolt" type="KinematicBody2D"]
 
+transform/scale = Vector2( 2, 2 )
 input/pickable = false
 collision/layers = 1
 collision/mask = 1
@@ -68,7 +108,9 @@ script/script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 
 texture = ExtResource( 2 )
-__meta__ = { "_edit_lock_":true }
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -81,7 +123,10 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-__meta__ = { "_edit_group_":true, "_edit_lock_":true }
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
@@ -108,8 +153,17 @@ wait_time = 2.0
 one_shot = false
 autostart = false
 
+[node name="Trail Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.04
+one_shot = false
+autostart = true
+
 [connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]
+
+[connection signal="timeout" from="Trail Timer" to="." method="_on_Trail_Timer_timeout"]
 
 
