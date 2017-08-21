@@ -25,9 +25,14 @@ extends Control
 # um problema de design, e devemos previnir para que isso nao aconteça e notificar se isso ocorrer.
 #
 # As mudanças para cada tag tem que ser salvas nessa cena, toda vez que o botão de "salvar" for acionado.
+#
+# A configfile salva apenas os indexes dos botoes. Quando formos carrega-los, precisaremos transforma-los
+# em eventos de verdade. Uma forma de realizar isto esta exemplificada em ControllerTest.
 
 var selected_tag = null
 var selected_input = null
+
+
 
 func _ready():
 	
@@ -37,6 +42,8 @@ func _ready():
 		for child in node.get_children():
 			if (child.get_name() == "Button"):
 				child.connect("pressed", self, "_on_Button_pressed", [child])
+				# So controller input is not accounted for on those
+				child.set_focus_mode(FOCUS_NONE)
 	
 	# Carregar as tags existentes explorando o diretorio do user
 	var dir = Directory.new()
@@ -54,7 +61,8 @@ func _ready():
 			file_name = dir.get_next()
 	else:
 		print ("Directory not found. Something went wrong.")
-		
+	
+	# Caso nao exista nenhuma tag criada	
 	if (get_node("SelectTag/TagSelector").get_item_count() == 0):
 		get_node("SelectTag/TagSelector").set_disabled(true)
 		
@@ -63,8 +71,10 @@ func _ready():
 ################### Game Controls Costumization ###################
 
 func _on_Button_pressed(button):
+	selected_input = button.get_parent().get_name()
+
 	get_node("GameCustomization/PressKey").show()
-	selected_input = get_parent().get_name()
+	get_node("GameCustomization/PressKey/Text").set_text(str("Press the desired button\n for the ", selected_input, " command."))
 	
 	set_process_input(true)
 	
@@ -84,8 +94,28 @@ func _input(event):
 		# antes de carregar as tags novas.
 		
 		var config = ConfigFile.new()
-		config.set_value("Joystick Button", str("char_", input_name), event)
+		if (config.load(str("user://", selected_tag, "_tagconfig.cfg")) != OK):
+			print ("Error, could not load tag data!")
+			return
+		config.set_value("Joystick Button", str("char_", input_name), event.button_index)
+		
+		# Finished, update the modified config visually
+		check_repeat_button(event.button_index, input_name, config)
+		
+		get_node(str("GameCustomization/", selected_input, "/Text")).set_text(str("[Button ", event.button_index, "]"))
+		get_node("GameCustomization/PressKey").hide()
+		selected_input = null
+		
 		config.save(str("user://", selected_tag, "_tagconfig.cfg"))
+		set_process_input(false)
+		
+func check_repeat_button(button, input_name, config):
+	for node in get_node("GameCustomization").get_children():
+		for child in node.get_children():
+			if (child.get_name() == "Text"):
+				if (child.get_text().find(str(button)) >= 0):
+					child.set_text("[Unassigned]")
+					config.set_value("Joystick Button", str("char_", child.get_parent().get_name().to_lower()), "Unassigned")
 	
 	
 ################### Menu Flow ###################
@@ -106,7 +136,18 @@ func _on_TagSelector_item_selected( id ):
 		get_node("GameCustomization").show()
 		
 		# Carregar os controles da tag, se existirem
-
+		var config = ConfigFile.new()
+		if (config.load(str("user://", selected_tag, "_tagconfig.cfg")) != OK):
+			print ("Error, could not load tag data!")
+			return
+		
+		for key in config.get_section_keys("Joystick Button"):
+			var real_name = str(key.split("_")[1].capitalize())
+			# For some reason, Godot is failing to identify value as
+			# an JoystickButtonInputEvent, so we have to manually extract the
+			# button_index from the string
+			var value = config.get_value("Joystick Button", key)
+			get_node(str("GameCustomization/", real_name, "/Text")).set_text(str("[Button ", value, "]"))
 
 func _on_CreateTag_pressed():
 	var selector = get_node("SelectTag/TagSelector")
@@ -145,9 +186,23 @@ func _on_SelectTagBack_pressed():
 
 
 func _on_GCBack_pressed():
+	# Check if left any unassigned actions
+	var config = ConfigFile.new()
+	if (config.load(str("user://", selected_tag, "_tagconfig.cfg")) != OK):
+		print ("Error, could not load tag data!")
+		return
+	
+	for key in config.get_section_keys("Joystick Button"):
+		if str(config.get_value("Joystick Button", key)) == "Unassigned":
+			print("You have left some controls unassigned!")
+			return
+	
 	get_node("GameCustomization").hide()
 	get_node("SelectTag").show()
+	
+	selected_tag = null
 
 
 func _on_PressKeyCancel_pressed():
 	get_node("GameCustomization/PressKey").hide()
+	selected_input = null
