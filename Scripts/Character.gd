@@ -23,10 +23,10 @@ var ready_to_spell = true
 var health = 100
 
 # Spells
-var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
-var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
 var firebolt_scn = preload("res://Scenes/Projectiles/Firebolt.tscn")
-
+var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
+var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
+var watersplash_scn = preload("res://Scenes/Projectiles/WalterSplash.tscn")
 
 func _ready():
 	add_to_group("Player")
@@ -39,7 +39,7 @@ func _ready():
 	set_process(true)
 	set_fixed_process(true)
 
-	magic = fireball_scn
+	magic = watersplash_scn
 
 
 func _process(delta):
@@ -103,6 +103,7 @@ func release_spell():
 	# Resets spell
 	ready_to_spell = false
 	set_cooldown(0.5) # set cooldown DEPENDING oN SpElL
+	magic = watersplash_scn
 	if (magic == scorching_scn):
 		set_cooldown(0.75)
 	elif (magic == firebolt_scn):
