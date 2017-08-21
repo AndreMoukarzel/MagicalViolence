@@ -26,7 +26,8 @@ var health = 100
 var firebolt_scn = preload("res://Scenes/Projectiles/Firebolt.tscn")
 var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
 var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
-var watersplash_scn = preload("res://Scenes/Projectiles/WalterSplash.tscn")
+var watersplash_scn = preload("res://Scenes/Projectiles/WaterSplash.tscn")
+
 
 func _ready():
 	add_to_group("Player")
@@ -85,7 +86,7 @@ func _fixed_process(delta):
 		charge += 1
 		get_node("ChargeBar").set_value(charge)
 		if charge < 50:
-			magic = fireball_scn
+			magic = watersplash_scn
 		elif charge < 100:
 			magic = scorching_scn
 		else:
@@ -103,12 +104,10 @@ func release_spell():
 	# Resets spell
 	ready_to_spell = false
 	set_cooldown(0.5) # set cooldown DEPENDING oN SpElL
-	magic = watersplash_scn
 	if (magic == scorching_scn):
 		set_cooldown(0.75)
 	elif (magic == firebolt_scn):
 		set_cooldown(1)
-	magic = fireball_scn
 
 
 func set_cooldown(time):
@@ -145,12 +144,14 @@ func take_damage(damage):
 func die():
 	queue_free()
 
+
 func update_anim( new_animation ):
 	current_anim = anim_player.get_current_animation()
 
 	if new_animation != current_anim:
 		anim_player.play(new_animation)
-		
+
+
 # Function that adds controller_id to the end of
 # the name srnt, so that it can be understood by
 # the input map.
