@@ -27,6 +27,7 @@ var firebolt_scn = preload("res://Scenes/Projectiles/Firebolt.tscn")
 var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
 var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
 var watersplash_scn = preload("res://Scenes/Projectiles/WaterSplash.tscn")
+var watersphere_scn = preload("res://Scenes/Projectiles/WaterSphere.tscn")
 
 
 func _ready():
@@ -88,7 +89,7 @@ func _fixed_process(delta):
 		if charge < 50:
 			magic = watersplash_scn
 		elif charge < 100:
-			magic = scorching_scn
+			magic = watersphere_scn
 		else:
 			magic = firebolt_scn
 
