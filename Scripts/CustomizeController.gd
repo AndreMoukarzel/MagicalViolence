@@ -162,8 +162,10 @@ func _on_CreateTag_pressed():
 		get_node("SelectTag/TagSelector").set_disabled(false)
 		
 		# Create config file
-		var new_config = ConfigFile.new()
-		new_config.save(str("user://", tag, "_tagconfig.cfg"))
+		var dir = Directory.new()
+		
+		if (dir.copy("user://default.cfg", str("user://", tag, "_tagconfig.cfg")) != OK):
+			print("Error! Default tag initialization failed!")
 		
 func _on_TextEdit_text_changed():
 	if (get_node("SelectTag/TextEdit").get_text() == ""):
