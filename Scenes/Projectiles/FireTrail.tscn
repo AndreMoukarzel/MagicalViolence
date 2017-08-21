@@ -10,7 +10,7 @@ length = 0.9
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:visibility/opacity")
+tracks/0/path = NodePath(".:visibility/self_opacity")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
@@ -54,7 +54,8 @@ tracks/3/keys = {
 
 [node name="Trail" type="Sprite"]
 
-visibility/opacity = 0.4
+visibility/self_opacity = 0.4
+transform/pos = Vector2( 1.08072, -0.540359 )
 transform/scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
