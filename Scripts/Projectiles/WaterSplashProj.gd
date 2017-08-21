@@ -1,7 +1,7 @@
 
 extends KinematicBody2D
 
-const SPEED = 6
+const SPEED = 8
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent
