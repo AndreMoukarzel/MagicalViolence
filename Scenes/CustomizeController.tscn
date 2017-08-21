@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://Scripts/CustomizeController.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/prototype32.fnt" type="BitmapFont" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Sprites/GUI/Icons/nature.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/GUI/Icons/magic.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/GUI/Icons/melee.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/GUI/Warning/Black.jpg" type="Texture" id=9]
 
 [node name="CustomizeController" type="Control"]
 
@@ -21,9 +22,69 @@ margin/right = 1024.0
 margin/bottom = 600.0
 script/script = ExtResource( 1 )
 
-[node name="SelectTag" type="Container" parent="."]
+[node name="CustomizationSelect" type="Container" parent="."]
 
 editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1024.0
+margin/bottom = 600.0
+
+[node name="Text" type="Label" parent="CustomizationSelect"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 400.0
+margin/top = 232.0
+margin/right = 636.0
+margin/bottom = 266.0
+custom_fonts/font = ExtResource( 2 )
+text = "Select an option:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="MenuControls" type="Button" parent="CustomizationSelect"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 200.0
+margin/top = 350.0
+margin/right = 313.0
+margin/bottom = 390.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Menu Controls"
+flat = false
+
+[node name="GameControls" type="Button" parent="CustomizationSelect"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 700.0
+margin/top = 350.0
+margin/right = 813.0
+margin/bottom = 390.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Game Controls"
+flat = false
+
+[node name="SelectTag" type="Container" parent="."]
+
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -78,10 +139,27 @@ margin/left = 237.0
 margin/top = 424.0
 margin/right = 290.0
 margin/bottom = 444.0
+disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Create"
+flat = false
+
+[node name="SelectTagBack" type="Button" parent="SelectTag"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 237.0
+margin/top = 550.0
+margin/right = 290.0
+margin/bottom = 570.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Back"
 flat = false
 
 [node name="T1" type="Label" parent="SelectTag"]
@@ -116,9 +194,8 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Customization" type="Container" parent="."]
+[node name="GameCustomization" type="Container" parent="."]
 
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -129,9 +206,8 @@ margin/top = 0.0
 margin/right = 1024.0
 margin/bottom = 600.0
 
-[node name="Fire" type="Container" parent="Customization"]
+[node name="Fire" type="Container" parent="GameCustomization"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -141,7 +217,7 @@ margin/top = 0.0
 margin/right = 300.0
 margin/bottom = 128.0
 
-[node name="Button" type="TextureButton" parent="Customization/Fire"]
+[node name="Button" type="TextureButton" parent="GameCustomization/Fire"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -157,7 +233,7 @@ enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 3 )
 
-[node name="Text" type="Label" parent="Customization/Fire"]
+[node name="Text" type="Label" parent="GameCustomization/Fire"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -173,7 +249,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Water" type="Container" parent="Customization"]
+[node name="Water" type="Container" parent="GameCustomization"]
 
 editor/display_folded = true
 focus/ignore_mouse = false
@@ -185,7 +261,7 @@ margin/top = 100.0
 margin/right = 300.0
 margin/bottom = 228.0
 
-[node name="Button" type="TextureButton" parent="Customization/Water"]
+[node name="Button" type="TextureButton" parent="GameCustomization/Water"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -201,7 +277,7 @@ enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 4 )
 
-[node name="Text" type="Label" parent="Customization/Water"]
+[node name="Text" type="Label" parent="GameCustomization/Water"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -217,7 +293,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Lightning" type="Container" parent="Customization"]
+[node name="Lightning" type="Container" parent="GameCustomization"]
 
 editor/display_folded = true
 focus/ignore_mouse = false
@@ -229,7 +305,7 @@ margin/top = 215.0
 margin/right = 300.0
 margin/bottom = 343.0
 
-[node name="Button" type="TextureButton" parent="Customization/Lightning"]
+[node name="Button" type="TextureButton" parent="GameCustomization/Lightning"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -245,7 +321,7 @@ enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 5 )
 
-[node name="Text" type="Label" parent="Customization/Lightning"]
+[node name="Text" type="Label" parent="GameCustomization/Lightning"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -261,7 +337,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Nature" type="Container" parent="Customization"]
+[node name="Nature" type="Container" parent="GameCustomization"]
 
 editor/display_folded = true
 focus/ignore_mouse = false
@@ -273,7 +349,7 @@ margin/top = 315.0
 margin/right = 300.0
 margin/bottom = 443.0
 
-[node name="Button" type="TextureButton" parent="Customization/Nature"]
+[node name="Button" type="TextureButton" parent="GameCustomization/Nature"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -289,7 +365,7 @@ enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 6 )
 
-[node name="Text" type="Label" parent="Customization/Nature"]
+[node name="Text" type="Label" parent="GameCustomization/Nature"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -305,7 +381,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Magic" type="Container" parent="Customization"]
+[node name="Magic" type="Container" parent="GameCustomization"]
 
 editor/display_folded = true
 focus/ignore_mouse = false
@@ -317,7 +393,7 @@ margin/top = 0.0
 margin/right = 650.0
 margin/bottom = 128.0
 
-[node name="Button" type="TextureButton" parent="Customization/Magic"]
+[node name="Button" type="TextureButton" parent="GameCustomization/Magic"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -333,7 +409,7 @@ enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 7 )
 
-[node name="Text" type="Label" parent="Customization/Magic"]
+[node name="Text" type="Label" parent="GameCustomization/Magic"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -349,7 +425,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Melee" type="Container" parent="Customization"]
+[node name="Melee" type="Container" parent="GameCustomization"]
 
 editor/display_folded = true
 focus/ignore_mouse = false
@@ -361,7 +437,7 @@ margin/top = 100.0
 margin/right = 650.0
 margin/bottom = 228.0
 
-[node name="Button" type="TextureButton" parent="Customization/Melee"]
+[node name="Button" type="TextureButton" parent="GameCustomization/Melee"]
 
 rect/scale = Vector2( 0.5, 0.5 )
 focus/ignore_mouse = false
@@ -377,7 +453,7 @@ enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 8 )
 
-[node name="Text" type="Label" parent="Customization/Melee"]
+[node name="Text" type="Label" parent="GameCustomization/Melee"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -393,8 +469,92 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="GCBack" type="Button" parent="GameCustomization"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 493.0
+margin/top = 550.0
+margin/right = 546.0
+margin/bottom = 570.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Back"
+flat = false
+
+[node name="PressKey" type="Container" parent="GameCustomization"]
+
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1024.0
+margin/bottom = 600.0
+
+[node name="Background" type="TextureFrame" parent="GameCustomization/PressKey"]
+
+visibility/opacity = 0.7
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1920.0
+margin/bottom = 1080.0
+texture = ExtResource( 9 )
+stretch_mode = 0
+
+[node name="PressKeyCancel" type="Button" parent="GameCustomization/PressKey"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 512.0
+margin/top = 350.0
+margin/right = 566.0
+margin/bottom = 370.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Cancel"
+flat = false
+
+[node name="Text" type="Label" parent="GameCustomization/PressKey"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 455.0
+margin/top = 280.0
+margin/right = 620.0
+margin/bottom = 314.0
+custom_fonts/font = ExtResource( 2 )
+text = "Placeholder"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="pressed" from="CustomizationSelect/GameControls" to="." method="_on_GameControls_pressed"]
+
 [connection signal="item_selected" from="SelectTag/TagSelector" to="." method="_on_TagSelector_item_selected"]
 
+[connection signal="text_changed" from="SelectTag/TextEdit" to="." method="_on_TextEdit_text_changed"]
+
 [connection signal="pressed" from="SelectTag/CreateTag" to="." method="_on_CreateTag_pressed"]
+
+[connection signal="pressed" from="SelectTag/SelectTagBack" to="." method="_on_SelectTagBack_pressed"]
+
+[connection signal="pressed" from="GameCustomization/GCBack" to="." method="_on_GCBack_pressed"]
+
+[connection signal="pressed" from="GameCustomization/PressKey/PressKeyCancel" to="." method="_on_PressKeyCancel_pressed"]
 
 
