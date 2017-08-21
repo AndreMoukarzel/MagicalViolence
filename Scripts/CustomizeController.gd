@@ -32,7 +32,7 @@ extends Control
 var selected_tag = null
 var selected_input = null
 
-
+var config = ConfigFile.new()
 
 func _ready():
 	
@@ -93,23 +93,18 @@ func _input(event):
 		# Temos que resetar o mapa para o global antes de toda partida,
 		# antes de carregar as tags novas.
 		
-		var config = ConfigFile.new()
-		if (config.load(str("user://", selected_tag, "_tagconfig.cfg")) != OK):
-			print ("Error, could not load tag data!")
-			return
 		config.set_value("Joystick Button", str("char_", input_name), event.button_index)
 		
 		# Finished, update the modified config visually
-		check_repeat_button(event.button_index, input_name, config)
+		check_repeat_button(event.button_index, input_name)
 		
 		get_node(str("GameCustomization/", selected_input, "/Text")).set_text(str("[Button ", event.button_index, "]"))
 		get_node("GameCustomization/PressKey").hide()
 		selected_input = null
 		
-		config.save(str("user://", selected_tag, "_tagconfig.cfg"))
 		set_process_input(false)
 		
-func check_repeat_button(button, input_name, config):
+func check_repeat_button(button, input_name):
 	for node in get_node("GameCustomization").get_children():
 		for child in node.get_children():
 			if (child.get_name() == "Text"):
@@ -125,7 +120,6 @@ func _on_GameControls_pressed():
 	get_node("SelectTag").show()
 
 func _on_TagSelector_item_selected( id ):
-	print(id)
 	
 	if ( id != -1 and id != 0):
 		selected_tag = get_node("SelectTag/TagSelector").get_item_text(id)
@@ -143,9 +137,7 @@ func _on_TagSelector_item_selected( id ):
 		
 		for key in config.get_section_keys("Joystick Button"):
 			var real_name = str(key.split("_")[1].capitalize())
-			# For some reason, Godot is failing to identify value as
-			# an JoystickButtonInputEvent, so we have to manually extract the
-			# button_index from the string
+			# Remember: we only have the button index, so an easy extraction
 			var value = config.get_value("Joystick Button", key)
 			get_node(str("GameCustomization/", real_name, "/Text")).set_text(str("[Button ", value, "]"))
 
@@ -184,23 +176,44 @@ func _on_SelectTagBack_pressed():
 	get_node("SelectTag/TextEdit").set_text("")
 	get_node("SelectTag/TagSelector").select(0)
 
-
-func _on_GCBack_pressed():
+func _on_GCSave_pressed():
 	# Check if left any unassigned actions
-	var config = ConfigFile.new()
-	if (config.load(str("user://", selected_tag, "_tagconfig.cfg")) != OK):
-		print ("Error, could not load tag data!")
-		return
-	
 	for key in config.get_section_keys("Joystick Button"):
 		if str(config.get_value("Joystick Button", key)) == "Unassigned":
 			print("You have left some controls unassigned!")
 			return
+			
+	config.save(str("user://", selected_tag, "_tagconfig.cfg"))
 	
+	selected_tag = null
+	config = ConfigFile.new()
+	
+	reset_gc_display()
+	get_node("GameCustomization").hide()
+	get_node("SelectTag").show()
+
+func _on_GCBack_pressed():
+	
+	selected_tag = null
+	config = ConfigFile.new()
+	
+	reset_gc_display()
 	get_node("GameCustomization").hide()
 	get_node("SelectTag").show()
 	
-	selected_tag = null
+func reset_gc_display():
+	# We reset the controls to the default
+	# We depend on a "default.cfg" file to do so
+	var default_config = ConfigFile.new()
+	if (default_config.load(str("user://default.cfg")) != OK):
+		print ("Error, could not load default data!")
+		return
+	
+	for key in default_config.get_section_keys("Joystick Button"):
+		var real_name = str(key.split("_")[1].capitalize())
+		# Remember: we only have the button index, so an easy extraction
+		var value = default_config.get_value("Joystick Button", key)
+		get_node(str("GameCustomization/", real_name, "/Text")).set_text(str("[Button ", value, "]"))
 
 
 func _on_PressKeyCancel_pressed():

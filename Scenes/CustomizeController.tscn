@@ -469,6 +469,22 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="GCSave" type="Button" parent="GameCustomization"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 493.0
+margin/top = 520.0
+margin/right = 546.0
+margin/bottom = 540.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Save"
+flat = false
+
 [node name="GCBack" type="Button" parent="GameCustomization"]
 
 focus/ignore_mouse = false
@@ -553,6 +569,8 @@ max_lines_visible = -1
 [connection signal="pressed" from="SelectTag/CreateTag" to="." method="_on_CreateTag_pressed"]
 
 [connection signal="pressed" from="SelectTag/SelectTagBack" to="." method="_on_SelectTagBack_pressed"]
+
+[connection signal="pressed" from="GameCustomization/GCSave" to="." method="_on_GCSave_pressed"]
 
 [connection signal="pressed" from="GameCustomization/GCBack" to="." method="_on_GCBack_pressed"]
 
