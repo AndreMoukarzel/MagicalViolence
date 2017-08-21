@@ -22,6 +22,7 @@ tracks/0/keys = {
 
 [node name="LeafShield" type="KinematicBody2D"]
 
+transform/scale = Vector2( 1.5, 1.5 )
 input/pickable = false
 collision/layers = 1
 collision/mask = 1
@@ -39,19 +40,19 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = "spin"
 
-[node name="LeafShieldProj" parent="." instance=ExtResource( 2 )]
+[node name="LeafShieldProj1" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( -20, -20 )
 
-[node name="LeafShieldProj1" parent="." instance=ExtResource( 2 )]
+[node name="LeafShieldProj2" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 20, -20 )
 
-[node name="LeafShieldProj2" parent="." instance=ExtResource( 2 )]
+[node name="LeafShieldProj3" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 20, 20 )
 
-[node name="LeafShieldProj3" parent="." instance=ExtResource( 2 )]
+[node name="LeafShieldProj4" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( -20, 20 )
 
