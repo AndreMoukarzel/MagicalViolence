@@ -32,6 +32,11 @@ func _input(event):
 ################### Animation Functions ###################
 	
 func move_cat(direction, menu_items):
+	# Note that the cat logic is guaranteed, for the tween
+	# only lasts for 0.3 seconds, while the menu button's
+	# animation lasts for more than that, and is held off
+	# by a yield.
+	
 	var cat = get_node("Cat")
 	var sprite = get_node("Cat/AnimatedSprite")
 	var future_position

@@ -151,6 +151,7 @@ transform/pos = Vector2( 180, 90 )
 transform/scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "Idle"
+frame = 1
 playing = true
 
 [node name="Tween" type="Tween" parent="Cat"]
