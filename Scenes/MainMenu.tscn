@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/VersusHover.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/VersusNormal.png" type="Texture" id=3]
-[ext_resource path="res://Resources/Animations/Main Menu/Hovering.tres" type="Animation" id=4]
-[ext_resource path="res://Sprites/GUI/Buttons/Main Menu/OptionsHover.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/GUI/Buttons/Main Menu/OptionsNormal.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsHover.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsNormal.png" type="Texture" id=8]
+[ext_resource path="res://Resources/Animations/Main Menu/HoveringDown.tres" type="Animation" id=4]
+[ext_resource path="res://Resources/Animations/Main Menu/HoveringUp.tres" type="Animation" id=5]
+[ext_resource path="res://Sprites/GUI/Buttons/Main Menu/OptionsHover.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/GUI/Buttons/Main Menu/OptionsNormal.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsHover.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsNormal.png" type="Texture" id=9]
 
 [node name="MainMenu" type="Control"]
 
@@ -23,7 +24,6 @@ script/script = ExtResource( 1 )
 
 [node name="Versus" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -48,7 +48,9 @@ texture = ExtResource( 3 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Hovering = ExtResource( 4 )
+anims/HoveringDown = ExtResource( 4 )
+anims/HoveringUp = ExtResource( 5 )
+next/HoveringUp = ""
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -56,7 +58,6 @@ autoplay = ""
 
 [node name="Options" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -69,19 +70,20 @@ margin/bottom = 400.0
 [node name="Hover" type="Sprite" parent="Options"]
 
 z/z = 80
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="Normal" type="Sprite" parent="Options"]
 
 z/z = 81
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 
 [node name="ButtonAnimations" type="AnimationPlayer" parent="Options"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Hovering = ExtResource( 4 )
+anims/HoveringDown = ExtResource( 4 )
+anims/HoveringUp = ExtResource( 5 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -89,7 +91,6 @@ autoplay = ""
 
 [node name="Credits" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -102,19 +103,20 @@ margin/bottom = 500.0
 [node name="Hover" type="Sprite" parent="Credits"]
 
 z/z = 70
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
 [node name="Normal" type="Sprite" parent="Credits"]
 
 z/z = 71
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="ButtonAnimations" type="AnimationPlayer" parent="Credits"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Hovering = ExtResource( 4 )
+anims/HoveringDown = ExtResource( 4 )
+anims/HoveringUp = ExtResource( 5 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
