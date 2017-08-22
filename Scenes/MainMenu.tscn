@@ -9,15 +9,15 @@
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/OptionsNormal.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsHover.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsNormal.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Characters/Cat/cat0007.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Characters/Cat/cat0004.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/Characters/Cat/cat0000.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/Characters/Cat/cat0001.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/Characters/Cat/cat0002.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Characters/Cat/cat0004.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Characters/Cat/cat0000.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Characters/Cat/cat0001.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Characters/Cat/cat0002.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Characters/Cat/cat0007.png" type="Texture" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ { "frames":[ ExtResource( 10 ) ], "loop":true, "name":"JumpUp", "speed":5.0 }, { "frames":[ ExtResource( 11 ) ], "loop":true, "name":"JumpDown", "speed":5.0 }, { "frames":[ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ], "loop":true, "name":"Idle", "speed":5.0 } ]
+animations = [ { "frames":[ ExtResource( 10 ) ], "loop":true, "name":"JumpDown", "speed":5.0 }, { "frames":[ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ], "loop":true, "name":"Idle", "speed":5.0 }, { "frames":[ ExtResource( 14 ) ], "loop":true, "name":"JumpUp", "speed":5.0 } ]
 
 [node name="MainMenu" type="Control"]
 
@@ -45,12 +45,11 @@ margin/bottom = 300.0
 
 [node name="Hover" type="Sprite" parent="Versus"]
 
-z/z = 91
+z/z = 1
 texture = ExtResource( 2 )
 
 [node name="Normal" type="Sprite" parent="Versus"]
 
-z/z = 90
 texture = ExtResource( 3 )
 
 [node name="ButtonAnimations" type="AnimationPlayer" parent="Versus"]
@@ -80,12 +79,12 @@ margin/bottom = 400.0
 
 [node name="Hover" type="Sprite" parent="Options"]
 
-z/z = 80
+z/z = 10
 texture = ExtResource( 6 )
 
 [node name="Normal" type="Sprite" parent="Options"]
 
-z/z = 81
+z/z = 11
 texture = ExtResource( 7 )
 
 [node name="ButtonAnimations" type="AnimationPlayer" parent="Options"]
@@ -114,12 +113,12 @@ margin/bottom = 500.0
 
 [node name="Hover" type="Sprite" parent="Credits"]
 
-z/z = 70
+z/z = 20
 texture = ExtResource( 8 )
 
 [node name="Normal" type="Sprite" parent="Credits"]
 
-z/z = 71
+z/z = 21
 texture = ExtResource( 9 )
 
 [node name="ButtonAnimations" type="AnimationPlayer" parent="Credits"]
@@ -136,6 +135,7 @@ autoplay = ""
 
 [node name="Cat" type="Control" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -151,7 +151,6 @@ transform/pos = Vector2( 180, 90 )
 transform/scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "Idle"
-frame = 1
 playing = true
 
 [node name="Tween" type="Tween" parent="Cat"]
