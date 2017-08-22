@@ -16,18 +16,22 @@ onready var anim_player = get_node("Sprite/AnimationPlayer")
 
 var current_direction = Vector2( 0, 1 )
 
-var magic
+var magic_element = ""
 var charge = 0
 var ready_to_spell = true
 
 var health = 100
 
 # Spells
+# Fire
 var firebolt_scn = preload("res://Scenes/Projectiles/Firebolt.tscn")
 var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
 var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
+# Water
 var watersplash_scn = preload("res://Scenes/Projectiles/WaterSplash.tscn")
 var watersphere_scn = preload("res://Scenes/Projectiles/WaterSphere.tscn")
+# Nature
+var leafshield_scn = preload("res://Scenes/Projectiles/LeafShield.tscn")
 
 
 func _ready():
@@ -41,7 +45,7 @@ func _ready():
 	set_process(true)
 	set_fixed_process(true)
 
-	magic = watersplash_scn
+	magic_element = "fire"
 
 
 func _process(delta):
@@ -86,29 +90,78 @@ func _fixed_process(delta):
 	if btn_magic.state() == 2:
 		charge += 1
 		get_node("ChargeBar").set_value(charge)
-		if charge < 50:
-			magic = watersplash_scn
-		elif charge < 100:
-			magic = watersphere_scn
-		else:
-			magic = firebolt_scn
 
 	var cd_bar = get_node("CooldownBar")
 	cd_bar.set_value( cd_bar.get_value() - 1 )
 
 
+# Returns what spell is suposed to be cast depending on
+# magic_element and charge
+func define_spell():
+	if magic_element == "fire":
+		if charge < 50:
+			return fireball_scn
+		elif charge < 100:
+			return scorching_scn
+		return firebolt_scn
+	elif magic_element == "water":
+		if charge < 50:
+			return watersplash_scn
+		elif charge < 100:
+			return watersphere_scn
+		return firebolt_scn
+	elif magic_element == "nature":
+		if charge < 50:
+			return leafshield_scn
+		elif charge < 100:
+			return scorching_scn
+		return firebolt_scn
+	else: # magic_element == eletricity
+		if charge < 50:
+			return fireball_scn
+		elif charge < 100:
+			return scorching_scn
+		return firebolt_scn
+
+
+# Returns correct cooldown(in seconds) for spell
+func define_cooldown(spell):
+	if magic_element == "fire":
+		if spell == fireball_scn:
+			return 0.5
+		elif spell == scorching_scn:
+			return 1
+		return 2
+	elif magic_element == "water":
+		if spell == watersplash_scn:
+			return 0.5
+		elif spell == watersphere_scn:
+			return 1
+		return 2
+	elif magic_element == "nature":
+		if spell == leafshield_scn:
+			return 0.5
+		elif spell == scorching_scn:
+			return 1
+		return 2
+	else: # magic_element == eletricity
+		if spell == fireball_scn:
+			return 0.5
+		elif spell == scorching_scn:
+			return 1
+		return 2
+
+
 func release_spell():
-	var spell = magic.instance()
-	spell.fire( current_direction, self )
-	get_parent().add_child( spell )
+	var spell = define_spell()
+	var projectile = spell.instance()
+	projectile.fire( current_direction, self )
+	get_parent().add_child( projectile )
 
 	# Resets spell
 	ready_to_spell = false
-	set_cooldown(0.5) # set cooldown DEPENDING oN SpElL
-	if (magic == scorching_scn):
-		set_cooldown(0.75)
-	elif (magic == firebolt_scn):
-		set_cooldown(1)
+	var cd = define_cooldown(spell)
+	set_cooldown(cd)
 
 
 func set_cooldown(time):
