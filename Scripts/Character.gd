@@ -52,39 +52,16 @@ func _process(delta):
 	################### MOVEMENT ###################
 
 	var direction = Vector2( 0, 0 )
-	var new_anim
+	var new_anim = ""
 	
-	# down and left
-	if Input.is_action_pressed(name_adapter("char_left")) and Input.is_action_pressed(name_adapter("char_down")):
+	if Input.is_action_pressed(name_adapter("char_left")):
 		direction -= Vector2( RUN_SPEED, 0 )
-		direction += Vector2( 0, RUN_SPEED )
-		new_anim = "run_downleft"
-	# down and right
-	elif Input.is_action_pressed(name_adapter("char_right")) and Input.is_action_pressed(name_adapter("char_down")):
-		direction += Vector2( RUN_SPEED, RUN_SPEED )
-		new_anim = "run_downright"
-	# up and right
-	elif Input.is_action_pressed(name_adapter("char_right")) and Input.is_action_pressed(name_adapter("char_up")):
+	if Input.is_action_pressed(name_adapter("char_right")):
 		direction += Vector2( RUN_SPEED, 0 )
+	if Input.is_action_pressed(name_adapter("char_down")):
+		direction += Vector2( 0, RUN_SPEED )
+	if Input.is_action_pressed(name_adapter("char_up")):
 		direction -= Vector2( 0, RUN_SPEED )
-		new_anim = "run_upright"
-	# up and left
-	elif Input.is_action_pressed(name_adapter("char_left")) and Input.is_action_pressed(name_adapter("char_up")):
-		direction -= Vector2( RUN_SPEED, RUN_SPEED )
-		new_anim = "run_upleft"
-	else:
-		if Input.is_action_pressed(name_adapter("char_left")):
-			direction -= Vector2( RUN_SPEED, 0 )
-			new_anim = "run_left"
-		if Input.is_action_pressed(name_adapter("char_down")):
-			direction += Vector2( 0, RUN_SPEED )
-			new_anim = "run_down"
-		if Input.is_action_pressed(name_adapter("char_right")):
-			direction += Vector2( RUN_SPEED, 0 )
-			new_anim = "run_right"
-		if Input.is_action_pressed(name_adapter("char_up")):
-			direction -= Vector2( 0, RUN_SPEED )
-			new_anim = "run_up"
 
 	if direction == Vector2( 0, 0 ):
 		# Temporary solution to this issue, will probably be
@@ -92,6 +69,7 @@ func _process(delta):
 		new_anim = str("idle_", current_anim.split("_")[1])
 	else:
 		current_direction = direction / RUN_SPEED
+		new_anim = define_anim(current_direction)
 
 	# should take external forces into consideration
 	move( direction )
@@ -218,12 +196,34 @@ func die():
 	queue_free()
 
 
+########################## ANIMATIONS ##########################
+
+func define_anim( direction ):
+	if direction.x == 1:
+		if direction.y == 1:
+			return "run_downright"
+		if direction.y == -1:
+			return "run_upright"
+		return "run_right"
+	if direction.x == -1:
+		if direction.y == 1:
+			return "run_downleft"
+		if direction.y == -1:
+			return "run_upleft"
+		return "run_left"
+	if direction.y == 1:
+		return "run_down"
+	if direction.y == -1:
+		return "run_up"
+
+
 func update_anim( new_animation ):
 	current_anim = anim_player.get_current_animation()
 
 	if new_animation != current_anim:
 		anim_player.play(new_animation)
 
+################################################################
 
 # Function that adds controller_id to the end of
 # the name srnt, so that it can be understood by
