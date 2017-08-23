@@ -50,18 +50,37 @@ func _process(delta):
 	var direction = Vector2( 0, 0 )
 	var new_anim
 	
-	if Input.is_action_pressed(name_adapter("char_left")):
+	# down and left
+	if Input.is_action_pressed(name_adapter("char_left")) and Input.is_action_pressed(name_adapter("char_down")):
 		direction -= Vector2( RUN_SPEED, 0 )
-		new_anim = "run_left"
-	if Input.is_action_pressed(name_adapter("char_right")):
-		direction += Vector2( RUN_SPEED, 0 )
-		new_anim = "run_right"
-	if Input.is_action_pressed(name_adapter("char_up")):
-		direction -= Vector2( 0, RUN_SPEED )
-		new_anim = "run_up"
-	if Input.is_action_pressed(name_adapter("char_down")):
 		direction += Vector2( 0, RUN_SPEED )
-		new_anim = "run_down"
+		new_anim = "run_downleft"
+	# down and right
+	elif Input.is_action_pressed(name_adapter("char_right")) and Input.is_action_pressed(name_adapter("char_down")):
+		direction += Vector2( RUN_SPEED, RUN_SPEED )
+		new_anim = "run_downright"
+	# up and right
+	elif Input.is_action_pressed(name_adapter("char_right")) and Input.is_action_pressed(name_adapter("char_up")):
+		direction += Vector2( RUN_SPEED, 0 )
+		direction -= Vector2( 0, RUN_SPEED )
+		new_anim = "run_upright"
+	# up and left
+	elif Input.is_action_pressed(name_adapter("char_left")) and Input.is_action_pressed(name_adapter("char_up")):
+		direction -= Vector2( RUN_SPEED, RUN_SPEED )
+		new_anim = "run_upleft"
+	else:
+		if Input.is_action_pressed(name_adapter("char_left")):
+			direction -= Vector2( RUN_SPEED, 0 )
+			new_anim = "run_left"
+		if Input.is_action_pressed(name_adapter("char_down")):
+			direction += Vector2( 0, RUN_SPEED )
+			new_anim = "run_down"
+		if Input.is_action_pressed(name_adapter("char_right")):
+			direction += Vector2( RUN_SPEED, 0 )
+			new_anim = "run_right"
+		if Input.is_action_pressed(name_adapter("char_up")):
+			direction -= Vector2( 0, RUN_SPEED )
+			new_anim = "run_up"
 
 	if direction == Vector2( 0, 0 ):
 		# Temporary solution to this issue, will probably be
