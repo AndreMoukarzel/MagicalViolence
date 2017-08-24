@@ -21,6 +21,8 @@ func _ready():
 	
 func _input(event):
 	
+	print (event)
+	
 	if (key_mapping and event.type == InputEvent.JOYSTICK_BUTTON and event.pressed):
 		print(str("Recieved joystick button. The key was: ", event.button_index, ", and the device was: ", event.device))
 		

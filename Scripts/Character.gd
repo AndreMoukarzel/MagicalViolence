@@ -32,6 +32,8 @@ var watersplash_scn = preload("res://Scenes/Projectiles/WaterSplash.tscn")
 var watersphere_scn = preload("res://Scenes/Projectiles/WaterSphere.tscn")
 # Nature
 var leafshield_scn = preload("res://Scenes/Projectiles/LeafShield.tscn")
+# Lightning
+var magnetbolt_scn = preload("res://Scenes/Projectiles/MagnetBolt.tscn")
 
 
 func _ready():
@@ -45,7 +47,7 @@ func _ready():
 	set_process(true)
 	set_fixed_process(true)
 
-	magic_element = "fire"
+	magic_element = "electricity"
 
 
 func _process(delta):
@@ -115,7 +117,7 @@ func define_spell():
 		return firebolt_scn
 	else: # magic_element == eletricity
 		if charge < 50:
-			return fireball_scn
+			return magnetbolt_scn
 		elif charge < 100:
 			return scorching_scn
 		return firebolt_scn
@@ -142,7 +144,7 @@ func define_cooldown(spell):
 			return 1
 		return 2
 	else: # magic_element == eletricity
-		if spell == fireball_scn:
+		if spell == magnetbolt_scn:
 			return 0.5
 		elif spell == scorching_scn:
 			return 1
