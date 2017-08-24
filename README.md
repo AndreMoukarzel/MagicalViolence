@@ -14,3 +14,4 @@ https://docs.google.com/document/d/1v8lCvqWJ2a8tDeqCqTdieB-pFZhJJz4tPxZPjcpXH8k/
 Para deixar o GDD limpo, foi criado outro documento para reconhecimentos diversos. Segue o link:
 
 https://docs.google.com/document/d/12qptnodbJxkSYDfdKGPliOm--WBTU9c5GP1BJ81l19Q/edit?usp=sharing
+
