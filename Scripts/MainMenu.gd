@@ -6,6 +6,8 @@ var menu_depth = 0
 var menu_order = [["Versus", "Options", "Credits"], [] , ["Controls", "Audio", "Video"]]
 
 func _ready():
+	
+	get_node("KeyboardMode").set_focus_mode(FOCUS_NONE)
 	set_process_input(true)
 	
 func _input(event):
@@ -213,3 +215,50 @@ func adjust_z_hovering():
 	hover.set("z/z", hover.get("z/z") + 1)
 	normal.set("z/z", normal.get("z/z") - 1)
 	
+################### Keyboard Functions ###################
+
+func _on_KeyboardMode_pressed():
+	
+	# Falta implmentar a retirada dos controles de jogo
+	
+	var keyboard_node = get_node("KeyboardMode")
+	
+	var accept_codes = [90, 16777220, 16777221, 32]
+	var select_codes = [32]
+	var cancel_codes = [16777217, 88]
+	
+	var config = ConfigFile.new()
+	if (config.load(str("user://keyboard.cfg")) != OK):
+		print ("Error, could not load tag data!")
+		return
+	
+	# Disabled keyboard
+	
+	if (keyboard_node.is_pressed()):
+		global.keyboard_enabled = false
+
+		var event = InputEvent()
+		event.type = InputEvent.KEY
+		
+		for key in config.get_section_keys("Keyboard Input"):
+			var real_name = str(key.split("-")[0])
+			# Remember: we only have the button index, so an easy extraction
+			var value = config.get_value("Keyboard Input", key)
+			
+			event.scancode = value
+			InputMap.action_erase_event(real_name, event)
+
+	# Enable keyboard
+	else:
+		global.keyboard_enabled = false
+
+		var event = InputEvent()
+		event.type = InputEvent.KEY
+		
+		for key in config.get_section_keys("Keyboard Input"):
+			var real_name = str(key.split("-")[0])
+			# Remember: we only have the button index, so an easy extraction
+			var value = config.get_value("Keyboard Input", key)
+			
+			event.scancode = value
+			InputMap.action_add_event(real_name, event)
