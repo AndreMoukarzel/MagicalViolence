@@ -9,12 +9,12 @@
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/OptionsNormal.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsHover.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsNormal.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Characters/Cat/cat0008.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Characters/Cat/cat0007.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Characters/Cat/cat0000.png" type="Texture" id=11]
 [ext_resource path="res://Sprites/Characters/Cat/cat0001.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/Characters/Cat/cat0002.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/Characters/Cat/cat0004.png" type="Texture" id=14]
-[ext_resource path="res://Sprites/Characters/Cat/cat0007.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Characters/Cat/cat0008.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Characters/Cat/cat0004.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/ControlsHover.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/ControlsNormal.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/AudioHover.png" type="Texture" id=18]
@@ -26,7 +26,27 @@
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ { "frames":[ ExtResource( 10 ) ], "loop":true, "name":"JumpHorizontal", "speed":5.0 }, { "frames":[ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ], "loop":true, "name":"Idle", "speed":5.0 }, { "frames":[ ExtResource( 14 ) ], "loop":true, "name":"JumpDown", "speed":5.0 }, { "frames":[ ExtResource( 15 ) ], "loop":true, "name":"JumpUp", "speed":5.0 } ]
+animations = [ {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "JumpUp",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "Idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "JumpHorizontal",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "JumpDown",
+"speed": 5.0
+} ]
 
 [sub_resource type="Animation" id=2]
 
@@ -246,7 +266,6 @@ transform/pos = Vector2( 180, 90 )
 transform/scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "Idle"
-frame = 2
 playing = true
 
 [node name="Tween" type="Tween" parent="Cat"]
