@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=1]
+[gd_scene load_steps=29 format=1]
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/VersusHover.png" type="Texture" id=2]
@@ -21,6 +21,8 @@
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/AudioNormal.png" type="Texture" id=19]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/VideoHover.png" type="Texture" id=20]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/VideoNormal.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/GUI/Icons/keyboard.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/GUI/Icons/no_keyboard.png" type="Texture" id=23]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -56,32 +58,17 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Versus:rect/pos")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1400, 100 ), Vector2( 400, 100 ) ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1400, 100 ), Vector2( 400, 100 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Options:rect/pos")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1500, 200 ), Vector2( 500, 200 ) ]
-}
+tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1500, 200 ), Vector2( 500, 200 ) ] }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Credits:rect/pos")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1600, 300 ), Vector2( 600, 300 ) ]
-}
+tracks/2/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1600, 300 ), Vector2( 600, 300 ) ] }
 
 [sub_resource type="Animation" id=3]
 
@@ -93,32 +80,17 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Controls:rect/pos")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1400, 100 ), Vector2( 400, 100 ) ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1400, 100 ), Vector2( 400, 100 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Audio:rect/pos")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1500, 200 ), Vector2( 500, 200 ) ]
-}
+tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1500, 200 ), Vector2( 500, 200 ) ] }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Video:rect/pos")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1600, 300 ), Vector2( 600, 300 ) ]
-}
+tracks/2/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1600, 300 ), Vector2( 600, 300 ) ] }
 
 [sub_resource type="Animation" id=4]
 
@@ -129,32 +101,17 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Versus:rect/pos")
 tracks/0/interp = 2
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 400, 100 ), Vector2( 1400, 100 ) ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 400, 100 ), Vector2( 1400, 100 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Options:rect/pos")
 tracks/1/interp = 2
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 500, 200 ), Vector2( 1500, 200 ) ]
-}
+tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 500, 200 ), Vector2( 1500, 200 ) ] }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Credits:rect/pos")
 tracks/2/interp = 2
 tracks/2/imported = false
-tracks/2/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 600, 300 ), Vector2( 1600, 300 ) ]
-}
+tracks/2/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 600, 300 ), Vector2( 1600, 300 ) ] }
 
 [sub_resource type="Animation" id=5]
 
@@ -166,32 +123,17 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Controls:rect/pos")
 tracks/0/interp = 2
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 400, 100 ), Vector2( 1400, 100 ) ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 400, 100 ), Vector2( 1400, 100 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Audio:rect/pos")
 tracks/1/interp = 2
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 500, 200 ), Vector2( 1500, 200 ) ]
-}
+tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 500, 200 ), Vector2( 1500, 200 ) ] }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Video:rect/pos")
 tracks/2/interp = 2
 tracks/2/imported = false
-tracks/2/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 600, 300 ), Vector2( 1600, 300 ) ]
-}
+tracks/2/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 600, 300 ), Vector2( 1600, 300 ) ] }
 
 [node name="MainMenu" type="Control"]
 
@@ -434,6 +376,23 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
+[node name="KeyboardMode" type="TextureButton" parent="."]
+
+rect/scale = Vector2( 0.2, 0.2 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 900.0
+margin/top = 500.0
+margin/right = 1412.0
+margin/bottom = 1012.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 22 )
+textures/pressed = ExtResource( 23 )
+
 [node name="MenuTransitions" type="AnimationPlayer" parent="."]
 
 playback/process_mode = 1
@@ -447,5 +406,7 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[connection signal="pressed" from="KeyboardMode" to="." method="_on_KeyboardMode_pressed"]
 
 
