@@ -240,10 +240,6 @@ func take_damage(damage):
 		die()
 
 
-func get_pushed(direction):
-	move( direction*2 )
-
-
 func die():
 	queue_free()
 

@@ -4,7 +4,7 @@ extends KinematicBody2D
 
 const SPEED = 2
 
-var direction = Vector2( 0, 0 ) # direction that the wave flies to
+var direction = Vector2( 0, 0 ) # direction that the wave goes to
 var parent
 
 
@@ -22,22 +22,20 @@ func _process(delta):
 	move( direction * SPEED )
 
 
-# slows and push back if take damage function exists in body (?)
+# Pushes back if target is an enemy
 func _on_Area2D_body_enter( body ):
 	if body.is_in_group( "Player" ) and body != parent:
-		# Target is slowed and pushed back
-		body.is_pushed = true
-		body.is_slowed = true
+		# Target is pushed back
 		body.push_direction = direction
 
 
+# Resets the push factor when exiting enemy
 func _on_Area2D_body_exit( body ):
 	if body.is_in_group( "Player" ) and body != parent:
-		body.is_pushed = false
-		body.is_slowed = false
 		body.push_direction = Vector2(0, 0)
 
 
+# Dies when colliding with static objects
 func _on_Area2D_static_body_enter( body ):
 	if (!body.is_in_group( "Player" )):
 		die()
