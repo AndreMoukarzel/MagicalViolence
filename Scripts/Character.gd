@@ -22,6 +22,8 @@ var charge = 0
 var ready_to_spell = true
 var holding_spell = false
 var active_proj
+var slow_multiplier = 1
+var push_direction = Vector2(0, 0)
 
 var health = 100
 
@@ -34,6 +36,7 @@ var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
 # Water
 var watersplash_scn = preload("res://Scenes/Projectiles/WaterSplash.tscn")
 var watersphere_scn = preload("res://Scenes/Projectiles/WaterSphere.tscn")
+var tidalwave_scn = preload("res://Scenes/Projectiles/TidalWave.tscn")
 # Nature
 var leafshield_scn = preload("res://Scenes/Projectiles/LeafShield.tscn")
 # Lightning
@@ -51,7 +54,7 @@ func _ready():
 	set_process(true)
 	set_fixed_process(true)
 
-	magic_element = "electricity"
+	magic_element = "water"
 
 
 func _process(delta):
@@ -76,18 +79,18 @@ func _process(delta):
 		new_anim = define_anim(current_direction)
 
 	# should take external forces into consideration
-	move( direction.normalized()*RUN_SPEED )
+	move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
 
 	################################################
-
-	if Input.is_action_pressed(name_adapter("char_fire")):
-		change_element("fire")
-	if Input.is_action_pressed(name_adapter("char_water")):
-		change_element("water")
-	if Input.is_action_pressed(name_adapter("char_lightning")):
-		change_element("lightning")
-	if Input.is_action_pressed(name_adapter("char_nature")):
-		change_element("nature")
+	if !holding_spell:
+		if Input.is_action_pressed(name_adapter("char_fire")):
+			change_element("fire")
+		if Input.is_action_pressed(name_adapter("char_water")):
+			change_element("water")
+		if Input.is_action_pressed(name_adapter("char_lightning")):
+			change_element("lightning")
+		if Input.is_action_pressed(name_adapter("char_nature")):
+			change_element("nature")
 
 	if ready_to_spell and charge > 0:
 		if btn_magic.state() == 0 or btn_magic.state() == 3:
@@ -136,7 +139,7 @@ func define_spell():
 			return watersplash_scn
 		elif charge < 100:
 			return watersphere_scn
-		return firebolt_scn
+		return tidalwave_scn
 	elif magic_element == "nature":
 		if charge < 50:
 			return leafshield_scn
@@ -226,11 +229,19 @@ func _on_Cooldown_timeout():
 	get_node("ChargeBar").set_value(charge)
 	get_node("ChargeBar").show()
 
+# Slow time is over
+func _on_SlowTimer_timeout():
+	slow_multiplier = 1
+
 func take_damage(damage):
 	health -= damage
 	get_node("HealthBar").set_value(health)
 	if health <= 0:
 		die()
+
+
+func get_pushed(direction):
+	move( direction*2 )
 
 
 func die():
@@ -265,6 +276,7 @@ func update_anim( new_animation ):
 		anim_player.play(new_animation)
 		current_anim = new_animation
 
+
 ################################################################
 
 # Function that adds controller_id to the end of
@@ -272,3 +284,5 @@ func update_anim( new_animation ):
 # the input map.
 func name_adapter(name):
 	return str(name, "_", controller_id)
+
+

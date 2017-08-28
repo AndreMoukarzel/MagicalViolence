@@ -28,6 +28,12 @@ func _on_Area2D_body_enter( body ):
 		get_node("Area2D").queue_free()
 		if body.has_method("take_damage"):
 			body.take_damage(15)
+		if body.has_method("_on_SlowTimer_timeout"):
+			# Applies slow effect 
+			body.slow_multiplier = 0.6
+			body.get_node( "SlowTimer" ).set_wait_time(2)
+			body.get_node( "SlowTimer" ).start()
+			
 		die()
 
 
