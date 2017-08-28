@@ -13,12 +13,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath(".:transform/rot")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 1 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 360.0 ] }
 
 [node name="LeafShield" type="KinematicBody2D"]
 
@@ -55,5 +50,14 @@ transform/pos = Vector2( 20, 20 )
 [node name="LeafShieldProj4" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( -20, 20 )
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.4
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

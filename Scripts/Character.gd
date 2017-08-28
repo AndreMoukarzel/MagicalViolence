@@ -17,8 +17,11 @@ onready var anim_player = get_node("Sprite/AnimationPlayer")
 var current_direction = Vector2( 0, 1 )
 
 var magic_element = ""
+var current_spell
 var charge = 0
 var ready_to_spell = true
+var holding_spell = false
+var active_proj
 
 var health = 100
 
@@ -87,15 +90,21 @@ func _process(delta):
 
 	if ready_to_spell and charge > 0:
 		if btn_magic.state() == 0 or btn_magic.state() == 3:
-			release_spell()
+			if active_proj == null:
+				release_spell()
+			else:
+				active_proj.activate()
 
 	update_anim( new_anim )
 
 
 func _fixed_process(delta):
 	if btn_magic.state() == 2:
-		charge += 1
-		get_node("ChargeBar").set_value(charge)
+		if active_proj == null:
+			charge += 1
+			get_node("ChargeBar").set_value(charge)
+		else:
+			active_proj.activate()
 
 	var cd_bar = get_node("CooldownBar")
 	cd_bar.set_value( cd_bar.get_value() - 1 )
@@ -173,8 +182,20 @@ func release_spell():
 
 	# Resets spell
 	ready_to_spell = false
+	current_spell = spell
+	if spell == leafshield_scn or spell == firebolt_scn: # spells that use activation
+		holding_spell = true
+		active_proj = projectile
+	else:
+		spell_ended()
+
+
+func spell_ended(spell = current_spell):
 	var cd = define_cooldown(spell)
 	set_cooldown(cd)
+	holding_spell = false
+	current_spell = null
+	active_proj = null
 
 
 func set_cooldown(time):

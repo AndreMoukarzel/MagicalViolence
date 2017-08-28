@@ -4,43 +4,52 @@ const SPEED = 6
 
 var direction = Vector2( 0, 0 )
 var parent
-var shoot = false
 var proj_count = 0
 
-func _ready():
-	set_fixed_process(true)
 
 func fire( direction, parent ):
-	if not shoot:
-		prepare(direction, parent)
-	else:
-		pass
+	self.direction = direction
+	self.parent = parent
+	
+	get_node("LeafShieldProj1").start( parent, self )
+	get_node("LeafShieldProj2").start( parent, self )
+	get_node("LeafShieldProj3").start( parent, self )
+	get_node("LeafShieldProj4").start( parent, self )
+	set_pos( parent.get_pos() )
+	set_process( true )
+
 
 func follow():
 	set_pos(self.parent.get_pos())
 
-func _fixed_process(delta):
+
+func _process(delta):
 	follow()
 
-# Create the leaf shield
-func prepare (direction, parent):
-	self.direction = direction
-	self.parent = parent
-	
-	get_node("LeafShieldProj1").parent = parent
-	get_node("LeafShieldProj2").parent = parent
-	get_node("LeafShieldProj3").parent = parent
-	get_node("LeafShieldProj4").parent = parent
-#	add_collision_exception_with( parent )
-	set_pos( parent.get_pos() )
-	set_process( true )
-	shoot = true
 
-#func shoot():
-#	if proj_count == 0:
-#		get_node("LeafShieldProj1").set_pos(self.parent.get_pos())
-#		get_node("LeafShieldProj1").move(direction * SPEED)
-#	proj_count = proj_count + 1
-#	if proj_count == 4:
-#		shoot = false
-#	pass
+func activate():
+	get_node("AnimationPlayer").stop()
+	for child in get_children():
+		if child.has_method("fire"):
+			print(child.get_name())
+			child.fire(Vector2(1,1))
+
+
+func proj_death():
+	proj_count += 1
+	if proj_count >= 4:
+		die()
+
+
+func die():
+	get_node("AnimationPlayer").stop()
+	for child in get_children():
+		if child.get_name() != "AnimationPlayer" and child.get_name() != "Timer":
+			child.die()
+	parent.spell_ended()
+	set_process( false )
+	get_node("Timer").start()
+
+
+func _on_Timer_timeout():
+	queue_free()
