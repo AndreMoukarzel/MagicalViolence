@@ -40,7 +40,7 @@ func die():
 	if get_node( "AnimationPlayer" ).get_current_animation() != "death":
 		get_node( "AnimationPlayer" ).play( "death" )
 #		if owner != null:
-		owner.proj_death()
+		owner.leaf_death()
 	set_process( false )
 
 
