@@ -60,22 +60,22 @@ func _process(delta):
 	var new_anim = ""
 	
 	if Input.is_action_pressed(name_adapter("char_left")):
-		direction -= Vector2( RUN_SPEED, 0 )
+		direction -= Vector2( 1, 0 )
 	if Input.is_action_pressed(name_adapter("char_right")):
-		direction += Vector2( RUN_SPEED, 0 )
+		direction += Vector2( 1, 0 )
 	if Input.is_action_pressed(name_adapter("char_down")):
-		direction += Vector2( 0, RUN_SPEED )
+		direction += Vector2( 0, 1 )
 	if Input.is_action_pressed(name_adapter("char_up")):
-		direction -= Vector2( 0, RUN_SPEED )
+		direction -= Vector2( 0, 1 )
 
 	if direction == Vector2( 0, 0 ):
 		new_anim = str("idle_", current_anim.split("_")[1])
 	else:
-		current_direction = direction / RUN_SPEED
+		current_direction = direction
 		new_anim = define_anim(current_direction)
 
 	# should take external forces into consideration
-	move( direction )
+	move( direction.normalized()*RUN_SPEED )
 
 	################################################
 
@@ -177,7 +177,7 @@ func define_cooldown(spell):
 func release_spell():
 	var spell = define_spell()
 	var projectile = spell.instance()
-	projectile.fire( current_direction, self )
+	projectile.fire( current_direction.normalized(), self )
 	get_parent().add_child( projectile )
 
 	# Resets spell
