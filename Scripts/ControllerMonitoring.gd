@@ -1,5 +1,7 @@
 extends Node
 
+var controller_ports = [-1, -1, -1, -1]
+
 
 # This is to be called at the beggining of the game (it is loaded globally, and is a singleton),
 # so we initialize controller_ports on ready(), then any changes made are caught by the Input signal.
