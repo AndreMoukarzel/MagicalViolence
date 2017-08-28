@@ -76,6 +76,15 @@ func _process(delta):
 
 	################################################
 
+	if Input.is_action_pressed(name_adapter("char_fire")):
+		change_element("fire")
+	if Input.is_action_pressed(name_adapter("char_water")):
+		change_element("water")
+	if Input.is_action_pressed(name_adapter("char_lightning")):
+		change_element("lightning")
+	if Input.is_action_pressed(name_adapter("char_nature")):
+		change_element("nature")
+
 	if ready_to_spell and charge > 0:
 		if btn_magic.state() == 0 or btn_magic.state() == 3:
 			release_spell()
@@ -90,6 +99,13 @@ func _fixed_process(delta):
 
 	var cd_bar = get_node("CooldownBar")
 	cd_bar.set_value( cd_bar.get_value() - 1 )
+
+
+func change_element( element ):
+	if magic_element != element:
+		charge = 0
+		get_node("ChargeBar").set_value(charge)
+		magic_element = element
 
 
 # Returns what spell is suposed to be cast depending on
