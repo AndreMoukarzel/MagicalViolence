@@ -22,6 +22,9 @@ var charge = 0
 var ready_to_spell = true
 var holding_spell = false
 var active_proj
+var is_slowed = false
+var is_pushed = false
+var push_direction = Vector2(0, 0)
 
 var health = 100
 
@@ -76,7 +79,7 @@ func _process(delta):
 		new_anim = define_anim(current_direction)
 
 	# should take external forces into consideration
-	move( direction.normalized()*RUN_SPEED )
+	move( direction.normalized()*RUN_SPEED + push_direction )
 
 	################################################
 
@@ -228,6 +231,10 @@ func take_damage(damage):
 	get_node("HealthBar").set_value(health)
 	if health <= 0:
 		die()
+
+
+func get_pushed(direction):
+	move( direction*2 )
 
 
 func die():
