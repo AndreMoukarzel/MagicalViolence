@@ -14,8 +14,8 @@ func start( parent, owner ):
 
 func fire( direction, parent = parent ):
 	self.direction = direction
+	self.parent = parent
 	get_node("LifeTimer").start()
-
 	set_process( true )
 
 
@@ -39,6 +39,7 @@ func _on_LifeTimer_timeout():
 func die():
 	if get_node( "AnimationPlayer" ).get_current_animation() != "death":
 		get_node( "AnimationPlayer" ).play( "death" )
+#		if owner != null:
 		owner.proj_death()
 	set_process( false )
 

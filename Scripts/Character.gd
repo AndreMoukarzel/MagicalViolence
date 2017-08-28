@@ -25,6 +25,7 @@ var active_proj
 
 var health = 100
 
+var wait = 0
 # Spells
 # Fire
 var firebolt_scn = preload("res://Scenes/Projectiles/Firebolt.tscn")
@@ -103,11 +104,15 @@ func _fixed_process(delta):
 		if active_proj == null:
 			charge += 1
 			get_node("ChargeBar").set_value(charge)
-		else:
+		elif wait >= 15:
 			active_proj.activate()
+			wait = 0
 
 	var cd_bar = get_node("CooldownBar")
 	cd_bar.set_value( cd_bar.get_value() - 1 )
+	
+	if wait <= 15:
+		wait += 1
 
 
 func change_element( element ):
@@ -220,7 +225,6 @@ func _on_Cooldown_timeout():
 	get_node("CooldownBar").hide()
 	get_node("ChargeBar").set_value(charge)
 	get_node("ChargeBar").show()
-
 
 func take_damage(damage):
 	health -= damage

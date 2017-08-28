@@ -4,8 +4,9 @@ const SPEED = 6
 
 var direction = Vector2( 0, 0 )
 var parent
-var proj_count = 0
+var proj_count = 1
 
+var leafProj = preload("res://Scenes/Projectiles/LeafShieldProj.tscn")
 
 func fire( direction, parent ):
 	self.direction = direction
@@ -24,20 +25,28 @@ func follow():
 
 
 func _process(delta):
+	print(proj_count)
 	follow()
 
 
 func activate():
-	get_node("AnimationPlayer").stop()
-	for child in get_children():
-		if child.has_method("fire"):
-			print(child.get_name())
-			child.fire(Vector2(1,1))
-
+#	get_node("AnimationPlayer").stop()
+#	for child in get_children():
+#		if child.has_method("fire"):
+#			print(child.get_name())
+#			child.fire(Vector2(1,1))
+	get_node(str("LeafShieldProj", proj_count)).queue_free()
+	var leaf = leafProj.instance()
+	leaf.set_pos(self.parent.get_pos())
+	leaf.start(parent, self)
+	leaf.fire(self.direction, self.parent)
+	get_parent().add_child( leaf )
+	proj_count += 1
+#	print("proj_count = ", proj_count)
 
 func proj_death():
-	proj_count += 1
-	if proj_count >= 4:
+#	proj_count += 1
+	if proj_count > 4:
 		die()
 
 
