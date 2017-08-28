@@ -66,8 +66,6 @@ func _process(delta):
 		direction -= Vector2( 0, RUN_SPEED )
 
 	if direction == Vector2( 0, 0 ):
-		# Temporary solution to this issue, will probably be
-		# replaced when other animations come into play.
 		new_anim = str("idle_", current_anim.split("_")[1])
 	else:
 		current_direction = direction / RUN_SPEED
@@ -77,6 +75,15 @@ func _process(delta):
 	move( direction )
 
 	################################################
+
+	if Input.is_action_pressed(name_adapter("char_fire")):
+		change_element("fire")
+	if Input.is_action_pressed(name_adapter("char_water")):
+		change_element("water")
+	if Input.is_action_pressed(name_adapter("char_lightning")):
+		change_element("lightning")
+	if Input.is_action_pressed(name_adapter("char_nature")):
+		change_element("nature")
 
 	if ready_to_spell and charge > 0:
 		if btn_magic.state() == 0 or btn_magic.state() == 3:
@@ -92,6 +99,13 @@ func _fixed_process(delta):
 
 	var cd_bar = get_node("CooldownBar")
 	cd_bar.set_value( cd_bar.get_value() - 1 )
+
+
+func change_element( element ):
+	if magic_element != element:
+		charge = 0
+		get_node("ChargeBar").set_value(charge)
+		magic_element = element
 
 
 # Returns what spell is suposed to be cast depending on
@@ -224,6 +238,7 @@ func update_anim( new_animation ):
 
 	if new_animation != current_anim:
 		anim_player.play(new_animation)
+		current_anim = new_animation
 
 ################################################################
 

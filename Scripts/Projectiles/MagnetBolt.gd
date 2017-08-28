@@ -13,19 +13,19 @@ var state = "going"
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent
-#	add_collision_exception_with( parent )
 	set_pos( parent.get_pos() )
 	set_process( true )
 
 
 func _process(delta):
-	move( direction * SPEED )
-	SPEED -= 12*delta
 	if SPEED <= 0:
 		state = "returning"
 		angle = get_angle_to( self.parent.get_pos() )
 		# negative cos and sin because speed is also negative
 		direction = Vector2( -sin(angle), -cos(angle) )
+
+	move( direction * SPEED )
+	SPEED -= 12*delta
 
 # does damage if take damage function exists in body
 func _on_Area2D_body_enter( body ):
