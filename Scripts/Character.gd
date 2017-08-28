@@ -66,8 +66,6 @@ func _process(delta):
 		direction -= Vector2( 0, RUN_SPEED )
 
 	if direction == Vector2( 0, 0 ):
-		# Temporary solution to this issue, will probably be
-		# replaced when other animations come into play.
 		new_anim = str("idle_", current_anim.split("_")[1])
 	else:
 		current_direction = direction / RUN_SPEED
@@ -224,6 +222,7 @@ func update_anim( new_animation ):
 
 	if new_animation != current_anim:
 		anim_player.play(new_animation)
+		current_anim = new_animation
 
 ################################################################
 
