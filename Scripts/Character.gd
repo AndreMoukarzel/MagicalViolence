@@ -17,11 +17,17 @@ onready var anim_player = get_node("Sprite/AnimationPlayer")
 var current_direction = Vector2( 0, 1 )
 
 var magic_element = ""
+var current_spell
 var charge = 0
 var ready_to_spell = true
+var holding_spell = false
+var active_proj
+var slow_multiplier = 1
+var push_direction = Vector2(0, 0)
 
 var health = 100
 
+var wait = 0
 # Spells
 # Fire
 var firebolt_scn = preload("res://Scenes/Projectiles/Firebolt.tscn")
@@ -30,6 +36,7 @@ var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
 # Water
 var watersplash_scn = preload("res://Scenes/Projectiles/WaterSplash.tscn")
 var watersphere_scn = preload("res://Scenes/Projectiles/WaterSphere.tscn")
+var tidalwave_scn = preload("res://Scenes/Projectiles/TidalWave.tscn")
 # Nature
 var leafshield_scn = preload("res://Scenes/Projectiles/LeafShield.tscn")
 # Lightning
@@ -47,7 +54,7 @@ func _ready():
 	set_process(true)
 	set_fixed_process(true)
 
-	magic_element = "electricity"
+	magic_element = "water"
 
 
 func _process(delta):
@@ -57,48 +64,58 @@ func _process(delta):
 	var new_anim = ""
 	
 	if Input.is_action_pressed(name_adapter("char_left")):
-		direction -= Vector2( RUN_SPEED, 0 )
+		direction -= Vector2( 1, 0 )
 	if Input.is_action_pressed(name_adapter("char_right")):
-		direction += Vector2( RUN_SPEED, 0 )
+		direction += Vector2( 1, 0 )
 	if Input.is_action_pressed(name_adapter("char_down")):
-		direction += Vector2( 0, RUN_SPEED )
+		direction += Vector2( 0, 1 )
 	if Input.is_action_pressed(name_adapter("char_up")):
-		direction -= Vector2( 0, RUN_SPEED )
+		direction -= Vector2( 0, 1 )
 
 	if direction == Vector2( 0, 0 ):
 		new_anim = str("idle_", current_anim.split("_")[1])
 	else:
-		current_direction = direction / RUN_SPEED
+		current_direction = direction
 		new_anim = define_anim(current_direction)
 
 	# should take external forces into consideration
-	move( direction )
+	move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
 
 	################################################
-
-	if Input.is_action_pressed(name_adapter("char_fire")):
-		change_element("fire")
-	if Input.is_action_pressed(name_adapter("char_water")):
-		change_element("water")
-	if Input.is_action_pressed(name_adapter("char_lightning")):
-		change_element("lightning")
-	if Input.is_action_pressed(name_adapter("char_nature")):
-		change_element("nature")
+	if !holding_spell:
+		if Input.is_action_pressed(name_adapter("char_fire")):
+			change_element("fire")
+		if Input.is_action_pressed(name_adapter("char_water")):
+			change_element("water")
+		if Input.is_action_pressed(name_adapter("char_lightning")):
+			change_element("lightning")
+		if Input.is_action_pressed(name_adapter("char_nature")):
+			change_element("nature")
 
 	if ready_to_spell and charge > 0:
 		if btn_magic.state() == 0 or btn_magic.state() == 3:
-			release_spell()
+			if active_proj == null:
+				release_spell()
+			else:
+				active_proj.activate()
 
 	update_anim( new_anim )
 
 
 func _fixed_process(delta):
 	if btn_magic.state() == 2:
-		charge += 1
-		get_node("ChargeBar").set_value(charge)
+		if active_proj == null:
+			charge += 1
+			get_node("ChargeBar").set_value(charge)
+		elif wait >= 15:
+			active_proj.activate()
+			wait = 0
 
 	var cd_bar = get_node("CooldownBar")
 	cd_bar.set_value( cd_bar.get_value() - 1 )
+	
+	if wait <= 15:
+		wait += 1
 
 
 func change_element( element ):
@@ -122,7 +139,7 @@ func define_spell():
 			return watersplash_scn
 		elif charge < 100:
 			return watersphere_scn
-		return firebolt_scn
+		return tidalwave_scn
 	elif magic_element == "nature":
 		if charge < 50:
 			return leafshield_scn
@@ -168,13 +185,25 @@ func define_cooldown(spell):
 func release_spell():
 	var spell = define_spell()
 	var projectile = spell.instance()
-	projectile.fire( current_direction, self )
+	projectile.fire( current_direction.normalized(), self )
 	get_parent().add_child( projectile )
 
 	# Resets spell
 	ready_to_spell = false
+	current_spell = spell
+	if spell == leafshield_scn or spell == firebolt_scn: # spells that use activation
+		holding_spell = true
+		active_proj = projectile
+	else:
+		spell_ended()
+
+
+func spell_ended(spell = current_spell):
 	var cd = define_cooldown(spell)
 	set_cooldown(cd)
+	holding_spell = false
+	current_spell = null
+	active_proj = null
 
 
 func set_cooldown(time):
@@ -200,12 +229,19 @@ func _on_Cooldown_timeout():
 	get_node("ChargeBar").set_value(charge)
 	get_node("ChargeBar").show()
 
+# Slow time is over
+func _on_SlowTimer_timeout():
+	slow_multiplier = 1
 
 func take_damage(damage):
 	health -= damage
 	get_node("HealthBar").set_value(health)
 	if health <= 0:
 		die()
+
+
+func get_pushed(direction):
+	move( direction*2 )
 
 
 func die():
@@ -240,6 +276,7 @@ func update_anim( new_animation ):
 		anim_player.play(new_animation)
 		current_anim = new_animation
 
+
 ################################################################
 
 # Function that adds controller_id to the end of
@@ -247,3 +284,5 @@ func update_anim( new_animation ):
 # the input map.
 func name_adapter(name):
 	return str(name, "_", controller_id)
+
+

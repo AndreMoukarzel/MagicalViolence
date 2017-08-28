@@ -76,6 +76,15 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
+[node name="LifeTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = true
+autostart = false
+
 [connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
+
+[connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]
 
 

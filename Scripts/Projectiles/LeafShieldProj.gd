@@ -4,12 +4,18 @@ const SPEED = 6
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent
+var owner
 
 
-func fire( direction, parent ):
+func start( parent, owner ):
+	self.parent = parent
+	self.owner = owner
+
+
+func fire( direction, parent = parent ):
 	self.direction = direction
 	self.parent = parent
-
+	get_node("LifeTimer").start()
 	set_process( true )
 
 
@@ -26,9 +32,15 @@ func _on_Area2D_body_enter( body ):
 		die()
 
 
+func _on_LifeTimer_timeout():
+	die()
+
+
 func die():
 	if get_node( "AnimationPlayer" ).get_current_animation() != "death":
 		get_node( "AnimationPlayer" ).play( "death" )
+#		if owner != null:
+		owner.proj_death()
 	set_process( false )
 
 

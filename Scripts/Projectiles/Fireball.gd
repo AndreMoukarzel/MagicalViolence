@@ -11,7 +11,6 @@ var parent
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent
-#	add_collision_exception_with( parent )
 	set_pos( parent.get_pos() )
 	set_process( true )
 
