@@ -4,7 +4,10 @@ const SPEED = 6
 
 var direction = Vector2( 0, 0 )
 var parent
-var proj_count = 1
+var proj_count = 4
+var leaf_count = 4
+
+var leaves = [true, true, true, true]
 
 var leafProj = preload("res://Scenes/Projectiles/LeafShieldProj.tscn")
 
@@ -25,7 +28,10 @@ func follow():
 
 
 func _process(delta):
-	print(proj_count)
+	if leaf_count < proj_count:
+		proj_count = leaf_count
+	if leaf_count < 1:
+		die()
 	follow()
 
 
@@ -35,18 +41,34 @@ func activate():
 #		if child.has_method("fire"):
 #			print(child.get_name())
 #			child.fire(Vector2(1,1))
-	get_node(str("LeafShieldProj", proj_count)).queue_free()
+	if (leaf_count > 0) and (proj_count > 0):
+		var id
+		for i in range(4):
+			if leaves[i] == true:
+				id = i
+				break
+		print (id)
+		shoot_leaf(id)
+		proj_count -= 1
+#			get_node("LeafShieldProj1").queue_free()
+#			var leaf = leafProj.instance()
+#			leaf.set_pos(self.parent.get_pos())
+#			leaf.start(parent, self)
+#			leaf.fire(self.direction, self.parent)
+#			get_parent().add_child( leaf )
+
+func shoot_leaf(id):
+	get_node(str("LeafShieldProj", id+1)).queue_free()
 	var leaf = leafProj.instance()
 	leaf.set_pos(self.parent.get_pos())
 	leaf.start(parent, self)
 	leaf.fire(self.direction, self.parent)
-	get_parent().add_child( leaf )
-	proj_count += 1
-#	print("proj_count = ", proj_count)
+	get_parent().add_child(leaf)
+	leaves[id] = false
 
-func proj_death():
-#	proj_count += 1
-	if proj_count > 4:
+func leaf_death():
+	leaf_count -= 1
+	if leaf_count == 0:
 		die()
 
 
