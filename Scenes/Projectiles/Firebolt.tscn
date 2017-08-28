@@ -98,6 +98,7 @@ tracks/3/keys = {
 
 [node name="Firebolt" type="KinematicBody2D"]
 
+visibility/opacity = 0.0
 transform/scale = Vector2( 2, 2 )
 input/pickable = false
 collision/layers = 1
