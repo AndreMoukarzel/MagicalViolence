@@ -31,7 +31,6 @@ func activate():
 	get_node("AnimationPlayer").stop()
 	for child in get_children():
 		if child.has_method("fire"):
-			print(child.get_name())
 			child.fire(Vector2(1,1))
 
 
