@@ -78,15 +78,15 @@ func _process(delta):
 	move( direction.normalized()*RUN_SPEED )
 
 	################################################
-
-	if Input.is_action_pressed(name_adapter("char_fire")):
-		change_element("fire")
-	if Input.is_action_pressed(name_adapter("char_water")):
-		change_element("water")
-	if Input.is_action_pressed(name_adapter("char_lightning")):
-		change_element("lightning")
-	if Input.is_action_pressed(name_adapter("char_nature")):
-		change_element("nature")
+	if !holding_spell:
+		if Input.is_action_pressed(name_adapter("char_fire")):
+			change_element("fire")
+		if Input.is_action_pressed(name_adapter("char_water")):
+			change_element("water")
+		if Input.is_action_pressed(name_adapter("char_lightning")):
+			change_element("lightning")
+		if Input.is_action_pressed(name_adapter("char_nature")):
+			change_element("nature")
 
 	if ready_to_spell and charge > 0:
 		if btn_magic.state() == 0 or btn_magic.state() == 3:
