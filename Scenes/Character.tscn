@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=1]
+[gd_scene load_steps=66 format=1]
 
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Characters/Skeleton/idledownright.png" type="Texture" id=2]
@@ -43,8 +43,6 @@
 [ext_resource path="res://Sprites/Characters/Skeleton/runupright3.png" type="Texture" id=41]
 [ext_resource path="res://Sprites/Characters/Skeleton/runupright4.png" type="Texture" id=42]
 [ext_resource path="res://Sprites/Characters/Skeleton/idledown.png" type="Texture" id=43]
-[ext_resource path="res://Sprites/Characters/Skeleton/idledownleft.png" type="Texture" id=44]
-[ext_resource path="res://Sprites/Characters/Skeleton/idleupleft.png" type="Texture" id=45]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -503,6 +501,15 @@ range/exp_edit = false
 range/rounded = false
 percent/visible = false
 
+[node name="SlowTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
+
+[connection signal="timeout" from="SlowTimer" to="." method="_on_SlowTimer_timeout"]
 
 

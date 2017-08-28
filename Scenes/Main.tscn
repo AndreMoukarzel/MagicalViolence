@@ -31,6 +31,7 @@ transform/pos = Vector2( 250, 150 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 989.987, 280.16 )
 transform/scale = Vector2( 1, 7 )
 input/pickable = false

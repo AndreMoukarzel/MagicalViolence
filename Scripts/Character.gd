@@ -22,8 +22,7 @@ var charge = 0
 var ready_to_spell = true
 var holding_spell = false
 var active_proj
-var is_slowed = false
-var is_pushed = false
+var slow_multiplier = 1
 var push_direction = Vector2(0, 0)
 
 var health = 100
@@ -79,7 +78,7 @@ func _process(delta):
 		new_anim = define_anim(current_direction)
 
 	# should take external forces into consideration
-	move( direction.normalized()*RUN_SPEED + push_direction )
+	move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
 
 	################################################
 	if !holding_spell:
@@ -226,6 +225,11 @@ func _on_Cooldown_timeout():
 	get_node("ChargeBar").show()
 
 
+# Slow time is over
+func _on_SlowTimer_timeout():
+	slow_multiplier = 1
+
+
 func take_damage(damage):
 	health -= damage
 	get_node("HealthBar").set_value(health)
@@ -269,6 +273,7 @@ func update_anim( new_animation ):
 		anim_player.play(new_animation)
 		current_anim = new_animation
 
+
 ################################################################
 
 # Function that adds controller_id to the end of
@@ -276,3 +281,5 @@ func update_anim( new_animation ):
 # the input map.
 func name_adapter(name):
 	return str(name, "_", controller_id)
+
+
