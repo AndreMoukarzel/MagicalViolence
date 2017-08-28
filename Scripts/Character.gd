@@ -17,8 +17,11 @@ onready var anim_player = get_node("Sprite/AnimationPlayer")
 var current_direction = Vector2( 0, 1 )
 
 var magic_element = ""
+var current_spell
 var charge = 0
 var ready_to_spell = true
+var holding_spell = false
+var active_proj
 
 var health = 100
 
@@ -58,22 +61,22 @@ func _process(delta):
 	var new_anim = ""
 	
 	if Input.is_action_pressed(name_adapter("char_left")):
-		direction -= Vector2( RUN_SPEED, 0 )
+		direction -= Vector2( 1, 0 )
 	if Input.is_action_pressed(name_adapter("char_right")):
-		direction += Vector2( RUN_SPEED, 0 )
+		direction += Vector2( 1, 0 )
 	if Input.is_action_pressed(name_adapter("char_down")):
-		direction += Vector2( 0, RUN_SPEED )
+		direction += Vector2( 0, 1 )
 	if Input.is_action_pressed(name_adapter("char_up")):
-		direction -= Vector2( 0, RUN_SPEED )
+		direction -= Vector2( 0, 1 )
 
 	if direction == Vector2( 0, 0 ):
 		new_anim = str("idle_", current_anim.split("_")[1])
 	else:
-		current_direction = direction / RUN_SPEED
+		current_direction = direction
 		new_anim = define_anim(current_direction)
 
 	# should take external forces into consideration
-	move( direction )
+	move( direction.normalized()*RUN_SPEED )
 
 	################################################
 
@@ -88,15 +91,21 @@ func _process(delta):
 
 	if ready_to_spell and charge > 0:
 		if btn_magic.state() == 0 or btn_magic.state() == 3:
-			release_spell()
+			if active_proj == null:
+				release_spell()
+			else:
+				active_proj.activate()
 
 	update_anim( new_anim )
 
 
 func _fixed_process(delta):
 	if btn_magic.state() == 2:
-		charge += 1
-		get_node("ChargeBar").set_value(charge)
+		if active_proj == null:
+			charge += 1
+			get_node("ChargeBar").set_value(charge)
+		else:
+			active_proj.activate()
 
 	var cd_bar = get_node("CooldownBar")
 	cd_bar.set_value( cd_bar.get_value() - 1 )
@@ -169,13 +178,25 @@ func define_cooldown(spell):
 func release_spell():
 	var spell = define_spell()
 	var projectile = spell.instance()
-	projectile.fire( current_direction, self )
+	projectile.fire( current_direction.normalized(), self )
 	get_parent().add_child( projectile )
 
 	# Resets spell
 	ready_to_spell = false
+	current_spell = spell
+	if spell == leafshield_scn or spell == firebolt_scn: # spells that use activation
+		holding_spell = true
+		active_proj = projectile
+	else:
+		spell_ended()
+
+
+func spell_ended(spell = current_spell):
 	var cd = define_cooldown(spell)
 	set_cooldown(cd)
+	holding_spell = false
+	current_spell = null
+	active_proj = null
 
 
 func set_cooldown(time):

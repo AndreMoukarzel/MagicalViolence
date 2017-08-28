@@ -7,6 +7,7 @@ var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent
 var alive = true
 
+
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent
@@ -17,17 +18,13 @@ func fire( direction, parent ):
 
 func _process(delta):
 	move( direction * SPEED )
-	
 
-
+# does damage if take damage function exists in body
 func _on_Area2D_body_enter( body ):
-	# does damage if take damage function exists
-	# dies out
 	if body != parent:
 		if body.has_method("take_damage"):
 			body.take_damage(30)
-#			get_node( "AnimationPlayer" ).play( "explosion" )
-		if (alive):
+		if alive:
 			explosion()
 
 
@@ -41,11 +38,16 @@ func _on_Trail_Timer_timeout():
 		var Trail = Trail_scn.instance()
 		Trail.set_pos(get_pos())
 		get_parent().add_child(Trail)
-	
-	
+
+
+func activate():
+	explosion()
+
+
 func explosion():
 	alive = false
 	get_node( "AnimationPlayer" ).play( "explosion" )
+	parent.spell_ended() # Alerts player that spell is finished
 	set_process( false )
 
 

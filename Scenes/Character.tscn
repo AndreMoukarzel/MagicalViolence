@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=1]
+[gd_scene load_steps=68 format=1]
 
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Characters/Skeleton/idledownright.png" type="Texture" id=2]
@@ -43,6 +43,8 @@
 [ext_resource path="res://Sprites/Characters/Skeleton/runupright3.png" type="Texture" id=41]
 [ext_resource path="res://Sprites/Characters/Skeleton/runupright4.png" type="Texture" id=42]
 [ext_resource path="res://Sprites/Characters/Skeleton/idledown.png" type="Texture" id=43]
+[ext_resource path="res://Sprites/Characters/Skeleton/idledownleft.png" type="Texture" id=44]
+[ext_resource path="res://Sprites/Characters/Skeleton/idleupleft.png" type="Texture" id=45]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -392,6 +394,7 @@ transform/pos = Vector2( 0.0922657, 17.3916 )
 transform/scale = Vector2( 0.150367, 0.150367 )
 frames = SubResource( 2 )
 animation = "default"
+frame = 41
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 
