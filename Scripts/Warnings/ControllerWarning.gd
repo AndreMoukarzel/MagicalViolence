@@ -2,6 +2,8 @@
 extends Control
 
 func _ready():
+	
+	# get_tree().set_pause(true)
 	set_fixed_process(true)
 	
 func _fixed_process(delta):

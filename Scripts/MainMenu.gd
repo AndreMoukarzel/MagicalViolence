@@ -23,7 +23,7 @@ func _input(event):
 		set_process_input(true)
 	
 	elif event.is_action_pressed("ui_up") or event.is_action_pressed("ui_left"):
-		menu_pos = (menu_pos - 1) % menu_order[menu_depth].size()
+		menu_pos = (menu_pos + menu_order[menu_depth].size() - 1) % menu_order[menu_depth].size()
 		
 		move_cat("Up", menu_order[menu_depth].size())
 		
@@ -191,7 +191,7 @@ func cat_menu_transition():
 	
 	
 func adjust_z_leaving_down():
-	var relevant_container = menu_order[menu_depth][(menu_pos - 1) % menu_order[menu_depth].size()]
+	var relevant_container = menu_order[menu_depth][(menu_pos + menu_order[menu_depth].size() - 1) % menu_order[menu_depth].size()]
 	
 	var hover = get_node(str(relevant_container, "/Hover"))
 	var normal = get_node(str(relevant_container, "/Normal"))
