@@ -114,6 +114,8 @@ func _input(event):
 				
 				# Map controls to given port
 				for device in controller_monitor.controller_ports:
+					var char_port = controller_monitor.controller_ports.find(device)
+					
 					if (device != -1):
 						
 						var filepath
@@ -131,12 +133,15 @@ func _input(event):
 						if (device == KEYBOARD_CUSTOM_ID):
 							# Clear input map of keys and Map keyboard to port
 							for key in default_config.get_section_keys("Keyboard Game Input"):
-								var real_name = str(key, "_", port_found)
+								var real_name = str(key, "_", char_port)
 								var value = default_config.get_value("Keyboard Game Input", key)
 								
 								# Clear input map of keys
+								
 								var event_list = InputMap.get_action_list(real_name)
 								for ev in event_list:
+									print(real_name)
+									print(str("Deleting: ", ev))
 									InputMap.action_erase_event(real_name, ev)
 								
 								# Map keyboard to port
@@ -151,7 +156,7 @@ func _input(event):
 						else:
 							# Map controller to port, if tag selected map here
 							for key in default_config.get_section_keys("Joystick Button"):
-								var real_name = str(key, "_", port_found)
+								var real_name = str(key, "_", char_port)
 								var value = default_config.get_value("Joystick Button", key)
 								
 								# Clear input map of keys
@@ -168,6 +173,17 @@ func _input(event):
 								new_event.device = device
 								
 								InputMap.action_add_event(real_name, new_event)
+								
+				# Instance battle scene
+				# Have to instance the characters in the battle scene itself
+				
+				var battle_scn = load("res://Scenes/Test Scenes/BattleTest.tscn")
+				var btl_scn = battle_scn.instance()
+				self.add_child(btl_scn)
+				#test
+				btl_scn.get_node("Character0/Sprite").set_animation(css_order[css_selector_index[0]])
+				btl_scn.get_node("Character1/Sprite").set_animation(css_order[css_selector_index[1]])
+				set_process_input(false)
 			
 			if (event.is_action_pressed(name_adapter("css_cancel", port_found))):
 				locked[port_found] = false
