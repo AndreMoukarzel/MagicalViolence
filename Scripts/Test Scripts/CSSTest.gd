@@ -38,6 +38,7 @@ func _input(event):
 				get_node(str("P", available_port + 1, "/Active")).show()
 				
 				# Map CSS Actions to device based on port
+				# Make default map for css (much like menus, we do not permit customization)
 
 func joysticks_changed(index, connected):
 	
