@@ -15,17 +15,7 @@
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "Skeleton",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "Broleton",
-"speed": 5.0
-} ]
+animations = [ { "frames":[ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ], "loop":true, "name":"Skeleton", "speed":5.0 }, { "frames":[ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ], "loop":true, "name":"Broleton", "speed":5.0 } ]
 
 [node name="CSSTest" type="Control"]
 
@@ -52,7 +42,7 @@ margin/bottom = 600.0
 
 [node name="Inactive" type="Container" parent="P1"]
 
-visibility/visible = false
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -95,6 +85,7 @@ stretch_mode = 0
 
 [node name="Active" type="Container" parent="P1"]
 
+visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -110,13 +101,12 @@ transform/pos = Vector2( 58, 300 )
 transform/scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 4 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="P1/Active"]
+[node name="Character" type="AnimatedSprite" parent="P1/Active"]
 
 transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 3
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P1/Active"]

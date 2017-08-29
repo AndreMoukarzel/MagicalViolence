@@ -3,6 +3,10 @@ extends Control
 
 const KEYBOARD_CUSTOM_ID = 1000
 
+var locked = [false, false, false, false]
+var css_order = ["Skeleton", "Broleton"]
+var css_selector_index = [0, 0, 0, 0]
+
 func _ready():
 	
 	set_process_input(true)
@@ -13,16 +17,16 @@ func _input(event):
 	
 	# Jogador tentando entrar
 	
+	# Keyboard device ID is default to 0, so we change it to
+	# differentiate from joystick device IDs.
+		
+	if (event.type == InputEvent.KEY):
+		print (event.device)
+		event.device = KEYBOARD_CUSTOM_ID
+	
 	if (event.is_action_pressed("ui_start")):
 		
 		var available_port
-		
-		# Keyboard device ID is default to 0, so we change it to
-		# differentiate from joystick device IDs.
-		
-		if (event.type == InputEvent.KEY):
-			print (event.device)
-			event.device = KEYBOARD_CUSTOM_ID
 		
 		if (controller_monitor.controller_ports.find(event.device) != -1):
 			print("U already in boi")
@@ -39,6 +43,72 @@ func _input(event):
 				
 				# Map CSS Actions to device based on port
 				# Make default map for css (much like menus, we do not permit customization)
+				var filepath
+				var new_event = InputEvent()
+				
+				if (event.device == KEYBOARD_CUSTOM_ID):
+					print("hola")
+					event.device = 0
+					filepath = "user://keyboard.cfg"
+				else:
+					filepath = "user://default.cfg"
+					
+				var default_config = ConfigFile.new()
+				if (default_config.load(filepath) != OK):
+					print ("Error, could not load default data!")
+					return
+	
+				for key in default_config.get_section_keys("CSS"):
+					var real_name = str(key, "_", available_port)
+					var value = default_config.get_value("CSS", key)
+					
+					var new_event = InputEvent()
+					
+					if (event.type == InputEvent.KEY):
+						new_event.type = InputEvent.KEY
+						new_event.scancode = value
+						new_event.device = event.device
+					elif (event.type == InputEvent.JOYSTICK_BUTTON):
+						new_event.type = InputEvent.JOYSTICK_BUTTON
+						new_event.button_index = value
+						new_event.device = event.device
+					
+					print("save me")
+					print(new_event)
+					InputMap.action_add_event(real_name, new_event)
+	
+	else:
+		
+		var port_found = controller_monitor.controller_ports.find(event.device)
+		
+		if (port_found == -1):
+			print("You must be in to operate")
+			return
+		
+		if (not locked[port_found]):
+			
+			if (event.is_action_pressed(name_adapter("css_left", port_found))):
+				css_selector_index[port_found] = (css_selector_index[port_found] + css_order.size() - 1) % css_order.size()
+				get_node(str("P", port_found + 1, "/Active/Character")).set_animation(css_order[css_selector_index[port_found]])
+				
+			elif (event.is_action_pressed(name_adapter("css_right", port_found))):
+				css_selector_index[port_found] = (css_selector_index[port_found] + 1) % css_order.size()
+				get_node(str("P", port_found + 1, "/Active/Character")).set_animation(css_order[css_selector_index[port_found]])
+				
+			elif (event.is_action_pressed(name_adapter("css_accept", port_found))):
+				locked[port_found] = true
+				get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Locked!")
+				
+			# If holds cancel in this state, return to previous menu
+		
+		else:
+			
+			if (event.is_action_pressed(name_adapter("css_cancel", port_found))):
+				locked[port_found] = false
+				get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Lock")
+
+func name_adapter(name, port):
+	return str(name, "_", port)
 
 func joysticks_changed(index, connected):
 	
@@ -48,9 +118,10 @@ func joysticks_changed(index, connected):
 		var port_found = controller_monitor.controller_ports.find(index)
 		if port_found != -1:
 			controller_monitor.controller_ports[port_found] = -1
+			locked[port_found] = false
 			
 			# Animate
-			get_node(str("P", available_port + 1, "/Active")).hide()
+			get_node(str("P", port_found + 1, "/Active")).hide()
 			get_node(str("P", port_found + 1, "/Inactive")).show()
 			
 			# Remove CSS port mappings from index
