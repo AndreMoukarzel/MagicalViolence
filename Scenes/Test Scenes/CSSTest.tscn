@@ -101,7 +101,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Sage"
-frame = 3
+frame = 1
 playing = true
 
 [node name="P2" type="Container" parent="."]
