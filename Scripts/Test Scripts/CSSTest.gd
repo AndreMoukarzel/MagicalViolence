@@ -33,8 +33,11 @@ func _input(event):
 			# Found possible port
 				controller_monitor.controller_ports[available_port] = event.device
 				
-				# Animate and unlock functionality
+				# Animate
 				get_node(str("P", available_port + 1, "/Inactive")).hide()
+				get_node(str("P", available_port + 1, "/Active")).show()
+				
+				# Map CSS Actions to device based on port
 
 func joysticks_changed(index, connected):
 	
@@ -45,4 +48,8 @@ func joysticks_changed(index, connected):
 		if port_found != -1:
 			controller_monitor.controller_ports[port_found] = -1
 			
+			# Animate
+			get_node(str("P", available_port + 1, "/Active")).hide()
 			get_node(str("P", port_found + 1, "/Inactive")).show()
+			
+			# Remove CSS port mappings from index
