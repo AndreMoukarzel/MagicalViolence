@@ -21,9 +21,10 @@ func _input(event):
 	# differentiate from joystick device IDs.
 		
 	if (event.type == InputEvent.KEY):
-		print (event.device)
 		event.device = KEYBOARD_CUSTOM_ID
 	
+	# Provavelmente vai trocar para dentro da checagem do lock,
+	# para o start ser o botão que prossegue, além do que da o port.
 	if (event.is_action_pressed("ui_start")):
 		
 		var available_port
@@ -47,7 +48,6 @@ func _input(event):
 				var new_event = InputEvent()
 				
 				if (event.device == KEYBOARD_CUSTOM_ID):
-					print("hola")
 					event.device = 0
 					filepath = "user://keyboard.cfg"
 				else:
@@ -73,8 +73,6 @@ func _input(event):
 						new_event.button_index = value
 						new_event.device = event.device
 					
-					print("save me")
-					print(new_event)
 					InputMap.action_add_event(real_name, new_event)
 	
 	else:
@@ -102,6 +100,74 @@ func _input(event):
 			# If holds cancel in this state, return to previous menu
 		
 		else:
+			
+			if (event.is_action_pressed(name_adapter("css_accept", port_found))):
+				var players_ready = 0
+				
+				for l in locked:
+					if (l):
+						players_ready += 1
+				
+				if (players_ready <= 1):
+					print("At least two players are needed to begin")
+					return
+				
+				# Map controls to given port
+				for device in controller_monitor.controller_ports:
+					if (device != -1):
+						
+						var filepath
+						
+						if (device == KEYBOARD_CUSTOM_ID):
+							filepath = "user://keyboard.cfg"
+						else:
+							filepath = "user://default.cfg"
+					
+						var default_config = ConfigFile.new()
+						if (default_config.load(filepath) != OK):
+							print ("Error, could not load default data!")
+							return
+						
+						if (device == KEYBOARD_CUSTOM_ID):
+							# Clear input map of keys and Map keyboard to port
+							for key in default_config.get_section_keys("Keyboard Game Input"):
+								var real_name = str(key, "_", port_found)
+								var value = default_config.get_value("Keyboard Game Input", key)
+								
+								# Clear input map of keys
+								var event_list = InputMap.get_action_list(real_name)
+								for ev in event_list:
+									InputMap.action_erase_event(real_name, ev)
+								
+								# Map keyboard to port
+								var new_event = InputEvent()
+								
+								new_event.type = InputEvent.KEY
+								new_event.scancode = value
+								# Necessary, for keyboard default device ID is 0
+								new_event.device = 0
+								
+								InputMap.action_add_event(real_name, new_event)
+						else:
+							# Map controller to port, if tag selected map here
+							for key in default_config.get_section_keys("Joystick Button"):
+								var real_name = str(key, "_", port_found)
+								var value = default_config.get_value("Joystick Button", key)
+								
+								# Clear input map of keys
+								var event_list = InputMap.get_action_list(real_name)
+								for ev in event_list:
+									InputMap.action_erase_event(real_name, ev)
+								
+								# Map keyboard to port
+								var new_event = InputEvent()
+								
+								new_event.type = InputEvent.JOYSTICK_BUTTON
+								new_event.button_index = value
+								# Necessary, for keyboard default device ID is 0
+								new_event.device = device
+								
+								InputMap.action_add_event(real_name, new_event)
 			
 			if (event.is_action_pressed(name_adapter("css_cancel", port_found))):
 				locked[port_found] = false

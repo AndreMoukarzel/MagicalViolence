@@ -44,9 +44,7 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-__meta__ = {
-"_edit_group_": true
-}
+__meta__ = { "_edit_group_":true }
 
 [node name="Sprite" type="Sprite" parent="StaticBody2D"]
 
