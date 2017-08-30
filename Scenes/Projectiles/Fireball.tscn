@@ -66,6 +66,8 @@ tracks/0/keys = {
 
 [node name="Fireball" type="KinematicBody2D"]
 
+visibility/opacity = 0.0
+transform/scale = Vector2( 2, 2 )
 input/pickable = false
 collision/layers = 1
 collision/mask = 1

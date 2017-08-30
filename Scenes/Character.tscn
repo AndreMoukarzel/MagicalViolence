@@ -501,6 +501,13 @@ range/exp_edit = false
 range/rounded = false
 percent/visible = false
 
+[node name="StunTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.5
+one_shot = true
+autostart = false
+
 [node name="SlowTimer" type="Timer" parent="."]
 
 process_mode = 1
@@ -509,6 +516,8 @@ one_shot = true
 autostart = false
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
+
+[connection signal="timeout" from="StunTimer" to="." method="_on_StunTimer_timeout"]
 
 [connection signal="timeout" from="SlowTimer" to="." method="_on_SlowTimer_timeout"]
 

@@ -21,6 +21,7 @@ var current_spell
 var charge = 0
 var ready_to_spell = true
 var holding_spell = false
+var is_stunned = false
 var active_proj
 var slow_multiplier = 1
 var push_direction = Vector2(0, 0)
@@ -41,6 +42,7 @@ var tidalwave_scn = preload("res://Scenes/Projectiles/TidalWave.tscn")
 var leafshield_scn = preload("res://Scenes/Projectiles/LeafShield.tscn")
 # Lightning
 var magnetbolt_scn = preload("res://Scenes/Projectiles/MagnetBolt.tscn")
+var lightningbolt_scn = preload("res://Scenes/Projectiles/LightningBolt.tscn")
 
 
 func _ready():
@@ -54,7 +56,7 @@ func _ready():
 	set_process(true)
 	set_fixed_process(true)
 
-	magic_element = "water"
+	magic_element = "lightning"
 
 
 func _process(delta):
@@ -63,59 +65,61 @@ func _process(delta):
 	var direction = Vector2( 0, 0 )
 	var new_anim = ""
 	
-	if Input.is_action_pressed(name_adapter("char_left")):
-		direction -= Vector2( 1, 0 )
-	if Input.is_action_pressed(name_adapter("char_right")):
-		direction += Vector2( 1, 0 )
-	if Input.is_action_pressed(name_adapter("char_down")):
-		direction += Vector2( 0, 1 )
-	if Input.is_action_pressed(name_adapter("char_up")):
-		direction -= Vector2( 0, 1 )
-
-	if direction == Vector2( 0, 0 ):
-		new_anim = str("idle_", current_anim.split("_")[1])
-	else:
-		current_direction = direction
-		new_anim = define_anim(current_direction)
-
-	# should take external forces into consideration
-	move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
-
-	################################################
-	if !holding_spell:
-		if Input.is_action_pressed(name_adapter("char_fire")):
-			change_element("fire")
-		if Input.is_action_pressed(name_adapter("char_water")):
-			change_element("water")
-		if Input.is_action_pressed(name_adapter("char_lightning")):
-			change_element("lightning")
-		if Input.is_action_pressed(name_adapter("char_nature")):
-			change_element("nature")
-
-	if ready_to_spell and charge > 0:
-		if btn_magic.state() == 0 or btn_magic.state() == 3:
-			if active_proj == null:
-				release_spell()
-			else:
-				active_proj.activate()
-
-	update_anim( new_anim )
+	if !is_stunned:
+		if Input.is_action_pressed(name_adapter("char_left")):
+			direction -= Vector2( 1, 0 )
+		if Input.is_action_pressed(name_adapter("char_right")):
+			direction += Vector2( 1, 0 )
+		if Input.is_action_pressed(name_adapter("char_down")):
+			direction += Vector2( 0, 1 )
+		if Input.is_action_pressed(name_adapter("char_up")):
+			direction -= Vector2( 0, 1 )
+	
+		if direction == Vector2( 0, 0 ):
+			new_anim = str("idle_", current_anim.split("_")[1])
+		else:
+			current_direction = direction
+			new_anim = define_anim(current_direction)
+	
+		# should take external forces into consideration
+		move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
+	
+		################################################
+		if !holding_spell:
+			if Input.is_action_pressed(name_adapter("char_fire")):
+				change_element("fire")
+			if Input.is_action_pressed(name_adapter("char_water")):
+				change_element("water")
+			if Input.is_action_pressed(name_adapter("char_lightning")):
+				change_element("lightning")
+			if Input.is_action_pressed(name_adapter("char_nature")):
+				change_element("nature")
+	
+		if ready_to_spell and charge > 0:
+			if btn_magic.state() == 0 or btn_magic.state() == 3:
+				if active_proj == null:
+					release_spell()
+				else:
+					active_proj.activate()
+	
+		update_anim( new_anim )
 
 
 func _fixed_process(delta):
-	if btn_magic.state() == 2:
-		if active_proj == null:
-			charge += 1
-			get_node("ChargeBar").set_value(charge)
-		elif wait >= 15:
-			active_proj.activate()
-			wait = 0
-
-	var cd_bar = get_node("CooldownBar")
-	cd_bar.set_value( cd_bar.get_value() - 1 )
+	if !is_stunned:
+		if btn_magic.state() == 2:
+			if active_proj == null:
+				charge += 1
+				get_node("ChargeBar").set_value(charge)
+			elif wait >= 15:
+				active_proj.activate()
+				wait = 0
 	
-	if wait <= 15:
-		wait += 1
+		var cd_bar = get_node("CooldownBar")
+		cd_bar.set_value( cd_bar.get_value() - 1 )
+		
+		if wait <= 15:
+			wait += 1
 
 
 func change_element( element ):
@@ -146,12 +150,12 @@ func define_spell():
 		elif charge < 100:
 			return scorching_scn
 		return firebolt_scn
-	else: # magic_element == eletricity
+	else: # magic_element == lightning
 		if charge < 50:
 			return magnetbolt_scn
 		elif charge < 100:
 			return scorching_scn
-		return firebolt_scn
+		return lightningbolt_scn
 
 
 # Returns correct cooldown(in seconds) for spell
@@ -229,10 +233,17 @@ func _on_Cooldown_timeout():
 	get_node("ChargeBar").set_value(charge)
 	get_node("ChargeBar").show()
 
+
 # Slow time is over
 func _on_SlowTimer_timeout():
 	slow_multiplier = 1
 
+
+# Stun time is over
+func _on_StunTimer_timeout():
+	is_stunned = false
+	
+	
 func take_damage(damage):
 	health -= damage
 	get_node("HealthBar").set_value(health)
@@ -280,5 +291,4 @@ func update_anim( new_animation ):
 # the input map.
 func name_adapter(name):
 	return str(name, "_", controller_id)
-
 
