@@ -1,10 +1,9 @@
 extends KinematicBody2D
 
-const SPEED = 6
+const SPEED = 8
 
 var direction = Vector2( 0, 0 ) # direction that the seed flies to
 var parent
-var is_grown = false
 
 
 func fire( direction, parent ):
@@ -21,10 +20,11 @@ func _process(delta):
 func _on_Area2D_body_enter( body ):
 	if body != parent:
 		get_node( "GrowTimer" ).stop()
+		get_node( "LifeTimer" ).start()
 		grow()
 		if body.has_method( "take_damage" ):
 			body.take_damage(15)
-		die()
+			die()
 
 
 func _on_GrowTimer_timeout():
