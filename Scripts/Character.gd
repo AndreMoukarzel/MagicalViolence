@@ -40,6 +40,7 @@ var watersphere_scn = preload("res://Scenes/Projectiles/WaterSphere.tscn")
 var tidalwave_scn = preload("res://Scenes/Projectiles/TidalWave.tscn")
 # Nature
 var leafshield_scn = preload("res://Scenes/Projectiles/LeafShield.tscn")
+var conjurethorns_scn = preload("res://Scenes/Projectiles/ConjureThorns.tscn")
 # Lightning
 var magnetbolt_scn = preload("res://Scenes/Projectiles/MagnetBolt.tscn")
 var lightningbolt_scn = preload("res://Scenes/Projectiles/LightningBolt.tscn")
@@ -148,7 +149,7 @@ func define_spell():
 		if charge < 50:
 			return leafshield_scn
 		elif charge < 100:
-			return scorching_scn
+			return conjurethorns_scn
 		return firebolt_scn
 	else: # magic_element == lightning
 		if charge < 50:
@@ -175,7 +176,7 @@ func define_cooldown(spell):
 	elif magic_element == "nature":
 		if spell == leafshield_scn:
 			return 0.5
-		elif spell == scorching_scn:
+		elif spell == conjurethorns_scn:
 			return 1
 		return 2
 	else: # magic_element == eletricity
