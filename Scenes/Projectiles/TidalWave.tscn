@@ -74,7 +74,7 @@ tracks/2/keys = {
 } ]
 }
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="TidalWave" type="KinematicBody2D"]
 
 input/pickable = false
 collision/layers = 1
