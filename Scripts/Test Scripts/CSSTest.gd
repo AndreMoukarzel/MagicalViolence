@@ -179,7 +179,8 @@ func _input(event):
 				
 				var battle_scn = load("res://Scenes/Test Scenes/BattleTest.tscn")
 				var btl_scn = battle_scn.instance()
-				self.add_child(btl_scn)
+				get_tree().get_root().add_child(btl_scn)
+				self.hide()
 				#test
 				btl_scn.get_node("Character0/Sprite").set_animation(css_order[css_selector_index[0]])
 				btl_scn.get_node("Character1/Sprite").set_animation(css_order[css_selector_index[1]])
