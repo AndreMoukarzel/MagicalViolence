@@ -56,7 +56,7 @@ func _ready():
 	set_process(true)
 	set_fixed_process(true)
 
-	magic_element = "lightning"
+	magic_element = "fire"
 
 
 func _process(delta):
