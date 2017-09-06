@@ -164,7 +164,7 @@ func _on_CreateTag_pressed():
 		# Create config file
 		var dir = Directory.new()
 		
-		if (dir.copy("user://default.cfg", str("user://", tag, "_tagconfig.cfg")) != OK):
+		if (dir.copy("res://DefaultControls/default.cfg", str("user://", tag, "_tagconfig.cfg")) != OK):
 			print("Error! Default tag initialization failed!")
 		
 func _on_TextEdit_text_changed():
@@ -211,7 +211,7 @@ func reset_gc_display():
 	# We reset the controls to the default
 	# We depend on a "default.cfg" file to do so
 	var default_config = ConfigFile.new()
-	if (default_config.load(str("user://default.cfg")) != OK):
+	if (default_config.load(str("res://DefaultControls/default.cfg")) != OK):
 		print ("Error, could not load default data!")
 		return
 	

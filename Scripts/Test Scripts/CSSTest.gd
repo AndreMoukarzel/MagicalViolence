@@ -2,9 +2,6 @@
 extends Control
 
 const KEYBOARD_CUSTOM_ID = 1000
-const SPACE_SCANCODE = 32
-const RETURN_SCANCODE = 16777220
-const ENTER_SCANCODE = 16777221
 
 var locked = [false, false, false, false]
 var css_order = ["Skeleton", "Broleton"]

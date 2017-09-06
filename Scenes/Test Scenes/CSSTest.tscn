@@ -4,26 +4,26 @@
 [ext_resource path="res://Resources/Fonts/prototype32.fnt" type="BitmapFont" id=2]
 [ext_resource path="res://Sprites/GUI/Warning/Black.jpg" type="Texture" id=3]
 [ext_resource path="res://Sprites/GUI/Icons/horizontal.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown1.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown2.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown3.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown4.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown1.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown2.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown3.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown4.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown1.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown2.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown3.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown4.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown1.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown2.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown3.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown4.png" type="Texture" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
-"name": "Skeleton",
+"name": "Broleton",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
-"name": "Broleton",
+"name": "Skeleton",
 "speed": 5.0
 } ]
 
@@ -117,7 +117,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 1
+frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P1/Active"]
@@ -221,6 +221,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
+frame = 1
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P2/Active"]

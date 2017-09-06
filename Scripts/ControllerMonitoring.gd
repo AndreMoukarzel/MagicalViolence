@@ -117,11 +117,27 @@ func map_game_controls(device, char_port, filepath):
 			for ev in event_list:
 				InputMap.action_erase_event(real_name, ev)
 			
-			# Map keyboard to port
+			# Map joystick button to port
 			var new_event = InputEvent()
 			
 			new_event.type = InputEvent.JOYSTICK_BUTTON
 			new_event.button_index = value
+			new_event.device = device
+			
+			InputMap.action_add_event(real_name, new_event)
+		
+		# Map controller axis
+		for key in default_config.get_section_keys("Joystick Motion"):
+			
+			var real_name = str(key, "_", char_port)
+			var axis_value_vector = default_config.get_value("Joystick Motion", key)
+			
+			# Map joystick button to port
+			var new_event = InputEvent()
+			
+			new_event.type = InputEvent.JOYSTICK_MOTION
+			new_event.axis = axis_value_vector[0]
+			new_event.value = axis_value_vector[1]
 			new_event.device = device
 			
 			InputMap.action_add_event(real_name, new_event)
