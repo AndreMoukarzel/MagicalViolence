@@ -1,11 +1,18 @@
 
 extends Control
 
-const KEYBOARD_CUSTOM_ID = 1000
+const KEYBOARD_PLAYER_1 = 1000
+const KEYBOARD_PLAYER_2 = 1001
+const SPACE_SCANCODE = 32
+const RETURN_SCANCODE = 16777220
+const ENTER_SCANCODE = 16777221
 
 var locked = [false, false, false, false]
 var css_order = ["Skeleton", "Broleton"]
 var css_selector_index = [0, 0, 0, 0]
+
+# This is made to shorten names, controller_monitor is a global
+var cm = controller_monitor
 
 func _ready():
 	
@@ -21,22 +28,28 @@ func _input(event):
 	# differentiate from joystick device IDs.
 		
 	if (event.type == InputEvent.KEY):
-		event.device = KEYBOARD_CUSTOM_ID
+		if (event.scancode == SPACE_SCANCODE):
+			event.device = KEYBOARD_PLAYER_1
+		else:
+			event.device = KEYBOARD_PLAYER_2
 	
 	# Provavelmente vai trocar para dentro da checagem do lock,
 	# para o start ser o botão que prossegue, além do que da o port.
+	
+	# Player trying to enter game
 	if (event.is_action_pressed("ui_start")):
 		
 		var available_port
 		
-		if (controller_monitor.controller_ports.find(event.device) != -1):
+		# Tem que checar se todos estão prontos, se não estiverem deve cair aqui
+		if (cm.controller_ports.find(event.device) != -1):
 			print("U already in boi")
 			return
 			
-		available_port = controller_monitor.controller_ports.find(-1)
+		available_port = cm.controller_ports.find(-1)
 		if (available_port != -1):
 			# Found possible port
-				controller_monitor.controller_ports[available_port] = event.device
+				cm.controller_ports[available_port] = event.device
 				
 				# Animate
 				get_node(str("P", available_port + 1, "/Inactive")).hide()
@@ -47,42 +60,24 @@ func _input(event):
 				var filepath
 				var new_event = InputEvent()
 				
-				if (event.device == KEYBOARD_CUSTOM_ID):
+				if (event.device >= KEYBOARD_PLAYER_1):
 					event.device = 0
-					filepath = "user://keyboard.cfg"
+					filepath = "res://DefaultControls/keyboard.cfg"
 				else:
-					filepath = "user://default.cfg"
-					
-				var default_config = ConfigFile.new()
-				if (default_config.load(filepath) != OK):
-					print ("Error, could not load default data!")
-					return
+					filepath = "res://DefaultControls/default.cfg"
+				
+				cm.map_css_controls(event, available_port, filepath)
 	
-				for key in default_config.get_section_keys("CSS"):
-					var real_name = str(key, "_", available_port)
-					var value = default_config.get_value("CSS", key)
-					
-					var new_event = InputEvent()
-					
-					if (event.type == InputEvent.KEY):
-						new_event.type = InputEvent.KEY
-						new_event.scancode = value
-						new_event.device = event.device
-					elif (event.type == InputEvent.JOYSTICK_BUTTON):
-						new_event.type = InputEvent.JOYSTICK_BUTTON
-						new_event.button_index = value
-						new_event.device = event.device
-					
-					InputMap.action_add_event(real_name, new_event)
-	
+	# Actions other than entering game
 	else:
 		
-		var port_found = controller_monitor.controller_ports.find(event.device)
+		var port_found = cm.controller_ports.find(event.device)
 		
 		if (port_found == -1):
 			print("You must be in to operate")
 			return
 		
+		# Player selecting character (tag selection and other commands to be decided)
 		if (not locked[port_found]):
 			
 			if (event.is_action_pressed(name_adapter("css_left", port_found))):
@@ -97,11 +92,14 @@ func _input(event):
 				locked[port_found] = true
 				get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Locked!")
 				
-			# If holds cancel in this state, return to previous menu
+			# If holds cancel in this state, return to previous menu, if only presses for a moment cancels selection
 		
 		else:
 			
+			# Player trying to start game
 			if (event.is_action_pressed(name_adapter("css_accept", port_found))):
+				
+				# Check if enough players are ready
 				var players_ready = 0
 				
 				for l in locked:
@@ -115,65 +113,19 @@ func _input(event):
 				# Map controls to given port
 				for device in controller_monitor.controller_ports:
 					var char_port = controller_monitor.controller_ports.find(device)
+					print (str("Device: ", device, " and char_port: ", char_port))
 					
 					if (device != -1):
 						
 						var filepath
 						
-						if (device == KEYBOARD_CUSTOM_ID):
-							filepath = "user://keyboard.cfg"
+						if (device >= KEYBOARD_PLAYER_1):
+							filepath = "res://DefaultControls/keyboard.cfg"
 						else:
-							filepath = "user://default.cfg"
+							filepath = "res://DefaultControls/default.cfg"
 					
-						var default_config = ConfigFile.new()
-						if (default_config.load(filepath) != OK):
-							print ("Error, could not load default data!")
-							return
+						cm.map_game_controls(device, char_port, filepath)
 						
-						if (device == KEYBOARD_CUSTOM_ID):
-							# Clear input map of keys and Map keyboard to port
-							for key in default_config.get_section_keys("Keyboard Game Input"):
-								var real_name = str(key, "_", char_port)
-								var value = default_config.get_value("Keyboard Game Input", key)
-								
-								# Clear input map of keys
-								
-								var event_list = InputMap.get_action_list(real_name)
-								for ev in event_list:
-									print(real_name)
-									print(str("Deleting: ", ev))
-									InputMap.action_erase_event(real_name, ev)
-								
-								# Map keyboard to port
-								var new_event = InputEvent()
-								
-								new_event.type = InputEvent.KEY
-								new_event.scancode = value
-								# Necessary, for keyboard default device ID is 0
-								new_event.device = 0
-								
-								InputMap.action_add_event(real_name, new_event)
-						else:
-							# Map controller to port, if tag selected map here
-							for key in default_config.get_section_keys("Joystick Button"):
-								var real_name = str(key, "_", char_port)
-								var value = default_config.get_value("Joystick Button", key)
-								
-								# Clear input map of keys
-								var event_list = InputMap.get_action_list(real_name)
-								for ev in event_list:
-									InputMap.action_erase_event(real_name, ev)
-								
-								# Map keyboard to port
-								var new_event = InputEvent()
-								
-								new_event.type = InputEvent.JOYSTICK_BUTTON
-								new_event.button_index = value
-								# Necessary, for keyboard default device ID is 0
-								new_event.device = device
-								
-								InputMap.action_add_event(real_name, new_event)
-								
 				# Instance battle scene
 				# Have to instance the characters in the battle scene itself
 				
@@ -181,11 +133,12 @@ func _input(event):
 				var btl_scn = battle_scn.instance()
 				get_tree().get_root().add_child(btl_scn)
 				self.hide()
-				#test
+				#test, putting correct character sprite
 				btl_scn.get_node("Character0/Sprite").set_animation(css_order[css_selector_index[0]])
 				btl_scn.get_node("Character1/Sprite").set_animation(css_order[css_selector_index[1]])
 				set_process_input(false)
 			
+			# Unlock port
 			if (event.is_action_pressed(name_adapter("css_cancel", port_found))):
 				locked[port_found] = false
 				get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Lock")
