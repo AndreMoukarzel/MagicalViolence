@@ -1,8 +1,7 @@
 
 extends Control
 
-const KEYBOARD_PLAYER_1 = 1000
-const KEYBOARD_PLAYER_2 = 1001
+const KEYBOARD_CUSTOM_ID = 1000
 const SPACE_SCANCODE = 32
 const RETURN_SCANCODE = 16777220
 const ENTER_SCANCODE = 16777221
@@ -28,10 +27,7 @@ func _input(event):
 	# differentiate from joystick device IDs.
 		
 	if (event.type == InputEvent.KEY):
-		if (event.scancode == SPACE_SCANCODE):
-			event.device = KEYBOARD_PLAYER_1
-		else:
-			event.device = KEYBOARD_PLAYER_2
+		event.device = KEYBOARD_CUSTOM_ID
 	
 	# Provavelmente vai trocar para dentro da checagem do lock,
 	# para o start ser o botão que prossegue, além do que da o port.
@@ -60,7 +56,7 @@ func _input(event):
 				var filepath
 				var new_event = InputEvent()
 				
-				if (event.device >= KEYBOARD_PLAYER_1):
+				if (event.device == KEYBOARD_CUSTOM_ID):
 					event.device = 0
 					filepath = "res://DefaultControls/keyboard.cfg"
 				else:
@@ -119,7 +115,7 @@ func _input(event):
 						
 						var filepath
 						
-						if (device >= KEYBOARD_PLAYER_1):
+						if (device == KEYBOARD_CUSTOM_ID):
 							filepath = "res://DefaultControls/keyboard.cfg"
 						else:
 							filepath = "res://DefaultControls/default.cfg"

@@ -1,7 +1,6 @@
 extends Node
 
-const KEYBOARD_PLAYER_1 = 1000
-const KEYBOARD_PLAYER_2 = 1001
+const KEYBOARD_CUSTOM_ID = 1000
 
 var controller_ports = [-1, -1, -1, -1]
 
@@ -83,7 +82,7 @@ func map_game_controls(device, char_port, filepath):
 		print ("Error, could not load default data!")
 		return
 		
-	if (device >= KEYBOARD_PLAYER_1):
+	if (device == KEYBOARD_CUSTOM_ID):
 		# Clear input map of keys and Map keyboard to port
 		for key in default_config.get_section_keys("Keyboard Game Input"):
 			var real_name = str(key, "_", char_port)

@@ -98,7 +98,7 @@ func _fixed_process(delta):
 		
 		# Face button check
 		
-		if (Input.is_action_pressed("char_fire_0")):
+		if (Input.is_joy_button_pressed(joy, JOY_BUTTON_0)):
 			get_node(str("FaceButtons/", joy, "/A")).set_texture(load("res://Sprites/TestSprites/APressed.png"))
 		else:
 			get_node(str("FaceButtons/", joy, "/A")).set_texture(load("res://Sprites/TestSprites/ANormal.png"))
