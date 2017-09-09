@@ -59,7 +59,7 @@ func _ready():
 	# the battle scene manually later.
 	
 	var node_name = self.get_name()
-	controller_id = node_name.substr(node_name.length() - 1, node_name.length()).to_int()
+	controller_port = node_name.substr(node_name.length() - 1, node_name.length()).to_int()
 	btn_magic = input_states.new(name_adapter("char_magic"))
 	
 	set_process(true)
@@ -296,9 +296,9 @@ func update_anim( new_animation ):
 
 ################################################################
 
-# Function that adds controller_id to the end of
+# Function that adds controller_port to the end of
 # the name srnt, so that it can be understood by
 # the input map.
 func name_adapter(name):
-	return str(name, "_", controller_id)
+	return str(name, "_", controller_port)
 

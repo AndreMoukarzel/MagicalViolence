@@ -32,11 +32,12 @@ func joysticks_changed(index, connected):
 		
 		else:
 			# Give menu controls to the device
+			# There is no problem on giving controls twice, for
+			# repeats are not accounted for on the InputMap.
 			
-			print (index)
 			var default_config = ConfigFile.new()
 			if (default_config.load(str("res://DefaultControls/default.cfg")) != OK):
-				print ("Error, could not load default data!")
+				print ("Error, could not load default joystick menu data!")
 				return
 			
 			for key in default_config.get_section_keys("Menu Button"):
