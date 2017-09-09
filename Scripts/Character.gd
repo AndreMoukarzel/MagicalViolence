@@ -5,8 +5,10 @@ const RUN_SPEED = 4
 
 var input_states = preload("res://Scripts/input_states.gd")
 
-# Id has to coincide with port, in our model
-var controller_id = 0
+# We use the port, because actions are named ending on port,
+# and port - device_id association is made on the InputMap before
+# each game.
+var controller_port = 0
 
 var btn_magic = input_states.new(name_adapter("char_magic"))
 var btn_melee = input_states.new(name_adapter("char_melee"))
@@ -49,7 +51,13 @@ var lightningbolt_scn = preload("res://Scenes/Projectiles/LightningBolt.tscn")
 func _ready():
 	add_to_group("Player")
 	
-	#test
+	# This is a port test.
+	# The reassingment of btn_magic (and other future buttons)
+	# may be necessary, though, because we only know of ports
+	# after the game has started.
+	# Having an _init would also be wise, for we may construct
+	# the battle scene manually later.
+	
 	var node_name = self.get_name()
 	controller_id = node_name.substr(node_name.length() - 1, node_name.length()).to_int()
 	btn_magic = input_states.new(name_adapter("char_magic"))
@@ -61,6 +69,7 @@ func _ready():
 
 
 func _process(delta):
+	
 	################### MOVEMENT ###################
 
 	var direction = Vector2( 0, 0 )
@@ -97,7 +106,7 @@ func _process(delta):
 				change_element("nature")
 	
 		if ready_to_spell and charge > 0:
-			if btn_magic.state() == 0 or btn_magic.state() == 3:
+			if btn_magic.state() == input_states.NOT_PRESSED or btn_magic.state() == input_states.JUST_RELEASED:
 				if active_proj == null:
 					release_spell()
 				else:
@@ -108,7 +117,7 @@ func _process(delta):
 
 func _fixed_process(delta):
 	if !is_stunned:
-		if btn_magic.state() == 2:
+		if btn_magic.state() == input_states.HOLD:
 			if active_proj == null:
 				charge += 1
 				get_node("ChargeBar").set_value(charge)

@@ -1,6 +1,8 @@
 
 extends Node
 
+# The better name here would be "action", as
+# an actions can represent multiple keys at once.
 var key
 
 var PREV_STATE = false
