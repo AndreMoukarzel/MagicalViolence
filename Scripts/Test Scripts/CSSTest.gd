@@ -54,12 +54,11 @@ func _input(event):
 				var new_event = InputEvent()
 				
 				if (event.device == KEYBOARD_CUSTOM_ID):
-					event.device = 0
 					filepath = "res://DefaultControls/keyboard.cfg"
 				else:
 					filepath = "res://DefaultControls/default.cfg"
 				
-				cm.map_css_controls(event, available_port, filepath)
+				cm.map_css_controls(event.device, available_port, filepath)
 	
 	# Actions other than entering game
 	else:

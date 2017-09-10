@@ -52,7 +52,7 @@ func _process(delta):
 		# Limite inferior
 		set_zoom(Vector2(1, 1))
 		
-	print (get_zoom())
+	#print (get_zoom())
 	
 	get_parent().set_pos(center)
 

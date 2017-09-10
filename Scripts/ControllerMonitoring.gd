@@ -55,24 +55,30 @@ func joysticks_changed(index, connected):
 ################################ CONTROLLER MAPPING FLOW FUNCTIONS ################################
 ###################################################################################################
 
-func map_css_controls(event, port, filepath):
+# Fazer as seguintes funções: add_controls, clear_controls, add_and_clear_controls.
+# Ai vão ter as funções add_menu_controls, add_css_controls, e add_game_controls. O clear é
+# universal, supostamente.
+# Ver por onde passar a tag.
+
+func map_css_controls(device, port, filepath):
 	print(filepath)
-	var default_config = ConfigFile.new()
-	if (default_config.load(filepath) != OK):
-		print ("Error, could not load default data!")
+	var control_config = ConfigFile.new()
+	if (control_config.load(filepath) != OK):
+		print ("Error, could not load css control data!")
 		return
 	
-	for key in default_config.get_section_keys("CSS"):
+	for key in control_config.get_section_keys("CSS"):
 		var real_name = str(key, "_", port)
-		var value = default_config.get_value("CSS", key)
+		var value = control_config.get_value("CSS", key)
 	
 		var new_event = InputEvent()
 		
-		if (event.type == InputEvent.KEY):
+		if (device == KEYBOARD_CUSTOM_ID):
 			new_event.type = InputEvent.KEY
 			new_event.scancode = value
 			new_event.device = event.device
-		elif (event.type == InputEvent.JOYSTICK_BUTTON):
+		else:
+			# Does not account for joystick motion
 			new_event.type = InputEvent.JOYSTICK_BUTTON
 			new_event.button_index = value
 			new_event.device = event.device
