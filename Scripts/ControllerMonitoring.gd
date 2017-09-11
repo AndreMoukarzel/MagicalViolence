@@ -76,12 +76,12 @@ func map_css_controls(device, port, filepath):
 		if (device == KEYBOARD_CUSTOM_ID):
 			new_event.type = InputEvent.KEY
 			new_event.scancode = value
-			new_event.device = event.device
+			new_event.device = device
 		else:
 			# Does not account for joystick motion
 			new_event.type = InputEvent.JOYSTICK_BUTTON
 			new_event.button_index = value
-			new_event.device = event.device
+			new_event.device = device
 					
 		InputMap.action_add_event(real_name, new_event)
 		
@@ -93,9 +93,9 @@ func map_game_controls(device, char_port, filepath):
 		
 	if (device == KEYBOARD_CUSTOM_ID):
 		# Clear input map of keys and Map keyboard to port
-		for key in default_config.get_section_keys("Keyboard Game Input"):
+		for key in default_config.get_section_keys("Game Keys"):
 			var real_name = str(key, "_", char_port)
-			var value = default_config.get_value("Keyboard Game Input", key)
+			var value = default_config.get_value("Game Keys", key)
 		
 			# Clear input map of keys
 		
@@ -117,9 +117,9 @@ func map_game_controls(device, char_port, filepath):
 			
 	else:
 		# Map controller to port, if tag selected map here
-		for key in default_config.get_section_keys("Joystick Button"):
+		for key in default_config.get_section_keys("Game Buttons"):
 			var real_name = str(key, "_", char_port)
-			var value = default_config.get_value("Joystick Button", key)
+			var value = default_config.get_value("Game Buttons", key)
 			
 			# Clear input map of keys
 			var event_list = InputMap.get_action_list(real_name)
@@ -136,10 +136,10 @@ func map_game_controls(device, char_port, filepath):
 			InputMap.action_add_event(real_name, new_event)
 		
 		# Map controller axis
-		for key in default_config.get_section_keys("Joystick Motion"):
+		for key in default_config.get_section_keys("Game Motions"):
 			
 			var real_name = str(key, "_", char_port)
-			var axis_value_vector = default_config.get_value("Joystick Motion", key)
+			var axis_value_vector = default_config.get_value("Game Motions", key)
 			
 			# Map joystick button to port
 			var new_event = InputEvent()

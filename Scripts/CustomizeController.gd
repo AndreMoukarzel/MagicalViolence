@@ -139,10 +139,10 @@ func _on_TagSelector_item_selected( id ):
 			print ("Error, could not load tag data!")
 			return
 		
-		for key in config.get_section_keys("Joystick Button"):
+		for key in config.get_section_keys("Game Buttons"):
 			var real_name = str(key.split("_")[1].capitalize())
 			# Remember: we only have the button index, so an easy extraction
-			var value = config.get_value("Joystick Button", key)
+			var value = config.get_value("Game Buttons", key)
 			get_node(str("GameCustomization/", real_name, "/Text")).set_text(str("[Button ", value, "]"))
 
 func _on_CreateTag_pressed():
@@ -184,8 +184,8 @@ func _on_SelectTagBack_pressed():
 
 func _on_GCSave_pressed():
 	# Check if left any unassigned actions
-	for key in config.get_section_keys("Joystick Button"):
-		if str(config.get_value("Joystick Button", key)) == "Unassigned":
+	for key in config.get_section_keys("Game Buttons"):
+		if str(config.get_value("Game Buttons", key)) == "Unassigned":
 			print("You have left some controls unassigned!")
 			return
 			
@@ -215,10 +215,10 @@ func reset_gc_display():
 		print ("Error, could not load default data!")
 		return
 	
-	for key in default_config.get_section_keys("Joystick Button"):
+	for key in default_config.get_section_keys("Game Buttons"):
 		var real_name = str(key.split("_")[1].capitalize())
 		# Remember: we only have the button index, so an easy extraction
-		var value = default_config.get_value("Joystick Button", key)
+		var value = default_config.get_value("Game Buttons", key)
 		get_node(str("GameCustomization/", real_name, "/Text")).set_text(str("[Button ", value, "]"))
 
 
