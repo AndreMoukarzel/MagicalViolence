@@ -6,6 +6,7 @@ var parent
 
 func fire( direction, parent ):
 	self.parent = parent
+	get_node( "AnimatedSprite" ).set_frame(0)
 	set_rotd( rad2deg( direction.angle() ) - 90)
 	set_pos( parent.get_pos() )
 	get_node( "AnimationPlayer" ).play( "fire" )

@@ -76,12 +76,12 @@ func map_css_controls(device, port, filepath):
 		if (device == KEYBOARD_CUSTOM_ID):
 			new_event.type = InputEvent.KEY
 			new_event.scancode = value
-			new_event.device = event.device
+			new_event.device = new_event.device
 		else:
 			# Does not account for joystick motion
 			new_event.type = InputEvent.JOYSTICK_BUTTON
 			new_event.button_index = value
-			new_event.device = event.device
+			new_event.device = new_event.device
 					
 		InputMap.action_add_event(real_name, new_event)
 		
