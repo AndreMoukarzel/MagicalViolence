@@ -3,6 +3,7 @@
 extends KinematicBody2D
 
 var SPEED = 10
+var ROT_SPEED = 3
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var angle
@@ -23,6 +24,7 @@ func _process(delta):
 		angle = get_angle_to( self.parent.get_pos() )
 		# negative cos and sin because speed is also negative
 		direction = Vector2( -sin(angle), -cos(angle) )
+	get_node( "Sprite" ).rotate( ROT_SPEED * delta )
 
 	move( direction * SPEED )
 	SPEED -= 12*delta

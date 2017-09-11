@@ -82,7 +82,7 @@ func map_css_controls(device, port, filepath):
 			new_event.type = InputEvent.JOYSTICK_BUTTON
 			new_event.button_index = value
 			new_event.device = device
-					
+
 		InputMap.action_add_event(real_name, new_event)
 		
 func map_game_controls(device, char_port, filepath):
