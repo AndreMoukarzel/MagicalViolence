@@ -566,10 +566,19 @@ wait_time = 2.0
 one_shot = true
 autostart = false
 
+[node name="RootTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
 
 [connection signal="timeout" from="StunTimer" to="." method="_on_StunTimer_timeout"]
 
 [connection signal="timeout" from="SlowTimer" to="." method="_on_SlowTimer_timeout"]
+
+[connection signal="timeout" from="RootTimer" to="." method="_on_RootTimer_timeout"]
 
 

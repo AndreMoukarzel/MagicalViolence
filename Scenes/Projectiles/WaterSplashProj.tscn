@@ -62,7 +62,6 @@ script/script = ExtResource( 1 )
 transform/scale = Vector2( 0.13379, 0.13379 )
 frames = SubResource( 1 )
 animation = "default"
-modulate = Color( 0.698039, 0.701961, 0.870588, 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 

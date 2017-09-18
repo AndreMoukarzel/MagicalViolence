@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const SPEED = 8
+const SPEED = 6
 
 var direction = Vector2( 0, 0 ) # direction that the seed flies to
 var parent

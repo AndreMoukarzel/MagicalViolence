@@ -7,7 +7,7 @@
 [ext_resource path="res://Sprites/Spells/Lightning/lightningBolt4.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Spells/Lightning/lightningBolt5.png" type="Texture" id=6]
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
@@ -52,7 +52,7 @@ script/script = ExtResource( 1 )
 
 transform/pos = Vector2( 155.429, -0.721247 )
 transform/scale = Vector2( 0.694991, 0.47481 )
-frames = SubResource( 4 )
+frames = SubResource( 1 )
 animation = "LightningBolt"
 frame = 4
 playing = true
