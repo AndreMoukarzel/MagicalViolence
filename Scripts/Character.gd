@@ -24,6 +24,7 @@ var charge = 0
 var ready_to_spell = true
 var holding_spell = false
 var is_stunned = false
+var is_rooted = false
 var active_proj
 var slow_multiplier = 1
 var push_direction = Vector2(0, 0)
@@ -43,6 +44,8 @@ var tidalwave_scn = preload("res://Scenes/Projectiles/TidalWave.tscn")
 # Nature
 var leafshield_scn = preload("res://Scenes/Projectiles/LeafShield.tscn")
 var conjurethorns_scn = preload("res://Scenes/Projectiles/ConjureThorns.tscn")
+var graspingvine_scn = preload("res://Scenes/Projectiles/GraspingVine.tscn")
+
 # Lightning
 var magnetbolt_scn = preload("res://Scenes/Projectiles/MagnetBolt.tscn")
 var thunderbolt_scn = preload("res://Scenes/Projectiles/Thunderbolt.tscn")
@@ -93,7 +96,8 @@ func _process(delta):
 			new_anim = define_anim(current_direction)
 	
 		# should take external forces into consideration
-		move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
+		if !is_rooted:
+			move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
 	
 		################################################
 		if !holding_spell:
@@ -160,7 +164,7 @@ func define_spell():
 			return leafshield_scn
 		elif charge < 100:
 			return conjurethorns_scn
-		return firebolt_scn
+		return graspingvine_scn
 	else: # magic_element == lightning
 		if charge < 50:
 			return magnetbolt_scn
@@ -249,12 +253,20 @@ func Slow(time, multiplier):
 	slow_multiplier = multiplier
 	get_node( "SlowTimer" ).set_wait_time(time)
 	get_node( "SlowTimer" ).start()
-	
+
+
 func Stun(time):
 	is_stunned = true
 	update_anim( str("idle_", current_anim.split("_")[1]) )
 	get_node( "StunTimer" ).set_wait_time(time)
 	get_node( "StunTimer" ).start()
+
+
+func Root(time):
+	is_rooted = true
+	get_node( "RootTimer" ).set_wait_time(time)
+	get_node( "RootTimer" ).start()
+
 
 # Slow time is over
 func _on_SlowTimer_timeout():
@@ -264,6 +276,12 @@ func _on_SlowTimer_timeout():
 # Stun time is over
 func _on_StunTimer_timeout():
 	is_stunned = false
+
+
+# Root time is over
+func _on_RootTimer_timeout():
+	is_rooted = false
+
 	
 	
 func take_damage(damage):

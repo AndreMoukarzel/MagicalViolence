@@ -64,6 +64,7 @@ script/script = ExtResource( 1 )
 transform/scale = Vector2( 0.262258, 0.262258 )
 frames = SubResource( 1 )
 animation = "default"
+frame = 1
 playing = true
 
 [node name="Damage" type="Area2D" parent="."]
