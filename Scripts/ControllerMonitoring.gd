@@ -40,15 +40,16 @@ func joysticks_changed(index, connected):
 				print ("Error, could not load default joystick menu data!")
 				return
 			
-			for key in default_config.get_section_keys("Menu Button"):
-				var value = default_config.get_value("Menu Button", key)
+			for key in default_config.get_section_keys("Menu Buttons"):
+				var value = default_config.get_value("Menu Buttons", key)
 				var event = InputEvent()
 				
 				event.type = InputEvent.JOYSTICK_BUTTON
 				event.device = index
 				event.button_index = value
 				
-				
+				print (key)
+				print (event)
 				InputMap.action_add_event(key, event)
 
 ###################################################################################################
@@ -70,7 +71,13 @@ func map_css_controls(device, port, filepath):
 	for key in control_config.get_section_keys("CSS"):
 		var real_name = str(key, "_", port)
 		var value = control_config.get_value("CSS", key)
-	
+		
+		# Clear input map of keys
+		var event_list = InputMap.get_action_list(real_name)
+		for ev in event_list:
+			InputMap.action_erase_event(real_name, ev)
+
+		# Map keyboard / controller to port
 		var new_event = InputEvent()
 		
 		if (device == KEYBOARD_CUSTOM_ID):
@@ -140,6 +147,9 @@ func map_game_controls(device, char_port, filepath):
 			
 			var real_name = str(key, "_", char_port)
 			var axis_value_vector = default_config.get_value("Game Motions", key)
+			
+			# We do not erase controls a second time, we already did this
+			# when we were mapping the buttons.
 			
 			# Map joystick button to port
 			var new_event = InputEvent()
