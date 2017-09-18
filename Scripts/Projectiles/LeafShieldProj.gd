@@ -40,7 +40,6 @@ func _on_LifeTimer_timeout():
 func die():
 	if get_node( "AnimationPlayer" ).get_current_animation() != "death":
 		get_node( "AnimationPlayer" ).play( "death" )
-#		if owner != null:
 		if (not shot):
 			owner.leaf_death(id-1)
 	set_process( false )

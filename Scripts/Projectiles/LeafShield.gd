@@ -55,54 +55,17 @@ func activate():
 		if (leaves[i] == true):
 			shoot_leaf(i+1)
 			break
-#	get_node("AnimationPlayer").stop()
-#	for child in get_children():
-#		if child.has_method("fire"):
-#			print(child.get_name())
-#			child.fire(Vector2(1,1))
-
-#	if (leaf_count > 0) and (proj_count > 0):
-#		var id
-#		for i in range(4):
-#			if leaves[i] == true:
-#				id = i
-#				break
-#		print ("activate: ", id)
-#		shoot_leaf(id)
-#		proj_count -= 1
-
-#			get_node("LeafShieldProj1").queue_free()
-#			var leaf = leafProj.instance()
-#			leaf.set_pos(self.parent.get_pos())
-#			leaf.start(parent, self)
-#			leaf.fire(self.direction, self.parent)
-#			get_parent().add_child( leaf )
 
 func shoot_leaf(id):
-#	var pos = get_node(str("LeafShieldProj", id)).get_pos()
-#	get_node(str("LeafShieldProj", id)).queue_free()
-#	var leaf = leafProj.instance()
-#	leaf.set_pos(pos)
-#	leaf.start(parent, self)
-#	leaf.fire(self.direction, self.parent)
-#	leaves[id-1] = false
 	print ("id = ", id)
 	var leaf = get_node(str("LeafShieldProj", id))
 	var pos = leaf.get_pos() + self.get_pos()
 	remove_child(leaf)
 	get_parent().get_parent().add_child(leaf)
 	leaf.set_pos(pos)
-#	leaf.start(parent, self)
 	leaf.fire(self.direction, self.parent)
 	leaves[id-1] = false
 	leaf_count -= 1
-#	get_node(str("LeafShieldProj", id+1)).queue_free()
-#	var leaf = leafProj.instance()
-#	leaf.set_pos(self.parent.get_pos())
-#	leaf.start(parent, self)
-#	leaf.fire(self.direction, self.parent)
-#	get_parent().add_child(leaf)
-#	leaves[id] = false
 
 func leaf_death(id):
 	leaf_count -= 1
@@ -110,9 +73,7 @@ func leaf_death(id):
 	if leaf_count == 0:
 		die()
 
-
 func die():
-#	get_node("AnimationPlayer").stop()
 	for child in get_children():
 		if child.get_name() != "AnimationPlayer" and child.get_name() != "Timer":
 			child.die()
