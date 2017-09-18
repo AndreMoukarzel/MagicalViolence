@@ -18,10 +18,7 @@ func _on_Area2D_body_enter( body ):
 	if body != parent:
 		if body.has_method("take_damage"):
 			body.take_damage(20)
-			body.is_stunned = true
-			# Time stunned
-			body.get_node( "StunTimer" ).set_wait_time(1.5)
-			body.get_node( "StunTimer" ).start()
+			body.Stun(1.5)
 
 
 func free_scn():

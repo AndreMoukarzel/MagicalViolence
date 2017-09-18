@@ -45,6 +45,7 @@ var leafshield_scn = preload("res://Scenes/Projectiles/LeafShield.tscn")
 var conjurethorns_scn = preload("res://Scenes/Projectiles/ConjureThorns.tscn")
 # Lightning
 var magnetbolt_scn = preload("res://Scenes/Projectiles/MagnetBolt.tscn")
+var thunderbolt_scn = preload("res://Scenes/Projectiles/Thunderbolt.tscn")
 var lightningbolt_scn = preload("res://Scenes/Projectiles/LightningBolt.tscn")
 
 
@@ -164,7 +165,7 @@ func define_spell():
 		if charge < 50:
 			return magnetbolt_scn
 		elif charge < 100:
-			return scorching_scn
+			return thunderbolt_scn
 		return lightningbolt_scn
 
 
@@ -191,7 +192,7 @@ func define_cooldown(spell):
 	else: # magic_element == eletricity
 		if spell == magnetbolt_scn:
 			return 0.5
-		elif spell == scorching_scn:
+		elif spell == thunderbolt_scn:
 			return 1
 		return 2
 
@@ -243,6 +244,17 @@ func _on_Cooldown_timeout():
 	get_node("ChargeBar").set_value(charge)
 	get_node("ChargeBar").show()
 
+
+func Slow(time, multiplier):
+	slow_multiplier = multiplier
+	get_node( "SlowTimer" ).set_wait_time(time)
+	get_node( "SlowTimer" ).start()
+	
+func Stun(time):
+	is_stunned = true
+	update_anim( str("idle_", current_anim.split("_")[1]) )
+	get_node( "StunTimer" ).set_wait_time(time)
+	get_node( "StunTimer" ).start()
 
 # Slow time is over
 func _on_SlowTimer_timeout():
