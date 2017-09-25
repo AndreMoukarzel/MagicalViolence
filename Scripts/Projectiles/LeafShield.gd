@@ -40,6 +40,8 @@ func spin_leaves(delta):
 			x = 25*sin(a)
 			y = 25*cos(a)
 			leaf.set_pos(Vector2(x, y))
+			# Rotates the leaves along with their movement around the character
+			leaf.set_rotd( rad2deg( Vector2(x, y).angle() ) + 90)
 
 func _process(delta):
 	if leaf_count < proj_count:
