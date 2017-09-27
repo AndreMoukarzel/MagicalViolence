@@ -63,7 +63,7 @@ func _input(event):
 				else:
 					filepath = "res://DefaultControls/default.cfg"
 				
-				cm.map_css_controls(event.device, available_port, filepath)
+				cm.map_css_controls(available_port, "default")
 	
 	# Actions other than entering game
 	else:
@@ -138,7 +138,7 @@ func _input(event):
 							else:
 								filepath = "res://DefaultControls/default.cfg"
 						
-							cm.map_game_controls(device, char_port, filepath)
+							cm.map_game_controls(char_port, "default")
 							
 					# Instance battle scene
 					# Have to instance the characters in the battle scene itself
