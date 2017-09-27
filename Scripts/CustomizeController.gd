@@ -36,6 +36,7 @@ var config = null
 
 func _ready():
 	
+	# Setting up button functionality
 	get_node("SelectTag/TagSelector").add_item("Select a Tag")
 	
 	for node in get_node("GameCustomization").get_children():

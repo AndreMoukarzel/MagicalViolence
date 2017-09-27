@@ -9,8 +9,8 @@
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/OptionsNormal.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsHover.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsNormal.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Characters/Cat/cat0007.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Characters/Cat/cat0004.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Characters/Cat/cat0004.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Characters/Cat/cat0007.png" type="Texture" id=11]
 [ext_resource path="res://Sprites/Characters/Cat/cat0008.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/Characters/Cat/cat0000.png" type="Texture" id=13]
 [ext_resource path="res://Sprites/Characters/Cat/cat0001.png" type="Texture" id=14]
@@ -29,12 +29,12 @@
 animations = [ {
 "frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "JumpUp",
+"name": "JumpDown",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 11 ) ],
 "loop": true,
-"name": "JumpDown",
+"name": "JumpUp",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 12 ) ],
