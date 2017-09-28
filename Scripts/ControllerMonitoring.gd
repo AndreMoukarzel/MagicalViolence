@@ -48,8 +48,6 @@ func joysticks_changed(index, connected):
 				event.device = index
 				event.button_index = value
 
-				print (key)
-				print (event)
 				InputMap.action_add_event(key, event)
 
 ###################################################################################################
@@ -60,7 +58,7 @@ func map_css_controls(port, tag):
 
 	var control_config = ConfigFile.new()
 	var device = controller_ports[port]
-	var filepath = determine_filepath(port, tag)
+	var filepath = determine_filepath(device, tag)
 
 	if (control_config.load(filepath) != OK):
 		print ("Error, could not load css control data!")
@@ -93,7 +91,7 @@ func map_game_controls(port, tag):
 
 	var default_config = ConfigFile.new()
 	var device = controller_ports[port]
-	var filepath = determine_filepath(port, tag)
+	var filepath = determine_filepath(device, tag)
 
 	if (default_config.load(filepath) != OK):
 		print ("Error, could not load default data!")
