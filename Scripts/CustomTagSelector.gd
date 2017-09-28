@@ -11,7 +11,7 @@ func _ready():
 	
 	# To test this functionality we have to give CSS Controls to port 0,
 	# and process inputs like the CSS script would be doing
-	controller_monitor.controller_ports[0] = 0
+	controller_monitor.controller_ports[0] = 1000
 	controller_monitor.map_css_controls(0, "default")
 	set_process_input(true)
 	
@@ -95,10 +95,7 @@ func move_up():
 	
 	current_cursor = (current_cursor + tags_number - 1) % tags_number
 	
-	var future_pos = Vector2(tags_h_offset[current_cursor], int(cursor.get_pos().y - 30))
-	
-	if (future_pos.y < 0):
-		future_pos.y = (30 * (tags_number - 1))
+	var future_pos = Vector2(tags_h_offset[current_cursor], 30 * current_cursor)
 	
 	get_node("Tween").interpolate_property(cursor, "transform/pos", cursor.get_pos(), future_pos, 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	get_node("Tween").start()
@@ -113,7 +110,7 @@ func move_down():
 	
 	current_cursor = (current_cursor + 1) % tags_number
 	
-	var future_pos = Vector2(tags_h_offset[current_cursor], int(cursor.get_pos().y + 30) % (30 * tags_number))
+	var future_pos = Vector2(tags_h_offset[current_cursor], 30 * current_cursor)
 	
 	get_node("Tween").interpolate_property(cursor, "transform/pos", cursor.get_pos(), future_pos, 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 	get_node("Tween").start()
