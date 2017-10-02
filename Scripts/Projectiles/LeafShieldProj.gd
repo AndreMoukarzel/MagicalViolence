@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const SPEED = 6
+const DAMAGE = 4
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent
@@ -29,7 +30,7 @@ func _on_Area2D_body_enter( body ):
 	if body != parent:
 		get_node("Area2D").queue_free()
 		if body.has_method("take_damage"):
-			body.take_damage(4)
+			body.take_damage(DAMAGE)
 		die()
 
 

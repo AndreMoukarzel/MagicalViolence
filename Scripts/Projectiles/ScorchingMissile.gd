@@ -3,6 +3,7 @@
 extends KinematicBody2D
 
 const SPEED = 5
+const DAMAGE = 15
 const HOMING_FACTOR = 40 # the lowest the factor is, the fastest the homing
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
@@ -53,7 +54,7 @@ func _on_Area2D_body_enter( body ):
 	if body != parent:
 		get_node("Area2D").queue_free()
 		if body.has_method("take_damage"):
-			body.take_damage(15)
+			body.take_damage(DAMAGE)
 		die()
 
 

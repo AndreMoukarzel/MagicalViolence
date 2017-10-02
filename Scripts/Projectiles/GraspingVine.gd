@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const SPEED = 0.25
+const DAMAGE = 10
 
 var direction = Vector2( 0, 0 )
 var parent
@@ -24,7 +25,7 @@ func _process(delta):
 func _on_Area2D_body_enter( body ):
 	if body != parent:
 		if body.has_method("take_damage"):
-			body.take_damage(10)
+			body.take_damage(DAMAGE)
 			body.Root(1.5)
 
 

@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const SPEED = 6
+const DAMAGE = 15
 
 var direction = Vector2( 0, 0 ) # direction that the seed flies to
 var parent
@@ -32,10 +33,10 @@ func _on_Area2D_body_enter( body ):
 			# when enemy enters them. Otherwise, the seed just
 			# disappears dealing damage
 			if !is_seed:
-				body.take_damage(40)
+				body.take_damage(2 * DAMAGE)
 				_on_LifeTimer_timeout()
 			else:
-				body.take_damage(15)
+				body.take_damage(DAMAGE)
 				die()
 
 

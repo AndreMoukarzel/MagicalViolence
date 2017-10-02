@@ -9,12 +9,7 @@
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "LightningBolt",
-"speed": 10.0
-} ]
+animations = [ { "frames":[ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ], "loop":false, "name":"LightningBolt", "speed":10.0 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -30,14 +25,7 @@ tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0.5 ),
-"transitions": FloatArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "free_scn"
-} ]
-}
+tracks/0/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"free_scn" } ] }
 
 [node name="LightningBolt" type="KinematicBody2D"]
 

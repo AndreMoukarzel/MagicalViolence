@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 const SPEED = 4
+const DAMAGE = 15
 
 var direction = Vector2( 0, 0 ) # direction that the cloud flies to
 var parent
@@ -32,7 +33,7 @@ func _on_LifeTimer_timeout():
 func _on_DelayTimer_timeout():
 	for body in get_node( "Damage" ).get_overlapping_bodies():
 		if body != parent and body.has_method("take_damage"):
-			body.take_damage(15)
+			body.take_damage(DAMAGE)
 			body.Stun(1)
 	#get_node( "AnimationPlayer" ).play( "thunder" )
 	get_node( "Damage" ).queue_free()

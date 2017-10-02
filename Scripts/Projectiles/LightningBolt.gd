@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-
 var parent
+const DAMAGE = 20
 
 
 func fire( direction, parent ):
@@ -17,7 +17,7 @@ func fire( direction, parent ):
 func _on_Area2D_body_enter( body ):
 	if body != parent:
 		if body.has_method("take_damage"):
-			body.take_damage(20)
+			body.take_damage(DAMAGE)
 			body.Stun(1.5)
 
 

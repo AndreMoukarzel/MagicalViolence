@@ -2,6 +2,7 @@
 extends KinematicBody2D
 
 const SPEED = 6
+const DAMAGE = 30
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent
@@ -23,7 +24,7 @@ func _process(delta):
 func _on_Area2D_body_enter( body ):
 	if body != parent:
 		if body.has_method("take_damage"):
-			body.take_damage(30)
+			body.take_damage(DAMAGE)
 		if alive:
 			explosion()
 
