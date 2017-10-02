@@ -1,15 +1,30 @@
 [gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://Scripts/Projectiles/ConjureThorns.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Spells/Nature/seed.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/emptySprite.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Spells/Nature/thorns1.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Spells/Nature/thorns2.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Spells/Nature/thorns3.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Spells/Nature/emptySprite.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Spells/Nature/seed.png" type="Texture" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ { "frames":[ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ], "loop":true, "name":"default", "speed":5.0 } ]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "grow",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "die",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "seed",
+"speed": 5.0
+} ]
 
 [sub_resource type="CapsuleShape2D" id=2]
 
@@ -26,7 +41,12 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 3, 2, 1, 4 ] }
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 2, 1, 4 ]
+}
 
 [sub_resource type="Animation" id=4]
 
@@ -37,7 +57,12 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 4, 1, 2, 3 ] }
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 1, 2, 3 ]
+}
 
 [sub_resource type="Animation" id=5]
 
@@ -48,7 +73,12 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 0 ] }
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
 [node name="ConjureThorns" type="KinematicBody2D"]
 

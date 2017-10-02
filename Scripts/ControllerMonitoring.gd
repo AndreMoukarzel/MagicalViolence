@@ -86,7 +86,24 @@ func map_css_controls(port, tag):
 			new_event.device = device
 
 		InputMap.action_add_event(real_name, new_event)
+		
+func unmap_css_controls(port):
+	
+	var control_config = ConfigFile.new()
+	var device = controller_ports[port]
+	var filepath = determine_filepath(device, "default")
 
+	if (control_config.load(filepath) != OK):
+		print ("Error, could not load css control data!")
+		return
+
+	for key in control_config.get_section_keys("CSS"):
+		var real_name = str(key, "_", port)
+		var value = control_config.get_value("CSS", key)
+
+		# Clear controls associated to the current key
+		clear_controls(real_name)
+	
 func map_game_controls(port, tag):
 
 	var default_config = ConfigFile.new()
