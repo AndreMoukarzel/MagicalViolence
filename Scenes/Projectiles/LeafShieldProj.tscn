@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Scripts/Projectiles/LeafShieldProj.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Spells/Nature/leaf.png" type="Texture" id=2]
@@ -25,6 +25,23 @@ tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1, 1 ), Vector2( 2, 2 ) ] }
 
+[sub_resource type="Animation" id=3]
+
+resource/name = "spin"
+length = 0.5
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/rot")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.5 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 360.0 ]
+}
+
 [node name="LeafShieldProj" type="KinematicBody2D"]
 
 input/pickable = false
@@ -38,7 +55,7 @@ script/script = ExtResource( 1 )
 transform/pos = Vector2( 1.03865, -0.381369 )
 transform/scale = Vector2( 0.184938, 0.184938 )
 texture = ExtResource( 2 )
-modulate = Color( 0, 1, 0.34375, 1 )
+modulate = Color( 0, 1, 0, 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -64,6 +81,7 @@ playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/death = SubResource( 2 )
+anims/spin = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
