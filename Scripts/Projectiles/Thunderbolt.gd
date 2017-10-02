@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const SPEED = 4
 const DAMAGE = 15
+const STUN_TIME = 1
 var element = 3 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
 var level = 2
 
@@ -12,7 +13,10 @@ var parent
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent
+	get_node( "AnimatedSprite" ).play( "cloud" )
 	set_pos( parent.get_pos() )
+	get_node( "AnimatedSprite" ).set_scale( Vector2(0.26, 0.26 ) )
+	get_node( "AnimatedSprite" ).set_pos( Vector2(0, 0 ) )
 	set_process( true )
 
 
@@ -23,6 +27,7 @@ func _process(delta):
 # does damage if take damage function exists in body
 func _on_Detection_body_enter( body ):
 	if body != parent:
+		set_pos( body.get_pos() )
 		get_node( "Detection" ).queue_free()
 		get_node( "DelayTimer" ).start()
 		die()
@@ -33,17 +38,18 @@ func _on_LifeTimer_timeout():
 
 
 func _on_DelayTimer_timeout():
+	get_node( "AnimatedSprite" ).stop()
+	
+	get_node( "AnimationPlayer" ).play( "thunder" )
+	
 	for body in get_node( "Damage" ).get_overlapping_bodies():
 		if body != parent and body.has_method("take_damage"):
 			body.take_damage(DAMAGE)
-			body.Stun(1)
-	#get_node( "AnimationPlayer" ).play( "thunder" )
+			body.Stun(STUN_TIME)
 	get_node( "Damage" ).queue_free()
-	free_scn()
 
 
 func die():
-	get_node( "AnimationPlayer" ).play( "death" )
 	set_process( false )
 
 
