@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 const SPEED = 0.25
 const DAMAGE = 10
+var element = 2 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var level = 3
 
 var direction = Vector2( 0, 0 )
 var parent

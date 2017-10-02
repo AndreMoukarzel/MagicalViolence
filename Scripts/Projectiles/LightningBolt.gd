@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 var parent
 const DAMAGE = 20
+var element = 3 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var level = 3
 
 
 func fire( direction, parent ):

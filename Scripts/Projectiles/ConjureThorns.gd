@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 const SPEED = 6
 const DAMAGE = 15
+var element = 2 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var level = 2
 
 var direction = Vector2( 0, 0 ) # direction that the seed flies to
 var parent

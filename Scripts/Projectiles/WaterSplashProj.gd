@@ -3,6 +3,8 @@ extends KinematicBody2D
 
 const SPEED = 8
 const DAMAGE = 4
+var element = 1 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var level = 1
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent
