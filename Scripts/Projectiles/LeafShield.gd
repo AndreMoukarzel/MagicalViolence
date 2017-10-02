@@ -13,7 +13,7 @@ var leafProj = preload("res://Scenes/Projectiles/LeafShieldProj.tscn")
 
 var angle = 0
 
-var c = Color(0, 0, 1)
+var c = Color(1, 0.5, 0.2)
 
 func fire( direction, parent ):
 	self.parent = parent
@@ -69,8 +69,6 @@ func next_leaf():
 
 func shoot_leaf(id):
 	print ("id = ", id)
-	var g = Color(0, 1, 0)
-	get_node(str("LeafShieldProj", id, "/Sprite")).set_modulate(g)
 	var leaf = get_node(str("LeafShieldProj", id))
 	var pos = leaf.get_pos() + self.get_pos()
 	remove_child(leaf)

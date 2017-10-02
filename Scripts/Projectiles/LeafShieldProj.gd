@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-const SPEED = 6
+const SPEED = 10
 const DAMAGE = 4
 var element = 2 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
 var level = 1
