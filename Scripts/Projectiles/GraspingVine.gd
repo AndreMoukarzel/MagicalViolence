@@ -15,11 +15,6 @@ func fire( direction, parent ):
 	set_rot( direction.angle() )
 	get_node( "LifeTimer" ).start()
 	get_node( "AnimationPlayer" ).play( "fire" )
-	set_process( true )
-
-
-func _process(delta):
-	move( direction * SPEED )
 
 
 func _on_Area2D_body_enter( body ):
@@ -31,11 +26,6 @@ func _on_Area2D_body_enter( body ):
 
 func _on_LifeTimer_timeout():
 	get_node( "AnimationPlayer" ).play( "death" )
-	get_node( "Area2D" ).queue_free()
-
-
-func end_process():
-	set_process( false )
 
 
 func free_scn():
