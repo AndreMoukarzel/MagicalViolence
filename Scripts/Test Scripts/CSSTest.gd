@@ -2,160 +2,99 @@
 extends Control
 
 const KEYBOARD_CUSTOM_ID = 1000
+const OPEN = 0
+const SELECTING_CHARACTER = 1
+const SELECTING_TAG = 2
+const LOCKED = 3
 
-var char_selected = [false, false, false, false]
-var char_locked = [false, false, false, false]
+var port_state = [OPEN, OPEN, OPEN, OPEN]
 
 var css_character_order = ["Skeleton", "Broleton"]
 
-# One for each port
+# Where the "cursor" is, at this moment
 var css_character_index = [0, 0, 0, 0]
+# The character selected by each port, if any
 var selected_characters = [-1, -1, -1, -1]
 
 # This is made to shorten names, controller_monitor is a global
 var cm = controller_monitor
 
 func _ready():
-	
+
 	set_process_input(true)
 	Input.connect("joy_connection_changed", self, "joysticks_changed")
-	
+
+# Determinamos que é mais facil guardar estados em forma de strings, ao
+# inves de multiplos vetores. Assim, podemos checar o comando, depois o
+# estado em que o jogador se encontra.
+
 func _input(event):
-	
-	
-	# Jogador tentando entrar
-	
+
+	# Ignore mouse events, for the sake of performance
+	if (event.type == InputEvent.MOUSE_MOTION or event.type == InputEvent.MOUSE_BUTTON):
+		return
+
 	# Keyboard device ID is default to 0, so we change it to
 	# differentiate from joystick device IDs.
-		
+
 	if (event.type == InputEvent.KEY):
 		event.device = KEYBOARD_CUSTOM_ID
-	
-	# Provavelmente vai trocar para dentro da checagem do lock,
-	# para o start ser o botão que prossegue, além do que da o port.
-	
-	# Player trying to enter game
+
+	# This one is not dependent on the port states, initially, because devices
+	# that are not yet assigned to a port might
 	if (event.is_action_pressed("ui_start")):
-		
-		var available_port
-		
-		# Tem que checar se todos estão prontos, se não estiverem deve cair aqui
-		if (cm.controller_ports.find(event.device) != -1):
-			print("U already in boi")
-			return
-			
-		available_port = cm.controller_ports.find(-1)
-		if (available_port != -1):
-			# Found possible port
-				cm.controller_ports[available_port] = event.device
-				
-				# Animate
-				get_node(str("P", available_port + 1, "/Inactive")).hide()
-				get_node(str("P", available_port + 1, "/Active")).show()
-				
-				# Map CSS Actions to device based on port
-				# Make default map for css (much like menus, we do not permit customization)
-				var filepath
-				var new_event = InputEvent()
-				
-				if (event.device == KEYBOARD_CUSTOM_ID):
-					filepath = "res://DefaultControls/keyboard.cfg"
-				else:
-					filepath = "res://DefaultControls/default.cfg"
-				
-				cm.map_css_controls(available_port, "default")
-	
-	# Actions other than entering game
-	else:
-		
-		var port_found = cm.controller_ports.find(event.device)
-		
-		if (port_found == -1):
-			print("You must be in to operate")
-			return
-		
-		# Player selecting character (tag selection and other commands to be decided)
-		if (not char_selected[port_found]):
-			
-			# If holds cancel in this state, return to previous menu, if only presses for a moment cancels selection
-			
-			if (event.is_action_pressed(name_adapter("css_left", port_found))):
-				character_selection_move_left(port_found)
-				
-			elif (event.is_action_pressed(name_adapter("css_right", port_found))):
-				character_selection_move_right(port_found)
-				
-			elif (event.is_action_pressed(name_adapter("css_accept", port_found))):
-				char_selected[port_found] = true
-				selected_characters[port_found] = css_character_index[port_found]
-				get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Lock")
-				
-				# Avoid possible repeated selection
-				for num in range (0, 4):
-					if (cm.controller_ports[num] == -1 or num == port_found):
-						continue
-					if (css_character_index[num] == selected_characters[port_found]):
-						character_selection_move_left(num)
-				
-		else:
-			
-			if (not char_locked[port_found]):
-				# Opcoes antes do jogo, como criar tag, costumizar controles e travar.
-				
-				# Jogador desescolhendo o personagem
-				if (event.is_action_pressed(name_adapter("css_cancel", port_found))):
-					char_selected[port_found] = false
-					selected_characters[port_found] = -1
-					get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Select Character")
-			
-			else:
-			
-				# Jogador tentando comecar partida
-				if (event.is_action_pressed(name_adapter("css_accept", port_found))):
-					
-					# Check if enough players are ready
-					var players_ready = 0
-					
-					for l in char_locked:
-						if (l):
-							players_ready += 1
-					
-					if (players_ready <= 1):
-						print("At least two players are needed to begin")
-						return
-					
-					# Map controls to given port
-					for device in controller_monitor.controller_ports:
-						var char_port = controller_monitor.controller_ports.find(device)
-						print (str("Device: ", device, " and char_port: ", char_port))
-						
-						if (device != -1):
-							
-							var filepath
-							
-							if (device == KEYBOARD_CUSTOM_ID):
-								filepath = "res://DefaultControls/keyboard.cfg"
-							else:
-								filepath = "res://DefaultControls/default.cfg"
-						
-							cm.map_game_controls(char_port, "default")
-							
-					# Instance battle scene
-					# Have to instance the characters in the battle scene itself
-					
-					var battle_scn = load("res://Scenes/Test Scenes/BattleTest.tscn")
-					var btl_scn = battle_scn.instance()
-					get_tree().get_root().add_child(btl_scn)
-					self.hide()
-					#test, putting correct character sprite
-					btl_scn.get_node("Character0/Sprite").set_animation(css_character_order[css_character_index[0]])
-					btl_scn.get_node("Character1/Sprite").set_animation(css_character_order[css_character_index[1]])
-					set_process_input(false)
-				
-				# Jogador destravando port
-				if (event.is_action_pressed(name_adapter("css_cancel", port_found))):
-					char_locked[port_found] = false
-					get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Lock")
+		# There is a problem here, we always check this if someone presses "start".
+		# This will be checked if a players presses "start" to begin the match, but
+		# to no consequence.
+
+
+		# Assigns port to a device, if it is not yet assigned,
+		# and there are available ports.
+		assign_port(event)
+
+	# We are assured that devices not on ports will not operate, because
+	# we assign CSS controls only when we find a port for the device, and
+	# remove controls in case of a device being disconnected, or a player
+	# deciding do re-open a port.
+
+
+	var port_found = cm.controller_ports.find(event.device)
+
+	if (port_found == -1):
+		print("There is no port assigned to this device.")
+		return
+
+	if (port_state[port_found] == SELECTING_CHARACTER):
+
+		# If holds cancel in this state, return to previous menu,
+		# if only presses for a moment cancels selection.
+
+		if (event.is_action_pressed(name_adapter("css_left", port_found))):
+			character_selection_move_left(port_found)
+
+		elif (event.is_action_pressed(name_adapter("css_right", port_found))):
+			character_selection_move_right(port_found)
+
+		elif (event.is_action_pressed(name_adapter("css_accept", port_found))):
+			select_character(port_found)
+
+		elif (event.is_action_pressed(name_adapter("css_cancel", port_found))):
+			open_port(event)
+
+	elif (port_state[port_found] == SELECTING_TAG):
+
+		if (event.is_action_pressed(name_adapter("css_cancel", port_found))):
+			unselect_character(port_found)
+
+	elif (port_state[port_found] == LOCKED):
+
+		# Jogador tentando comecar partida, vai trocar do accept para start, provavelmente
+		if (event.is_action_pressed(name_adapter("css_accept", port_found))):
+			test_instance_battle()
+
+		elif (event.is_action_pressed(name_adapter("css_cancel", port_found))):
+			unlock_port(port_found)
+
 
 ##################################################################################
 ################################ ACTION FUNCTIONS ################################
@@ -174,37 +113,106 @@ func character_selection_move_right(port_found):
 		css_character_index[port_found] = (css_character_index[port_found] + 1) % css_character_order.size()
 	get_node(str("P", port_found + 1, "/Active/Character")).set_animation(css_character_order[css_character_index[port_found]])
 
+func select_character(port_found):
+	port_state[port_found] = SELECTING_TAG
+	selected_characters[port_found] = css_character_index[port_found]
+	get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Lock")
+
+	# Avoid possible repeated selection
+	for num in range (0, 4):
+		if (cm.controller_ports[num] == -1 or num == port_found):
+			continue
+		if (css_character_index[num] == selected_characters[port_found]):
+			character_selection_move_left(num)
+
+func open_port(event):
+	joysticks_changed(event.device, false)
+
+
+func unselect_character(port_found):
+	port_state[port_found] = SELECTING_CHARACTER
+	selected_characters[port_found] = -1
+	get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Select Character")
+
+
+func unlock_port(port_found):
+	port_state[port_found] = SELECTING_TAG
+	get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Lock")
+
 #####################################################################################
 ################################ AUXILIARY FUNCTIONS ################################
 #####################################################################################
 
+func assign_port(event):
+	var available_port
+
+	# Tem que checar se todos estão prontos, se não estiverem deve cair aqui
+	if (cm.controller_ports.find(event.device) != -1):
+		print(str("This device (", event.device, ") is already assigned to a port."))
+		return
+
+	available_port = cm.controller_ports.find(-1)
+	if (available_port != -1):
+		# Found possible port
+			cm.controller_ports[available_port] = event.device
+			port_state[available_port] = SELECTING_CHARACTER
+
+			# Animate
+			get_node(str("P", available_port + 1, "/Inactive")).hide()
+			get_node(str("P", available_port + 1, "/Active")).show()
+
+			cm.map_css_controls(available_port, "default")
+
 func name_adapter(name, port):
 	return str(name, "_", port)
-	
+
+func test_instance_battle():
+
+	# Check if enough players are ready
+	var players_ready = 0
+
+	for state in port_state:
+		if (state == LOCKED):
+			players_ready += 1
+
+	if (players_ready <= 1):
+		print("At least two players are needed to begin")
+		return
+
+	# Map controls to given port (not accounting for tags, yet)
+	for port in range (0, 4):
+		cm.map_game_controls(port, "default")
+
+	# Instance battle scene
+	# Have to instance the characters in the battle scene itself
+
+	var battle_scn = load("res://Scenes/Test Scenes/BattleTest.tscn")
+	var btl_scn = battle_scn.instance()
+	get_tree().get_root().add_child(btl_scn)
+	self.hide()
+	#test, putting correct character sprite
+	btl_scn.get_node("Character0/Sprite").set_animation(css_character_order[css_character_index[0]])
+	btl_scn.get_node("Character1/Sprite").set_animation(css_character_order[css_character_index[1]])
+	set_process_input(false)
+
+#####################################################################################
+################################# SIGNAL FUNCTIONS ##################################
+#####################################################################################
+
 func joysticks_changed(index, connected):
-	
+
 	# We do not account for keyboard being disconnected
 	if not connected:
-		
+
 		var port_found = controller_monitor.controller_ports.find(index)
 		if port_found != -1:
 			controller_monitor.controller_ports[port_found] = -1
-			char_selected[port_found] = false
-			char_locked[port_found] = false
-			
+			port_state[port_found] = OPEN
+
 			# Animate
 			get_node(str("P", port_found + 1, "/Active")).hide()
 			get_node(str("P", port_found + 1, "/Inactive")).show()
-			
+
 			# Remove CSS port mappings from index
-			
-			var control_config = "res://DefaultControls/default.cfg"
-			
-			for key in control_config.get_section_keys("CSS"):
-				var real_name = str(key, "_", port_found)
-				var value = control_config.get_value("CSS", key)
-		
-				# Clear input map of keys
-				var event_list = InputMap.get_action_list(real_name)
-				for ev in event_list:
-					InputMap.action_erase_event(real_name, ev)
+
+			cm.unmap_css_controls(port_found)

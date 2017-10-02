@@ -40,7 +40,7 @@ func expand_list():
 		return
 	
 	# Placeholder visuals
-	get_node("ClosedScroll").set_texture(load("res://Sprites/GUI/Buttons/Tag Selector/opened-scroll.png"))
+	get_node("Scroll").set_texture(load("res://Sprites/GUI/Buttons/Tag Selector/opened-scroll.png"))
 	get_node("CursorContainer/Cursor").show()
 	
 	if (dir.open("user://") == OK):
@@ -84,7 +84,7 @@ func close_list():
 	get_node("CursorContainer/Cursor").hide()
 	get_node("CursorContainer/Cursor").set_pos(Vector2(0, 0))
 	
-	get_node("ClosedScroll").set_texture(load("res://Sprites/GUI/Buttons/Tag Selector/old-scroll.png"))
+	get_node("Scroll").set_texture(load("res://Sprites/GUI/Buttons/Tag Selector/old-scroll.png"))
 	
 func move_up():
 	
