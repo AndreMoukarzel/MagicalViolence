@@ -15,14 +15,14 @@ length = 0.5
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:visibility/self_opacity")
+tracks/0/path = NodePath(".:transform/scale")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
 "times": FloatArray( 0, 0.5 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
-"values": [ 1.0, 0.0 ]
+"values": [ Vector2( 6, 6 ), Vector2( 1e-05, 1e-05 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -42,7 +42,7 @@ tracks/1/keys = {
 resource/name = "fire"
 length = 1.0
 loop = false
-step = 0.1
+step = 0.09
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:transform/scale")
 tracks/0/interp = 1
@@ -51,25 +51,13 @@ tracks/0/keys = {
 "times": FloatArray( 0, 1 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.5, 0.5 ), Vector2( 1, 1 ) ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 1 ),
-"transitions": FloatArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "end_process"
-} ]
+"values": [ Vector2( 0.5, 0.5 ), Vector2( 6, 6 ) ]
 }
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="GraspingVine" type="KinematicBody2D"]
 
-visibility/self_opacity = 0.0
-transform/scale = Vector2( 0.2, 0.2 )
+visibility/opacity = 0.6
+transform/scale = Vector2( 1e-05, 1e-05 )
 input/pickable = false
 collision/layers = 1
 collision/mask = 1
@@ -78,7 +66,6 @@ script/script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/rot = -135.0
 transform/scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 2 )
 __meta__ = {
@@ -89,7 +76,7 @@ __meta__ = {
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/transform = Matrix32( 0.9645, 0, 0, 0.9645, 0, 26 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -101,6 +88,8 @@ __meta__ = {
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 
+transform/pos = Vector2( 0, 26 )
+transform/scale = Vector2( 0.9645, 0.9645 )
 build_mode = 0
 polygon = Vector2Array( -0.231705, -28.0999, -28.7073, -0.0117722, -18.2469, 7.73669, -7.01161, 11.4172, -0.0379944, 11.8046, 6.35448, 11.2235, 17.9772, 6.96184, 28.0502, -0.0117722 )
 shape_range = Vector2( 0, 0 )
@@ -113,8 +102,8 @@ __meta__ = {
 
 process_mode = 1
 wait_time = 5.0
-one_shot = false
-autostart = false
+one_shot = true
+autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

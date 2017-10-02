@@ -2,6 +2,9 @@
 extends KinematicBody2D
 
 var SPEED = 2.5
+const DAMAGE = 15
+var element = 1 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var level = 2
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent
@@ -27,7 +30,7 @@ func _on_Area2D_body_enter( body ):
 	if body != parent:
 		get_node("Area2D").queue_free()
 		if body.has_method("take_damage"):
-			body.take_damage(15)
+			body.take_damage(DAMAGE)
 		if body.has_method("Slow"):
 			# Applies slow effect 
 			body.Slow(2, 0.4)

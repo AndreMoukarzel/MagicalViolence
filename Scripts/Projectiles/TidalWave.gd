@@ -1,8 +1,9 @@
-
-
 extends KinematicBody2D
 
 const SPEED = 2
+const DAMAGE = 30
+var element = 1 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var level = 3
 
 var direction = Vector2( 0, 0 ) # direction that the wave goes to
 var parent

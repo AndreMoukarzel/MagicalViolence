@@ -1,6 +1,9 @@
 extends KinematicBody2D
 
-const SPEED = 6
+const SPEED = 10
+const DAMAGE = 4
+var element = 2 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var level = 1
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent
@@ -19,6 +22,7 @@ func fire( direction, parent = parent ):
 	self.shot = true
 	get_node("LifeTimer").start()
 	set_scale(Vector2(1.5, 1.5))
+	get_node("AnimationPlayer").play("spin")
 	set_process( true )
 
 func _process(delta):
@@ -29,7 +33,7 @@ func _on_Area2D_body_enter( body ):
 	if body != parent:
 		get_node("Area2D").queue_free()
 		if body.has_method("take_damage"):
-			body.take_damage(4)
+			body.take_damage(DAMAGE)
 		die()
 
 

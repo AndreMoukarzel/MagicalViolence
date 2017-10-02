@@ -1,9 +1,10 @@
-
-
 extends KinematicBody2D
 
 var SPEED = 10
+const DAMAGE = 5
 var ROT_SPEED = 3
+var element = 3 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var level = 1
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var angle
@@ -33,7 +34,7 @@ func _process(delta):
 func _on_Area2D_body_enter( body ):
 	if body != parent:
 		if body.has_method("take_damage"):
-			body.take_damage(5)
+			body.take_damage(DAMAGE)
 	elif state == "returning":
 		die()
 
