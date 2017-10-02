@@ -1,10 +1,10 @@
-
-
 extends KinematicBody2D
 
 const SPEED = 5
 const DAMAGE = 15
 const HOMING_FACTOR = 40 # the lowest the factor is, the fastest the homing
+var element = 0 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var level = 2
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent

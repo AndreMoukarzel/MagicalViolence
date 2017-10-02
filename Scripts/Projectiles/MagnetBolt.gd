@@ -1,11 +1,10 @@
-
-
 extends KinematicBody2D
 
-const DAMAGE = 5
-
 var SPEED = 10
+const DAMAGE = 5
 var ROT_SPEED = 3
+var element = 3 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var level = 1
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var angle

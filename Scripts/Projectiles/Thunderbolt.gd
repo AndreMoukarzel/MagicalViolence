@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 const SPEED = 4
 const DAMAGE = 15
+var element = 3 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var level = 2
 
 var direction = Vector2( 0, 0 ) # direction that the cloud flies to
 var parent
