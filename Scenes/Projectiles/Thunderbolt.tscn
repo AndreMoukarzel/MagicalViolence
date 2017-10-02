@@ -7,19 +7,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+animations = [ { "frames":[ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ], "loop":true, "name":"default", "speed":5.0 } ]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 10.0
@@ -34,22 +29,12 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:transform/scale")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.262258, 0.262258 ), Vector2( 0.4, 0.4 ) ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0.262258, 0.262258 ), Vector2( 0.4, 0.4 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimatedSprite:visibility/self_opacity")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ 1.0, 0.0 ]
-}
+tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
 
 [node name="Thunderbolt" type="KinematicBody2D"]
 
@@ -70,7 +55,7 @@ playing = true
 [node name="Damage" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 5.56227, 0, 0, 5.56227, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -82,14 +67,14 @@ angular_damp = 1.0
 
 visibility/visible = false
 transform/scale = Vector2( 5.56227, 5.56227 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
 [node name="Detection" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 3.4304, 0, 0, 3.61843, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -100,7 +85,7 @@ angular_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
 
 transform/scale = Vector2( 3.4304, 3.61843 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 

@@ -2,6 +2,8 @@
 
 extends KinematicBody2D
 
+const DAMAGE = 5
+
 var SPEED = 10
 var ROT_SPEED = 3
 
@@ -33,7 +35,7 @@ func _process(delta):
 func _on_Area2D_body_enter( body ):
 	if body != parent:
 		if body.has_method("take_damage"):
-			body.take_damage(5)
+			body.take_damage(DAMAGE)
 	elif state == "returning":
 		die()
 
