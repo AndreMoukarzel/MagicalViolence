@@ -13,6 +13,8 @@ var leafProj = preload("res://Scenes/Projectiles/LeafShieldProj.tscn")
 
 var angle = 0
 
+var c = Color(0, 0, 1)
+
 func fire( direction, parent ):
 	self.parent = parent
 	
@@ -21,6 +23,7 @@ func fire( direction, parent ):
 	get_node("LeafShieldProj3").start( parent, self, 3 )
 	get_node("LeafShieldProj4").start( parent, self, 4 )
 	set_pos( parent.get_pos() )
+	next_leaf()
 	set_process( true )
 
 
@@ -58,8 +61,16 @@ func activate():
 			shoot_leaf(i+1)
 			break
 
+func next_leaf():
+	for i in range (4):
+		if (leaves[i] == true):
+			get_node(str("LeafShieldProj", i+1, "/Sprite")).set_modulate(c)
+			break
+
 func shoot_leaf(id):
 	print ("id = ", id)
+	var g = Color(0, 1, 0)
+	get_node(str("LeafShieldProj", id, "/Sprite")).set_modulate(g)
 	var leaf = get_node(str("LeafShieldProj", id))
 	var pos = leaf.get_pos() + self.get_pos()
 	remove_child(leaf)
@@ -68,12 +79,14 @@ func shoot_leaf(id):
 	leaf.fire(self.direction, self.parent)
 	leaves[id-1] = false
 	leaf_count -= 1
+	next_leaf()
 
 func leaf_death(id):
 	leaf_count -= 1
 	leaves[id] = false
 	if leaf_count == 0:
 		die()
+	next_leaf()
 
 func die():
 	for child in get_children():
