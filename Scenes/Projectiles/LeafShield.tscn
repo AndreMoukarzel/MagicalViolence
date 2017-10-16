@@ -13,12 +13,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath(".:visibility/opacity")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ 1.0, 0.0 ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
 
 [node name="LeafShield" type="KinematicBody2D"]
 
@@ -56,5 +51,7 @@ blend_times = [  ]
 autoplay = ""
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[connection signal="finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 
 

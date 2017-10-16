@@ -92,11 +92,13 @@ func die():
 			child.die()
 	parent.spell_ended()
 	set_process( false )
-#	get_node("Timer").start()
+	get_node("AnimationPlayer").play("death")
 
 
 func _on_Timer_timeout():
-	parent.spell_ended()
-	set_process(false)
-	get_node("AnimationPlayer").play("death")
 	leaf_count = 0
+	die()
+
+
+func _on_AnimationPlayer_finished():
+	queue_free()
