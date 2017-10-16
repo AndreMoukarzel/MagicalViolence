@@ -69,8 +69,6 @@ func next_leaf():
 
 func shoot_leaf(id):
 	print ("id = ", id)
-	var g = Color(0, 1, 0)
-#	get_node(str("LeafShieldProj", id, "/Sprite")).set_modulate(g)
 	var leaf = get_node(str("LeafShieldProj", id))
 	var pos = leaf.get_pos() + self.get_pos()
 	remove_child(leaf)
@@ -94,8 +92,11 @@ func die():
 			child.die()
 	parent.spell_ended()
 	set_process( false )
-	get_node("Timer").start()
+#	get_node("Timer").start()
 
 
 func _on_Timer_timeout():
-	queue_free()
+	parent.spell_ended()
+	set_process(false)
+	get_node("AnimationPlayer").play("death")
+	leaf_count = 0
