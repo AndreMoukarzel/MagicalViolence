@@ -86,6 +86,7 @@ func leaf_death(id):
 		die()
 	next_leaf()
 
+
 func die():
 	for child in get_children():
 		if child.get_name() != "AnimationPlayer" and child.get_name() != "Timer":
@@ -93,12 +94,10 @@ func die():
 	parent.spell_ended()
 	set_process( false )
 	get_node("AnimationPlayer").play("death")
+	yield( get_node("AnimationPlayer"), "finished")
+	queue_free()
 
 
 func _on_Timer_timeout():
 	leaf_count = 0
 	die()
-
-
-func _on_AnimationPlayer_finished():
-	queue_free()

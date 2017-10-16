@@ -52,6 +52,4 @@ autoplay = ""
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
-[connection signal="finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
-
 
