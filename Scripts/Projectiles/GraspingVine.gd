@@ -13,7 +13,6 @@ var parent
 func fire( direction, parent ):
 	self.parent = parent
 	self.direction = direction
-	# get_node( "AnimatedSprite" ).set_frame(0)
 	set_pos( parent.get_pos() )
 	set_rot( direction.angle() )
 	get_node( "AnimationPlayer" ).play( "fire" )
@@ -26,8 +25,7 @@ func _on_Area2D_body_enter( body ):
 			body.Root(ROOT_TIME)
 
 
-func _on_LifeTimer_timeout():
-	get_node( "AnimationPlayer" ).play( "death" )
+func free_Area2D():
 	get_node( "Area2D" ).queue_free()
 
 
