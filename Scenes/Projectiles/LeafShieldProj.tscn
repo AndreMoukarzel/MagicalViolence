@@ -35,12 +35,7 @@ tracks/0/type = "value"
 tracks/0/path = NodePath(".:transform/rot")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 360.0 ] }
 
 [node name="LeafShieldProj" type="KinematicBody2D"]
 
@@ -55,10 +50,11 @@ script/script = ExtResource( 1 )
 transform/pos = Vector2( 1.03865, -0.381369 )
 transform/scale = Vector2( 0.184938, 0.184938 )
 texture = ExtResource( 2 )
-modulate = Color( 0, 1, 0, 1 )
+modulate = Color( 0.723389, 1, 0.65625, 1 )
 
 [node name="Area2D" type="Area2D" parent="."]
 
+visibility/visible = false
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
