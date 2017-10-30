@@ -481,6 +481,16 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0, 20 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="ChargeBar" type="ProgressBar" parent="."]
 
 focus/ignore_mouse = false

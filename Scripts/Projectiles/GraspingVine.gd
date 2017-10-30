@@ -27,15 +27,13 @@ func _on_Area2D_body_enter( body ):
 
 func _on_Area2D_area_enter( area ):
 	var other = area.get_parent()
-
-	if "element" in other: # Makes shure it's something interactable with projectile
-		if other.element == 0: # Oposing element
+	
+	# Makes sure it's something interactable with projectile
+	if "element" in other:
+		if other.level > level:
 			die()
-		elif other.element == 3: # Weak element
-			return
-		else:
-			if other.level >= level:
-				die()
+		elif other.element == 0: # Opposing element
+			die()
 
 
 func _on_LifeTimer_timeout():
