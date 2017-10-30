@@ -1,9 +1,9 @@
-extends KinematicBody2D
+extends "Projectile.gd"
 
 const SPEED = 5
 const DAMAGE = 15
 const HOMING_FACTOR = 40 # the lowest the factor is, the fastest the homing
-var element = 0 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var element = 2 # Lightning = 0, Nature = 1, Fire = 2, Water = 3
 var level = 2
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
@@ -58,17 +58,17 @@ func _on_Area2D_body_enter( body ):
 		die()
 
 
-func _on_Area2D_area_enter( area ):
-	var other = area.get_parent()
-
-	if "element" in other: # Makes shure it's something interactable with projectile
-		if other.element == 1: # Oposing element
-			die()
-		elif other.element == 2: # Weak element
-			return
-		else:
-			if other.level >= level:
-				die()
+#func _on_Area2D_area_enter( area ):
+#	var other = area.get_parent()
+#
+#	if "element" in other: # Makes shure it's something interactable with projectile
+#		if other.element == 1: # Oposing element
+#			die()
+#		elif other.element == 2: # Weak element
+#			return
+#		else:
+#			if other.level >= level:
+#				die()
 
 
 func _on_DetectionArea_body_enter( body ):

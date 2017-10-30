@@ -1,8 +1,8 @@
-extends KinematicBody2D
+extends "Projectile.gd"
 
 const SPEED = 10
 const DAMAGE = 4
-var element = 2 # Fire = 0, Water = 1, Nature = 2, Electricity = 3
+var element = 1 # Lightning = 0, Nature = 1, Fire = 2, Water = 3
 var level = 1
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
@@ -41,21 +41,21 @@ func _on_Area2D_body_enter( body ):
 		die()
 
 
-func _on_Area2D_area_enter( area ):
-	var other = area.get_parent()
-
-	if "parent" in other:
-		if parent == other.parent:
-			return
-
-	if "element" in other: # Makes shure it's something interactable with projectile
-		if other.element == 0: # Oposing element
-			die()
-		elif other.element == 3: # Weak element
-			return
-		else:
-			if other.level >= level:
-				die()
+#func _on_Area2D_area_enter( area ):
+#	var other = area.get_parent()
+#
+#	if "parent" in other:
+#		if parent == other.parent:
+#			return
+#
+#	if "element" in other: # Makes shure it's something interactable with projectile
+#		if other.element == 0: # Oposing element
+#			die()
+#		elif other.element == 3: # Weak element
+#			return
+#		else:
+#			if other.level >= level:
+#				die()
 
 
 func _on_LifeTimer_timeout():
