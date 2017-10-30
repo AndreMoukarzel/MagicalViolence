@@ -52,7 +52,6 @@ func home():
 # does damage if take damage function exists in body
 func _on_Area2D_body_enter( body ):
 	if body != parent:
-		get_node("Area2D").queue_free()
 		if body.has_method("take_damage"):
 			body.take_damage(DAMAGE)
 		die()
@@ -82,6 +81,7 @@ func _on_LifeTimer_timeout():
 
 
 func die():
+	get_node("Area2D").queue_free()
 	get_node( "AnimationPlayer" ).play( "death" )
 	set_process( false )
 

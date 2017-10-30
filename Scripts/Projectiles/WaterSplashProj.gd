@@ -24,7 +24,6 @@ func _process(delta):
 # does damage if take damage function exists
 func _on_Area2D_body_enter( body ):
 	if body != parent:
-		get_node("Area2D").queue_free()
 		if body.has_method("take_damage"):
 			body.take_damage(DAMAGE)
 		die()
@@ -44,6 +43,7 @@ func _on_Area2D_body_enter( body ):
 
 
 func die():
+	get_node("Area2D").queue_free()
 	if get_node( "AnimationPlayer" ).get_current_animation() != "death":
 		get_node( "AnimationPlayer" ).play( "death" )
 	set_process( false )

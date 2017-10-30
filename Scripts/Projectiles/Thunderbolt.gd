@@ -33,7 +33,7 @@ func _on_Detection_body_enter( body ):
 
 
 func _on_LifeTimer_timeout():
-	die()
+	_on_DelayTimer_timeout()
 
 
 func _on_DelayTimer_timeout():
