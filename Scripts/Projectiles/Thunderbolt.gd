@@ -13,10 +13,8 @@ var parent
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent
-	get_node( "AnimatedSprite" ).play( "cloud" )
 	set_pos( parent.get_pos() )
-	get_node( "AnimatedSprite" ).set_scale( Vector2(0.26, 0.26 ) )
-	get_node( "AnimatedSprite" ).set_pos( Vector2(0, 0 ) )
+	get_node( "AnimationPlayer" ).play( "fire" )
 	set_process( true )
 
 
@@ -30,20 +28,8 @@ func _on_Detection_body_enter( body ):
 		set_pos( body.get_pos() )
 		get_node( "Detection" ).queue_free()
 		get_node( "DelayTimer" ).start()
-		die()
-
-
-func _on_Detection_area_enter( area ):
-	var other = area.get_parent()
-
-	if "element" in other: # Makes shure it's something interactable with projectile
-		if other.element == 2: # Oposing element
-			die()
-		elif other.element == 1: # Weak element
-			return
-		else:
-			if other.level >= level:
-				die()
+		get_node("AnimationPlayer").play("death")
+		set_process( false )
 
 
 func _on_LifeTimer_timeout():
