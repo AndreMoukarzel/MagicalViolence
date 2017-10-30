@@ -28,6 +28,7 @@ var is_rooted = false
 var active_proj
 var slow_multiplier = 1
 var push_direction = Vector2(0, 0)
+var damage_per_sec = 0
 
 var health = 100
 
@@ -118,6 +119,7 @@ func _process(delta):
 					active_proj.activate()
 	
 		update_anim( new_anim )
+	take_damage(damage_per_sec * delta)
 
 
 func _fixed_process(delta):

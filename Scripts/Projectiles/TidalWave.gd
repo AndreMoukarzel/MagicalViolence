@@ -28,6 +28,8 @@ func _on_Area2D_body_enter( body ):
 	if body.is_in_group( "Player" ) and body != parent:
 		# Target is pushed back
 		body.push_direction = direction
+		body.Slow(5,0.3)
+		body.damage_per_sec = 12
 
 
 #func _on_Area2D_area_enter( area ):
@@ -47,6 +49,8 @@ func _on_Area2D_body_enter( body ):
 func _on_Area2D_body_exit( body ):
 	if body.is_in_group( "Player" ) and body != parent:
 		body.push_direction = Vector2(0, 0)
+		body.Slow(0.1,1)
+		body.damage_per_sec = 0
 
 
 # Dies when colliding with static objects
