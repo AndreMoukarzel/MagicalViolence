@@ -76,6 +76,8 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
+[connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
+
 [connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
 
 

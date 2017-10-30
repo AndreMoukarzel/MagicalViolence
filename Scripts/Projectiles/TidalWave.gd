@@ -30,6 +30,19 @@ func _on_Area2D_body_enter( body ):
 		body.push_direction = direction
 
 
+func _on_Area2D_area_enter( area ):
+	var other = area.get_parent()
+
+	if "element" in other: # Makes shure it's something interactable with projectile
+		if other.element == 2: # Oposing element
+			die()
+		elif other.element == 0: # Weak element
+			return
+		else:
+			if other.level >= level:
+				queue_free()
+
+
 # Resets the push factor when exiting enemy
 func _on_Area2D_body_exit( body ):
 	if body.is_in_group( "Player" ) and body != parent:
@@ -53,5 +66,3 @@ func die():
 
 func free_scn():
 	queue_free()
-
-

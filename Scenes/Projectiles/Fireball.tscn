@@ -93,6 +93,8 @@ wait_time = 2.0
 one_shot = false
 autostart = false
 
+[connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
+
 [connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]

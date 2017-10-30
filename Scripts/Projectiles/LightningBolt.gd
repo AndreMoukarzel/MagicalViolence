@@ -23,5 +23,18 @@ func _on_Area2D_body_enter( body ):
 			body.Stun(1.5)
 
 
+func _on_Area2D_area_enter( area ):
+	var other = area.get_parent()
+
+	if "element" in other: # Makes shure it's something interactable with projectile
+		if other.element == 2: # Oposing element
+			die()
+		elif other.element == 1: # Weak element
+			return
+		else:
+			if other.level >= level:
+				queue_free()
+
+
 func free_scn():
 	queue_free()

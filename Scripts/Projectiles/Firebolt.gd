@@ -31,6 +31,19 @@ func _on_Area2D_body_enter( body ):
 			explosion()
 
 
+func _on_Area2D_area_enter( area ):
+	var other = area.get_parent()
+
+	if "element" in other: # Makes shure it's something interactable with projectile
+		if other.element == 1: # Oposing element
+			die()
+		elif other.element == 2: # Weak element
+			return
+		else:
+			if other.level >= level:
+				explosion()
+
+
 func _on_LifeTimer_timeout():
 	explosion()
 

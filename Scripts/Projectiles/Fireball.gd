@@ -31,11 +31,26 @@ func _on_Area2D_body_enter( body ):
 		die()
 
 
+func _on_Area2D_area_enter( area ):
+	var other = area.get_parent()
+
+	if "element" in other: # Makes shure it's something interactable with projectile
+		if other.element == 1: # Oposing element
+			die()
+		elif other.element == 2: # Weak element
+			return
+		else:
+			if other.level >= level:
+				die()
+
+
 func _on_LifeTimer_timeout():
 	die()
 
 
 func die():
+	get_node( "Area2D" ).queue_free()
+	get_node("LifeTimer").queue_free()
 	get_node( "AnimationPlayer" ).play( "death" )
 	set_process( false )
 

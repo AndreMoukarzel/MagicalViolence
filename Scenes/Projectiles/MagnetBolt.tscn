@@ -45,7 +45,6 @@ transform/pos = Vector2( 0, -0.128513 )
 transform/scale = Vector2( 0.132981, 0.132981 )
 frames = SubResource( 1 )
 animation = "MagnetBolt"
-frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -75,6 +74,8 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
 
 [connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
 
