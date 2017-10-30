@@ -6,7 +6,7 @@ func _ready():
 func _on_Area2D_area_enter( area ):
 	var other = area.get_parent()
 
-	if "element" in other: # Makes shure it's something interactable with projectile
+	if "element" in other: # Makes sure it's something interactable with projectile
 		if other.level > self.level:
 			die()
 		elif other.element == (self.element + 1) % 4: # Oposing element
