@@ -30,7 +30,6 @@ func _on_Area2D_body_enter( body ):
 		get_node( "GrowTimer" ).queue_free()
 		get_node( "LifeTimer" ).start()
 		if body.has_method( "take_damage" ):
-			get_node("Area2D").queue_free()
 			# If the thorns are grown, play death animation
 			# when enemy enters them. Otherwise, the seed just
 			# disappears dealing damage
@@ -64,12 +63,7 @@ func _on_GrowTimer_timeout():
 # Projectile stops moving and expands
 func grow():
 	set_process( false )
-	# Changes the collision shape for the thorns and plays animation
-	set_rot( 0 )
 	get_node( "AnimationPlayer" ).play( "grow" )
-	get_node( "Area2D/CollisionShape2D" ).set_shape( CircleShape2D )
-	get_node( "Area2D/CollisionShape2D" ).set_scale( Vector2( 1.4, 1.4) )
-	get_node( "AnimatedSprite" ).set_scale( Vector2( 0.6, 0.6) )
 
 
 func _on_LifeTimer_timeout():
@@ -80,4 +74,5 @@ func _on_LifeTimer_timeout():
 
 
 func die():
+	get_node("Area2D").queue_free()
 	queue_free()
