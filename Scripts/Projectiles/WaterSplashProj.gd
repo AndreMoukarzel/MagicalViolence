@@ -29,20 +29,6 @@ func _on_Area2D_body_enter( body ):
 		die()
 
 
-#func _on_Area2D_area_enter( area ):
-#	var other = area.get_parent()
-#
-#	if "element" in other: # Makes shure it's something interactable with projectile
-#		if other.element == 2: # Oposing element
-#			die()
-#		elif other.element == 0: # Weak element
-#			return
-#		else:
-#			if other.level >= level:
-#				queue_free()
-
-
-
 func die():
 	get_node("Area2D").queue_free()
 	if get_node( "AnimationPlayer" ).get_current_animation() != "die":

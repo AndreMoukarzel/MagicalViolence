@@ -25,7 +25,6 @@ func _process(delta):
 
 # does damage if take damage function exists in body
 func _on_Area2D_body_enter( body ):
-	print ("é um corpo safado")
 	if body != parent:
 		if body.has_method("take_damage"):
 			body.take_damage(DAMAGE)
