@@ -139,7 +139,6 @@ func _fixed_process(delta):
 			if active_proj == null:
 				charge += 1
 				get_node("ChargeBar").set_value(charge - current_spell_charge)
-				print ("Charge|Csc = ", charge, "|", current_spell_charge)
 				if get_node("ChargeBar").get_value() >= get_node("ChargeBar").get_max(): # Bar Maxed out
 					if current_spell_level < 2:
 						var mc = max_charge()

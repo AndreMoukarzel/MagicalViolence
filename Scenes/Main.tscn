@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://Scenes/Character.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/VersusCamera.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -58,10 +57,6 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="CameraCenterPoint" parent="." instance=ExtResource( 3 )]
-
-editor/display_folded = true
-
 [node name="BGM" type="StreamPlayer" parent="."]
 
 stream/stream = null
@@ -75,4 +70,3 @@ stream/buffering_ms = 500
 
 
 [editable path="Character1"]
-[editable path="CameraCenterPoint"]
