@@ -62,10 +62,7 @@ func _input(event):
 	# we assign CSS controls only when we find a port for the device, and
 	# remove controls in case of a device being disconnected, or a player
 	# deciding do re-open a port.
-<<<<<<< HEAD
 
-=======
->>>>>>> 978afc4f4277c51b128e220135ea1fb74b03ad2c
 	var port_found = cm.controller_ports.find(event.device)
 
 	if (port_found == -1):
