@@ -48,7 +48,9 @@ func _input(event):
 
 	# This one is not dependent on the port states, initially, because devices
 	# that are not yet assigned to a port might
-	if (event.is_action_pressed("ui_start")):
+	var port_found = cm.controller_ports.find(event.device)
+	
+	if (port_found == -1 and event.is_action_pressed("ui_start")):
 		# There is a problem here, we always check this if someone presses "start".
 		# This will be checked if a players presses "start" to begin the match, but
 		# to no consequence.
@@ -57,15 +59,12 @@ func _input(event):
 		# Assigns port to a device, if it is not yet assigned,
 		# and there are available ports.
 		assign_port(event)
-
+		
 	# We are assured that devices not on ports will not operate, because
 	# we assign CSS controls only when we find a port for the device, and
 	# remove controls in case of a device being disconnected, or a player
 	# deciding do re-open a port.
-
-	var port_found = cm.controller_ports.find(event.device)
-
-	if (port_found == -1):
+	elif (port_found == -1):
 		print("There is no port assigned to this device.")
 		return
 
