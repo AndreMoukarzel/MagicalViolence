@@ -9,27 +9,12 @@
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "grow",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "die",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "seed",
-"speed": 5.0
-} ]
+animations = [ { "frames":[ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ], "loop":true, "name":"grow", "speed":10.0 }, { "frames":[ ExtResource( 5 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ], "loop":true, "name":"die", "speed":10.0 }, { "frames":[ ExtResource( 6 ) ], "loop":true, "name":"seed", "speed":5.0 } ]
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
-radius = 10.0
+radius = 15.0
 
 [sub_resource type="Animation" id=3]
 
@@ -40,22 +25,17 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": FloatArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 3, 2, 1, 0 ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 3, 2, 1, 0 ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimatedSprite:animation")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 1,
-"values": [ "grow" ]
-}
+tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ "grow" ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:transform/scale")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Vector2( 0.6, 0.6 ) ] }
 
 [sub_resource type="Animation" id=4]
 
@@ -66,62 +46,32 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:animation")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 1,
-"values": [ "grow" ]
-}
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ "grow" ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimatedSprite:frame")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": FloatArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3 ]
-}
+tracks/1/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3 ), "transitions":FloatArray( 1, 1, 1, 1 ), "update":1, "values":[ 0, 1, 2, 3 ] }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Area2D/CollisionShape2D:shape")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 1,
-"values": [ SubResource( 6 ) ]
-}
+tracks/2/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ SubResource( 2 ) ] }
 tracks/3/type = "value"
 tracks/3/path = NodePath("Area2D/CollisionShape2D:transform/scale")
 tracks/3/interp = 1
 tracks/3/imported = false
-tracks/3/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1.4, 1.4 ) ]
-}
+tracks/3/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Vector2( 1.4, 1.4 ) ] }
 tracks/4/type = "value"
 tracks/4/path = NodePath("AnimatedSprite:transform/scale")
 tracks/4/interp = 1
 tracks/4/imported = false
-tracks/4/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0.6, 0.6 ) ]
-}
+tracks/4/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Vector2( 0.6, 0.6 ) ] }
 tracks/5/type = "value"
 tracks/5/path = NodePath(".:transform/rot")
 tracks/5/interp = 1
 tracks/5/imported = false
-tracks/5/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
-}
+tracks/5/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ 0.0 ] }
 
 [sub_resource type="Animation" id=5]
 
@@ -132,22 +82,17 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ 0 ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimatedSprite:animation")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 1,
-"values": [ "seed" ]
-}
+tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ "seed" ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimatedSprite:transform/scale")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Vector2( 0.4, 0.4 ) ] }
 
 [node name="ConjureThorns" type="KinematicBody2D"]
 
@@ -159,14 +104,14 @@ script/script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
-transform/scale = Vector2( 0.155382, 0.155382 )
+transform/scale = Vector2( 0.4, 0.4 )
 frames = SubResource( 1 )
-animation = "grow"
+animation = "seed"
 
 [node name="Area2D" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1.4, 0, 0, 1.4, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -177,7 +122,7 @@ angular_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
 transform/scale = Vector2( 1.4, 1.4 )
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 

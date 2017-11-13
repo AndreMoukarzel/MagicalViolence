@@ -22,30 +22,19 @@ func fire( direction, parent ):
 func _process(delta):
 	move( direction * SPEED )
 
+
 # does damage if take damage function exists in body
 func _on_Area2D_body_enter( body ):
+	print ("é um corpo safado")
 	if body != parent:
 		if body.has_method("take_damage"):
 			body.take_damage(DAMAGE)
 		if alive:
-			explosion()
-
-#
-#func _on_Area2D_area_enter( area ):
-#	var other = area.get_parent()
-#
-#	if "element" in other: # Makes shure it's something interactable with projectile
-#		if other.element == 1: # Oposing element
-#			die()
-#		elif other.element == 2: # Weak element
-#			return
-#		else:
-#			if other.level >= level:
-#				explosion()
+			die()
 
 
 func _on_LifeTimer_timeout():
-	explosion()
+	die()
 
 
 func _on_Trail_Timer_timeout():
@@ -57,10 +46,10 @@ func _on_Trail_Timer_timeout():
 
 
 func activate():
-	explosion()
+	die()
 
 
-func explosion():
+func die():
 	alive = false
 	get_node( "AnimationPlayer" ).play( "explosion" )
 	parent.spell_ended() # Alerts player that spell is finished
