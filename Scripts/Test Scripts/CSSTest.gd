@@ -37,7 +37,6 @@ func _input(event):
 
 	# Keyboard device ID is default to 0, so we change it to
 	# differentiate from joystick device IDs.
-
 	if (event.type == InputEvent.KEY):
 		var k_id = determine_keyboard_player(event.scancode)
 		print (k_id)
@@ -63,7 +62,10 @@ func _input(event):
 	# we assign CSS controls only when we find a port for the device, and
 	# remove controls in case of a device being disconnected, or a player
 	# deciding do re-open a port.
+<<<<<<< HEAD
 
+=======
+>>>>>>> 978afc4f4277c51b128e220135ea1fb74b03ad2c
 	var port_found = cm.controller_ports.find(event.device)
 
 	if (port_found == -1):
@@ -205,11 +207,12 @@ func assign_port(event):
 
 			cm.map_css_controls(available_port, "default")
 
+
 func name_adapter(name, port):
 	return str(name, "_", port)
 
-func test_instance_battle():
 
+func test_instance_battle():
 	# Check if enough players are ready
 	var players_ready = 0
 

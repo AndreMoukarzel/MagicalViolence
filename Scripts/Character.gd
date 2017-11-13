@@ -15,12 +15,16 @@ var btn_melee = input_states.new(name_adapter("char_melee"))
 
 var current_anim = "idle_down"
 onready var anim_player = get_node("Sprite/AnimationPlayer")
+onready var glow_player = get_node("Sprite/Glow/AnimationPlayerGlow")
+
 
 var current_direction = Vector2( 0, 1 )
 
 var magic_element = ""
 var current_spell
 var charge = 0
+var current_spell_charge = 0
+var current_spell_level = 1 # Doesn't represent level 3. A level 3 spell is ready when this variable is 2 and chargeBar has a value >= max_charge
 var ready_to_spell = true
 var holding_spell = false
 var is_stunned = false
@@ -38,19 +42,26 @@ var wait = 0
 var firebolt_scn = preload("res://Scenes/Projectiles/Firebolt.tscn")
 var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
 var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
+var f_charge = [50, 100]
+var f_cd = [0.5, 1, 1.5]
 # Water
 var watersplash_scn = preload("res://Scenes/Projectiles/WaterSplash.tscn")
 var watersphere_scn = preload("res://Scenes/Projectiles/WaterSphere.tscn")
 var tidalwave_scn = preload("res://Scenes/Projectiles/TidalWave.tscn")
+var w_charge = [50, 100]
+var w_cd = [0.5, 1, 1.5]
 # Nature
 var leafshield_scn = preload("res://Scenes/Projectiles/LeafShield.tscn")
 var conjurethorns_scn = preload("res://Scenes/Projectiles/ConjureThorns.tscn")
 var graspingvine_scn = preload("res://Scenes/Projectiles/GraspingVine.tscn")
-
+var n_charge = [50, 100]
+var n_cd = [0.5, 1, 1.5]
 # Lightning
 var magnetbolt_scn = preload("res://Scenes/Projectiles/MagnetBolt.tscn")
 var thunderbolt_scn = preload("res://Scenes/Projectiles/Thunderbolt.tscn")
 var lightningbolt_scn = preload("res://Scenes/Projectiles/LightningBolt.tscn")
+var l_charge = [50, 100]
+var l_cd = [0.5, 1, 1.5]
 
 
 func _ready():
@@ -127,7 +138,13 @@ func _fixed_process(delta):
 		if btn_magic.state() == input_states.HOLD:
 			if active_proj == null:
 				charge += 1
-				get_node("ChargeBar").set_value(charge)
+				get_node("ChargeBar").set_value(charge - current_spell_charge)
+				if get_node("ChargeBar").get_value() >= get_node("ChargeBar").get_max(): # Bar Maxed out
+					if current_spell_level < 2:
+						var mc = max_charge()
+						current_spell_charge = mc
+						get_node("ChargeBar").set_max(mc)
+						current_spell_level += 1
 			elif wait >= 15:
 				active_proj.activate()
 				wait = 0
@@ -140,37 +157,63 @@ func _fixed_process(delta):
 
 
 func change_element( element ):
+	var colors = {"fire":Color(1, 0, 0), "nature":Color(0, 1, 0), "water":Color(0, 0, 1), "lightning":Color(1, 1, 0)}
+
 	if magic_element != element:
-		charge = 0
+		get_node("Sprite/Glow").set_modulate(colors[element])
 		get_node("ChargeBar").set_value(charge)
 		magic_element = element
+		charge = 0
+		current_spell_charge = 0
+		current_spell_level = 1
+		get_node("ChargeBar").set_value(0)
+		get_node("ChargeBar").set_max(max_charge())
+
+
+func max_charge():
+	if magic_element == "fire":
+		if current_spell_charge == 0:
+			return f_charge[0]
+		return f_charge[1]
+	elif magic_element == "water":
+		if current_spell_charge == 0:
+			return w_charge[0]
+		return w_charge[1]
+	if magic_element == "nature":
+		if current_spell_charge == 0:
+			return n_charge[0]
+		return n_charge[1]
+	else: # Lightning
+		if current_spell_charge == 0:
+			return l_charge[0]
+		return l_charge[1]
 
 
 # Returns what spell is suposed to be cast depending on
 # magic_element and charge
 func define_spell():
 	if magic_element == "fire":
-		if charge < 50:
+		if charge < f_charge[0]:
 			return fireball_scn
-		elif charge < 100:
+		elif charge < f_charge[1]:
 			return scorching_scn
 		return firebolt_scn
 	elif magic_element == "water":
-		if charge < 50:
+		if charge < w_charge[0]:
 			return watersplash_scn
-		elif charge < 100:
+		elif charge < w_charge[1]:
 			return watersphere_scn
 		return tidalwave_scn
 	elif magic_element == "nature":
-		if charge < 50:
+		if charge < n_charge[0]:
 			return leafshield_scn
-		elif charge < 100:
+		elif charge < n_charge[1]:
 			return conjurethorns_scn
 		return graspingvine_scn
 	else: # magic_element == lightning
-		if charge < 50:
+		if charge < l_charge[0]:
 			return magnetbolt_scn
-		elif charge < 100:
+		elif charge < l_charge[1]:
 			return thunderbolt_scn
 		return lightningbolt_scn
 
@@ -179,28 +222,28 @@ func define_spell():
 func define_cooldown(spell):
 	if magic_element == "fire":
 		if spell == fireball_scn:
-			return 0.5
+			return f_cd[0]
 		elif spell == scorching_scn:
-			return 1
-		return 2
+			return f_cd[1]
+		return f_cd[2]
 	elif magic_element == "water":
 		if spell == watersplash_scn:
-			return 0.5
+			return w_cd[0]
 		elif spell == watersphere_scn:
-			return 1
-		return 2
+			return w_cd[1]
+		return w_cd[2]
 	elif magic_element == "nature":
 		if spell == leafshield_scn:
-			return 0.5
+			return n_cd[0]
 		elif spell == conjurethorns_scn:
-			return 1
-		return 2
+			return n_cd[1]
+		return n_cd[2]
 	else: # magic_element == eletricity
 		if spell == magnetbolt_scn:
-			return 0.5
+			return l_cd[0]
 		elif spell == thunderbolt_scn:
-			return 1
-		return 2
+			return l_cd[1]
+		return l_cd[2]
 
 
 func release_spell():
@@ -244,10 +287,13 @@ func set_cooldown(time):
 # Spell cooldown is over
 func _on_Cooldown_timeout():
 	charge = 0
+	current_spell_charge = 0
+	current_spell_level = 1
 	ready_to_spell = true
 
 	get_node("CooldownBar").hide()
-	get_node("ChargeBar").set_value(charge)
+	get_node("ChargeBar").set_value(0)
+	get_node("ChargeBar").set_max(max_charge())
 	get_node("ChargeBar").show()
 
 
@@ -323,6 +369,7 @@ func update_anim( new_animation ):
 
 	if new_animation != current_anim:
 		anim_player.play(new_animation)
+		glow_player.play(new_animation)
 		current_anim = new_animation
 
 

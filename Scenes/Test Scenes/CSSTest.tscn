@@ -15,17 +15,7 @@
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "Skeleton",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "Broleton",
-"speed": 5.0
-} ]
+animations = [ { "frames":[ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ], "loop":true, "name":"Skeleton", "speed":5.0 }, { "frames":[ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ], "loop":true, "name":"Broleton", "speed":5.0 } ]
 
 [node name="CSSTest" type="Control"]
 
@@ -362,10 +352,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 512.0
-margin/top = 0.0
-margin/right = 2432.0
-margin/bottom = 1080.0
+margin/left = 514.0
+margin/top = -1.0
+margin/right = 2434.0
+margin/bottom = 1079.0
 texture = ExtResource( 3 )
 stretch_mode = 0
 
