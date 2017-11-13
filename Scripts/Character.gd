@@ -15,6 +15,8 @@ var btn_melee = input_states.new(name_adapter("char_melee"))
 
 var current_anim = "idle_down"
 onready var anim_player = get_node("Sprite/AnimationPlayer")
+onready var glow_player = get_node("Sprite/Glow/AnimationPlayerGlow")
+
 
 var current_direction = Vector2( 0, 1 )
 
@@ -156,7 +158,11 @@ func _fixed_process(delta):
 
 
 func change_element( element ):
+	var colors = {"fire":Color(1, 0, 0), "nature":Color(0, 1, 0), "water":Color(0, 0, 1), "lightning":Color(1, 1, 0)}
+
 	if magic_element != element:
+		get_node("Sprite/Glow").set_modulate(colors[element])
+		get_node("ChargeBar").set_value(charge)
 		magic_element = element
 		charge = 0
 		current_spell_charge = 0
@@ -364,6 +370,7 @@ func update_anim( new_animation ):
 
 	if new_animation != current_anim:
 		anim_player.play(new_animation)
+		glow_player.play(new_animation)
 		current_anim = new_animation
 
 

@@ -12,9 +12,7 @@ var parent
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent
-#	add_collision_exception_with( parent )
 	set_pos( parent.get_pos() )
-	print(direction)
 	if direction.x != 0:
 		if direction.x < 0:
 			get_node("Sprite").set_scale(Vector2(-0.5, 0.5))
