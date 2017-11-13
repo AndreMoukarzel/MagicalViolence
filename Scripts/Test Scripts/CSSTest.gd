@@ -1,7 +1,8 @@
 
 extends Control
 
-const KEYBOARD_CUSTOM_ID = 1000
+const KEYBOARD_CUSTOM_ID_1 = 1000
+const KEYBOARD_CUSTOM_ID_2 = 2000
 const OPEN = 0
 const SELECTING_CHARACTER = 1
 const SELECTING_TAG = 2
@@ -38,7 +39,13 @@ func _input(event):
 	# differentiate from joystick device IDs.
 
 	if (event.type == InputEvent.KEY):
-		event.device = KEYBOARD_CUSTOM_ID
+		var k_id = determine_keyboard_player(event.scancode)
+		print (k_id)
+		if (k_id != -1):
+			event.device = k_id
+		else:
+			# We should not have reached here. Something went wrong.
+			return
 
 	# This one is not dependent on the port states, initially, because devices
 	# that are not yet assigned to a port might
@@ -56,7 +63,6 @@ func _input(event):
 	# we assign CSS controls only when we find a port for the device, and
 	# remove controls in case of a device being disconnected, or a player
 	# deciding do re-open a port.
-
 
 	var port_found = cm.controller_ports.find(event.device)
 
@@ -82,8 +88,11 @@ func _input(event):
 			open_port(event)
 
 	elif (port_state[port_found] == SELECTING_TAG):
+		
+		if (event.is_action_pressed(name_adapter("css_accept", port_found))):
+			lock_port(port_found)
 
-		if (event.is_action_pressed(name_adapter("css_cancel", port_found))):
+		elif (event.is_action_pressed(name_adapter("css_cancel", port_found))):
 			unselect_character(port_found)
 
 	elif (port_state[port_found] == LOCKED):
@@ -127,13 +136,21 @@ func select_character(port_found):
 
 func open_port(event):
 	joysticks_changed(event.device, false)
+	
+#####################################################################################
+#####################################################################################
 
+func lock_port(port_found):
+	port_state[port_found] = LOCKED
+	get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Ready to Battle!!")
 
 func unselect_character(port_found):
 	port_state[port_found] = SELECTING_CHARACTER
 	selected_characters[port_found] = -1
 	get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Select Character")
-
+	
+#####################################################################################
+#####################################################################################
 
 func unlock_port(port_found):
 	port_state[port_found] = SELECTING_TAG
@@ -142,6 +159,31 @@ func unlock_port(port_found):
 #####################################################################################
 ################################ AUXILIARY FUNCTIONS ################################
 #####################################################################################
+
+func determine_keyboard_player(scancode):
+
+	var keyboard_1_config = ConfigFile.new()
+	var filepath_1 = "res://DefaultControls/keyboard_1.cfg"
+	var keyboard_2_config = ConfigFile.new()
+	var filepath_2 = "res://DefaultControls/keyboard_2.cfg"
+
+	if (keyboard_1_config.load(filepath_1) != OK):
+		print ("Error, could not load keyboard_1 data!")
+		return
+
+	if (keyboard_2_config.load(filepath_2) != OK):
+		print ("Error, could not load keyboard_2 data!")
+		return
+
+	for key in keyboard_1_config.get_section_keys("CSS"):
+		if scancode == keyboard_1_config.get_value("CSS", key):
+			return KEYBOARD_CUSTOM_ID_1
+
+	for key in keyboard_2_config.get_section_keys("CSS"):
+		if scancode == keyboard_2_config.get_value("CSS", key):
+			return KEYBOARD_CUSTOM_ID_2
+
+	return -1
 
 func assign_port(event):
 	var available_port

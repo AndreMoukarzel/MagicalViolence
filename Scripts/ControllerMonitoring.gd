@@ -1,6 +1,7 @@
 extends Node
 
-const KEYBOARD_CUSTOM_ID = 1000
+const KEYBOARD_CUSTOM_ID_1 = 1000
+const KEYBOARD_CUSTOM_ID_2 = 2000
 
 var controller_ports = [-1, -1, -1, -1]
 
@@ -36,7 +37,7 @@ func joysticks_changed(index, connected):
 			# repeats are not accounted for on the InputMap.
 
 			var default_config = ConfigFile.new()
-			if (default_config.load(str("res://DefaultControls/default.cfg")) != OK):
+			if (default_config.load(str("res://DefaultControls/controller.cfg")) != OK):
 				print ("Error, could not load default joystick menu data!")
 				return
 
@@ -74,7 +75,7 @@ func map_css_controls(port, tag):
 		# Map keyboard / controller to port
 		var new_event = InputEvent()
 
-		if (device == KEYBOARD_CUSTOM_ID):
+		if (device == KEYBOARD_CUSTOM_ID_1 or device == KEYBOARD_CUSTOM_ID_2):
 			new_event.type = InputEvent.KEY
 			new_event.scancode = value
 			new_event.device = 0
@@ -86,9 +87,9 @@ func map_css_controls(port, tag):
 			new_event.device = device
 
 		InputMap.action_add_event(real_name, new_event)
-		
+
 func unmap_css_controls(port):
-	
+
 	var control_config = ConfigFile.new()
 	var device = controller_ports[port]
 	var filepath = determine_filepath(device, "default")
@@ -103,7 +104,7 @@ func unmap_css_controls(port):
 
 		# Clear controls associated to the current key
 		clear_controls(real_name)
-	
+
 func map_game_controls(port, tag):
 
 	var default_config = ConfigFile.new()
@@ -114,7 +115,7 @@ func map_game_controls(port, tag):
 		print ("Error, could not load default data!")
 		return
 
-	if (device == KEYBOARD_CUSTOM_ID):
+	if (device == KEYBOARD_CUSTOM_ID_1 or device == KEYBOARD_CUSTOM_ID_2):
 		# Clear input map of keys and Map keyboard to port
 		for key in default_config.get_section_keys("Game Keys"):
 			var real_name = str(key, "_", port)
@@ -173,14 +174,17 @@ func map_game_controls(port, tag):
 
 			InputMap.action_add_event(real_name, new_event)
 
+
 func determine_filepath(device, tag):
 	if (tag != "default"):
 		return str("user://", tag, "_tagconfig.cfg")
 	else:
-		if (device == KEYBOARD_CUSTOM_ID):
-			return "res://DefaultControls/keyboard.cfg"
+		if (device == KEYBOARD_CUSTOM_ID_1):
+			return "res://DefaultControls/keyboard_1.cfg"
+		elif (device == KEYBOARD_CUSTOM_ID_2):
+			return "res://DefaultControls/keyboard_2.cfg"
 		else:
-			return "res://DefaultControls/default.cfg"
+			return "res://DefaultControls/controller.cfg"
 
 func clear_controls(real_name):
 	var event_list = InputMap.get_action_list(real_name)
