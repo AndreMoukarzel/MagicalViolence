@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends "Projectile.gd"
 
 const SPEED = 6
 const DAMAGE = 15
@@ -13,8 +13,6 @@ var is_seed = true
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent
-	get_node( "Area2D/CollisionShape2D" ).set_shape( CapsuleShape )
-	get_node( "Area2D/CollisionShape2D" ).set_scale( Vector2( 0.32, 0.32) )
 	set_rot( direction.angle() )
 	set_pos( parent.get_pos() )
 	set_process( true )
@@ -41,19 +39,6 @@ func _on_Area2D_body_enter( body ):
 				die()
 
 
-func _on_Area2D_area_enter( area ):
-	var other = area.get_parent()
-
-	if "element" in other: # Makes shure it's something interactable with projectile
-		if other.element == 0: # Oposing element
-			die()
-		elif other.element == 3: # Weak element
-			return
-		else:
-			if other.level >= level:
-				die()
-
-
 func _on_GrowTimer_timeout():
 	get_node( "LifeTimer" ).start()
 	is_seed = false
@@ -64,6 +49,7 @@ func _on_GrowTimer_timeout():
 func grow():
 	set_process( false )
 	get_node( "AnimationPlayer" ).play( "grow" )
+	get_node("Area2D").set_scale(Vector2(2.5, 2.5))
 
 
 func _on_LifeTimer_timeout():
