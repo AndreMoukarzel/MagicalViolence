@@ -45,8 +45,8 @@ func _on_Area2D_body_enter( body ):
 
 func die():
 	get_node("Area2D").queue_free()
-	if get_node( "AnimationPlayer" ).get_current_animation() != "death":
-		get_node( "AnimationPlayer" ).play( "death" )
+	if get_node( "AnimationPlayer" ).get_current_animation() != "die":
+		get_node( "AnimationPlayer" ).play( "die" )
 	set_process( false )
 
 

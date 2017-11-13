@@ -14,8 +14,18 @@ func fire( direction, parent ):
 	self.parent = parent
 #	add_collision_exception_with( parent )
 	set_pos( parent.get_pos() )
-	set_rot( direction.angle() )
-	get_node( "AnimationPlayer" ).play( "alive" )
+	print(direction)
+	if direction.x != 0:
+		if direction.x < 0:
+			get_node("Sprite").set_scale(Vector2(-0.5, 0.5))
+			set_pos(get_pos() + Vector2(-60, 30))
+		else:
+			set_pos(get_pos() + Vector2(60, 30))
+		get_node("AnimationPlayer").play("fire side")
+	elif direction.y == 1:
+		get_node("AnimationPlayer").play("fire down")
+	elif direction.y == -1:
+		get_node("AnimationPlayer").play("fire up")
 	set_process( true )
 
 
@@ -65,7 +75,7 @@ func _on_LifeTimer_timeout():
 
 func die():
 	get_node("Area2D").queue_free()
-	get_node( "AnimationPlayer" ).play( "death" )
+	get_node( "AnimationPlayer" ).play( "die" )
 	set_process( false )
 
 
