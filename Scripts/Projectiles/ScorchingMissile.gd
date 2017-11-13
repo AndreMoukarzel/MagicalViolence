@@ -69,6 +69,7 @@ func _on_LifeTimer_timeout():
 
 func die():
 	get_node("Area2D").queue_free()
+	get_node("LifeTimer").queue_free()
 	get_node( "AnimationPlayer" ).play( "death" )
 	set_process( false )
 
