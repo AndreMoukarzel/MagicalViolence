@@ -4,6 +4,9 @@ extends KinematicBody2D
 func _on_Area2D_area_enter( area ):
 	var other = area.get_parent()
 	
+	# Handle exceptions
+	if area.get_name() == "DetectionArea":
+		return
 	if other == self:
 		return
 	if "parent" in other:
