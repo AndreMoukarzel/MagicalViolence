@@ -20,15 +20,21 @@ func fire( direction, parent ):
 
 
 func _process(delta):
+	if !weakref(parent).get_ref(): # parent was freed
+		parent = null
+		die()
+		return
+
 	if SPEED <= 0:
 		state = "returning"
-		angle = get_angle_to( self.parent.get_pos() )
+		angle = get_angle_to( parent.get_pos() )
 		# negative cos and sin because speed is also negative
 		direction = Vector2( -sin(angle), -cos(angle) )
 	get_node( "Sprite" ).rotate( ROT_SPEED * delta )
 
 	move( direction * SPEED )
 	SPEED -= 12*delta
+
 
 # does damage if take damage function exists in body
 func _on_Area2D_body_enter( body ):
@@ -37,19 +43,6 @@ func _on_Area2D_body_enter( body ):
 			body.take_damage(DAMAGE)
 	elif state == "returning":
 		die()
-
-
-#func _on_Area2D_area_enter( area ):
-#	var other = area.get_parent()
-#
-#	if "element" in other: # Makes shure it's something interactable with projectile
-#		if other.element == 2: # Oposing element
-#			die()
-#		elif other.element == 1: # Weak element
-#			return
-#		else:
-#			if other.level >= level:
-#				die()
 
 
 func die():

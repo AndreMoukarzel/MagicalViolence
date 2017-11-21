@@ -28,7 +28,12 @@ func fire( direction, parent ):
 
 
 func follow():
+	if !weakref(parent).get_ref(): # parent was freed
+		parent = null
+		die()
+		return
 	set_pos(self.parent.get_pos())
+
 
 func spin_leaves(delta):
 	var leaf
@@ -46,6 +51,7 @@ func spin_leaves(delta):
 			# Rotates the leaves along with their movement around the character
 			leaf.set_rotd( rad2deg( Vector2(x, y).angle() ) + 90)
 
+
 func _process(delta):
 	if leaf_count < proj_count:
 		proj_count = leaf_count
@@ -55,17 +61,20 @@ func _process(delta):
 	follow()
 	self.direction = self.parent.current_direction.normalized()
 
+
 func activate():
 	for i in range (4):
 		if (leaves[i] == true):
 			shoot_leaf(i+1)
 			break
 
+
 func next_leaf():
 	for i in range (4):
 		if (leaves[i] == true):
 			get_node(str("LeafShieldProj", i+1, "/Sprite")).set_modulate(c)
 			break
+
 
 func shoot_leaf(id):
 	print ("id = ", id)
@@ -79,20 +88,22 @@ func shoot_leaf(id):
 	leaf_count -= 1
 	next_leaf()
 
+
 func leaf_death(id):
 	leaf_count -= 1
-	leaves[id] = false
 	if leaf_count == 0:
 		die()
+	leaves[id] = false
 	next_leaf()
 
 
 func die():
+	set_process( false )
+	if weakref(parent).get_ref(): # parent was not freed
+		parent.spell_ended()
 	for child in get_children():
 		if child.get_name() != "AnimationPlayer" and child.get_name() != "Timer":
 			child.die()
-	parent.spell_ended()
-	set_process( false )
 	get_node("AnimationPlayer").play("death")
 	yield( get_node("AnimationPlayer"), "finished")
 	queue_free()
