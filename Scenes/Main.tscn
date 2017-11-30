@@ -19,11 +19,6 @@ transform/pos = Vector2( 150, 150 )
 editor/display_folded = true
 transform/pos = Vector2( 250, 150 )
 
-[node name="Sprite" parent="Character1"]
-
-animation = "Broleton"
-frame = 0
-
 [node name="Character2" parent="." instance=ExtResource( 1 )]
 
 transform/pos = Vector2( 350, 150 )
