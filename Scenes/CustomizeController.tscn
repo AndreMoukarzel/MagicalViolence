@@ -26,7 +26,6 @@ script/script = ExtResource( 1 )
 
 [node name="CustomizationSelect" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -237,8 +236,6 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 3 )
-params/resize_mode = 0
-params/stretch_mode = 0
 
 [node name="Text" type="Label" parent="GameCustomization/Fire"]
 
@@ -283,8 +280,6 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 4 )
-params/resize_mode = 0
-params/stretch_mode = 0
 
 [node name="Text" type="Label" parent="GameCustomization/Water"]
 
@@ -329,8 +324,6 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 5 )
-params/resize_mode = 0
-params/stretch_mode = 0
 
 [node name="Text" type="Label" parent="GameCustomization/Lightning"]
 
@@ -375,8 +368,6 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 6 )
-params/resize_mode = 0
-params/stretch_mode = 0
 
 [node name="Text" type="Label" parent="GameCustomization/Nature"]
 
@@ -421,8 +412,6 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 7 )
-params/resize_mode = 0
-params/stretch_mode = 0
 
 [node name="Text" type="Label" parent="GameCustomization/Magic"]
 
@@ -467,8 +456,6 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 8 )
-params/resize_mode = 0
-params/stretch_mode = 0
 
 [node name="Text" type="Label" parent="GameCustomization/Melee"]
 
@@ -513,9 +500,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 9 )
-params/resize_mode = 0
 params/scale = Vector2( 1, -1 )
-params/stretch_mode = 0
 
 [node name="Text" type="Label" parent="GameCustomization/Up"]
 
@@ -560,8 +545,6 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 10 )
-params/resize_mode = 0
-params/stretch_mode = 0
 
 [node name="Text" type="Label" parent="GameCustomization/Right"]
 
@@ -606,8 +589,6 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 9 )
-params/resize_mode = 0
-params/stretch_mode = 0
 
 [node name="Text" type="Label" parent="GameCustomization/Down"]
 
@@ -652,9 +633,7 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 textures/normal = ExtResource( 10 )
-params/resize_mode = 0
 params/scale = Vector2( -1, 1 )
-params/stretch_mode = 0
 
 [node name="Text" type="Label" parent="GameCustomization/Left"]
 

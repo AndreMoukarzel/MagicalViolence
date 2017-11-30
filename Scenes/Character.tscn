@@ -408,11 +408,11 @@ script/script = ExtResource( 1 )
 transform/pos = Vector2( 0.0922657, 17.3916 )
 transform/scale = Vector2( 0.150367, 0.150367 )
 frames = SubResource( 2 )
-animation = "Skeleton"
-frame = 13
+animation = "Broleton"
 
 [node name="Glow" type="AnimatedSprite" parent="Sprite"]
 
+editor/display_folded = true
 visibility/behind_parent = true
 visibility/blend_mode = 1
 transform/scale = Vector2( 1.2, 1.2 )

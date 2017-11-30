@@ -199,14 +199,15 @@ func _on_GCSave_pressed():
 	get_node("GameCustomization").hide()
 	get_node("SelectTag").show()
 
-func _on_GCBack_pressed():
 
+func _on_GCBack_pressed():
 	selected_tag = null
 	config = null
 
 	reset_gc_display()
 	get_node("GameCustomization").hide()
 	get_node("SelectTag").show()
+
 
 func reset_gc_display():
 	# We reset the controls to the default

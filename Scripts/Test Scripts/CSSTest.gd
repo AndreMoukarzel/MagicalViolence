@@ -229,11 +229,13 @@ func test_instance_battle():
 
 	var battle_scn = load("res://Scenes/Test Scenes/BattleTest.tscn")
 	var btl_scn = battle_scn.instance()
-	get_tree().get_root().add_child(btl_scn)
+	btl_scn.start(2)
+#	get_tree().get_root().add_child(btl_scn)
+	add_child(btl_scn)
 	self.hide()
 	#test, putting correct character sprite
-	btl_scn.get_node("Character0/Sprite").set_animation(css_character_order[css_character_index[0]])
-	btl_scn.get_node("Character1/Sprite").set_animation(css_character_order[css_character_index[1]])
+#	btl_scn.get_node("Character0/Sprite").set_animation(css_character_order[css_character_index[0]])
+#	btl_scn.get_node("Character1/Sprite").set_animation(css_character_order[css_character_index[1]])
 	set_process_input(false)
 
 #####################################################################################

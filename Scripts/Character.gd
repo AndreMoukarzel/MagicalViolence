@@ -3,6 +3,8 @@ extends KinematicBody2D
 
 const RUN_SPEED = 4
 
+signal death
+
 var input_states = preload("res://Scripts/input_states.gd")
 
 # We use the port, because actions are named ending on port,
@@ -22,7 +24,7 @@ var current_direction = Vector2( 0, 1 )
 
 var magic_element = ""
 var current_spell
-var charge = 0
+var charge = 1
 var current_spell_charge = 0
 var current_spell_level = 1 # Doesn't represent level 3. A level 3 spell is ready when this variable is 2 and chargeBar has a value >= max_charge
 var ready_to_spell = true
@@ -340,6 +342,7 @@ func take_damage(damage):
 
 
 func die():
+	emit_signal("death")
 	queue_free()
 
 
