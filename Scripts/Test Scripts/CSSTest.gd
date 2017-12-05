@@ -10,9 +10,9 @@ const LOCKED = 3
 
 var port_state = [OPEN, OPEN, OPEN, OPEN]
 
-var css_character_order = ["Skeleton", "Broleton"]
+var css_character_order = ["Skeleton", "Broleton", "Bloodyskel", "Sealeton"]
 
-# Where the "cursor" is, at this moment
+# Where the "cursor" is, at this moment, for the characters
 var css_character_index = [0, 0, 0, 0]
 # The character selected by each port, if any
 var selected_characters = [-1, -1, -1, -1]
@@ -49,7 +49,7 @@ func _input(event):
 	# This one is not dependent on the port states, initially, because devices
 	# that are not yet assigned to a port might
 	var port_found = cm.controller_ports.find(event.device)
-	
+
 	if (port_found == -1 and event.is_action_pressed("ui_start")):
 		# There is a problem here, we always check this if someone presses "start".
 		# This will be checked if a players presses "start" to begin the match, but
@@ -59,7 +59,7 @@ func _input(event):
 		# Assigns port to a device, if it is not yet assigned,
 		# and there are available ports.
 		assign_port(event)
-		
+
 	# We are assured that devices not on ports will not operate, because
 	# we assign CSS controls only when we find a port for the device, and
 	# remove controls in case of a device being disconnected, or a player
@@ -86,7 +86,7 @@ func _input(event):
 			open_port(event)
 
 	elif (port_state[port_found] == SELECTING_TAG):
-		
+
 		if (event.is_action_pressed(name_adapter("css_accept", port_found))):
 			lock_port(port_found)
 
@@ -127,14 +127,14 @@ func select_character(port_found):
 
 	# Avoid possible repeated selection
 	for num in range (0, 4):
-		if (cm.controller_ports[num] == -1 or num == port_found):
+		if (num == port_found):
 			continue
 		if (css_character_index[num] == selected_characters[port_found]):
 			character_selection_move_left(num)
 
 func open_port(event):
 	joysticks_changed(event.device, false)
-	
+
 #####################################################################################
 #####################################################################################
 
@@ -146,7 +146,7 @@ func unselect_character(port_found):
 	port_state[port_found] = SELECTING_CHARACTER
 	selected_characters[port_found] = -1
 	get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Select Character")
-	
+
 #####################################################################################
 #####################################################################################
 

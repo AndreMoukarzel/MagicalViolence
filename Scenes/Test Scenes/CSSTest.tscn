@@ -1,21 +1,49 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=22 format=1]
 
 [ext_resource path="res://Scripts/Test Scripts/CSSTest.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/prototype32.fnt" type="BitmapFont" id=2]
 [ext_resource path="res://Sprites/GUI/Warning/Black.jpg" type="Texture" id=3]
 [ext_resource path="res://Sprites/GUI/Icons/horizontal.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown1.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown2.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown3.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown4.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown1.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown2.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown3.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown4.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown1.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown2.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown3.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown4.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown1.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown2.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown3.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown4.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown1.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown2.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown3.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown4.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown1.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown2.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown3.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown4.png" type="Texture" id=20]
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ { "frames":[ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ], "loop":true, "name":"Skeleton", "speed":5.0 }, { "frames":[ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ], "loop":true, "name":"Broleton", "speed":5.0 } ]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Sealeton",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "Bloodyskel",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "Skeleton",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "Broleton",
+"speed": 5.0
+} ]
 
 [node name="CSSTest" type="Control"]
 
@@ -31,7 +59,6 @@ script/script = ExtResource( 1 )
 
 [node name="P1" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -265,13 +292,14 @@ margin/bottom = 600.0
 
 [node name="Inactive" type="Container" parent="P3"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -256.0
+margin/left = 0.0
 margin/top = 0.0
-margin/right = -216.0
+margin/right = 40.0
 margin/bottom = 40.0
 
 [node name="Text" type="Label" parent="P3/Inactive"]
@@ -280,10 +308,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 306.0
-margin/top = 300.0
-margin/right = 468.0
-margin/bottom = 334.0
+margin/left = 48.0
+margin/top = 298.0
+margin/right = 210.0
+margin/bottom = 332.0
 custom_fonts/font = ExtResource( 2 )
 text = "Press Start"
 percent_visible = 1.0
@@ -298,12 +326,63 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 256.0
+margin/left = 0.0
 margin/top = 0.0
-margin/right = 2176.0
+margin/right = 1920.0
 margin/bottom = 1080.0
 texture = ExtResource( 3 )
 stretch_mode = 0
+
+[node name="Active" type="Container" parent="P3"]
+
+editor/display_folded = true
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 256.0
+margin/bottom = 600.0
+
+[node name="LeftArrow" type="Sprite" parent="P3/Active"]
+
+transform/pos = Vector2( 58, 300 )
+transform/scale = Vector2( -0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="Character" type="AnimatedSprite" parent="P3/Active"]
+
+transform/pos = Vector2( 128, 300 )
+transform/scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 1 )
+animation = "Skeleton"
+frame = 1
+playing = true
+
+[node name="RightArrow" type="Sprite" parent="P3/Active"]
+
+transform/pos = Vector2( 198, 300 )
+transform/scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="Confirmation" type="Label" parent="P3/Active"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 400.0
+margin/right = 258.0
+margin/bottom = 434.0
+custom_fonts/font = ExtResource( 2 )
+text = "Select Character"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="P4" type="Container" parent="."]
 
@@ -319,13 +398,14 @@ margin/bottom = 600.0
 
 [node name="Inactive" type="Container" parent="P4"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -512.0
+margin/left = 0.0
 margin/top = 0.0
-margin/right = -472.0
+margin/right = 40.0
 margin/bottom = 40.0
 
 [node name="Text" type="Label" parent="P4/Inactive"]
@@ -334,10 +414,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 562.0
-margin/top = 300.0
-margin/right = 724.0
-margin/bottom = 334.0
+margin/left = 48.0
+margin/top = 298.0
+margin/right = 210.0
+margin/bottom = 332.0
 custom_fonts/font = ExtResource( 2 )
 text = "Press Start"
 percent_visible = 1.0
@@ -352,11 +432,62 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 513.0
-margin/top = -1.0
-margin/right = 2433.0
-margin/bottom = 1079.0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1920.0
+margin/bottom = 1080.0
 texture = ExtResource( 3 )
 stretch_mode = 0
+
+[node name="Active" type="Container" parent="P4"]
+
+editor/display_folded = true
+visibility/visible = false
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 256.0
+margin/bottom = 600.0
+
+[node name="LeftArrow" type="Sprite" parent="P4/Active"]
+
+transform/pos = Vector2( 58, 300 )
+transform/scale = Vector2( -0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="Character" type="AnimatedSprite" parent="P4/Active"]
+
+transform/pos = Vector2( 128, 300 )
+transform/scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 1 )
+animation = "Skeleton"
+frame = 1
+playing = true
+
+[node name="RightArrow" type="Sprite" parent="P4/Active"]
+
+transform/pos = Vector2( 198, 300 )
+transform/scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="Confirmation" type="Label" parent="P4/Active"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 400.0
+margin/right = 258.0
+margin/bottom = 434.0
+custom_fonts/font = ExtResource( 2 )
+text = "Select Character"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 
