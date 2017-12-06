@@ -219,6 +219,7 @@ func test_instance_battle():
 			players_ready += 1
 		elif (state != OPEN):
 			print("Someone is not yet ready.")
+			return
 
 	if (players_ready <= 1):
 		print("At least two players are needed to begin")

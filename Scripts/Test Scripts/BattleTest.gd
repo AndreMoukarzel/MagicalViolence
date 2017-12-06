@@ -33,6 +33,8 @@ func anotherOneBitesTheDust():
 	if living <= 1:
 		get_parent().show()
 		
+		get_node("WinTimer").start()
+		yield(get_node("WinTimer"), "timeout")
 		for port in active_players:
 			get_parent().unlock_port(port)
 		get_parent().set_process_input(true)
