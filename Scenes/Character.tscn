@@ -1,182 +1,182 @@
-[gd_scene load_steps=245 format=1]
+[gd_scene load_steps=246 format=1]
 
 [ext_resource path="res://Scripts/Character.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Characters/Sealeton/idledownright.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Characters/Sealeton/idleleft.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/Characters/Sealeton/idleright.png" type="Texture" id=4]
-[ext_resource path="res://Sprites/Characters/Sealeton/idleup.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Characters/Sealeton/idleupright.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundown1.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundown2.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundown3.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundown4.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundownleft1.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundownleft2.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundownleft3.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundownleft4.png" type="Texture" id=14]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundownright1.png" type="Texture" id=15]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundownright2.png" type="Texture" id=16]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundownright3.png" type="Texture" id=17]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundownright4.png" type="Texture" id=18]
-[ext_resource path="res://Sprites/Characters/Sealeton/runleft1.png" type="Texture" id=19]
-[ext_resource path="res://Sprites/Characters/Sealeton/runleft2.png" type="Texture" id=20]
-[ext_resource path="res://Sprites/Characters/Sealeton/runleft3.png" type="Texture" id=21]
-[ext_resource path="res://Sprites/Characters/Sealeton/runleft4.png" type="Texture" id=22]
-[ext_resource path="res://Sprites/Characters/Sealeton/runleft5.png" type="Texture" id=23]
-[ext_resource path="res://Sprites/Characters/Sealeton/runleft6.png" type="Texture" id=24]
-[ext_resource path="res://Sprites/Characters/Sealeton/runright1.png" type="Texture" id=25]
-[ext_resource path="res://Sprites/Characters/Sealeton/runright2.png" type="Texture" id=26]
-[ext_resource path="res://Sprites/Characters/Sealeton/runright3.png" type="Texture" id=27]
-[ext_resource path="res://Sprites/Characters/Sealeton/runright4.png" type="Texture" id=28]
-[ext_resource path="res://Sprites/Characters/Sealeton/runright5.png" type="Texture" id=29]
-[ext_resource path="res://Sprites/Characters/Sealeton/runright6.png" type="Texture" id=30]
-[ext_resource path="res://Sprites/Characters/Sealeton/runup1.png" type="Texture" id=31]
-[ext_resource path="res://Sprites/Characters/Sealeton/runup2.png" type="Texture" id=32]
-[ext_resource path="res://Sprites/Characters/Sealeton/runup3.png" type="Texture" id=33]
-[ext_resource path="res://Sprites/Characters/Sealeton/runup4.png" type="Texture" id=34]
-[ext_resource path="res://Sprites/Characters/Sealeton/runupleft1.png" type="Texture" id=35]
-[ext_resource path="res://Sprites/Characters/Sealeton/runupleft2.png" type="Texture" id=36]
-[ext_resource path="res://Sprites/Characters/Sealeton/runupleft3.png" type="Texture" id=37]
-[ext_resource path="res://Sprites/Characters/Sealeton/runupleft4.png" type="Texture" id=38]
-[ext_resource path="res://Sprites/Characters/Sealeton/runupright1.png" type="Texture" id=39]
-[ext_resource path="res://Sprites/Characters/Sealeton/runupright2.png" type="Texture" id=40]
-[ext_resource path="res://Sprites/Characters/Sealeton/runupright3.png" type="Texture" id=41]
-[ext_resource path="res://Sprites/Characters/Sealeton/runupright4.png" type="Texture" id=42]
-[ext_resource path="res://Sprites/Characters/Sealeton/idledown.png" type="Texture" id=43]
-[ext_resource path="res://Sprites/Characters/Sealeton/idledownleft.png" type="Texture" id=44]
-[ext_resource path="res://Sprites/Characters/Sealeton/idleupleft.png" type="Texture" id=45]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/idledownright.png" type="Texture" id=46]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/idleleft.png" type="Texture" id=47]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/idleright.png" type="Texture" id=48]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/idleup.png" type="Texture" id=49]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/idleupright.png" type="Texture" id=50]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown1.png" type="Texture" id=51]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown2.png" type="Texture" id=52]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown3.png" type="Texture" id=53]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown4.png" type="Texture" id=54]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownleft1.png" type="Texture" id=55]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownleft2.png" type="Texture" id=56]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownleft3.png" type="Texture" id=57]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownleft4.png" type="Texture" id=58]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownright1.png" type="Texture" id=59]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownright2.png" type="Texture" id=60]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownright3.png" type="Texture" id=61]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownright4.png" type="Texture" id=62]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft1.png" type="Texture" id=63]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft2.png" type="Texture" id=64]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft3.png" type="Texture" id=65]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft4.png" type="Texture" id=66]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft5.png" type="Texture" id=67]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft6.png" type="Texture" id=68]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runright1.png" type="Texture" id=69]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runright2.png" type="Texture" id=70]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runright3.png" type="Texture" id=71]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runright4.png" type="Texture" id=72]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runright5.png" type="Texture" id=73]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runright6.png" type="Texture" id=74]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runup1.png" type="Texture" id=75]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runup2.png" type="Texture" id=76]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runup3.png" type="Texture" id=77]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runup4.png" type="Texture" id=78]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runupleft1.png" type="Texture" id=79]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runupleft2.png" type="Texture" id=80]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runupleft3.png" type="Texture" id=81]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runupleft4.png" type="Texture" id=82]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runupright1.png" type="Texture" id=83]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runupright2.png" type="Texture" id=84]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runupright3.png" type="Texture" id=85]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/runupright4.png" type="Texture" id=86]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/idledown.png" type="Texture" id=87]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/idledownleft.png" type="Texture" id=88]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/idleupleft.png" type="Texture" id=89]
-[ext_resource path="res://Sprites/Characters/Skeleton/idledownright.png" type="Texture" id=90]
-[ext_resource path="res://Sprites/Characters/Skeleton/idleleft.png" type="Texture" id=91]
-[ext_resource path="res://Sprites/Characters/Skeleton/idleright.png" type="Texture" id=92]
-[ext_resource path="res://Sprites/Characters/Skeleton/idleup.png" type="Texture" id=93]
-[ext_resource path="res://Sprites/Characters/Skeleton/idleupright.png" type="Texture" id=94]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown1.png" type="Texture" id=95]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown2.png" type="Texture" id=96]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown3.png" type="Texture" id=97]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundown4.png" type="Texture" id=98]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundownleft1.png" type="Texture" id=99]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundownleft2.png" type="Texture" id=100]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundownleft3.png" type="Texture" id=101]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundownleft4.png" type="Texture" id=102]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundownright1.png" type="Texture" id=103]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundownright2.png" type="Texture" id=104]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundownright3.png" type="Texture" id=105]
-[ext_resource path="res://Sprites/Characters/Skeleton/rundownright4.png" type="Texture" id=106]
-[ext_resource path="res://Sprites/Characters/Skeleton/runleft1.png" type="Texture" id=107]
-[ext_resource path="res://Sprites/Characters/Skeleton/runleft2.png" type="Texture" id=108]
-[ext_resource path="res://Sprites/Characters/Skeleton/runleft3.png" type="Texture" id=109]
-[ext_resource path="res://Sprites/Characters/Skeleton/runleft4.png" type="Texture" id=110]
-[ext_resource path="res://Sprites/Characters/Skeleton/runleft5.png" type="Texture" id=111]
-[ext_resource path="res://Sprites/Characters/Skeleton/runleft6.png" type="Texture" id=112]
-[ext_resource path="res://Sprites/Characters/Skeleton/runright1.png" type="Texture" id=113]
-[ext_resource path="res://Sprites/Characters/Skeleton/runright2.png" type="Texture" id=114]
-[ext_resource path="res://Sprites/Characters/Skeleton/runright3.png" type="Texture" id=115]
-[ext_resource path="res://Sprites/Characters/Skeleton/runright4.png" type="Texture" id=116]
-[ext_resource path="res://Sprites/Characters/Skeleton/runright5.png" type="Texture" id=117]
-[ext_resource path="res://Sprites/Characters/Skeleton/runright6.png" type="Texture" id=118]
-[ext_resource path="res://Sprites/Characters/Skeleton/runup1.png" type="Texture" id=119]
-[ext_resource path="res://Sprites/Characters/Skeleton/runup2.png" type="Texture" id=120]
-[ext_resource path="res://Sprites/Characters/Skeleton/runup3.png" type="Texture" id=121]
-[ext_resource path="res://Sprites/Characters/Skeleton/runup4.png" type="Texture" id=122]
-[ext_resource path="res://Sprites/Characters/Skeleton/runupleft1.png" type="Texture" id=123]
-[ext_resource path="res://Sprites/Characters/Skeleton/runupleft2.png" type="Texture" id=124]
-[ext_resource path="res://Sprites/Characters/Skeleton/runupleft3.png" type="Texture" id=125]
-[ext_resource path="res://Sprites/Characters/Skeleton/runupleft4.png" type="Texture" id=126]
-[ext_resource path="res://Sprites/Characters/Skeleton/runupright1.png" type="Texture" id=127]
-[ext_resource path="res://Sprites/Characters/Skeleton/runupright2.png" type="Texture" id=128]
-[ext_resource path="res://Sprites/Characters/Skeleton/runupright3.png" type="Texture" id=129]
-[ext_resource path="res://Sprites/Characters/Skeleton/runupright4.png" type="Texture" id=130]
-[ext_resource path="res://Sprites/Characters/Skeleton/idledown.png" type="Texture" id=131]
-[ext_resource path="res://Sprites/Characters/Skeleton/idledownleft.png" type="Texture" id=132]
-[ext_resource path="res://Sprites/Characters/Skeleton/idleupleft.png" type="Texture" id=133]
-[ext_resource path="res://Sprites/Characters/Broleton/idledownright.png" type="Texture" id=134]
-[ext_resource path="res://Sprites/Characters/Broleton/idleleft.png" type="Texture" id=135]
-[ext_resource path="res://Sprites/Characters/Broleton/idleright.png" type="Texture" id=136]
-[ext_resource path="res://Sprites/Characters/Broleton/idleup.png" type="Texture" id=137]
-[ext_resource path="res://Sprites/Characters/Broleton/idleupright.png" type="Texture" id=138]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown1.png" type="Texture" id=139]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown2.png" type="Texture" id=140]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown3.png" type="Texture" id=141]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown4.png" type="Texture" id=142]
-[ext_resource path="res://Sprites/Characters/Broleton/rundownleft1.png" type="Texture" id=143]
-[ext_resource path="res://Sprites/Characters/Broleton/rundownleft2.png" type="Texture" id=144]
-[ext_resource path="res://Sprites/Characters/Broleton/rundownleft3.png" type="Texture" id=145]
-[ext_resource path="res://Sprites/Characters/Broleton/rundownleft4.png" type="Texture" id=146]
-[ext_resource path="res://Sprites/Characters/Broleton/rundownright1.png" type="Texture" id=147]
-[ext_resource path="res://Sprites/Characters/Broleton/rundownright2.png" type="Texture" id=148]
-[ext_resource path="res://Sprites/Characters/Broleton/rundownright3.png" type="Texture" id=149]
-[ext_resource path="res://Sprites/Characters/Broleton/rundownright4.png" type="Texture" id=150]
-[ext_resource path="res://Sprites/Characters/Broleton/runleft1.png" type="Texture" id=151]
-[ext_resource path="res://Sprites/Characters/Broleton/runleft2.png" type="Texture" id=152]
-[ext_resource path="res://Sprites/Characters/Broleton/runleft3.png" type="Texture" id=153]
-[ext_resource path="res://Sprites/Characters/Broleton/runleft4.png" type="Texture" id=154]
-[ext_resource path="res://Sprites/Characters/Broleton/runleft5.png" type="Texture" id=155]
-[ext_resource path="res://Sprites/Characters/Broleton/runleft6.png" type="Texture" id=156]
-[ext_resource path="res://Sprites/Characters/Broleton/runright1.png" type="Texture" id=157]
-[ext_resource path="res://Sprites/Characters/Broleton/runright2.png" type="Texture" id=158]
-[ext_resource path="res://Sprites/Characters/Broleton/runright3.png" type="Texture" id=159]
-[ext_resource path="res://Sprites/Characters/Broleton/runright4.png" type="Texture" id=160]
-[ext_resource path="res://Sprites/Characters/Broleton/runright5.png" type="Texture" id=161]
-[ext_resource path="res://Sprites/Characters/Broleton/runright6.png" type="Texture" id=162]
-[ext_resource path="res://Sprites/Characters/Broleton/runup1.png" type="Texture" id=163]
-[ext_resource path="res://Sprites/Characters/Broleton/runup2.png" type="Texture" id=164]
-[ext_resource path="res://Sprites/Characters/Broleton/runup3.png" type="Texture" id=165]
-[ext_resource path="res://Sprites/Characters/Broleton/runup4.png" type="Texture" id=166]
-[ext_resource path="res://Sprites/Characters/Broleton/runupleft1.png" type="Texture" id=167]
-[ext_resource path="res://Sprites/Characters/Broleton/runupleft2.png" type="Texture" id=168]
-[ext_resource path="res://Sprites/Characters/Broleton/runupleft3.png" type="Texture" id=169]
-[ext_resource path="res://Sprites/Characters/Broleton/runupleft4.png" type="Texture" id=170]
-[ext_resource path="res://Sprites/Characters/Broleton/runupright1.png" type="Texture" id=171]
-[ext_resource path="res://Sprites/Characters/Broleton/runupright2.png" type="Texture" id=172]
-[ext_resource path="res://Sprites/Characters/Broleton/runupright3.png" type="Texture" id=173]
-[ext_resource path="res://Sprites/Characters/Broleton/runupright4.png" type="Texture" id=174]
-[ext_resource path="res://Sprites/Characters/Broleton/idledown.png" type="Texture" id=175]
-[ext_resource path="res://Sprites/Characters/Broleton/idledownleft.png" type="Texture" id=176]
-[ext_resource path="res://Sprites/Characters/Broleton/idleupleft.png" type="Texture" id=177]
+[ext_resource path="res://Sprites/Characters/Skeleton/idledownright.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Characters/Skeleton/idleleft.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Characters/Skeleton/idleright.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Characters/Skeleton/idleup.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Characters/Skeleton/idleupright.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown1.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown2.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown3.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundown4.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundownleft1.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundownleft2.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundownleft3.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundownleft4.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundownright1.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundownright2.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundownright3.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Characters/Skeleton/rundownright4.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Characters/Skeleton/runleft1.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Characters/Skeleton/runleft2.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Characters/Skeleton/runleft3.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Characters/Skeleton/runleft4.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Characters/Skeleton/runleft5.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Characters/Skeleton/runleft6.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Characters/Skeleton/runright1.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Characters/Skeleton/runright2.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Characters/Skeleton/runright3.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/Characters/Skeleton/runright4.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/Characters/Skeleton/runright5.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/Characters/Skeleton/runright6.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Characters/Skeleton/runup1.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Characters/Skeleton/runup2.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Characters/Skeleton/runup3.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/Characters/Skeleton/runup4.png" type="Texture" id=34]
+[ext_resource path="res://Sprites/Characters/Skeleton/runupleft1.png" type="Texture" id=35]
+[ext_resource path="res://Sprites/Characters/Skeleton/runupleft2.png" type="Texture" id=36]
+[ext_resource path="res://Sprites/Characters/Skeleton/runupleft3.png" type="Texture" id=37]
+[ext_resource path="res://Sprites/Characters/Skeleton/runupleft4.png" type="Texture" id=38]
+[ext_resource path="res://Sprites/Characters/Skeleton/runupright1.png" type="Texture" id=39]
+[ext_resource path="res://Sprites/Characters/Skeleton/runupright2.png" type="Texture" id=40]
+[ext_resource path="res://Sprites/Characters/Skeleton/runupright3.png" type="Texture" id=41]
+[ext_resource path="res://Sprites/Characters/Skeleton/runupright4.png" type="Texture" id=42]
+[ext_resource path="res://Sprites/Characters/Skeleton/idledown.png" type="Texture" id=43]
+[ext_resource path="res://Sprites/Characters/Skeleton/idledownleft.png" type="Texture" id=44]
+[ext_resource path="res://Sprites/Characters/Skeleton/idleupleft.png" type="Texture" id=45]
+[ext_resource path="res://Sprites/Characters/Sealeton/idledownright.png" type="Texture" id=46]
+[ext_resource path="res://Sprites/Characters/Sealeton/idleleft.png" type="Texture" id=47]
+[ext_resource path="res://Sprites/Characters/Sealeton/idleright.png" type="Texture" id=48]
+[ext_resource path="res://Sprites/Characters/Sealeton/idleup.png" type="Texture" id=49]
+[ext_resource path="res://Sprites/Characters/Sealeton/idleupright.png" type="Texture" id=50]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown1.png" type="Texture" id=51]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown2.png" type="Texture" id=52]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown3.png" type="Texture" id=53]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown4.png" type="Texture" id=54]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundownleft1.png" type="Texture" id=55]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundownleft2.png" type="Texture" id=56]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundownleft3.png" type="Texture" id=57]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundownleft4.png" type="Texture" id=58]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundownright1.png" type="Texture" id=59]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundownright2.png" type="Texture" id=60]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundownright3.png" type="Texture" id=61]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundownright4.png" type="Texture" id=62]
+[ext_resource path="res://Sprites/Characters/Sealeton/runleft1.png" type="Texture" id=63]
+[ext_resource path="res://Sprites/Characters/Sealeton/runleft2.png" type="Texture" id=64]
+[ext_resource path="res://Sprites/Characters/Sealeton/runleft3.png" type="Texture" id=65]
+[ext_resource path="res://Sprites/Characters/Sealeton/runleft4.png" type="Texture" id=66]
+[ext_resource path="res://Sprites/Characters/Sealeton/runleft5.png" type="Texture" id=67]
+[ext_resource path="res://Sprites/Characters/Sealeton/runleft6.png" type="Texture" id=68]
+[ext_resource path="res://Sprites/Characters/Sealeton/runright1.png" type="Texture" id=69]
+[ext_resource path="res://Sprites/Characters/Sealeton/runright2.png" type="Texture" id=70]
+[ext_resource path="res://Sprites/Characters/Sealeton/runright3.png" type="Texture" id=71]
+[ext_resource path="res://Sprites/Characters/Sealeton/runright4.png" type="Texture" id=72]
+[ext_resource path="res://Sprites/Characters/Sealeton/runright5.png" type="Texture" id=73]
+[ext_resource path="res://Sprites/Characters/Sealeton/runright6.png" type="Texture" id=74]
+[ext_resource path="res://Sprites/Characters/Sealeton/runup1.png" type="Texture" id=75]
+[ext_resource path="res://Sprites/Characters/Sealeton/runup2.png" type="Texture" id=76]
+[ext_resource path="res://Sprites/Characters/Sealeton/runup3.png" type="Texture" id=77]
+[ext_resource path="res://Sprites/Characters/Sealeton/runup4.png" type="Texture" id=78]
+[ext_resource path="res://Sprites/Characters/Sealeton/runupleft1.png" type="Texture" id=79]
+[ext_resource path="res://Sprites/Characters/Sealeton/runupleft2.png" type="Texture" id=80]
+[ext_resource path="res://Sprites/Characters/Sealeton/runupleft3.png" type="Texture" id=81]
+[ext_resource path="res://Sprites/Characters/Sealeton/runupleft4.png" type="Texture" id=82]
+[ext_resource path="res://Sprites/Characters/Sealeton/runupright1.png" type="Texture" id=83]
+[ext_resource path="res://Sprites/Characters/Sealeton/runupright2.png" type="Texture" id=84]
+[ext_resource path="res://Sprites/Characters/Sealeton/runupright3.png" type="Texture" id=85]
+[ext_resource path="res://Sprites/Characters/Sealeton/runupright4.png" type="Texture" id=86]
+[ext_resource path="res://Sprites/Characters/Sealeton/idledown.png" type="Texture" id=87]
+[ext_resource path="res://Sprites/Characters/Sealeton/idledownleft.png" type="Texture" id=88]
+[ext_resource path="res://Sprites/Characters/Sealeton/idleupleft.png" type="Texture" id=89]
+[ext_resource path="res://Sprites/Characters/Broleton/idledownright.png" type="Texture" id=90]
+[ext_resource path="res://Sprites/Characters/Broleton/idleleft.png" type="Texture" id=91]
+[ext_resource path="res://Sprites/Characters/Broleton/idleright.png" type="Texture" id=92]
+[ext_resource path="res://Sprites/Characters/Broleton/idleup.png" type="Texture" id=93]
+[ext_resource path="res://Sprites/Characters/Broleton/idleupright.png" type="Texture" id=94]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown1.png" type="Texture" id=95]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown2.png" type="Texture" id=96]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown3.png" type="Texture" id=97]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown4.png" type="Texture" id=98]
+[ext_resource path="res://Sprites/Characters/Broleton/rundownleft1.png" type="Texture" id=99]
+[ext_resource path="res://Sprites/Characters/Broleton/rundownleft2.png" type="Texture" id=100]
+[ext_resource path="res://Sprites/Characters/Broleton/rundownleft3.png" type="Texture" id=101]
+[ext_resource path="res://Sprites/Characters/Broleton/rundownleft4.png" type="Texture" id=102]
+[ext_resource path="res://Sprites/Characters/Broleton/rundownright1.png" type="Texture" id=103]
+[ext_resource path="res://Sprites/Characters/Broleton/rundownright2.png" type="Texture" id=104]
+[ext_resource path="res://Sprites/Characters/Broleton/rundownright3.png" type="Texture" id=105]
+[ext_resource path="res://Sprites/Characters/Broleton/rundownright4.png" type="Texture" id=106]
+[ext_resource path="res://Sprites/Characters/Broleton/runleft1.png" type="Texture" id=107]
+[ext_resource path="res://Sprites/Characters/Broleton/runleft2.png" type="Texture" id=108]
+[ext_resource path="res://Sprites/Characters/Broleton/runleft3.png" type="Texture" id=109]
+[ext_resource path="res://Sprites/Characters/Broleton/runleft4.png" type="Texture" id=110]
+[ext_resource path="res://Sprites/Characters/Broleton/runleft5.png" type="Texture" id=111]
+[ext_resource path="res://Sprites/Characters/Broleton/runleft6.png" type="Texture" id=112]
+[ext_resource path="res://Sprites/Characters/Broleton/runright1.png" type="Texture" id=113]
+[ext_resource path="res://Sprites/Characters/Broleton/runright2.png" type="Texture" id=114]
+[ext_resource path="res://Sprites/Characters/Broleton/runright3.png" type="Texture" id=115]
+[ext_resource path="res://Sprites/Characters/Broleton/runright4.png" type="Texture" id=116]
+[ext_resource path="res://Sprites/Characters/Broleton/runright5.png" type="Texture" id=117]
+[ext_resource path="res://Sprites/Characters/Broleton/runright6.png" type="Texture" id=118]
+[ext_resource path="res://Sprites/Characters/Broleton/runup1.png" type="Texture" id=119]
+[ext_resource path="res://Sprites/Characters/Broleton/runup2.png" type="Texture" id=120]
+[ext_resource path="res://Sprites/Characters/Broleton/runup3.png" type="Texture" id=121]
+[ext_resource path="res://Sprites/Characters/Broleton/runup4.png" type="Texture" id=122]
+[ext_resource path="res://Sprites/Characters/Broleton/runupleft1.png" type="Texture" id=123]
+[ext_resource path="res://Sprites/Characters/Broleton/runupleft2.png" type="Texture" id=124]
+[ext_resource path="res://Sprites/Characters/Broleton/runupleft3.png" type="Texture" id=125]
+[ext_resource path="res://Sprites/Characters/Broleton/runupleft4.png" type="Texture" id=126]
+[ext_resource path="res://Sprites/Characters/Broleton/runupright1.png" type="Texture" id=127]
+[ext_resource path="res://Sprites/Characters/Broleton/runupright2.png" type="Texture" id=128]
+[ext_resource path="res://Sprites/Characters/Broleton/runupright3.png" type="Texture" id=129]
+[ext_resource path="res://Sprites/Characters/Broleton/runupright4.png" type="Texture" id=130]
+[ext_resource path="res://Sprites/Characters/Broleton/idledown.png" type="Texture" id=131]
+[ext_resource path="res://Sprites/Characters/Broleton/idledownleft.png" type="Texture" id=132]
+[ext_resource path="res://Sprites/Characters/Broleton/idleupleft.png" type="Texture" id=133]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/idledownright.png" type="Texture" id=134]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/idleleft.png" type="Texture" id=135]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/idleright.png" type="Texture" id=136]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/idleup.png" type="Texture" id=137]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/idleupright.png" type="Texture" id=138]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown1.png" type="Texture" id=139]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown2.png" type="Texture" id=140]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown3.png" type="Texture" id=141]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown4.png" type="Texture" id=142]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownleft1.png" type="Texture" id=143]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownleft2.png" type="Texture" id=144]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownleft3.png" type="Texture" id=145]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownleft4.png" type="Texture" id=146]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownright1.png" type="Texture" id=147]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownright2.png" type="Texture" id=148]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownright3.png" type="Texture" id=149]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundownright4.png" type="Texture" id=150]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft1.png" type="Texture" id=151]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft2.png" type="Texture" id=152]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft3.png" type="Texture" id=153]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft4.png" type="Texture" id=154]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft5.png" type="Texture" id=155]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runleft6.png" type="Texture" id=156]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runright1.png" type="Texture" id=157]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runright2.png" type="Texture" id=158]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runright3.png" type="Texture" id=159]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runright4.png" type="Texture" id=160]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runright5.png" type="Texture" id=161]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runright6.png" type="Texture" id=162]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runup1.png" type="Texture" id=163]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runup2.png" type="Texture" id=164]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runup3.png" type="Texture" id=165]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runup4.png" type="Texture" id=166]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runupleft1.png" type="Texture" id=167]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runupleft2.png" type="Texture" id=168]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runupleft3.png" type="Texture" id=169]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runupleft4.png" type="Texture" id=170]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runupright1.png" type="Texture" id=171]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runupright2.png" type="Texture" id=172]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runupright3.png" type="Texture" id=173]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/runupright4.png" type="Texture" id=174]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/idledown.png" type="Texture" id=175]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/idledownleft.png" type="Texture" id=176]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/idleupleft.png" type="Texture" id=177]
 [ext_resource path="res://Sprites/Characters/Stand/idledownrightblur.png" type="Texture" id=178]
 [ext_resource path="res://Sprites/Characters/Stand/idleleftblur.png" type="Texture" id=179]
 [ext_resource path="res://Sprites/Characters/Stand/idlerightblur.png" type="Texture" id=180]
@@ -233,22 +233,22 @@ height = 25.0
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 31 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 34 ), ExtResource( 35 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 38 ), ExtResource( 39 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 44 ), ExtResource( 45 ) ],
 "loop": true,
-"name": "Sealeton",
+"name": "Skeleton",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 46 ), ExtResource( 47 ), ExtResource( 48 ), ExtResource( 49 ), ExtResource( 50 ), ExtResource( 51 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 54 ), ExtResource( 55 ), ExtResource( 56 ), ExtResource( 57 ), ExtResource( 58 ), ExtResource( 59 ), ExtResource( 60 ), ExtResource( 61 ), ExtResource( 62 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 65 ), ExtResource( 66 ), ExtResource( 67 ), ExtResource( 68 ), ExtResource( 69 ), ExtResource( 70 ), ExtResource( 71 ), ExtResource( 72 ), ExtResource( 73 ), ExtResource( 74 ), ExtResource( 75 ), ExtResource( 76 ), ExtResource( 77 ), ExtResource( 78 ), ExtResource( 79 ), ExtResource( 80 ), ExtResource( 81 ), ExtResource( 82 ), ExtResource( 83 ), ExtResource( 84 ), ExtResource( 85 ), ExtResource( 86 ), ExtResource( 87 ), ExtResource( 88 ), ExtResource( 89 ) ],
 "loop": true,
-"name": "Bloodyskel",
+"name": "Sealeton",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 90 ), ExtResource( 91 ), ExtResource( 92 ), ExtResource( 93 ), ExtResource( 94 ), ExtResource( 95 ), ExtResource( 96 ), ExtResource( 97 ), ExtResource( 98 ), ExtResource( 99 ), ExtResource( 100 ), ExtResource( 101 ), ExtResource( 102 ), ExtResource( 103 ), ExtResource( 104 ), ExtResource( 105 ), ExtResource( 106 ), ExtResource( 107 ), ExtResource( 108 ), ExtResource( 109 ), ExtResource( 110 ), ExtResource( 111 ), ExtResource( 112 ), ExtResource( 113 ), ExtResource( 114 ), ExtResource( 115 ), ExtResource( 116 ), ExtResource( 117 ), ExtResource( 118 ), ExtResource( 119 ), ExtResource( 120 ), ExtResource( 121 ), ExtResource( 122 ), ExtResource( 123 ), ExtResource( 124 ), ExtResource( 125 ), ExtResource( 126 ), ExtResource( 127 ), ExtResource( 128 ), ExtResource( 129 ), ExtResource( 130 ), ExtResource( 131 ), ExtResource( 132 ), ExtResource( 133 ) ],
 "loop": true,
-"name": "Skeleton",
+"name": "Broleton",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 134 ), ExtResource( 135 ), ExtResource( 136 ), ExtResource( 137 ), ExtResource( 138 ), ExtResource( 139 ), ExtResource( 140 ), ExtResource( 141 ), ExtResource( 142 ), ExtResource( 143 ), ExtResource( 144 ), ExtResource( 145 ), ExtResource( 146 ), ExtResource( 147 ), ExtResource( 148 ), ExtResource( 149 ), ExtResource( 150 ), ExtResource( 151 ), ExtResource( 152 ), ExtResource( 153 ), ExtResource( 154 ), ExtResource( 155 ), ExtResource( 156 ), ExtResource( 157 ), ExtResource( 158 ), ExtResource( 159 ), ExtResource( 160 ), ExtResource( 161 ), ExtResource( 162 ), ExtResource( 163 ), ExtResource( 164 ), ExtResource( 165 ), ExtResource( 166 ), ExtResource( 167 ), ExtResource( 168 ), ExtResource( 169 ), ExtResource( 170 ), ExtResource( 171 ), ExtResource( 172 ), ExtResource( 173 ), ExtResource( 174 ), ExtResource( 175 ), ExtResource( 176 ), ExtResource( 177 ) ],
 "loop": true,
-"name": "Broleton",
+"name": "Bloodyskel",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 178 ), ExtResource( 179 ), ExtResource( 180 ), ExtResource( 181 ), ExtResource( 182 ), ExtResource( 183 ), ExtResource( 184 ), ExtResource( 185 ), ExtResource( 186 ), ExtResource( 187 ), ExtResource( 188 ), ExtResource( 189 ), ExtResource( 190 ), ExtResource( 191 ), ExtResource( 192 ), ExtResource( 193 ), ExtResource( 194 ), ExtResource( 195 ), ExtResource( 196 ), ExtResource( 197 ), ExtResource( 198 ), ExtResource( 199 ), ExtResource( 200 ), ExtResource( 201 ), ExtResource( 202 ), ExtResource( 203 ), ExtResource( 204 ), ExtResource( 205 ), ExtResource( 206 ), ExtResource( 207 ), ExtResource( 208 ), ExtResource( 209 ), ExtResource( 210 ), ExtResource( 211 ), ExtResource( 212 ), ExtResource( 213 ), ExtResource( 214 ), ExtResource( 215 ), ExtResource( 216 ), ExtResource( 217 ), ExtResource( 218 ), ExtResource( 219 ), ExtResource( 220 ), ExtResource( 221 ) ],
@@ -590,6 +590,33 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
+[sub_resource type="Animation" id=25]
+
+resource/name = "shake_charge_bar"
+length = 0.3
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("ChargeBar:rect/scale")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 0.8, 0.8 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ChargeBar:rect/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -20, 58 ), Vector2( -24, 59.5 ), Vector2( -16, 56.5 ), Vector2( -20, 58 ) ]
+}
+
 [node name="Character" type="KinematicBody2D"]
 
 input/pickable = false
@@ -607,12 +634,14 @@ transform/pos = Vector2( 0.0922657, 17.3916 )
 transform/scale = Vector2( 0.150367, 0.150367 )
 frames = SubResource( 2 )
 animation = "Broleton"
+frame = 41
 
 [node name="Glow" type="AnimatedSprite" parent="Sprite"]
 
 editor/display_folded = true
 visibility/behind_parent = true
 visibility/blend_mode = 1
+transform/pos = Vector2( 2.0986, 1.52588e-05 )
 transform/scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 2 )
 animation = "Glow"
@@ -694,14 +723,18 @@ __meta__ = {
 
 [node name="ChargeBar" type="ProgressBar" parent="."]
 
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -20.0
-margin/top = 58.0
-margin/right = 20.0
-margin/bottom = 74.0
+margin/left = 52.0
+margin/top = -26.0
+margin/right = 12.0
+margin/bottom = -42.0
 custom_styles/fg = SubResource( 20 )
 custom_styles/bg = SubResource( 21 )
 range/min = 0.0
@@ -783,6 +816,17 @@ process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/shake_charge_bar = SubResource( 25 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
 
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
 

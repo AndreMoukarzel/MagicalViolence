@@ -26,7 +26,9 @@ var magic_element = ""
 var current_spell
 var charge = 1
 var current_spell_charge = 0
-var current_spell_level = 1 # Doesn't represent level 3. A level 3 spell is ready when this variable is 2 and chargeBar has a value >= max_charge
+# Doesn't represent level 3. A level 3 spell is ready when
+# this variable is 2 and chargeBar has a value >= max_charge
+var current_spell_level = 1
 var ready_to_spell = true
 var holding_spell = false
 var is_stunned = false
@@ -142,6 +144,8 @@ func _fixed_process(delta):
 				charge += 1
 				get_node("ChargeBar").set_value(charge - current_spell_charge)
 				if get_node("ChargeBar").get_value() >= get_node("ChargeBar").get_max(): # Bar Maxed out
+					if not get_node("AnimationPlayer").is_playing():
+						get_node("AnimationPlayer").play("shake_charge_bar")
 					if current_spell_level < 2:
 						var mc = max_charge()
 						current_spell_charge = mc
