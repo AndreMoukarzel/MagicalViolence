@@ -24,7 +24,6 @@ func fire( direction, parent = parent ):
 	self.shot = true
 	get_node("LifeTimer").start()
 	set_scale(Vector2(1.5, 1.5))
-	get_node("AnimationPlayer").play("spin")
 	set_process( true )
 
 
