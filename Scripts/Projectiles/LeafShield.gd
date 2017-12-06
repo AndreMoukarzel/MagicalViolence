@@ -81,7 +81,8 @@ func shoot_leaf(id):
 	var leaf = get_node(str("LeafShieldProj", id))
 	var pos = leaf.get_pos() + self.get_pos()
 	remove_child(leaf)
-	get_parent().get_parent().add_child(leaf)
+	print (get_parent().get_name())
+	get_parent().add_child(leaf)
 	leaf.set_pos(pos)
 	leaf.fire(self.direction, self.parent)
 	leaves[id-1] = false

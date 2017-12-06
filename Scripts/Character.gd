@@ -24,7 +24,7 @@ var current_direction = Vector2( 0, 1 )
 
 var magic_element = ""
 var current_spell
-var charge = 1
+var charge = 0
 var current_spell_charge = 0
 var current_spell_level = 1 # Doesn't represent level 3. A level 3 spell is ready when this variable is 2 and chargeBar has a value >= max_charge
 var ready_to_spell = true
@@ -111,7 +111,14 @@ func _process(delta):
 	
 		# should take external forces into consideration
 		if !is_rooted:
-			move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
+			var mot = move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
+			
+			if (is_colliding()):
+				print("xau")
+				var n = get_collision_normal()
+				mot = n.slide(mot)
+				move(mot)
+			
 	
 		################################################
 		if !holding_spell:
