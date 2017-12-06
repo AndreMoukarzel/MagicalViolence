@@ -242,13 +242,14 @@ func instance_and_load_battle(nec_arg):
 	var btl_scn = battle_scn.instance()
 	
 	var active_ports = []
+	var character_sprites = []
 	
 	# Insert correct port and character sprites
 	for num in range (0, 4):
 		if (port_state[num] == LOCKED):
 			active_ports.append(num)
-			btl_scn.character_sprites.append(css_character_order[css_character_index[num]])
-	btl_scn.start(active_ports)
+			character_sprites.append(css_character_order[css_character_index[num]])
+	btl_scn.start(active_ports, character_sprites)
 	
 	add_child(btl_scn)
 	
