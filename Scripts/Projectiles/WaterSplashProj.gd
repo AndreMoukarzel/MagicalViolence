@@ -25,7 +25,7 @@ func _process(delta):
 func _on_Area2D_body_enter( body ):
 	if body != parent:
 		if body.has_method("take_damage"):
-			body.take_damage(DAMAGE)
+			body.take_damage(DAMAGE, self.direction)
 		die()
 
 

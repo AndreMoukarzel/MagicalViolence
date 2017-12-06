@@ -26,7 +26,9 @@ var magic_element = ""
 var current_spell
 var charge = 0
 var current_spell_charge = 0
-var current_spell_level = 1 # Doesn't represent level 3. A level 3 spell is ready when this variable is 2 and chargeBar has a value >= max_charge
+# Doesn't represent level 3. A level 3 spell is ready when
+# this variable is 2 and chargeBar has a value >= max_charge
+var current_spell_level = 1
 var ready_to_spell = true
 var holding_spell = false
 var is_stunned = false
@@ -35,6 +37,7 @@ var active_proj
 var slow_multiplier = 1
 var push_direction = Vector2(0, 0)
 var damage_per_sec = 0
+var knockback_modifier = 10
 
 var health = 100
 
@@ -114,7 +117,6 @@ func _process(delta):
 			var mot = move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
 			
 			if (is_colliding()):
-				print("xau")
 				var n = get_collision_normal()
 				mot = n.slide(mot)
 				move(mot)
@@ -139,7 +141,7 @@ func _process(delta):
 					active_proj.activate()
 	
 		update_anim( new_anim )
-	take_damage(damage_per_sec * delta)
+	take_damage(damage_per_sec * delta, self.get_pos())
 
 
 func _fixed_process(delta):
@@ -149,6 +151,8 @@ func _fixed_process(delta):
 				charge += 1
 				get_node("ChargeBar").set_value(charge - current_spell_charge)
 				if get_node("ChargeBar").get_value() >= get_node("ChargeBar").get_max(): # Bar Maxed out
+					if not get_node("AnimationPlayer").is_playing():
+						get_node("AnimationPlayer").play("shake_charge_bar")
 					if current_spell_level < 2:
 						var mc = max_charge()
 						current_spell_charge = mc
@@ -339,13 +343,19 @@ func _on_StunTimer_timeout():
 func _on_RootTimer_timeout():
 	is_rooted = false
 
-	
-	
-func take_damage(damage):
+
+func take_damage(damage, proj_knockback):
 	health -= damage
 	get_node("HealthBar").set_value(health)
 	if health <= 0:
 		die()
+	if proj_knockback != self.get_pos():
+		knockback(proj_knockback)
+
+
+func knockback(proj_knockback):
+	self.set_pos(self.get_pos() + proj_knockback * knockback_modifier)
+	pass
 
 
 func die():
