@@ -20,6 +20,9 @@ var selected_characters = [-1, -1, -1, -1]
 # This is made to shorten names, controller_monitor is a global
 var cm = controller_monitor
 
+# Thread for loading and showing loading animation
+onready var loading_thread = Thread.new()
+
 func _ready():
 
 	set_process_input(true)
@@ -39,7 +42,6 @@ func _input(event):
 	# differentiate from joystick device IDs.
 	if (event.type == InputEvent.KEY):
 		var k_id = determine_keyboard_player(event.scancode)
-		print (k_id)
 		if (k_id != -1):
 			event.device = k_id
 		else:
@@ -226,17 +228,26 @@ func test_instance_battle():
 
 	# Instance battle scene
 	# Have to instance the characters in the battle scene itself
+	print(loading_thread.start(self, "instance_and_load_battle"))
+	
+	# Ignore inputs to this scene, and show loading animation
+	set_process_input(false) #CHANGE THIS (need to return to this scene later)
+	get_node("Loading Animation").show()
 
+# nec_arg is a necessary argument for the thread to work properly.
+func instance_and_load_battle(nec_arg):
 	var battle_scn = load("res://Scenes/Test Scenes/BattleTest.tscn")
 	var btl_scn = battle_scn.instance()
-	btl_scn.start(2)
+	btl_scn.start(2) #CHANGE THIS
 #	get_tree().get_root().add_child(btl_scn)
 	add_child(btl_scn)
+	
+	get_node("Loading Animation").hide()
 	self.hide()
 	#test, putting correct character sprite
 #	btl_scn.get_node("Character0/Sprite").set_animation(css_character_order[css_character_index[0]])
 #	btl_scn.get_node("Character1/Sprite").set_animation(css_character_order[css_character_index[1]])
-	set_process_input(false)
+	
 
 #####################################################################################
 ################################# SIGNAL FUNCTIONS ##################################

@@ -6,6 +6,9 @@ var char_scn = preload("res://Scenes/Character.tscn")
 
 var living = -1
 
+func _ready():
+	get_parent().get_node("Loading Animation").hide()
+
 func start(players_num):
 	living = players_num
 	

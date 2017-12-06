@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=1]
+[gd_scene load_steps=27 format=1]
 
 [ext_resource path="res://Scripts/Test Scripts/CSSTest.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/prototype32.fnt" type="BitmapFont" id=2]
@@ -20,6 +20,10 @@
 [ext_resource path="res://Sprites/Characters/Broleton/rundown2.png" type="Texture" id=18]
 [ext_resource path="res://Sprites/Characters/Broleton/rundown3.png" type="Texture" id=19]
 [ext_resource path="res://Sprites/Characters/Broleton/rundown4.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/GUI/Loading/Loading1.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/GUI/Loading/Loading2.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/GUI/Loading/Loading3.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/GUI/Loading/Loading4.png" type="Texture" id=24]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -45,6 +49,15 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "Loading",
+"speed": 4.0
+} ]
+
 [node name="CSSTest" type="Control"]
 
 focus/ignore_mouse = false
@@ -59,6 +72,7 @@ script/script = ExtResource( 1 )
 
 [node name="P1" type="Container" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -113,6 +127,7 @@ stretch_mode = 0
 
 [node name="Active" type="Container" parent="P1"]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -135,7 +150,6 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P1/Active"]
@@ -252,7 +266,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 1
+frame = 3
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P2/Active"]
@@ -358,7 +372,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 1
+frame = 3
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P3/Active"]
@@ -464,7 +478,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 1
+frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P4/Active"]
@@ -489,5 +503,13 @@ align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Loading Animation" type="AnimatedSprite" parent="."]
+
+visibility/visible = false
+transform/pos = Vector2( 64, 64 )
+frames = SubResource( 2 )
+animation = "Loading"
+playing = true
 
 
