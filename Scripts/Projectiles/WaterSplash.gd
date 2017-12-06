@@ -1,8 +1,6 @@
 
 extends Node2D
 
-const SPEED = 6
-
 
 func fire( direction, parent ):
 

@@ -1,9 +1,10 @@
 extends "Projectile.gd"
 
-var parent
 const DAMAGE = 20
 var element = 0 # Lightning = 0, Nature = 1, Fire = 2, Water = 3
 var level = 3
+
+var parent
 
 
 func fire( direction, parent ):
@@ -19,7 +20,7 @@ func fire( direction, parent ):
 func _on_Area2D_body_enter( body ):
 	if body != parent:
 		if body.has_method("take_damage"):
-			body.take_damage(DAMAGE, Vector2(0, 0))
+			body.take_damage(DAMAGE, null)
 			body.Stun(1.5)
 
 
