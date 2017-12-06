@@ -43,7 +43,7 @@ func _on_DelayTimer_timeout():
 	
 	for body in get_node( "Damage" ).get_overlapping_bodies():
 		if body != parent and body.has_method("take_damage"):
-			body.take_damage(DAMAGE)
+			body.take_damage(DAMAGE, self.direction * 0)
 			body.Stun(STUN_TIME)
 	get_node( "Damage" ).queue_free()
 
