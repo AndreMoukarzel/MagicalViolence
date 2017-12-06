@@ -117,7 +117,6 @@ func _process(delta):
 			var mot = move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
 			
 			if (is_colliding()):
-				print("xau")
 				var n = get_collision_normal()
 				mot = n.slide(mot)
 				move(mot)
