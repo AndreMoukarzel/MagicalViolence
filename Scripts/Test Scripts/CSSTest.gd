@@ -20,13 +20,11 @@ var selected_characters = [-1, -1, -1, -1]
 # This is made to shorten names, controller_monitor is a global
 var cm = controller_monitor
 
-# Thread for loading and showing loading animation
-onready var loading_thread = Thread.new()
-
 func _ready():
 
 	set_process_input(true)
 	Input.connect("joy_connection_changed", self, "joysticks_changed")
+	get_node("BattleTest").hide()
 
 # Determinamos que é mais facil guardar estados em forma de strings, ao
 # inves de multiplos vetores. Assim, podemos checar o comando, depois o
@@ -231,38 +229,29 @@ func test_instance_battle():
 
 	# Instance battle scene
 	# Have to instance the characters in the battle scene itself
-	loading_thread.start(self, "instance_and_load_battle")
-	
+
+	instance_and_load_battle()
+
 	# Ignore inputs to this scene, and show loading animation
-	set_process_input(false) #CHANGE THIS (need to return to this scene later)
-	get_node("Loading Animation").show()
-	
+	set_process_input(false)
+
 
 # Note that an argument is always necessary so the thread works properly.
-func instance_and_load_battle(nec_arg):
-	var battle_scn = load("res://Scenes/Test Scenes/BattleTest.tscn")
-	var btl_scn = battle_scn.instance()
-	
+func instance_and_load_battle():
+#	var battle_scn = load("res://Scenes/Test Scenes/BattleTest.tscn")
+#	var btl_scn = battle_scn.instance()
+
 	var active_ports = []
 	var character_sprites = []
-	
+
 	# Insert correct port and character sprites
 	for num in range (0, 4):
 		if (port_state[num] == LOCKED):
 			active_ports.append(num)
 			character_sprites.append(css_character_order[css_character_index[num]])
-	btl_scn.start(active_ports, character_sprites)
-	
-	add_child(btl_scn)
-	
-	get_node("Loading Animation").hide()
-	self.hide()
-	
-	loading_thread.wait_to_finish()
-	#test, putting correct character sprite
-#	btl_scn.get_node("Character0/Sprite").set_animation(css_character_order[css_character_index[0]])
-#	btl_scn.get_node("Character1/Sprite").set_animation(css_character_order[css_character_index[1]])
-	
+
+	get_node("BattleTest").start(active_ports, character_sprites)
+	get_node("BattleTest").show()
 
 #####################################################################################
 ################################# SIGNAL FUNCTIONS ##################################

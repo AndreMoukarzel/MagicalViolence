@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=1]
+[gd_scene load_steps=28 format=1]
 
 [ext_resource path="res://Scripts/Test Scripts/CSSTest.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/prototype32.fnt" type="BitmapFont" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://Sprites/GUI/Loading/Loading2.png" type="Texture" id=22]
 [ext_resource path="res://Sprites/GUI/Loading/Loading3.png" type="Texture" id=23]
 [ext_resource path="res://Sprites/GUI/Loading/Loading4.png" type="Texture" id=24]
+[ext_resource path="res://Scenes/Test Scenes/BattleTest.tscn" type="PackedScene" id=25]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -487,4 +488,9 @@ animation = "Loading"
 frame = 3
 playing = true
 
+[node name="BattleTest" parent="." instance=ExtResource( 25 )]
 
+editor/display_folded = true
+
+
+[editable path="BattleTest"]
