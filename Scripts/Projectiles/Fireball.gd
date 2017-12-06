@@ -1,7 +1,7 @@
 
 extends "Projectile.gd"
 
-const SPEED = 6
+const SPEED = 8
 const DAMAGE = 10
 var element = 2 # Lightning = 0, Nature = 1, Fire = 2, Water = 3
 var level = 1
@@ -14,6 +14,7 @@ func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent
 	set_pos( parent.get_pos() )
+	set_rot( direction.angle() )
 	set_process( true )
 
 

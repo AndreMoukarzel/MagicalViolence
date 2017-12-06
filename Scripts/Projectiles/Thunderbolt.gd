@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-const SPEED = 4
-const DAMAGE = 15
+const SPEED = 6
+const DAMAGE = 20
 const STUN_TIME = 1
 var element = 0 # Lightning = 0, Nature = 1, Fire = 2, Water = 3
 var level = 2
