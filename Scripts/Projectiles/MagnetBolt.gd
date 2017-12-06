@@ -33,7 +33,7 @@ func _process(delta):
 	get_node( "Sprite" ).rotate( ROT_SPEED * delta )
 
 	move( direction * SPEED )
-	SPEED -= 12*delta
+	SPEED -= 8*delta
 
 
 # does damage if take damage function exists in body

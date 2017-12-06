@@ -2,7 +2,7 @@
 extends "Projectile.gd"
 
 const SPEED = 8
-const DAMAGE = 10
+const DAMAGE = 7
 var element = 2 # Lightning = 0, Nature = 1, Fire = 2, Water = 3
 var level = 1
 

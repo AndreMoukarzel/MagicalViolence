@@ -33,6 +33,7 @@ func _on_Area2D_body_enter( body ):
 			# disappears dealing damage
 			if !is_seed:
 				body.take_damage(2 * DAMAGE, self.direction * 0)
+				body.Root(1)
 				_on_LifeTimer_timeout()
 			else:
 				body.take_damage(DAMAGE, self.direction)

@@ -37,7 +37,6 @@ var active_proj
 var slow_multiplier = 1
 var push_direction = Vector2(0, 0)
 var damage_per_sec = 0
-var knockback_modifier = 10
 
 var health = 100
 
@@ -47,26 +46,26 @@ var wait = 0
 var firebolt_scn = preload("res://Scenes/Projectiles/Firebolt.tscn")
 var scorching_scn = preload("res://Scenes/Projectiles/ScorchingMissile.tscn")
 var fireball_scn = preload("res://Scenes/Projectiles/Fireball.tscn")
-var f_charge = [50, 100]
-var f_cd = [0.5, 1, 1.5]
+var f_charge = [30, 120]
+var f_cd = [0.2, 0.5, 1.5]
 # Water
 var watersplash_scn = preload("res://Scenes/Projectiles/WaterSplash.tscn")
 var watersphere_scn = preload("res://Scenes/Projectiles/WaterSphere.tscn")
 var tidalwave_scn = preload("res://Scenes/Projectiles/TidalWave.tscn")
-var w_charge = [50, 100]
-var w_cd = [0.5, 1, 1.5]
+var w_charge = [40, 90]
+var w_cd = [0.7, 1, 1.5]
 # Nature
 var leafshield_scn = preload("res://Scenes/Projectiles/LeafShield.tscn")
 var conjurethorns_scn = preload("res://Scenes/Projectiles/ConjureThorns.tscn")
 var graspingvine_scn = preload("res://Scenes/Projectiles/GraspingVine.tscn")
-var n_charge = [50, 100]
-var n_cd = [0.5, 1, 1.5]
+var n_charge = [40, 80]
+var n_cd = [0.4, 0.6, 0.8]
 # Lightning
 var magnetbolt_scn = preload("res://Scenes/Projectiles/MagnetBolt.tscn")
 var thunderbolt_scn = preload("res://Scenes/Projectiles/Thunderbolt.tscn")
 var lightningbolt_scn = preload("res://Scenes/Projectiles/LightningBolt.tscn")
-var l_charge = [50, 100]
-var l_cd = [0.5, 1, 1.5]
+var l_charge = [60, 150]
+var l_cd = [0.6, 0.8, 1]
 
 
 func _ready():
@@ -155,6 +154,7 @@ func _fixed_process(delta):
 						get_node("AnimationPlayer").play("shake_charge_bar")
 					if current_spell_level < 2:
 						var mc = max_charge()
+						print ("Max charge = ", mc)
 						current_spell_charge = mc
 						get_node("ChargeBar").set_max(mc)
 						current_spell_level += 1
@@ -354,7 +354,7 @@ func take_damage(damage, proj_knockback):
 
 
 func knockback(proj_knockback):
-	self.set_pos(self.get_pos() + proj_knockback * knockback_modifier)
+	self.set_pos(self.get_pos() + proj_knockback * 10)
 	pass
 
 

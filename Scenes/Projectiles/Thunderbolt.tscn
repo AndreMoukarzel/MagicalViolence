@@ -190,7 +190,6 @@ script/script = ExtResource( 1 )
 transform/scale = Vector2( 0.26, 0.26 )
 frames = SubResource( 1 )
 animation = "cloud"
-frame = 2
 playing = true
 
 [node name="Damage" type="Area2D" parent="."]

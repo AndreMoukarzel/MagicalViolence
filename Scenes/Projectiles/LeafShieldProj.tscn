@@ -137,7 +137,7 @@ autoplay = "spin"
 [node name="LifeTimer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 0.5
+wait_time = 0.9
 one_shot = true
 autostart = false
 

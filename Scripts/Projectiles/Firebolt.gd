@@ -1,8 +1,8 @@
 
 extends "Projectile.gd"
 
-const SPEED = 6
-const DAMAGE = 30
+const SPEED = 7
+const DAMAGE = 35
 var element = 2 # Lightning = 0, Nature = 1, Fire = 2, Water = 3
 var level = 3
 
