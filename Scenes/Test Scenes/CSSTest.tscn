@@ -51,12 +51,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=2]
 
-animations = [ {
-"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
-"loop": true,
-"name": "Loading",
-"speed": 4.0
-} ]
+animations = [ { "frames":[ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ], "loop":true, "name":"Loading", "speed":4.0 } ]
 
 [node name="CSSTest" type="Control"]
 

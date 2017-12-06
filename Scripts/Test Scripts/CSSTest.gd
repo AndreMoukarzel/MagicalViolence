@@ -217,6 +217,8 @@ func test_instance_battle():
 	for state in port_state:
 		if (state == LOCKED):
 			players_ready += 1
+		elif (state != OPEN):
+			print("Someone is not yet ready.")
 
 	if (players_ready <= 1):
 		print("At least two players are needed to begin")
@@ -228,18 +230,26 @@ func test_instance_battle():
 
 	# Instance battle scene
 	# Have to instance the characters in the battle scene itself
-	print(loading_thread.start(self, "instance_and_load_battle"))
+	loading_thread.start(self, "instance_and_load_battle")
 	
 	# Ignore inputs to this scene, and show loading animation
 	set_process_input(false) #CHANGE THIS (need to return to this scene later)
 	get_node("Loading Animation").show()
 
-# nec_arg is a necessary argument for the thread to work properly.
+# Note that an argument is always necessary so the thread works properly.
 func instance_and_load_battle(nec_arg):
 	var battle_scn = load("res://Scenes/Test Scenes/BattleTest.tscn")
 	var btl_scn = battle_scn.instance()
-	btl_scn.start(2) #CHANGE THIS
-#	get_tree().get_root().add_child(btl_scn)
+	
+	var active_ports = []
+	
+	# Insert correct port and character sprites
+	for num in range (0, 4):
+		if (port_state[num] == LOCKED):
+			active_ports.append(num)
+			btl_scn.character_sprites.append(css_character_order[css_character_index[num]])
+	btl_scn.start(active_ports)
+	
 	add_child(btl_scn)
 	
 	get_node("Loading Animation").hide()
