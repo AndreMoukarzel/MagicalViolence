@@ -3,6 +3,7 @@ extends "Projectile.gd"
 
 const SPEED = 8
 const DAMAGE = 7
+const KNOCKBACK = 20
 var element = 2 # Lightning = 0, Nature = 1, Fire = 2, Water = 3
 var level = 1
 
@@ -27,7 +28,7 @@ func _on_Area2D_body_enter( body ):
 	if body != parent:
 		get_node("Area2D").queue_free()
 		if body.has_method("take_damage"):
-			body.take_damage(DAMAGE, self.direction)
+			body.take_damage(DAMAGE, self.direction, KNOCKBACK)
 		die()
 
 

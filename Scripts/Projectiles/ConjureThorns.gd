@@ -2,6 +2,7 @@ extends "Projectile.gd"
 
 const SPEED = 6
 const DAMAGE = 15
+const KNOCKBACK = 5
 var element = 1 # Lightning = 0, Nature = 1, Fire = 2, Water = 3
 var level = 2
 
@@ -32,11 +33,11 @@ func _on_Area2D_body_enter( body ):
 			# when enemy enters them. Otherwise, the seed just
 			# disappears dealing damage
 			if !is_seed:
-				body.take_damage(2 * DAMAGE, self.direction * 0)
+				body.take_damage(2 * DAMAGE, null)
 				body.Root(1)
 				_on_LifeTimer_timeout()
 			else:
-				body.take_damage(DAMAGE, self.direction)
+				body.take_damage(DAMAGE, self.direction, KNOCKBACK)
 				die()
 
 

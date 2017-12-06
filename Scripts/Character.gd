@@ -36,7 +36,6 @@ var is_rooted = false
 var active_proj
 var slow_multiplier = 1
 var push_direction = Vector2(0, 0)
-var damage_per_sec = 0
 
 var health = 100
 
@@ -139,9 +138,7 @@ func _process(delta):
 					release_spell()
 				else:
 					active_proj.activate()
-	
 		update_anim( new_anim )
-	take_damage(damage_per_sec * delta, self.get_pos())
 
 
 func _fixed_process(delta):
@@ -350,18 +347,13 @@ func _on_RootTimer_timeout():
 	is_rooted = false
 
 
-func take_damage(damage, proj_knockback):
+func take_damage(damage, kb_dir, kb_str = 0):
 	health -= damage
 	get_node("HealthBar").set_value(health)
 	if health <= 0:
 		die()
-	if proj_knockback != self.get_pos():
-		knockback(proj_knockback)
-
-
-func knockback(proj_knockback):
-	self.set_pos(self.get_pos() + proj_knockback * 10)
-	pass
+	if kb_dir != null: # Knockback
+		set_pos(get_pos() + kb_dir * kb_str)
 
 
 func die():

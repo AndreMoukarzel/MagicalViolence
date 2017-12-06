@@ -1,7 +1,5 @@
 extends KinematicBody2D
 
-const SPEED = 6
-
 var direction = Vector2( 0, 0 )
 var parent
 var proj_count = 4
