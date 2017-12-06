@@ -86,6 +86,7 @@ func _ready():
 	set_fixed_process(true)
 
 	magic_element = "fire"
+	get_node("ChargeBar").set_max(max_charge())
 
 
 func _process(delta):
@@ -152,12 +153,7 @@ func _fixed_process(delta):
 				if get_node("ChargeBar").get_value() >= get_node("ChargeBar").get_max(): # Bar Maxed out
 					if not get_node("AnimationPlayer").is_playing():
 						get_node("AnimationPlayer").play("shake_charge_bar")
-					if current_spell_level < 2:
-						var mc = max_charge()
-						print ("Max charge = ", mc)
-						current_spell_charge = mc
-						get_node("ChargeBar").set_max(mc)
-						current_spell_level += 1
+					update_max_charge()
 			elif wait >= 15:
 				active_proj.activate()
 				wait = 0
@@ -200,6 +196,16 @@ func max_charge():
 		if current_spell_charge == 0:
 			return l_charge[0]
 		return l_charge[1]
+
+
+func update_max_charge():
+	if current_spell_level == 1:
+		current_spell_charge = charge
+		current_spell_level += 1
+		
+	var mc = max_charge()
+	print ("Charge = ", charge, "  mc = ", mc)
+	get_node("ChargeBar").set_max(mc)
 
 
 # Returns what spell is suposed to be cast depending on
