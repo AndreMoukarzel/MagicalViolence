@@ -235,6 +235,7 @@ func test_instance_battle():
 	# Ignore inputs to this scene, and show loading animation
 	set_process_input(false) #CHANGE THIS (need to return to this scene later)
 	get_node("Loading Animation").show()
+	
 
 # Note that an argument is always necessary so the thread works properly.
 func instance_and_load_battle(nec_arg):
@@ -255,6 +256,8 @@ func instance_and_load_battle(nec_arg):
 	
 	get_node("Loading Animation").hide()
 	self.hide()
+	
+	loading_thread.wait_to_finish()
 	#test, putting correct character sprite
 #	btl_scn.get_node("Character0/Sprite").set_animation(css_character_order[css_character_index[0]])
 #	btl_scn.get_node("Character1/Sprite").set_animation(css_character_order[css_character_index[1]])
