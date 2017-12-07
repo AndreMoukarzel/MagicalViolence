@@ -19,63 +19,31 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:transform/scale")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.9 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.05, 0.05 ), Vector2( 0.25, 0.25 ) ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.9 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0.05, 0.05 ), Vector2( 0.25, 0.25 ) ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:visibility/opacity")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0, 0.7, 1 ),
-"transitions": FloatArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 1.0, 1.0, 0.0 ]
-}
+tracks/1/keys = { "times":FloatArray( 0, 0.7, 1 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 1.0, 1.0, 0.0 ] }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Area2D:transform/scale")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = {
-"times": FloatArray( 0, 0.7 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( 4, 4 ) ]
-}
+tracks/2/keys = { "times":FloatArray( 0, 0.7 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 1, 1 ), Vector2( 4, 4 ) ] }
 tracks/3/type = "method"
 tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/imported = false
-tracks/3/keys = {
-"times": FloatArray( 1 ),
-"transitions": FloatArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "free_scn"
-} ]
-}
+tracks/3/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"free_scn" } ] }
 tracks/4/type = "value"
 tracks/4/path = NodePath("Area2D:monitoring")
 tracks/4/interp = 1
 tracks/4/imported = false
-tracks/4/keys = {
-"times": FloatArray( 0, 0.92 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 1,
-"values": [ true, false ]
-}
+tracks/4/keys = { "times":FloatArray( 0, 0.92 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ true, false ] }
 
 [sub_resource type="SampleLibrary" id=3]
 
-samples/firebolt = {
-"db": 0.0,
-"pitch": 1.0,
-"priority": 0,
-"sample": ExtResource( 3 )
-}
+samples/firebolt = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
 
 [node name="Firebolt" type="KinematicBody2D"]
 
@@ -90,9 +58,7 @@ script/script = ExtResource( 1 )
 
 transform/scale = Vector2( 0.05, 0.05 )
 texture = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true
-}
+__meta__ = { "_edit_lock_":true }
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -104,10 +70,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
+__meta__ = { "_edit_group_":true, "_edit_lock_":true }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
@@ -140,22 +103,16 @@ wait_time = 0.04
 one_shot = false
 autostart = true
 
-[node name="SFX" type="SamplePlayer" parent="."]
+[node name="SFX" type="SamplePlayer2D" parent="."]
 
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
 config/polyphony = 1
 config/samples = SubResource( 3 )
-default/volume_db = 0.0
-default/pitch_scale = 1.0
-default/pan = 0.0
-default/depth = 0.0
-default/height = 0.0
-default/filter/type = 0
-default/filter/cutoff = 5000.0
-default/filter/resonance = 1.0
-default/filter/gain = 1.0
-default/reverb_room = 2
-default/reverb_send = 0.0
-default/chorus_send = 0.0
+config/pitch_random = 0.0
 
 [connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
 
