@@ -57,7 +57,8 @@ func _process(delta):
 		die()
 	spin_leaves(delta)
 	follow()
-	self.direction = self.parent.current_direction.normalized()
+	if parent:
+		self.direction = self.parent.current_direction.normalized()
 
 
 func activate():
@@ -98,7 +99,7 @@ func leaf_death(id):
 
 func die():
 	set_process( false )
-	if weakref(parent).get_ref(): # parent was not freed
+	if parent: # parent was not freed
 		parent.spell_ended()
 	for child in get_children():
 		if child.get_name() != "AnimationPlayer" and child.get_name() != "Timer":
