@@ -51,6 +51,7 @@ func activate():
 
 func die():
 	alive = false
+	get_node( "SFX" ).play( "firebolt" )
 	get_node( "AnimationPlayer" ).play( "explosion" )
 	parent.spell_ended() # Alerts player that spell is finished
 	set_process( false )
