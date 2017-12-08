@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://Scripts/Projectiles/LightningBolt.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Spells/Lightning/lightningBolt1.png" type="Texture" id=2]
@@ -6,15 +6,11 @@
 [ext_resource path="res://Sprites/Spells/Lightning/lightningBolt3.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Spells/Lightning/lightningBolt4.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Spells/Lightning/lightningBolt5.png" type="Texture" id=6]
+[ext_resource path="res://Resources/SFX/wav/thunder.wav" type="Sample" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "LightningBolt",
-"speed": 10.0
-} ]
+animations = [ { "frames":[ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ], "loop":false, "name":"LightningBolt", "speed":10.0 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -30,14 +26,11 @@ tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0.5 ),
-"transitions": FloatArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "free_scn"
-} ]
-}
+tracks/0/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"free_scn" } ] }
+
+[sub_resource type="SampleLibrary" id=4]
+
+samples/thunder = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
 
 [node name="LightningBolt" type="KinematicBody2D"]
 
@@ -67,9 +60,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-__meta__ = {
-"_edit_group_": true
-}
+__meta__ = { "_edit_group_":true }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
@@ -90,6 +81,17 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="SFX" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
 
 [connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
 

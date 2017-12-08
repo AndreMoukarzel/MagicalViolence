@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=1]
+[gd_scene load_steps=32 format=1]
 
 [ext_resource path="res://Scripts/Projectiles/TidalWave.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Spells/Water/tidalWaveUp1.png" type="Texture" id=2]
@@ -22,25 +22,11 @@
 [ext_resource path="res://Sprites/Spells/Water/tidalWaveDown5.png" type="Texture" id=20]
 [ext_resource path="res://Sprites/Spells/Water/tidalWaveDown6.png" type="Texture" id=21]
 [ext_resource path="res://Sprites/Spells/Water/tidalWaveDown7.png" type="Texture" id=22]
+[ext_resource path="res://Resources/SFX/wav/wave.wav" type="Sample" id=23]
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
-"name": "up",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "side",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ) ],
-"loop": true,
-"name": "down",
-"speed": 5.0
-} ]
+animations = [ { "frames":[ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ], "loop":true, "name":"up", "speed":5.0 }, { "frames":[ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ], "loop":true, "name":"side", "speed":5.0 }, { "frames":[ ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ) ], "loop":true, "name":"down", "speed":5.0 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -57,26 +43,14 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0.1, 0.3 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 1,
-"values": [ 5, 6 ]
-}
+tracks/0/keys = { "times":FloatArray( 0.1, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ 5, 6 ] }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0.5 ),
-"transitions": FloatArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "free_scn"
-} ]
-}
+tracks/1/keys = { "times":FloatArray( 0.5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"free_scn" } ] }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=4]
 
 resource/name = "fire down"
 length = 0.4
@@ -86,24 +60,14 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.2 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ 0, 1 ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:animation")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 1,
-"values": [ "down" ]
-}
+tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ "down" ] }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=5]
 
 resource/name = "fire side"
 length = 0.4
@@ -113,26 +77,15 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.2 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ 0, 1 ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:animation")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 1,
-"values": [ "side" ]
-}
+tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ "side" ] }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 
-resource/name = "fire up"
 length = 0.4
 loop = false
 step = 0.1
@@ -140,22 +93,12 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.2 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 1 ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":1, "values":[ 0, 1 ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:animation")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 1,
-"values": [ "up" ]
-}
+tracks/1/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":1, "values":[ "up" ] }
 
 [sub_resource type="Animation" id=7]
 
@@ -167,12 +110,11 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.2, 0.4 ),
-"transitions": FloatArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 2, 3, 4 ]
-}
+tracks/0/keys = { "times":FloatArray( 0, 0.2, 0.4 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ 2, 3, 4 ] }
+
+[sub_resource type="SampleLibrary" id=8]
+
+samples/wave = { "db":0.0, "pitch":1.0, "sample":ExtResource( 23 ) }
 
 [node name="TidalWave" type="KinematicBody2D"]
 
@@ -215,9 +157,9 @@ playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/die = SubResource( 3 )
-"anims/fire down" = SubResource( 8 )
-"anims/fire side" = SubResource( 9 )
-"anims/fire up" = SubResource( 4 )
+"anims/fire down" = SubResource( 4 )
+"anims/fire side" = SubResource( 5 )
+"anims/fire up" = SubResource( 6 )
 anims/move = SubResource( 7 )
 "next/fire down" = "move"
 "next/fire side" = "move"
@@ -233,6 +175,17 @@ process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
+
+[node name="SFX" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 8 )
+config/pitch_random = 0.0
 
 [connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
 

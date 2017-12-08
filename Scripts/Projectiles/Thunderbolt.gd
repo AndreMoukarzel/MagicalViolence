@@ -10,6 +10,10 @@ var direction = Vector2( 0, 0 ) # direction that the cloud flies to
 var parent
 
 
+func _ready():
+	get_node( "SFX" ).play( "thunderbolt" )
+
+
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent

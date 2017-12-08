@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://Scripts/Projectiles/Firebolt.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Spells/Fire/fireball.png" type="Texture" id=2]
-[ext_resource path="res://Resources/SFX/smp/firebolt.smp" type="Sample" id=3]
+[ext_resource path="res://Resources/SFX/wav/fire.wav" type="Sample" id=3]
+[ext_resource path="res://Resources/SFX/smp/firebolt.smp" type="Sample" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -43,7 +44,8 @@ tracks/4/keys = { "times":FloatArray( 0, 0.92 ), "transitions":FloatArray( 1, 1 
 
 [sub_resource type="SampleLibrary" id=3]
 
-samples/firebolt = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
+samples/fire = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
+samples/firebolt = { "db":0.0, "pitch":1.0, "sample":ExtResource( 4 ) }
 
 [node name="Firebolt" type="KinematicBody2D"]
 

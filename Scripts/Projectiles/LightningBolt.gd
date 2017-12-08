@@ -7,6 +7,10 @@ var level = 3
 var parent
 
 
+func _ready():
+	get_node( "SFX" ).play( "thunder" )
+
+
 func fire( direction, parent ):
 	self.parent = parent
 	get_node( "AnimatedSprite" ).set_frame(0)

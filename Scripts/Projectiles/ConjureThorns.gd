@@ -11,6 +11,10 @@ var parent
 var is_seed = true
 
 
+func _ready():
+	get_node( "SFX" ).play( "leaf" )
+
+
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent

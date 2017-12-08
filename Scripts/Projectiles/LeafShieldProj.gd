@@ -25,6 +25,7 @@ func fire( direction, parent = parent ):
 	self.shot = true
 	get_node("LifeTimer").start()
 	set_scale(Vector2(1.5, 1.5))
+	get_node( "SFX" ).play( "leaf" )
 	set_process( true )
 
 

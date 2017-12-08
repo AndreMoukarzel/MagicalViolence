@@ -2,6 +2,10 @@
 extends Node2D
 
 
+func _ready():
+	get_node( "SFX" ).play( "splash" )
+
+
 func fire( direction, parent ):
 
 	set_rot( direction.angle() )
@@ -12,6 +16,8 @@ func fire( direction, parent ):
 	get_node("Projectile3").fire(projectileDirection(direction, 10), parent)
 	get_node("Projectile4").fire(projectileDirection(direction, -20), parent)
 	get_node("Projectile5").fire(projectileDirection(direction, 20), parent)
+
+
 
 func projectileDirection( direction, angle ):
 	var a = deg2rad(angle)

@@ -12,10 +12,13 @@ var parent
 var alive = true
 
 
+func _ready():
+	get_node( "SFX" ).play( "fire" )
+
+
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent
-#	add_collision_exception_with( parent )
 	set_pos( parent.get_pos() )
 	set_process( true )
 

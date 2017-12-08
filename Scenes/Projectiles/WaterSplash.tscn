@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Scripts/Projectiles/WaterSplash.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Projectiles/WaterSplashProj.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Resources/SFX/wav/splash.wav" type="Sample" id=3]
+
+[sub_resource type="SampleLibrary" id=1]
+
+samples/splash = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
 
 [node name="Node2D" type="Node2D"]
 
@@ -40,6 +45,17 @@ process_mode = 1
 wait_time = 2.4
 one_shot = false
 autostart = true
+
+[node name="SFX" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 1 )
+config/pitch_random = 0.0
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]
 

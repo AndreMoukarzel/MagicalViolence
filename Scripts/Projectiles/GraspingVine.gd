@@ -10,6 +10,10 @@ var direction = Vector2( 0, 0 )
 var parent
 
 
+func _ready():
+	get_node( "SFX" ).play( "vines" )
+
+
 func fire( direction, parent ):
 	self.parent = parent
 	self.direction = direction
