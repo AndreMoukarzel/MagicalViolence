@@ -5,6 +5,12 @@ const KEYBOARD_CUSTOM_ID_2 = 2000
 
 var controller_ports = [-1, -1, -1, -1]
 
+# Used to bypass known joystick check.
+# Godot refuses to acknowledge some popular controller
+# choices as known, so we may need to rethink our stategy
+# on dealing with strage controllers.
+var ignore_check = true
+
 
 # This is to be called at the beggining of the game
 # (it is loaded globally, and is a singleton), so we
@@ -24,7 +30,7 @@ func joysticks_changed(index, connected):
 
 	if (connected):
 		# Check if a known joystick
-		if not Input.is_joy_known(index):
+		if not Input.is_joy_known(index) and not ignore_check:
 			# Instance Warning
 			var warning_scn = load("res://Scenes/Warnings/ControllerWarning.tscn")
 			var wrn_scn = warning_scn.instance()
