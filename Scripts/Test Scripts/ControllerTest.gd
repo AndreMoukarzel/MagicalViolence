@@ -43,13 +43,13 @@ func _fixed_process(delta):
 	
 	# Controller validity test
 	
-	for joy in connected_joysticks:
-		if not Input.is_joy_known(joy):
-			# Instance Warning
-			var warning_scn = load("res://Scenes/Warnings/ControllerWarning.tscn")
-			var wrn_scn = warning_scn.instance()
-			add_child(wrn_scn)
-			get_tree().set_pause(true)
+#	for joy in connected_joysticks:
+#		if not Input.is_joy_known(joy):
+#			# Instance Warning
+#			var warning_scn = load("res://Scenes/Warnings/ControllerWarning.tscn")
+#			var wrn_scn = warning_scn.instance()
+#			add_child(wrn_scn)
+#			get_tree().set_pause(true)
 			
 	
 	

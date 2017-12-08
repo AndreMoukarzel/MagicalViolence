@@ -12,6 +12,9 @@ var living = -1
 func _ready():
 	get_parent().get_node("Loading Animation").hide()
 
+func _process(delta):
+	check_and_apply_end_condition()
+
 func start(a_p, c_s):
 	var sprite_counter = 0
 
@@ -32,19 +35,22 @@ func start(a_p, c_s):
 		sprite_counter += 1
 		char_inst.connect("death", self, "anotherOneBitesTheDust")
 		add_child(char_inst)
+		
+	set_process(true)
 
 func anotherOneBitesTheDust():
 	living -= 1
-	check_and_apply_end_condition()
 		
 func check_and_apply_end_condition():
 	if living <= 1:
+		set_process(false)
 		get_parent().show()
 		
 		var winner_port
 		for node in get_children():
 			if (node.get_name().substr(0, node.get_name().length() - 1) == "Character"):
 				winner_port = (node.get_name().substr(get_name().length() - 1, node.get_name().length())).to_int()
+				print(winner_port)
 		get_node("RainbowLabel/Label").set_text(str(character_sprites[port_to_sprite[winner_port]], " WINS!"))
 		get_node("RainbowLabel").show()
 
