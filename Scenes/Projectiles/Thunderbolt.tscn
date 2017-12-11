@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://Scripts/Projectiles/Thunderbolt.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Spells/Lightning/magnetBolt1.png" type="Texture" id=2]
@@ -10,7 +10,8 @@
 [ext_resource path="res://Sprites/Spells/Lightning/lightningBolt4.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/Spells/Lightning/lightningBolt5.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/emptySprite.png" type="Texture" id=10]
-[ext_resource path="res://Resources/SFX/wav/thunderbolt.wav" type="Sample" id=11]
+[ext_resource path="res://Resources/SFX/wav/thunder.wav" type="Sample" id=11]
+[ext_resource path="res://Resources/SFX/wav/thunderbolt.wav" type="Sample" id=12]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -108,7 +109,8 @@ tracks/5/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "updat
 
 [sub_resource type="SampleLibrary" id=7]
 
-samples/thunderbolt = { "db":0.0, "pitch":1.0, "sample":ExtResource( 11 ) }
+samples/thunder = { "db":0.0, "pitch":1.0, "sample":ExtResource( 11 ) }
+samples/thunderbolt = { "db":0.0, "pitch":1.0, "sample":ExtResource( 12 ) }
 
 [node name="Thunderbolt" type="KinematicBody2D"]
 
