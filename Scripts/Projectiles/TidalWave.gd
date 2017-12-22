@@ -34,8 +34,9 @@ func _process(delta):
 func _on_Area2D_body_enter( body ):
 	if body.is_in_group( "Player" ) and body != parent:
 		# Target is pushed back
-		body.push_direction = direction
-		body.Slow(5,0.3)
+		body.take_damage(5, self.direction, 0)
+		body.push_direction = direction * 5
+#		body.Slow(5, 0.3)
 
 
 # Resets the push factor when exiting enemy
