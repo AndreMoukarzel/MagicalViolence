@@ -12,10 +12,13 @@ var parent
 var alive = true
 
 
+func _ready():
+	get_node( "SFX" ).play( "fire" )
+
+
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent
-#	add_collision_exception_with( parent )
 	set_pos( parent.get_pos() )
 	set_process( true )
 
@@ -53,8 +56,10 @@ func die():
 	alive = false
 	get_node( "SFX" ).play( "firebolt" )
 	get_node( "AnimationPlayer" ).play( "explosion" )
-	parent.spell_ended() # Alerts player that spell is finished
 	set_process( false )
+	if !weakref(parent).get_ref(): # Parent was freed
+		return
+	parent.spell_ended() # Alerts player that spell is finished
 
 
 func free_scn():

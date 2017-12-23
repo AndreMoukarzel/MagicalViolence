@@ -12,6 +12,10 @@ var parent
 var state = "going"
 
 
+func _ready():
+	get_node( "SFX" ).play( "thunderbolt" )
+
+
 func fire( direction, parent ):
 	self.direction = direction
 	self.parent = parent

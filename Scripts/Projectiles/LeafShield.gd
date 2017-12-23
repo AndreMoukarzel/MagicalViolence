@@ -13,6 +13,11 @@ var angle = 0
 
 var c = Color(1, 0.5, 0.2)
 
+
+func _ready():
+	get_node( "SFX" ).play( "leafshield" )
+
+
 func fire( direction, parent ):
 	self.parent = parent
 	
@@ -102,7 +107,7 @@ func die():
 	if parent: # parent was not freed
 		parent.spell_ended()
 	for child in get_children():
-		if child.get_name() != "AnimationPlayer" and child.get_name() != "Timer":
+		if child.get_name() != "AnimationPlayer" and child.get_name() != "Timer" and child.get_name() != "SFX":
 			child.die()
 	get_node("AnimationPlayer").play("death")
 	yield( get_node("AnimationPlayer"), "finished")

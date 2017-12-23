@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://Scripts/Projectiles/LeafShieldProj.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Spells/Nature/leaf.png" type="Texture" id=2]
+[ext_resource path="res://Resources/SFX/wav/leaf.wav" type="Sample" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -18,34 +19,17 @@ tracks/0/type = "method"
 tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0.2 ),
-"transitions": FloatArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "free_scn"
-} ]
-}
+tracks/0/keys = { "times":FloatArray( 0.2 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"free_scn" } ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:visibility/opacity")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0, 0.2 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ 1.0, 0.0 ]
-}
+tracks/1/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 1.0, 0.0 ] }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:transform/scale")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = {
-"times": FloatArray( 0, 0.2 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.2, 0.2 ), Vector2( 0.3, 0.3 ) ]
-}
+tracks/2/keys = { "times":FloatArray( 0, 0.2 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 0.2, 0.2 ), Vector2( 0.3, 0.3 ) ] }
 
 [sub_resource type="Animation" id=3]
 
@@ -57,32 +41,21 @@ tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:visibility/opacity")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 0,
-"values": [ 1.0 ]
-}
+tracks/0/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ 1.0 ] }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:transform/rot")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ 0.0, 360.0 ]
-}
+tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, 360.0 ] }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Sprite:transform/scale")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = {
-"times": FloatArray( 0 ),
-"transitions": FloatArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0.2, 0.2 ) ]
-}
+tracks/2/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "update":0, "values":[ Vector2( 0.2, 0.2 ) ] }
+
+[sub_resource type="SampleLibrary" id=4]
+
+samples/leaf = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
 
 [node name="LeafShieldProj" type="KinematicBody2D"]
 
@@ -97,9 +70,7 @@ script/script = ExtResource( 1 )
 transform/scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 2 )
 modulate = Color( 0.723389, 1, 0.65625, 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+__meta__ = { "_edit_lock_":true }
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -112,9 +83,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-__meta__ = {
-"_edit_lock_": true
-}
+__meta__ = { "_edit_lock_":true }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
@@ -140,6 +109,17 @@ process_mode = 1
 wait_time = 0.9
 one_shot = true
 autostart = false
+
+[node name="SFX" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
 
 [connection signal="area_enter" from="Area2D" to="." method="_on_Area2D_area_enter"]
 

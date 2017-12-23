@@ -201,7 +201,6 @@ func update_max_charge():
 		current_spell_level += 1
 		
 	var mc = max_charge()
-	print ("Charge = ", charge, "  mc = ", mc)
 	get_node("ChargeBar").set_max(mc)
 
 

@@ -7,6 +7,10 @@ var level = 3
 var parent
 
 
+func _ready():
+	get_node( "SFX" ).play( "thunder" )
+
+
 func fire( direction, parent ):
 	self.parent = parent
 	get_node( "AnimatedSprite" ).set_frame(0)
@@ -22,6 +26,10 @@ func _on_Area2D_body_enter( body ):
 		if body.has_method("take_damage"):
 			body.take_damage(DAMAGE, null)
 			body.Stun(1.5)
+
+
+func die():
+	queue_free()
 
 
 func free_scn():
