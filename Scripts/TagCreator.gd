@@ -4,7 +4,6 @@ extends Control
 var port
 
 var toprow = ["X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"]
-#var toprow_node_order = ["0", "1", "2", "3", "4", "5", "6"]
 
 var leftmost_toprow = 0
 var leftmost_toprow_node = "0"
@@ -52,6 +51,9 @@ func move_left():
 	leftmost_toprow = (leftmost_toprow + 1) % symbol_amount
 	
 	for child in get_node("TopRow").get_children():
+		# Make all white
+		child.set("custom_colors/font_color", Color(255, 255, 255))
+		
 		if (child.get_name() == leftmost_toprow_node):
 			child.set_pos(Vector2(180, 0))
 			
@@ -66,14 +68,21 @@ func move_left():
 	
 	# yield here
 	set_process_input(false)
+	# This is sadly hardcoded, and needs to be changed in case we
+	# change the number of shown symbols at a time.
 	for num in range (0, 7):
 		if (str(num) != rightmost_toprow_node):
 			yield(get_node(str("TopRow/", num , "/Tween")), "tween_complete")
+	
+	for child in get_node("TopRow").get_children():
+		print(child.get_pos().x - 90)
+		if (child.get_pos().x - 90 == 0):
+			pass
+			# This function is kinda bad on Godot, maybe set an animation
+#			child.set("custom_colors/font_color", Color(165, 215, 85))
 	
 	leftmost_toprow_node = next_leftmost
 	set_process_input(true)
 
 func name_adapter(name, port):
 	return str(name, "_", port)
-
-
