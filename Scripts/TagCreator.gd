@@ -4,6 +4,7 @@ extends Control
 var port
 
 var toprow = ["X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"]
+var toprow_node_order = []
 
 var leftmost_toprow = 0
 var leftmost_toprow_node = "0"
@@ -29,10 +30,14 @@ var rightmost_toprow_node = "6"
 # For testing purposes only
 func _ready():
 	set_process_input(true)
+	for child in get_node("TopRow").get_children():
+		toprow_node_order.append(child)
 
 func initialize(port):
 	pass
 	set_process_input(true)
+	for child in get_node("TopRow").get_children():
+		toprow_node_order.append(child)
 	
 func _input(event):
 	
@@ -50,18 +55,17 @@ func move_left():
 	rightmost_toprow = (rightmost_toprow + 1) % symbol_amount
 	leftmost_toprow = (leftmost_toprow + 1) % symbol_amount
 	
-	for child in get_node("TopRow").get_children():
+	for child in toprow_node_order:
 		# Make all white
 		child.set("custom_colors/font_color", Color(255, 255, 255))
 		
-		if (child.get_name() == leftmost_toprow_node):
+		# Is leftmost node
+		if (toprow_node_order.find(child) == 0):
 			child.set_pos(Vector2(180, 0))
 			
 			child.set_text(toprow[rightmost_toprow])
 			rightmost_toprow_node = child.get_name()
 		else:
-			if (child.get_pos().x - 30 == 0):
-				next_leftmost = child.get_name()
 			
 			child.get_node("Tween").interpolate_property(child, "rect/pos", child.get_pos(), child.get_pos() - Vector2(30, 0), 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 			child.get_node("Tween").start()
@@ -70,19 +74,23 @@ func move_left():
 	set_process_input(false)
 	# This is sadly hardcoded, and needs to be changed in case we
 	# change the number of shown symbols at a time.
-	for num in range (0, 7):
-		if (str(num) != rightmost_toprow_node):
-			yield(get_node(str("TopRow/", num , "/Tween")), "tween_complete")
+	for child in toprow_node_order:
+		if (toprow_node_order.find(child) == (toprow_node_order.size() - 1)):
+			yield(child.get_node("Tween"), "tween_complete")
 	
-	for child in get_node("TopRow").get_children():
-		print(child.get_pos().x - 90)
-		if (child.get_pos().x - 90 == 0):
-			pass
-			# This function is kinda bad on Godot, maybe set an animation
-#			child.set("custom_colors/font_color", Color(165, 215, 85))
+	# Mudar a cor do node central. Agora fica facil, só pegar o node que é
+	# floor(toprow_node_order.size() / 2)
 	
-	leftmost_toprow_node = next_leftmost
+	shift_left_toprow()
 	set_process_input(true)
+
+func shift_left_toprow():
+	var leftmost
+	
+	leftmost = toprow_node_order[0]
+	toprow_node_order.pop_front()
+	
+	toprow_node_order.append(leftmost)
 
 func name_adapter(name, port):
 	return str(name, "_", port)

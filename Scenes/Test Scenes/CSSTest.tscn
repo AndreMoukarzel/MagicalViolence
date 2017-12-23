@@ -8,18 +8,18 @@
 [ext_resource path="res://Sprites/Characters/Skeleton/rundown2.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Characters/Skeleton/rundown3.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Characters/Skeleton/rundown4.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown1.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown2.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown3.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown4.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown1.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown2.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown3.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Characters/Sealeton/rundown4.png" type="Texture" id=12]
 [ext_resource path="res://Sprites/Characters/Bloodyskel/rundown1.png" type="Texture" id=13]
 [ext_resource path="res://Sprites/Characters/Bloodyskel/rundown2.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/Characters/Bloodyskel/rundown3.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/Characters/Bloodyskel/rundown4.png" type="Texture" id=16]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundown1.png" type="Texture" id=17]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundown2.png" type="Texture" id=18]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundown3.png" type="Texture" id=19]
-[ext_resource path="res://Sprites/Characters/Sealeton/rundown4.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown1.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown2.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown3.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown4.png" type="Texture" id=20]
 [ext_resource path="res://Sprites/GUI/Loading/Loading1.png" type="Texture" id=21]
 [ext_resource path="res://Sprites/GUI/Loading/Loading2.png" type="Texture" id=22]
 [ext_resource path="res://Sprites/GUI/Loading/Loading3.png" type="Texture" id=23]
@@ -28,7 +28,7 @@
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ { "frames":[ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ], "loop":true, "name":"Skeleton", "speed":5.0 }, { "frames":[ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ], "loop":true, "name":"Broleton", "speed":5.0 }, { "frames":[ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ], "loop":true, "name":"Bloodyskel", "speed":5.0 }, { "frames":[ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ], "loop":true, "name":"Sealeton", "speed":5.0 } ]
+animations = [ { "frames":[ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ], "loop":true, "name":"Skeleton", "speed":5.0 }, { "frames":[ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ], "loop":true, "name":"Sealeton", "speed":5.0 }, { "frames":[ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ], "loop":true, "name":"Bloodyskel", "speed":5.0 }, { "frames":[ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ], "loop":true, "name":"Broleton", "speed":5.0 } ]
 
 [sub_resource type="SpriteFrames" id=2]
 
@@ -126,7 +126,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 3
+frame = 1
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P1/Active"]
@@ -243,7 +243,6 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P2/Active"]
@@ -349,7 +348,6 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P3/Active"]
@@ -455,7 +453,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 1
+frame = 3
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P4/Active"]
@@ -487,12 +485,13 @@ visibility/visible = false
 transform/pos = Vector2( 64, 64 )
 frames = SubResource( 2 )
 animation = "Loading"
-frame = 3
+frame = 1
 playing = true
 
 [node name="BattleTest" parent="." instance=ExtResource( 25 )]
 
 editor/display_folded = true
+visibility/visible = false
 
 
 [editable path="BattleTest"]
