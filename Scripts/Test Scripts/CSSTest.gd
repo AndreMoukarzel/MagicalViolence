@@ -9,6 +9,8 @@ const SELECTING_TAG = 2
 const LOCKED = 3
 
 var port_state = [OPEN, OPEN, OPEN, OPEN]
+# Used to determine which ports are being used by instances of other scenes.
+var ignored_ports = []
 
 var css_character_order = ["Skeleton", "Broleton", "Bloodyskel", "Sealeton"]
 
