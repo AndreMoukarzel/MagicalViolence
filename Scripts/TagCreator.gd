@@ -3,7 +3,7 @@ extends Control
 
 var port
 
-var label = ""
+var tag = ""
 
 var toprow = ["X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"]
 var toprow_node_order = []
@@ -46,6 +46,8 @@ func _input(event):
 		move_left()
 	elif (event.is_action_pressed("ui_right")):
 		move_right()
+	elif (event.is_action_pressed("ui_start")):
+		select_symbol()
 	
 
 func move_left():
@@ -137,6 +139,11 @@ func shift_right_toprow():
 	toprow_node_order.pop_back()
 	
 	toprow_node_order.push_front(rightmost)
+
+func select_symbol():
+	var middle_symbol = toprow[floor(((rightmost_toprow + leftmost_toprow) % toprow.size()) / 2)]
+	tag = str(tag, middle_symbol)
+	get_node("Tag").set_text(tag)
 
 func name_adapter(name, port):
 	return str(name, "_", port)
