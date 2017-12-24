@@ -485,7 +485,6 @@ visibility/visible = false
 transform/pos = Vector2( 64, 64 )
 frames = SubResource( 2 )
 animation = "Loading"
-frame = 1
 playing = true
 
 [node name="BattleTest" parent="." instance=ExtResource( 25 )]
