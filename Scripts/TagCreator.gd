@@ -3,6 +3,13 @@ extends Control
 
 var port
 
+var input_states = preload("res://Scripts/input_states.gd")
+var btn_left
+var btn_right
+var btn_accept
+
+var scroll_counter = 0
+var scroll_speed = 0.3
 var tag = ""
 
 var toprow = ["X", "Y", "Z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W"]
@@ -29,16 +36,33 @@ var rightmost_toprow = 6
 
 # For testing purposes only
 func _ready():
-	set_process_input(true)
+	set_fixed_process(true)
 	for child in get_node("TopRow").get_children():
 		toprow_node_order.append(child)
+	btn_left = input_states.new("ui_left")
+	btn_right = input_states.new("ui_right")
+	btn_accept = input_states.new("ui_start")
 
 func initialize(port):
 	pass
 	set_process_input(true)
 	for child in get_node("TopRow").get_children():
 		toprow_node_order.append(child)
-	
+	# Do it for the rest
+#	btn_left = input_states.new(name_adapter("css_left"))
+
+func _fixed_process(delta):
+	if (btn_left.state() == input_states.JUST_PRESSED or btn_left.state() == input_states.HOLD):
+		move_left()
+	elif (btn_right.state() == input_states.JUST_PRESSED or btn_right.state() == input_states.HOLD):
+		move_right()
+	elif (btn_accept.state() == input_states.JUST_PRESSED):
+		select_symbol()
+	else:
+		scroll_counter = 0
+		scroll_speed = 0.3
+
+
 func _input(event):
 	
 #	if (event.is_action_pressed(name_adapter("css_left", port_found))):
@@ -48,6 +72,9 @@ func _input(event):
 		move_right()
 	elif (event.is_action_pressed("ui_start")):
 		select_symbol()
+	
+	if (event.is_action_released("ui_left") or event.is_action_released("ui_right")):
+		scroll_counter = 0
 	
 
 func move_left():
@@ -65,20 +92,18 @@ func move_left():
 		
 		# Is leftmost node
 		if (toprow_node_order.find(child) == 0):
-			print(child)
 			child.set_pos(Vector2(180, 0))
 			
 			child.set_text(toprow[rightmost_toprow])
 		else:
-			child.get_node("Tween").interpolate_property(child, "rect/pos", child.get_pos(), child.get_pos() - Vector2(30, 0), 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			child.get_node("Tween").interpolate_property(child, "rect/pos", child.get_pos(), child.get_pos() - Vector2(30, 0), scroll_speed, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 			child.get_node("Tween").start()
 	
 	# yield here
-	set_process_input(false)
+	set_fixed_process(false)
 	for child in toprow_node_order:
 		# We choose one that is guaranteed to tween.
 		if (toprow_node_order.find(child) == 1):
-			print (child)
 			yield(child.get_node("Tween"), "tween_complete")
 	
 	# Mudar a cor do node central. Agora fica facil, só pegar o node que é
@@ -86,7 +111,8 @@ func move_left():
 	
 	shift_left_toprow()
 	toprow_node_order[floor(toprow_node_order.size() / 2)].add_color_override("font_color", Color(255, 0, 0))
-	set_process_input(true)
+	adjust_scroll()
+	set_fixed_process(true)
 
 func move_right():
 	var symbol_amount = toprow.size()
@@ -106,15 +132,14 @@ func move_right():
 			
 			child.set_text(toprow[leftmost_toprow])
 		else:
-			child.get_node("Tween").interpolate_property(child, "rect/pos", child.get_pos(), child.get_pos() + Vector2(30, 0), 0.3, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+			child.get_node("Tween").interpolate_property(child, "rect/pos", child.get_pos(), child.get_pos() + Vector2(30, 0), scroll_speed, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 			child.get_node("Tween").start()
 	
 	# yield here
-	set_process_input(false)
+	set_fixed_process(false)
 	for child in toprow_node_order:
 		# We choose one that is guaranteed to tween.
 		if (toprow_node_order.find(child) == 1):
-			print (child)
 			yield(child.get_node("Tween"), "tween_complete")
 	
 	# Mudar a cor do node central. Agora fica facil, só pegar o node que é
@@ -122,7 +147,8 @@ func move_right():
 	
 	shift_right_toprow()
 	toprow_node_order[floor(toprow_node_order.size() / 2)].add_color_override("font_color", Color(255, 0, 0))
-	set_process_input(true)
+	adjust_scroll()
+	set_fixed_process(true)
 
 func shift_left_toprow():
 	var leftmost
@@ -140,8 +166,21 @@ func shift_right_toprow():
 	
 	toprow_node_order.push_front(rightmost)
 
+func adjust_scroll():
+	scroll_counter += 1
+	if (scroll_counter >= 6):
+		scroll_speed = 0.15
+	elif (scroll_counter >= 3):
+		scroll_speed = 0.2
+	else:
+		scroll_speed = 0.3
+
 func select_symbol():
-	var middle_symbol = toprow[floor(((rightmost_toprow + leftmost_toprow) % toprow.size()) / 2)]
+	var middle_symbol = toprow[floor((leftmost_toprow + 3) % toprow.size())]
+	print (middle_symbol)
+	print (rightmost_toprow)
+	print (leftmost_toprow)
+	print(toprow.size())
 	tag = str(tag, middle_symbol)
 	get_node("Tag").set_text(tag)
 
