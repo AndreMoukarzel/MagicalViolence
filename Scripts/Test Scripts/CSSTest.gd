@@ -19,6 +19,12 @@ var css_character_index = [0, 0, 0, 0]
 # The character selected by each port, if any
 var selected_characters = [-1, -1, -1, -1]
 
+# Order of the menu that appears once your character is selected
+var css_options_order = ["Create Tag", "Select Tag", "Lock"]
+
+# Where the "cursor" is, at this moment, for the options menu
+var css_options_index = [0, 0, 0, 0]
+
 # This is made to shorten names, controller_monitor is a global
 var cm = controller_monitor
 
@@ -89,8 +95,18 @@ func _input(event):
 
 	elif (port_state[port_found] == SELECTING_TAG):
 
-		if (event.is_action_pressed(name_adapter("css_accept", port_found))):
-			lock_port(port_found)
+		if (event.is_action_pressed(name_adapter("css_down", port_found))):
+			option_selection_move_down(port_found)
+		elif (event.is_action_pressed(name_adapter("css_up", port_found))):
+			option_selection_move_up(port_found)
+		elif (event.is_action_pressed(name_adapter("css_accept", port_found))):
+			var selected_option = determine_selected_option(port_found)
+			if (selected_option == "Create Tag"):
+				pass
+			elif (selected_option == "Select Tag"):
+				pass
+			elif (selected_option == "Lock"):
+				lock_port(port_found)
 
 		elif (event.is_action_pressed(name_adapter("css_cancel", port_found))):
 			unselect_character(port_found)
@@ -125,7 +141,6 @@ func character_selection_move_right(port_found):
 func select_character(port_found):
 	port_state[port_found] = SELECTING_TAG
 	selected_characters[port_found] = css_character_index[port_found]
-	get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Lock")
 
 	# Avoid possible repeated selection
 	for num in range (0, 4):
@@ -133,6 +148,10 @@ func select_character(port_found):
 			continue
 		if (css_character_index[num] == selected_characters[port_found]):
 			character_selection_move_left(num)
+			
+	# Cosmetic
+	get_node(str("P", port_found + 1, "/Active/Confirmation")).hide()
+	get_node(str("P", port_found + 1, "/Active/Options")).show()
 
 func open_port(event):
 	joysticks_changed(event.device, false)
@@ -140,21 +159,55 @@ func open_port(event):
 #####################################################################################
 #####################################################################################
 
+func option_selection_move_down(port_found):
+	var next_options_index = (css_options_index[port_found] + 1) % css_options_order.size()
+	for child in get_node(str("P", port_found + 1, "/Active/Options")).get_children():
+		if (child.get_name() == css_options_order[css_options_index[port_found]]):
+			child.set("custom_colors/font_color", Color(255, 255, 255))
+		elif (child.get_name() == css_options_order[next_options_index]):
+			child.set("custom_colors/font_color", Color(255, 0, 0))
+	
+	css_options_index[port_found] = next_options_index
+
+func option_selection_move_up(port_found):
+	var next_options_index = (css_options_index[port_found] + css_options_order.size() - 1) % css_options_order.size()
+	for child in get_node(str("P", port_found + 1, "/Active/Options")).get_children():
+		if (child.get_name() == css_options_order[css_options_index[port_found]]):
+			child.set("custom_colors/font_color", Color(255, 255, 255))
+		elif (child.get_name() == css_options_order[next_options_index]):
+			child.set("custom_colors/font_color", Color(255, 0, 0))
+	
+	css_options_index[port_found] = next_options_index
+
+func determine_selected_option(port_found):
+	return css_options_order[css_options_index[port_found]]
+	
+
 func lock_port(port_found):
 	port_state[port_found] = LOCKED
+	
+	# Cosmetic
+	get_node(str("P", port_found + 1, "/Active/Confirmation")).show()
 	get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Ready to Battle!!")
+	get_node(str("P", port_found + 1, "/Active/Options")).hide()
 
 func unselect_character(port_found):
 	port_state[port_found] = SELECTING_CHARACTER
 	selected_characters[port_found] = -1
+	
+	# Cosmetic
 	get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Select Character")
+	get_node(str("P", port_found + 1, "/Active/Confirmation")).show()
+	get_node(str("P", port_found + 1, "/Active/Options")).hide()
 
 #####################################################################################
 #####################################################################################
 
 func unlock_port(port_found):
 	port_state[port_found] = SELECTING_TAG
-	get_node(str("P", port_found + 1, "/Active/Confirmation")).set_text("Lock")
+	# Cosmetic
+	get_node(str("P", port_found + 1, "/Active/Confirmation")).hide()
+	get_node(str("P", port_found + 1, "/Active/Options")).show()
 
 #####################################################################################
 ################################ AUXILIARY FUNCTIONS ################################
