@@ -205,6 +205,7 @@ func unselect_character(port_found):
 
 func unlock_port(port_found):
 	port_state[port_found] = SELECTING_TAG
+	
 	# Cosmetic
 	get_node(str("P", port_found + 1, "/Active/Confirmation")).hide()
 	get_node(str("P", port_found + 1, "/Active/Options")).show()

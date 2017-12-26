@@ -222,7 +222,6 @@ max_lines_visible = -1
 
 [node name="P2" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -333,9 +332,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -256.0
+margin/left = 0.0
 margin/top = 450.0
-margin/right = 0.0
+margin/right = 256.0
 margin/bottom = 600.0
 
 [node name="Create Tag" type="Label" parent="P2/Active/Options"]
@@ -395,7 +394,6 @@ max_lines_visible = -1
 
 [node name="P3" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -506,9 +504,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -512.0
+margin/left = 0.0
 margin/top = 450.0
-margin/right = -256.0
+margin/right = 256.0
 margin/bottom = 600.0
 
 [node name="Create Tag" type="Label" parent="P3/Active/Options"]
@@ -568,7 +566,6 @@ max_lines_visible = -1
 
 [node name="P4" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -678,9 +675,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -768.0
+margin/left = 0.0
 margin/top = 450.0
-margin/right = -512.0
+margin/right = 256.0
 margin/bottom = 600.0
 
 [node name="Create Tag" type="Label" parent="P4/Active/Options"]
@@ -744,7 +741,6 @@ visibility/visible = false
 transform/pos = Vector2( 64, 64 )
 frames = SubResource( 2 )
 animation = "Loading"
-frame = 3
 playing = true
 
 [node name="BattleTest" parent="." instance=ExtResource( 25 )]
