@@ -7,6 +7,7 @@ var input_states = preload("res://Scripts/input_states.gd")
 var btn_left
 var btn_right
 var btn_accept
+var btn_save
 
 var scroll_counter = 0
 var scroll_speed = 0.3
@@ -39,9 +40,14 @@ func _ready():
 	set_fixed_process(true)
 	for child in get_node("TopRow").get_children():
 		toprow_node_order.append(child)
-	btn_left = input_states.new("ui_left")
-	btn_right = input_states.new("ui_right")
-	btn_accept = input_states.new("ui_start")
+	
+	controller_monitor.controller_ports[0] = 1000
+	controller_monitor.map_css_controls(0, "default")
+	
+	btn_left = input_states.new(name_adapter("css_left", 0))
+	btn_right = input_states.new(name_adapter("css_right", 0))
+	btn_accept = input_states.new(name_adapter("css_accept", 0))
+	btn_save = input_states.new(name_adapter("css_start", 0))
 
 func initialize(port):
 	pass
@@ -58,24 +64,11 @@ func _fixed_process(delta):
 		move_right()
 	elif (btn_accept.state() == input_states.JUST_PRESSED):
 		select_symbol()
+	elif (btn_save.state() == input_states.JUST_PRESSED):
+		save_tag()
 	else:
 		scroll_counter = 0
 		scroll_speed = 0.3
-
-
-func _input(event):
-	
-#	if (event.is_action_pressed(name_adapter("css_left", port_found))):
-	if (event.is_action_pressed("ui_left")):
-		move_left()
-	elif (event.is_action_pressed("ui_right")):
-		move_right()
-	elif (event.is_action_pressed("ui_start")):
-		select_symbol()
-	
-	if (event.is_action_released("ui_left") or event.is_action_released("ui_right")):
-		scroll_counter = 0
-	
 
 func move_left():
 	var symbol_amount = toprow.size()
@@ -176,13 +169,39 @@ func adjust_scroll():
 		scroll_speed = 0.3
 
 func select_symbol():
-	var middle_symbol = toprow[floor((leftmost_toprow + 3) % toprow.size())]
-	print (middle_symbol)
-	print (rightmost_toprow)
-	print (leftmost_toprow)
-	print(toprow.size())
+	var number_to_mid = int(ceil(toprow_node_order.size() / 2))
+	var middle_symbol = toprow[floor((leftmost_toprow + number_to_mid) % toprow.size())]
 	tag = str(tag, middle_symbol)
 	get_node("Tag").set_text(tag)
+	
+func save_tag():
+	var dir = Directory.new()
+	var tag_name
+	var file_name
+	var existent_tags = []
+	
+	# Do not allow empty tags
+	if (tag == ""):
+		return
+	
+	# Populate existent tags
+	if (dir.open("user://") == OK):
+		dir.list_dir_begin()
+		file_name = dir.get_next()
+		while (file_name != ""):
+			if (file_name.split("_").size() != 1):
+				tag_name = file_name.split("_")[0]
+				existent_tags.append(tag_name)
+
+			file_name = dir.get_next()
+	else:
+		print ("Directory not found. Something went wrong.")
+		
+	# Check if is not a repeat, create a config file
+	if (existent_tags.find(tag) == -1):
+
+		if (dir.copy("res://DefaultControls/controller.cfg", str("user://", tag, "_tagconfig.cfg")) != OK):
+			print("Error! Default tag initialization failed!")
 
 func name_adapter(name, port):
 	return str(name, "_", port)
