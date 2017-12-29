@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=1]
+[gd_scene load_steps=27 format=1]
 
 [ext_resource path="res://Scripts/Test Scripts/CSSTest.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/prototype32.fnt" type="BitmapFont" id=2]
@@ -24,7 +24,6 @@
 [ext_resource path="res://Sprites/GUI/Loading/Loading2.png" type="Texture" id=22]
 [ext_resource path="res://Sprites/GUI/Loading/Loading3.png" type="Texture" id=23]
 [ext_resource path="res://Sprites/GUI/Loading/Loading4.png" type="Texture" id=24]
-[ext_resource path="res://Scenes/Test Scenes/BattleTest.tscn" type="PackedScene" id=25]
 
 [sub_resource type="SpriteFrames" id=1]
 
@@ -48,7 +47,6 @@ script/script = ExtResource( 1 )
 
 [node name="P1" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -103,7 +101,6 @@ stretch_mode = 0
 
 [node name="Active" type="Container" parent="P1"]
 
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -126,7 +123,6 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P1/Active"]
@@ -222,6 +218,7 @@ max_lines_visible = -1
 
 [node name="P2" type="Container" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -276,6 +273,7 @@ stretch_mode = 0
 
 [node name="Active" type="Container" parent="P2"]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -298,7 +296,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 1
+frame = 3
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P2/Active"]
@@ -326,7 +324,6 @@ max_lines_visible = -1
 
 [node name="Options" type="Container" parent="P2/Active"]
 
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -394,6 +391,7 @@ max_lines_visible = -1
 
 [node name="P3" type="Container" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -448,6 +446,7 @@ stretch_mode = 0
 
 [node name="Active" type="Container" parent="P3"]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -470,7 +469,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 1
+frame = 3
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P3/Active"]
@@ -566,6 +565,7 @@ max_lines_visible = -1
 
 [node name="P4" type="Container" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -620,6 +620,7 @@ stretch_mode = 0
 
 [node name="Active" type="Container" parent="P4"]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -642,6 +643,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
+frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P4/Active"]
@@ -741,12 +743,7 @@ visibility/visible = false
 transform/pos = Vector2( 64, 64 )
 frames = SubResource( 2 )
 animation = "Loading"
+frame = 1
 playing = true
 
-[node name="BattleTest" parent="." instance=ExtResource( 25 )]
 
-editor/display_folded = true
-visibility/visible = false
-
-
-[editable path="BattleTest"]

@@ -8,6 +8,8 @@ const SELECTING_CHARACTER = 1
 const SELECTING_TAG = 2
 const LOCKED = 3
 
+var tc_scn = preload("res://Scenes/TagCreator.tscn")
+
 var port_state = [OPEN, OPEN, OPEN, OPEN]
 # Used to determine which ports are being used by instances of other scenes.
 var ignored_ports = []
@@ -32,7 +34,7 @@ func _ready():
 
 	set_process_input(true)
 	Input.connect("joy_connection_changed", self, "joysticks_changed")
-	get_node("BattleTest").hide()
+#	get_node("BattleTest").hide()
 
 # Determinamos que é mais facil guardar estados em forma de strings, ao
 # inves de multiplos vetores. Assim, podemos checar o comando, depois o
@@ -75,6 +77,9 @@ func _input(event):
 	elif (port_found == -1):
 		print("There is no port assigned to this device.")
 		return
+		
+	if (ignored_ports.find(port_found) != -1):
+		return
 
 	if (port_state[port_found] == SELECTING_CHARACTER):
 
@@ -102,7 +107,7 @@ func _input(event):
 		elif (event.is_action_pressed(name_adapter("css_accept", port_found))):
 			var selected_option = determine_selected_option(port_found)
 			if (selected_option == "Create Tag"):
-				pass
+				hand_over_control_tc(port_found)
 			elif (selected_option == "Select Tag"):
 				pass
 			elif (selected_option == "Lock"):
@@ -181,6 +186,17 @@ func option_selection_move_up(port_found):
 
 func determine_selected_option(port_found):
 	return css_options_order[css_options_index[port_found]]
+	
+func hand_over_control_tc(port_found):
+	ignored_ports.append(port_found)
+	
+	var tc_instance = tc_scn.instance()
+	tc_instance.initialize(port_found, "CSS")
+	tc_instance.set_name("TagCreator")
+	tc_instance.set_pos(Vector2(15, 400))
+	
+	get_node(str("P", port_found + 1, "/Active/Options")).hide()
+	get_node(str("P", port_found + 1, "/Active")).add_child(tc_instance)
 	
 
 func lock_port(port_found):

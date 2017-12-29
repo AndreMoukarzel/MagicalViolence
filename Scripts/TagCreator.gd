@@ -2,11 +2,13 @@
 extends Control
 
 var port
+var parent
 
 var input_states = preload("res://Scripts/input_states.gd")
 var btn_left
 var btn_right
 var btn_accept
+var btn_cancel
 var btn_save
 
 var scroll_counter = 0
@@ -37,27 +39,20 @@ var rightmost_toprow = 3
 # Se decidirmos por mudar a cor da letra selecionada, podemos
 # ter as cores dependendo do port (usar um vetor port_colors).
 
-# For testing purposes only
-func _ready():
+func initialize(port, parent):
 	set_fixed_process(true)
+	
 	for child in get_node("TopRow").get_children():
 		toprow_node_order.append(child)
-
-	controller_monitor.controller_ports[0] = 1000
-	controller_monitor.map_css_controls(0, "default")
-
-	btn_left = input_states.new(name_adapter("css_left", 0))
-	btn_right = input_states.new(name_adapter("css_right", 0))
-	btn_accept = input_states.new(name_adapter("css_accept", 0))
-	btn_save = input_states.new(name_adapter("css_start", 0))
-
-func initialize(port):
-	pass
-	set_process_input(true)
-	for child in get_node("TopRow").get_children():
-		toprow_node_order.append(child)
-	# Do it for the rest
-#	btn_left = input_states.new(name_adapter("css_left"))
+	
+	self.port = port
+	self.parent = parent
+	
+	btn_left = input_states.new(name_adapter("css_left", port))
+	btn_right = input_states.new(name_adapter("css_right", port))
+	btn_accept = input_states.new(name_adapter("css_accept", port))
+	btn_cancel = input_states.new(name_adapter("css_cancel", port))
+	btn_save = input_states.new(name_adapter("css_start", port))
 
 func _fixed_process(delta):
 	if (btn_left.state() == input_states.JUST_PRESSED or btn_left.state() == input_states.HOLD):
@@ -66,6 +61,11 @@ func _fixed_process(delta):
 		move_right()
 	elif (btn_accept.state() == input_states.JUST_PRESSED):
 		select_symbol()
+	elif (btn_cancel.state() == input_states.JUST_PRESSED):
+		if (tag == ""):
+			return_control()
+		else:
+			delete_symbol()
 	elif (btn_save.state() == input_states.JUST_PRESSED):
 		save_tag()
 	else:
@@ -175,6 +175,10 @@ func select_symbol():
 	var middle_symbol = toprow[floor((leftmost_toprow + number_to_mid) % toprow.size())]
 	tag = str(tag, middle_symbol)
 	get_node("Tag").set_text(tag)
+	
+func delete_symbol():
+	tag = tag.substr(0, tag.length() - 1)
+	get_node("Tag").set_text(tag)
 
 func save_tag():
 	var dir = Directory.new()
@@ -204,6 +208,14 @@ func save_tag():
 
 		if (dir.copy("res://DefaultControls/controller.cfg", str("user://", tag, "_tagconfig.cfg")) != OK):
 			print("Error! Default tag initialization failed!")
+
+func return_control():
+	
+	if (parent == "CSS"):
+		# This is bad practice
+		get_parent().get_parent().get_parent().ignored_ports.erase(port)
+		get_parent().get_node("Options").show()
+		queue_free()
 
 func name_adapter(name, port):
 	return str(name, "_", port)
