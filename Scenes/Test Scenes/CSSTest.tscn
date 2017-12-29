@@ -123,6 +123,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
+frame = 3
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P1/Active"]
@@ -150,7 +151,6 @@ max_lines_visible = -1
 
 [node name="Options" type="Container" parent="P1/Active"]
 
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -161,7 +161,7 @@ margin/top = 450.0
 margin/right = 256.0
 margin/bottom = 600.0
 
-[node name="Create Tag" type="Label" parent="P1/Active/Options"]
+[node name="Lock" type="Label" parent="P1/Active/Options"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -173,6 +173,24 @@ margin/right = 256.0
 margin/bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Lock"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Create Tag" type="Label" parent="P1/Active/Options"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 40.0
+margin/right = 256.0
+margin/bottom = 80.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Tag"
 align = 1
 valign = 1
@@ -187,9 +205,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 40.0
+margin/top = 80.0
 margin/right = 256.0
-margin/bottom = 80.0
+margin/bottom = 120.0
 custom_fonts/font = ExtResource( 2 )
 text = "Select Tag"
 align = 1
@@ -198,27 +216,8 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Lock" type="Label" parent="P1/Active/Options"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 80.0
-margin/right = 256.0
-margin/bottom = 120.0
-custom_fonts/font = ExtResource( 2 )
-text = "Lock"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
 [node name="P2" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -273,7 +272,6 @@ stretch_mode = 0
 
 [node name="Active" type="Container" parent="P2"]
 
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -296,7 +294,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 3
+frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P2/Active"]
@@ -334,7 +332,7 @@ margin/top = 450.0
 margin/right = 256.0
 margin/bottom = 600.0
 
-[node name="Create Tag" type="Label" parent="P2/Active/Options"]
+[node name="Lock" type="Label" parent="P2/Active/Options"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -346,6 +344,24 @@ margin/right = 256.0
 margin/bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Lock"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Create Tag" type="Label" parent="P2/Active/Options"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 40.0
+margin/right = 256.0
+margin/bottom = 80.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Tag"
 align = 1
 valign = 1
@@ -360,9 +376,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 40.0
+margin/top = 80.0
 margin/right = 256.0
-margin/bottom = 80.0
+margin/bottom = 120.0
 custom_fonts/font = ExtResource( 2 )
 text = "Select Tag"
 align = 1
@@ -371,27 +387,8 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Lock" type="Label" parent="P2/Active/Options"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 80.0
-margin/right = 256.0
-margin/bottom = 120.0
-custom_fonts/font = ExtResource( 2 )
-text = "Lock"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
 [node name="P3" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -446,7 +443,6 @@ stretch_mode = 0
 
 [node name="Active" type="Container" parent="P3"]
 
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -469,7 +465,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 3
+frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P3/Active"]
@@ -497,7 +493,6 @@ max_lines_visible = -1
 
 [node name="Options" type="Container" parent="P3/Active"]
 
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -508,7 +503,7 @@ margin/top = 450.0
 margin/right = 256.0
 margin/bottom = 600.0
 
-[node name="Create Tag" type="Label" parent="P3/Active/Options"]
+[node name="Lock" type="Label" parent="P3/Active/Options"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -520,6 +515,24 @@ margin/right = 256.0
 margin/bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Lock"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Create Tag" type="Label" parent="P3/Active/Options"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 40.0
+margin/right = 256.0
+margin/bottom = 80.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Tag"
 align = 1
 valign = 1
@@ -534,9 +547,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 40.0
+margin/top = 80.0
 margin/right = 256.0
-margin/bottom = 80.0
+margin/bottom = 120.0
 custom_fonts/font = ExtResource( 2 )
 text = "Select Tag"
 align = 1
@@ -545,27 +558,8 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Lock" type="Label" parent="P3/Active/Options"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 80.0
-margin/right = 256.0
-margin/bottom = 120.0
-custom_fonts/font = ExtResource( 2 )
-text = "Lock"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
 [node name="P4" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -620,7 +614,6 @@ stretch_mode = 0
 
 [node name="Active" type="Container" parent="P4"]
 
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -643,7 +636,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 2
+frame = 1
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P4/Active"]
@@ -671,7 +664,6 @@ max_lines_visible = -1
 
 [node name="Options" type="Container" parent="P4/Active"]
 
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -682,7 +674,7 @@ margin/top = 450.0
 margin/right = 256.0
 margin/bottom = 600.0
 
-[node name="Create Tag" type="Label" parent="P4/Active/Options"]
+[node name="Lock" type="Label" parent="P4/Active/Options"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -694,6 +686,24 @@ margin/right = 256.0
 margin/bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Lock"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Create Tag" type="Label" parent="P4/Active/Options"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 40.0
+margin/right = 256.0
+margin/bottom = 80.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Tag"
 align = 1
 valign = 1
@@ -708,29 +718,11 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
-margin/top = 40.0
-margin/right = 256.0
-margin/bottom = 80.0
-custom_fonts/font = ExtResource( 2 )
-text = "Select Tag"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Lock" type="Label" parent="P4/Active/Options"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
 margin/top = 80.0
 margin/right = 256.0
 margin/bottom = 120.0
 custom_fonts/font = ExtResource( 2 )
-text = "Lock"
+text = "Select Tag"
 align = 1
 valign = 1
 percent_visible = 1.0

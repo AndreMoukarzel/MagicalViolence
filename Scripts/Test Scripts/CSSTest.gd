@@ -22,7 +22,7 @@ var css_character_index = [0, 0, 0, 0]
 var selected_characters = [-1, -1, -1, -1]
 
 # Order of the menu that appears once your character is selected
-var css_options_order = ["Create Tag", "Select Tag", "Lock"]
+var css_options_order = ["Lock", "Create Tag", "Select Tag"]
 
 # Where the "cursor" is, at this moment, for the options menu
 var css_options_index = [0, 0, 0, 0]
