@@ -47,6 +47,7 @@ script/script = ExtResource( 1 )
 
 [node name="P1" type="Container" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -123,7 +124,6 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 3
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P1/Active"]
@@ -218,6 +218,7 @@ max_lines_visible = -1
 
 [node name="P2" type="Container" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -294,7 +295,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 2
+frame = 3
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P2/Active"]
@@ -389,6 +390,7 @@ max_lines_visible = -1
 
 [node name="P3" type="Container" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -465,7 +467,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 2
+frame = 3
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P3/Active"]
@@ -560,6 +562,7 @@ max_lines_visible = -1
 
 [node name="P4" type="Container" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -636,7 +639,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 1
+frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P4/Active"]

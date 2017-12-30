@@ -5,11 +5,16 @@ var port
 var parent
 
 var input_states = preload("res://Scripts/input_states.gd")
+var btn_up
 var btn_left
+var btn_down
 var btn_right
 var btn_accept
 var btn_cancel
 var btn_save
+
+var menu_order = ["TopRow", "Confirm"]
+var menu_index = 0
 
 var scroll_counter = 0
 var scroll_speed = 0.3
@@ -48,30 +53,99 @@ func initialize(port, parent):
 	self.port = port
 	self.parent = parent
 	
+	btn_up = input_states.new(name_adapter("css_up", port))
 	btn_left = input_states.new(name_adapter("css_left", port))
+	btn_down = input_states.new(name_adapter("css_down", port))
 	btn_right = input_states.new(name_adapter("css_right", port))
 	btn_accept = input_states.new(name_adapter("css_accept", port))
 	btn_cancel = input_states.new(name_adapter("css_cancel", port))
 	btn_save = input_states.new(name_adapter("css_start", port))
 
 func _fixed_process(delta):
-	if (btn_left.state() == input_states.JUST_PRESSED or btn_left.state() == input_states.HOLD):
-		move_left()
-	elif (btn_right.state() == input_states.JUST_PRESSED or btn_right.state() == input_states.HOLD):
-		move_right()
-	elif (btn_accept.state() == input_states.JUST_PRESSED):
-		select_symbol()
-	elif (btn_cancel.state() == input_states.JUST_PRESSED):
-		if (tag == ""):
-			return_control()
+	
+	if (menu_order[menu_index] == "TopRow"):
+		
+		if (btn_up.state() == input_states.JUST_PRESSED):
+			move_up()
+		elif (btn_left.state() == input_states.JUST_PRESSED or btn_left.state() == input_states.HOLD):
+			move_left()
+		elif (btn_down.state() == input_states.JUST_PRESSED):
+			move_down()
+		elif (btn_right.state() == input_states.JUST_PRESSED or btn_right.state() == input_states.HOLD):
+			move_right()
+	
+		elif (btn_accept.state() == input_states.JUST_PRESSED):
+			select_symbol()
+		elif (btn_cancel.state() == input_states.JUST_PRESSED):
+			if (tag == ""):
+				return_control()
+			else:
+				delete_symbol()
+		elif (btn_save.state() == input_states.JUST_PRESSED):
+			save_tag()
+		
 		else:
-			delete_symbol()
-	elif (btn_save.state() == input_states.JUST_PRESSED):
-		save_tag()
-	else:
-		scroll_counter = 0
-		scroll_speed = 0.3
+			scroll_counter = 0
+			scroll_speed = 0.3
+	
+	elif (menu_order[menu_index] == "Confirm"):
+		if (btn_up.state() == input_states.JUST_PRESSED):
+			move_up()
+		elif (btn_down.state() == input_states.JUST_PRESSED):
+			move_down()
+	
+		elif (btn_accept.state() == input_states.JUST_PRESSED):
+			save_tag()
+		elif (btn_cancel.state() == input_states.JUST_PRESSED):
+			if (tag == ""):
+				return_control()
+			else:
+				delete_symbol()
+		elif (btn_save.state() == input_states.JUST_PRESSED):
+			save_tag()
+		
+		else:
+			scroll_counter = 0
+			scroll_speed = 0.3
 
+func move_up():
+	var original = menu_order[menu_index]
+	var next_index = (menu_index + menu_order.size() - 1) % menu_order.size()
+	var next = menu_order[next_index]
+
+	# Setting visual indication of unselecting original
+	if (original == "TopRow"):
+		toprow_node_order[floor(toprow_node_order.size() / 2)].add_color_override("font_color", Color(255, 255, 255))
+	elif (original == "Confirm"):
+		get_node("Confirm").add_color_override("font_color", Color(255, 255, 255))
+		
+	# Setting visual indication of selecting next
+	if (next == "TopRow"):
+		toprow_node_order[floor(toprow_node_order.size() / 2)].add_color_override("font_color", Color(255, 0, 0))
+	elif (next == "Confirm"):
+		get_node("Confirm").add_color_override("font_color", Color(255, 0, 0))
+	
+	menu_index = next_index
+	
+func move_down():
+	var original = menu_order[menu_index]
+	var next_index = (menu_index + 1) % menu_order.size()
+	var next = menu_order[next_index]
+
+	# Setting visual indication of unselecting original
+	if (original == "TopRow"):
+		toprow_node_order[floor(toprow_node_order.size() / 2)].add_color_override("font_color", Color(255, 255, 255))
+	elif (original == "Confirm"):
+		get_node("Confirm").add_color_override("font_color", Color(255, 255, 255))
+		
+	# Setting visual indication of selecting next
+	if (next == "TopRow"):
+		toprow_node_order[floor(toprow_node_order.size() / 2)].add_color_override("font_color", Color(255, 0, 0))
+	elif (next == "Confirm"):
+		get_node("Confirm").add_color_override("font_color", Color(255, 0, 0))
+	
+	menu_index = next_index
+	
 func move_left():
 	var symbol_amount = toprow.size()
 	var next_leftmost
@@ -208,6 +282,8 @@ func save_tag():
 
 		if (dir.copy("res://DefaultControls/controller.cfg", str("user://", tag, "_tagconfig.cfg")) != OK):
 			print("Error! Default tag initialization failed!")
+	
+	return_control()
 
 func return_control():
 	
