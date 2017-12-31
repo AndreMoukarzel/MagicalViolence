@@ -213,14 +213,7 @@ playback/speed = 1.0
 
 process_mode = 1
 wait_time = 1.0
-one_shot = false
+one_shot = true
 autostart = false
-
-[node name="Tween" type="Tween" parent="Timer"]
-
-playback/process_mode = 1
-playback/active = false
-playback/repeat = false
-playback/speed = 1.0
 
 

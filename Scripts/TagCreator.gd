@@ -148,7 +148,6 @@ func move_down():
 	
 func move_left():
 	var symbol_amount = toprow.size()
-	var next_leftmost
 
 	# Done here se we can set the correct text later
 #	rightmost_toprow = (leftmost_toprow + symbol_amount - 1) % symbol_amount
@@ -185,7 +184,6 @@ func move_left():
 
 func move_right():
 	var symbol_amount = toprow.size()
-	var next_leftmost
 
 	# Done here se we can set the correct text later
 	rightmost_toprow = (rightmost_toprow + symbol_amount - 1) % symbol_amount

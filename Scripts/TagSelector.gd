@@ -18,8 +18,11 @@ var tags = []
 var tags_node_order = []
 
 # Used lowermost for variable consistency, lowest is the appropriate word here.
+# Refers to uppermost tag, not node
 var uppermost = 0
-var lowermost = 7
+var lowermost = 6
+
+# Refers to selected node
 var selected = 1
 
 # max_scroll_up is always 1
@@ -93,14 +96,13 @@ func _fixed_process(delta):
 		
 func move_up():
 	var tag_amount = tags.size()
-	var next_uppermost
 	
 	# Check if last applicable tag
 	if (selected == tags_node_order.size() - 2):
 		return
 	
 	# Check if scroll here
-	if (tags.find(tags_node_order[selected].get_text()) > 2 and tags.find(tags_node_order[selected].get_text()) < tag_amount - 5):
+	if (tags.find(tags_node_order[selected].get_text()) > 2 and tags.find(tags_node_order[selected].get_text()) < tag_amount - 4):
 		uppermost += 1
 		lowermost += 1
 		
@@ -109,7 +111,7 @@ func move_up():
 			# Make all white
 			child.set("custom_colors/font_color", Color(255, 255, 255))
 	
-			# Is selected node
+			# Is uppermost node
 			if (tags_node_order.find(child) == 0):
 				child.set_pos(Vector2(0, 240))
 	
@@ -129,20 +131,29 @@ func move_up():
 	# floor(toprow_node_order.size() / 2)
 
 		shift_left_tag_nodes()
+		tags_node_order[selected].add_color_override("font_color", Color(255, 0, 0))
+		
 		adjust_scroll()
 		set_fixed_process(true)
 		
 	else:
 		# Use a timer to limit this movement
+		var timer = get_node("Timer")
+		
+		set_fixed_process(false)
+		timer.set_wait_time(scroll_speed / 2)
+		timer.start()
 		
 		for child in tags_node_order:
 			# Make all white
 			child.set("custom_colors/font_color", Color(255, 255, 255))
-		
 		selected += 1
-	
-	
-	tags_node_order[selected].add_color_override("font_color", Color(255, 0, 0))
+		tags_node_order[selected].add_color_override("font_color", Color(255, 0, 0))
+		
+		
+		yield(timer, "timeout")
+		adjust_scroll()
+		set_fixed_process(true)
 	
 func shift_left_tag_nodes():
 	var leftmost
@@ -151,6 +162,76 @@ func shift_left_tag_nodes():
 	tags_node_order.pop_front()
 
 	tags_node_order.append(leftmost)
+	
+func move_down():
+	var tag_amount = tags.size()
+	var next_lowermost
+	
+	# Check if first applicable tag
+	if (selected == 1):
+		return
+	
+	# Check if scroll here
+	if (tags.find(tags_node_order[selected].get_text()) > 3 and tags.find(tags_node_order[selected].get_text()) < tag_amount - 3):
+		uppermost -= 1
+		lowermost -= 1
+		
+		
+		for child in tags_node_order:
+			# Make all white
+			child.set("custom_colors/font_color", Color(255, 255, 255))
+	
+			# Is lowermost node
+			if (tags_node_order.find(child) == tags_node_order.size() - 1):
+				child.set_pos(Vector2(0, 0))
+	
+				child.set_text(tags[uppermost])
+			else:
+				child.get_node("Tween").interpolate_property(child, "rect/pos", child.get_pos(), child.get_pos() + Vector2(0, 40), scroll_speed, Tween.TRANS_LINEAR, Tween.EASE_OUT)
+				child.get_node("Tween").start()
+	
+		# yield here
+		set_fixed_process(false)
+		for child in tags_node_order:
+			# We choose one that is guaranteed to tween.
+			if (tags_node_order.find(child) == 1):
+				yield(child.get_node("Tween"), "tween_complete")
+
+	# Mudar a cor do node central. Agora fica facil, só pegar o node que é
+	# floor(toprow_node_order.size() / 2)
+
+		shift_right_tag_nodes()
+		tags_node_order[selected].add_color_override("font_color", Color(255, 0, 0))
+		
+		adjust_scroll()
+		set_fixed_process(true)
+		
+	else:
+		# Use a timer to limit this movement
+		var timer = get_node("Timer")
+		
+		set_fixed_process(false)
+		timer.set_wait_time(scroll_speed / 2)
+		timer.start()
+		
+		for child in tags_node_order:
+			# Make all white
+			child.set("custom_colors/font_color", Color(255, 255, 255))
+		selected -= 1
+		tags_node_order[selected].add_color_override("font_color", Color(255, 0, 0))
+		
+		
+		yield(timer, "timeout")
+		adjust_scroll()
+		set_fixed_process(true)
+	
+func shift_right_tag_nodes():
+	var rightmost
+
+	rightmost = tags_node_order[tags_node_order.size() - 1]
+	tags_node_order.pop_back()
+
+	tags_node_order.push_front(rightmost)
 
 func adjust_scroll():
 	scroll_counter += 1
