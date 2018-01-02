@@ -9,6 +9,7 @@ const SELECTING_TAG = 2
 const LOCKED = 3
 
 var tc_scn = preload("res://Scenes/TagCreator.tscn")
+var ts_scn = preload("res://Scenes/TagSelector.tscn")
 
 var port_state = [OPEN, OPEN, OPEN, OPEN]
 # Used to determine which ports are being used by instances of other scenes.
@@ -20,6 +21,9 @@ var css_character_order = ["Skeleton", "Broleton", "Bloodyskel", "Sealeton"]
 var css_character_index = [0, 0, 0, 0]
 # The character selected by each port, if any
 var selected_characters = [-1, -1, -1, -1]
+
+# The tag selected by each port.
+var selected_tags = ["Player 1", "Player 2", "Player 3", "Player 4"]
 
 # Order of the menu that appears once your character is selected
 var css_options_order = ["Lock", "Create Tag", "Select Tag"]
@@ -109,7 +113,7 @@ func _input(event):
 			if (selected_option == "Create Tag"):
 				hand_over_control_tc(port_found)
 			elif (selected_option == "Select Tag"):
-				pass
+				hand_over_control_ts(port_found)
 			elif (selected_option == "Lock"):
 				lock_port(port_found)
 
@@ -197,6 +201,17 @@ func hand_over_control_tc(port_found):
 	
 	get_node(str("P", port_found + 1, "/Active/Options")).hide()
 	get_node(str("P", port_found + 1, "/Active")).add_child(tc_instance)
+	
+func hand_over_control_ts(port_found):
+	ignored_ports.append(port_found)
+	
+	var ts_instance = ts_scn.instance()
+	ts_instance.initialize(port_found, "CSS")
+	ts_instance.set_name("TagSelector")
+	ts_instance.set_pos(Vector2(15, 400))
+	
+	get_node(str("P", port_found + 1, "/Active/Options")).hide()
+	get_node(str("P", port_found + 1, "/Active")).add_child(ts_instance)
 	
 
 func lock_port(port_found):
@@ -342,6 +357,10 @@ func joysticks_changed(index, connected):
 			# Animate
 			get_node(str("P", port_found + 1, "/Active")).hide()
 			get_node(str("P", port_found + 1, "/Inactive")).show()
+			
+			# Remove tag from port
+			selected_tags[port_found] = str("Player ", port_found + 1)
+			get_node(str("P", port_found + 1, "/Active/Tag")).set_text(str("Player ", port_found + 1))
 
 			# Remove CSS port mappings from index
 

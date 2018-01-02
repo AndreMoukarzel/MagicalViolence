@@ -45,7 +45,6 @@ var rightmost_toprow = 3
 # ter as cores dependendo do port (usar um vetor port_colors).
 
 func initialize(port, parent):
-	set_fixed_process(true)
 	
 	for child in get_node("TopRow").get_children():
 		toprow_node_order.append(child)
@@ -60,6 +59,12 @@ func initialize(port, parent):
 	btn_accept = input_states.new(name_adapter("css_accept", port))
 	btn_cancel = input_states.new(name_adapter("css_cancel", port))
 	btn_save = input_states.new(name_adapter("css_start", port))
+	
+	# This is a badly-made fix, so the input for entering this scene doesn't double as selecting a symbol
+	get_node("InitTimer").start()
+	yield(get_node("InitTimer"), "timeout")
+	
+	set_fixed_process(true)
 
 func _fixed_process(delta):
 	

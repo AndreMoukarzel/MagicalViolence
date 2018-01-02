@@ -263,4 +263,11 @@ margin/top = 120.0
 margin/right = 210.0
 margin/bottom = 180.0
 
+[node name="InitTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = true
+autostart = false
+
 

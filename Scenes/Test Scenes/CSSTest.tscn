@@ -72,7 +72,6 @@ script/script = ExtResource( 1 )
 
 [node name="P1" type="Container" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -137,6 +136,25 @@ margin/top = 0.0
 margin/right = 256.0
 margin/bottom = 600.0
 
+[node name="Tag" type="Label" parent="P1/Active"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 200.0
+margin/right = 258.0
+margin/bottom = 234.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Player 1"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="LeftArrow" type="Sprite" parent="P1/Active"]
 
 transform/pos = Vector2( 58, 300 )
@@ -149,7 +167,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 3
+frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P1/Active"]
@@ -177,6 +195,7 @@ max_lines_visible = -1
 
 [node name="Options" type="Container" parent="P1/Active"]
 
+editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -309,6 +328,25 @@ margin/top = 0.0
 margin/right = 256.0
 margin/bottom = 600.0
 
+[node name="Tag" type="Label" parent="P2/Active"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 200.0
+margin/right = 258.0
+margin/bottom = 234.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.101563, 0, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Player 2"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="LeftArrow" type="Sprite" parent="P2/Active"]
 
 transform/pos = Vector2( 58, 300 )
@@ -321,7 +359,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 2
+frame = 1
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P2/Active"]
@@ -481,6 +519,25 @@ margin/top = 0.0
 margin/right = 256.0
 margin/bottom = 600.0
 
+[node name="Tag" type="Label" parent="P3/Active"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 200.0
+margin/right = 258.0
+margin/bottom = 234.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.941406, 0.772247, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Player 3"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="LeftArrow" type="Sprite" parent="P3/Active"]
 
 transform/pos = Vector2( 58, 300 )
@@ -493,7 +550,7 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 2
+frame = 1
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P3/Active"]
@@ -653,6 +710,25 @@ margin/top = 0.0
 margin/right = 256.0
 margin/bottom = 600.0
 
+[node name="Tag" type="Label" parent="P4/Active"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 200.0
+margin/right = 258.0
+margin/bottom = 234.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.17688, 0.808594, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Player 4"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="LeftArrow" type="Sprite" parent="P4/Active"]
 
 transform/pos = Vector2( 58, 300 )
@@ -665,7 +741,6 @@ transform/pos = Vector2( 128, 300 )
 transform/scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 1
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P4/Active"]
@@ -764,7 +839,7 @@ visibility/visible = false
 transform/pos = Vector2( 64, 64 )
 frames = SubResource( 2 )
 animation = "Loading"
-frame = 1
+frame = 2
 playing = true
 
 
