@@ -80,10 +80,11 @@ func _ready():
 	set_fixed_process(true)
 	
 func _fixed_process(delta):
-	if (btn_up.state() == input_states.JUST_PRESSED or btn_up.state() == input_states.HOLD):
-		move_up()
-	elif (btn_down.state() == input_states.JUST_PRESSED or btn_down.state() == input_states.HOLD):
+	
+	if (btn_down.state() == input_states.JUST_PRESSED or btn_down.state() == input_states.HOLD):
 		move_down()
+	elif (btn_up.state() == input_states.JUST_PRESSED or btn_up.state() == input_states.HOLD):
+		move_up()
 	
 	elif (btn_accept.state() == input_states.JUST_PRESSED):
 		select_symbol()
@@ -94,11 +95,11 @@ func _fixed_process(delta):
 		scroll_counter = 0
 		scroll_speed = 0.3
 		
-func move_up():
+func move_down():
 	var tag_amount = tags.size()
 	
 	# Check if last applicable tag
-	if (selected == tags_node_order.size() - 2):
+	if (selected == tags_node_order.size() - 2 or tags_node_order[(selected + 2)].get_text() == ""):
 		return
 	
 	# Check if scroll here
@@ -163,7 +164,7 @@ func shift_left_tag_nodes():
 
 	tags_node_order.append(leftmost)
 	
-func move_down():
+func move_up():
 	var tag_amount = tags.size()
 	var next_lowermost
 	

@@ -146,7 +146,7 @@ func move_down():
 	
 	menu_index = next_index
 	
-func move_left():
+func move_right():
 	var symbol_amount = toprow.size()
 
 	# Done here se we can set the correct text later
@@ -182,7 +182,7 @@ func move_left():
 	adjust_scroll()
 	set_fixed_process(true)
 
-func move_right():
+func move_left():
 	var symbol_amount = toprow.size()
 
 	# Done here se we can set the correct text later
