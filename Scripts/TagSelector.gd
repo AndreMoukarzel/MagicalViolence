@@ -69,6 +69,8 @@ func initialize(port, parent):
 		
 		node_counter += 1
 	
+	
+	# Probably use ui button scheme if parent is CustomizeController
 	btn_up = input_states.new(name_adapter("css_up", port))
 	btn_down = input_states.new(name_adapter("css_down", port))
 	btn_accept = input_states.new(name_adapter("css_accept", port))
@@ -79,55 +81,6 @@ func initialize(port, parent):
 	yield(get_node("InitTimer"), "timeout")
 	
 	set_fixed_process(true)
-	
-#func _ready():
-#	
-#	# For testing purposes
-#	controller_monitor.controller_ports[0] = 1000
-#	controller_monitor.map_css_controls(0, "default")
-#	
-#	# Carregar as tags existentes explorando o diretorio do user
-#	var dir = Directory.new()
-#	var file_name
-#	var tag_name
-#
-#	if (dir.open("user://") == OK):
-#		dir.list_dir_begin()
-#		file_name = dir.get_next()
-#		while (file_name != ""):
-#			if (file_name.split("_").size() != 1):
-#				tag_name = file_name.split("_")[0]
-#				tags.append(tag_name)
-#
-#			file_name = dir.get_next()
-#	else:
-#		print ("Directory not found. Something went wrong.")
-#	tags.sort()
-#	
-#	# Added here, to be after sorting
-#	tags.push_front(str("Player ", port + 1))
-#	tags.push_front("Hidden")
-#	tags.push_back("Hidden")
-#	
-#	max_scroll_down = tags.size() - 2
-#	
-#	var node_counter = 0
-#	for child in get_node("TagContainer").get_children():
-#		tags_node_order.append(child)
-#		
-#		if (node_counter < tags.size()):
-#			child.set_text(tags[node_counter])
-#		else:
-#			child.set_text("")
-#		
-#		node_counter += 1
-#	
-#	btn_up = input_states.new(name_adapter("css_up", port))
-#	btn_down = input_states.new(name_adapter("css_down", port))
-#	btn_accept = input_states.new(name_adapter("css_accept", port))
-#	btn_cancel = input_states.new(name_adapter("css_cancel", port))
-#	
-#	set_fixed_process(true)
 	
 func _fixed_process(delta):
 	

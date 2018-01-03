@@ -287,7 +287,8 @@ func assign_port(event):
 			# Animate
 			get_node(str("P", available_port + 1, "/Inactive")).hide()
 			get_node(str("P", available_port + 1, "/Active")).show()
-
+			
+			# Change this later
 			cm.map_css_controls(available_port, "default")
 
 
@@ -312,7 +313,10 @@ func test_instance_battle():
 
 	# Map controls to given port (not accounting for tags, yet)
 	for port in range (0, 4):
-		cm.map_game_controls(port, "default")
+		if (selected_tags[port] == str("Player ", port + 1)):
+			cm.map_game_controls(port, "default")
+		else:
+			cm.map_game_controls(port, selected_tags[port])
 
 	# Instance battle scene
 	# Have to instance the characters in the battle scene itself
