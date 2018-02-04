@@ -82,7 +82,7 @@ func _ready():
 	btn_magic = input_states.new(name_adapter("char_magic"))
 	
 	set_process(true)
-	set_fixed_process(true)
+	set_physics_process(true)
 
 	magic_element = "fire"
 	get_node("ChargeBar").set_max(max_charge())
@@ -113,13 +113,7 @@ func _process(delta):
 	
 		# should take external forces into consideration
 		if !is_rooted:
-			var mot = move( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
-			
-			if (is_colliding()):
-				var n = get_collision_normal()
-				mot = n.slide(mot)
-				move(mot)
-			
+			var mot = move_and_slide( direction.normalized()*RUN_SPEED*slow_multiplier + push_direction )
 	
 		################################################
 		if !holding_spell:
@@ -141,7 +135,7 @@ func _process(delta):
 		update_anim( new_anim )
 
 
-func _fixed_process(delta):
+func _physics_process(delta):
 	if !is_stunned:
 		if btn_magic.state() == input_states.HOLD:
 			if active_proj == null:

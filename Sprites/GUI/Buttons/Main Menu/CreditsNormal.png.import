@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/CreditsNormal.png-a213e393faf5e851dd148364fa51c762.stex"
+
+[deps]
+
+source_file="res://Sprites/GUI/Buttons/Main Menu/CreditsNormal.png"
+source_md5="5736da898a2c4c81b4d7f9f30f10cf8e"
+
+dest_files=[ "res://.import/CreditsNormal.png-a213e393faf5e851dd148364fa51c762.stex" ]
+dest_md5="12ae06c69c9134dc4ed756586ad241bf"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

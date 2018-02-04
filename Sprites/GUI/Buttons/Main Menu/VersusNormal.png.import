@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/VersusNormal.png-e3fdfc2d59f762f7e55e8f22d08f2013.stex"
+
+[deps]
+
+source_file="res://Sprites/GUI/Buttons/Main Menu/VersusNormal.png"
+source_md5="018fd8c02be30631058943122b28cee8"
+
+dest_files=[ "res://.import/VersusNormal.png-e3fdfc2d59f762f7e55e8f22d08f2013.stex" ]
+dest_md5="39473742b35f46bf3e273da88abd493f"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

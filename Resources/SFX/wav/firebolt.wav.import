@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/firebolt.wav-13f67d2504e53f1597bbb31edfff57ec.sample"
+
+[deps]
+
+source_file="res://Resources/SFX/wav/firebolt.wav"
+source_md5="9aedf53e602883b4340a521644ab1220"
+
+dest_files=[ "res://.import/firebolt.wav-13f67d2504e53f1597bbb31edfff57ec.sample" ]
+dest_md5="7c0f34c39ded64da4baa813461283e46"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

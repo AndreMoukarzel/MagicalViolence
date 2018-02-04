@@ -1,24 +1,43 @@
-[gd_resource type="Animation" format=1]
+[gd_resource type="Animation" load_steps=1 format=2]
+
 
 [resource]
 
-resource/name = "HoveringDown"
+resource_name = "HoveringDown"
 length = 0.5
 loop = false
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("Hover:transform/pos")
+tracks/0/path = NodePath("Hover:position")
 tracks/0/interp = 2
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.3, 0.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( -50, -70 ), Vector2( 0, 0 ) ] }
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -50, -70 ), Vector2( 0, 0 ) ]
+}
 tracks/1/type = "method"
 tracks/1/path = NodePath("..")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 0.3 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"adjust_z_hovering" } ] }
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "adjust_z_hovering"
+} ]
+}
 tracks/2/type = "method"
 tracks/2/path = NodePath("..")
 tracks/2/interp = 1
 tracks/2/imported = false
-tracks/2/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"adjust_z_leaving_down" } ] }
-
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "adjust_z_leaving_down"
+} ]
+}

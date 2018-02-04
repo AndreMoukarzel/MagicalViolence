@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/opened-scroll.png-daa5ff0b79bcba464fa10dda85a20ae3.stex"
+
+[deps]
+
+source_file="res://Sprites/GUI/Buttons/Tag Selector/opened-scroll.png"
+source_md5="0ce268deb6956048279f52acf80074cb"
+
+dest_files=[ "res://.import/opened-scroll.png-daa5ff0b79bcba464fa10dda85a20ae3.stex" ]
+dest_md5="90182ec8f148eea046cd6e0ec48bdfb6"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

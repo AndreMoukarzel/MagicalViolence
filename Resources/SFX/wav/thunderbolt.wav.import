@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/thunderbolt.wav-f6aeb735f6380b20c6829cc6055ef553.sample"
+
+[deps]
+
+source_file="res://Resources/SFX/wav/thunderbolt.wav"
+source_md5="bd64724225536a5dbca2722c9c01a377"
+
+dest_files=[ "res://.import/thunderbolt.wav-f6aeb735f6380b20c6829cc6055ef553.sample" ]
+dest_md5="946b94db26bb6f9bcae9217e7226253b"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

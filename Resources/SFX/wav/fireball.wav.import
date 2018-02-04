@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fireball.wav-cded05274663dbd0b44304151561e7af.sample"
+
+[deps]
+
+source_file="res://Resources/SFX/wav/fireball.wav"
+source_md5="f18c85b10d9cc34819fe3bd1578869a5"
+
+dest_files=[ "res://.import/fireball.wav-cded05274663dbd0b44304151561e7af.sample" ]
+dest_md5="de0860bce139c74d7300a823ad71e7b0"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

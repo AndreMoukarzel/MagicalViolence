@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=1]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/VersusHover.png" type="Texture" id=2]
@@ -9,12 +9,12 @@
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/OptionsNormal.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsHover.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/CreditsNormal.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Characters/Cat/cat0004.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Characters/Cat/cat0007.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/Characters/Cat/cat0008.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/Characters/Cat/cat0000.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/Characters/Cat/cat0001.png" type="Texture" id=14]
-[ext_resource path="res://Sprites/Characters/Cat/cat0002.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Characters/Cat/cat0000.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Characters/Cat/cat0001.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Characters/Cat/cat0002.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Characters/Cat/cat0007.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Characters/Cat/cat0004.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Characters/Cat/cat0008.png" type="Texture" id=15]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/ControlsHover.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/ControlsNormal.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/GUI/Buttons/Main Menu/AudioHover.png" type="Texture" id=18]
@@ -27,97 +27,109 @@
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 10 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
-"name": "JumpDown",
+"name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 11 ) ],
+"frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "JumpUp",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 12 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
-"name": "JumpHorizontal",
+"name": "JumpDown",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 15 ) ],
 "loop": true,
-"name": "Idle",
+"name": "JumpHorizontal",
 "speed": 5.0
 } ]
 
 [sub_resource type="Animation" id=2]
 
-resource/name = "SlideLeft0"
+resource_name = "SlideLeft0"
 length = 0.5
 loop = false
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Versus:rect/pos")
 tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1400, 100 ), Vector2( 400, 100 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Options:rect/pos")
 tracks/1/interp = 1
+tracks/1/loop_wrap = true
 tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1500, 200 ), Vector2( 500, 200 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Credits:rect/pos")
 tracks/2/interp = 1
+tracks/2/loop_wrap = true
 tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1600, 300 ), Vector2( 600, 300 ) ]
 }
 
 [sub_resource type="Animation" id=3]
 
-resource/name = "SlideLeft2"
+resource_name = "SlideLeft2"
 length = 0.5
 loop = false
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Controls:rect/pos")
 tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1400, 100 ), Vector2( 400, 100 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Audio:rect/pos")
 tracks/1/interp = 1
+tracks/1/loop_wrap = true
 tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1500, 200 ), Vector2( 500, 200 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Video:rect/pos")
 tracks/2/interp = 1
+tracks/2/loop_wrap = true
 tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 1600, 300 ), Vector2( 600, 300 ) ]
 }
@@ -130,345 +142,383 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Versus:rect/pos")
 tracks/0/interp = 2
+tracks/0/loop_wrap = true
 tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 400, 100 ), Vector2( 1400, 100 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Options:rect/pos")
 tracks/1/interp = 2
+tracks/1/loop_wrap = true
 tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 500, 200 ), Vector2( 1500, 200 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Credits:rect/pos")
 tracks/2/interp = 2
+tracks/2/loop_wrap = true
 tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 600, 300 ), Vector2( 1600, 300 ) ]
 }
 
 [sub_resource type="Animation" id=5]
 
-resource/name = "SlideRight2"
+resource_name = "SlideRight2"
 length = 0.5
 loop = false
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("Controls:rect/pos")
 tracks/0/interp = 2
+tracks/0/loop_wrap = true
 tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 400, 100 ), Vector2( 1400, 100 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Audio:rect/pos")
 tracks/1/interp = 2
+tracks/1/loop_wrap = true
 tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 500, 200 ), Vector2( 1500, 200 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Video:rect/pos")
 tracks/2/interp = 2
+tracks/2/loop_wrap = true
 tracks/2/imported = false
+tracks/2/enabled = true
 tracks/2/keys = {
-"times": FloatArray( 0, 0.5 ),
-"transitions": FloatArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 600, 300 ), Vector2( 1600, 300 ) ]
 }
 
 [node name="MainMenu" type="Control"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1920.0
-margin/bottom = 1080.0
-script/script = ExtResource( 1 )
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+script = ExtResource( 1 )
 
-[node name="Versus" type="Container" parent="."]
+[node name="Versus" type="Container" parent="." index="0"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 400.0
-margin/top = 100.0
-margin/right = 800.0
-margin/bottom = 300.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 400.0
+margin_top = 100.0
+margin_right = 800.0
+margin_bottom = 300.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 
-[node name="Hover" type="Sprite" parent="Versus"]
+[node name="Hover" type="Sprite" parent="Versus" index="0"]
 
-z/z = 1
 texture = ExtResource( 2 )
 
-[node name="Normal" type="Sprite" parent="Versus"]
+[node name="Normal" type="Sprite" parent="Versus" index="1"]
 
 texture = ExtResource( 3 )
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="Versus"]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="Versus" index="2"]
 
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
 anims/HoveringDown = ExtResource( 4 )
 anims/HoveringUp = ExtResource( 5 )
-playback/active = true
-playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
 
-[node name="Options" type="Container" parent="."]
+[node name="Options" type="Container" parent="." index="1"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 500.0
-margin/top = 200.0
-margin/right = 900.0
-margin/bottom = 400.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 500.0
+margin_top = 200.0
+margin_right = 900.0
+margin_bottom = 400.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 
-[node name="Hover" type="Sprite" parent="Options"]
+[node name="Hover" type="Sprite" parent="Options" index="0"]
 
-z/z = 10
 texture = ExtResource( 6 )
 
-[node name="Normal" type="Sprite" parent="Options"]
+[node name="Normal" type="Sprite" parent="Options" index="1"]
 
-z/z = 11
 texture = ExtResource( 7 )
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="Options"]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="Options" index="2"]
 
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
 anims/HoveringDown = ExtResource( 4 )
 anims/HoveringUp = ExtResource( 5 )
-playback/active = true
-playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
 
-[node name="Credits" type="Container" parent="."]
+[node name="Credits" type="Container" parent="." index="2"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 600.0
-margin/top = 300.0
-margin/right = 1000.0
-margin/bottom = 500.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 600.0
+margin_top = 300.0
+margin_right = 1000.0
+margin_bottom = 500.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 
-[node name="Hover" type="Sprite" parent="Credits"]
+[node name="Hover" type="Sprite" parent="Credits" index="0"]
 
-z/z = 20
 texture = ExtResource( 8 )
 
-[node name="Normal" type="Sprite" parent="Credits"]
+[node name="Normal" type="Sprite" parent="Credits" index="1"]
 
-z/z = 21
 texture = ExtResource( 9 )
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="Credits"]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="Credits" index="2"]
 
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
 anims/HoveringDown = ExtResource( 4 )
 anims/HoveringUp = ExtResource( 5 )
-playback/active = true
-playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
 
-[node name="Cat" type="Control" parent="."]
+[node name="Cat" type="Control" parent="." index="3"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Cat"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Cat" index="0"]
 
-transform/pos = Vector2( 180, 90 )
-transform/scale = Vector2( 2, 2 )
+position = Vector2( 180, 90 )
+scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "Idle"
-frame = 1
+frame = 2
 playing = true
 
-[node name="Tween" type="Tween" parent="Cat"]
+[node name="Tween" type="Tween" parent="Cat" index="1"]
 
-playback/process_mode = 1
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
 playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="Controls" type="Container" parent="."]
+[node name="Controls" type="Container" parent="." index="4"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 1400.0
-margin/top = 100.0
-margin/right = 1800.0
-margin/bottom = 300.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1400.0
+margin_top = 100.0
+margin_right = 1800.0
+margin_bottom = 300.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 
-[node name="Hover" type="Sprite" parent="Controls"]
+[node name="Hover" type="Sprite" parent="Controls" index="0"]
 
-z/z = 1
 texture = ExtResource( 16 )
 
-[node name="Normal" type="Sprite" parent="Controls"]
+[node name="Normal" type="Sprite" parent="Controls" index="1"]
 
 texture = ExtResource( 17 )
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="Controls"]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="Controls" index="2"]
 
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
 anims/HoveringDown = ExtResource( 4 )
 anims/HoveringUp = ExtResource( 5 )
-playback/active = true
-playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
 
-[node name="Audio" type="Container" parent="."]
+[node name="Audio" type="Container" parent="." index="5"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 1500.0
-margin/top = 200.0
-margin/right = 1900.0
-margin/bottom = 400.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1500.0
+margin_top = 200.0
+margin_right = 1900.0
+margin_bottom = 400.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 
-[node name="Hover" type="Sprite" parent="Audio"]
+[node name="Hover" type="Sprite" parent="Audio" index="0"]
 
-z/z = 10
 texture = ExtResource( 18 )
 
-[node name="Normal" type="Sprite" parent="Audio"]
+[node name="Normal" type="Sprite" parent="Audio" index="1"]
 
-z/z = 11
 texture = ExtResource( 19 )
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="Audio"]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="Audio" index="2"]
 
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
 anims/HoveringDown = ExtResource( 4 )
 anims/HoveringUp = ExtResource( 5 )
-playback/active = true
-playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
 
-[node name="Video" type="Container" parent="."]
+[node name="Video" type="Container" parent="." index="6"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 1600.0
-margin/top = 300.0
-margin/right = 2000.0
-margin/bottom = 500.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1600.0
+margin_top = 300.0
+margin_right = 2000.0
+margin_bottom = 500.0
+rect_pivot_offset = Vector2( 0, 0 )
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 
-[node name="Hover" type="Sprite" parent="Video"]
+[node name="Hover" type="Sprite" parent="Video" index="0"]
 
-z/z = 20
 texture = ExtResource( 20 )
 
-[node name="Normal" type="Sprite" parent="Video"]
+[node name="Normal" type="Sprite" parent="Video" index="1"]
 
-z/z = 21
 texture = ExtResource( 21 )
 
-[node name="ButtonAnimations" type="AnimationPlayer" parent="Video"]
+[node name="ButtonAnimations" type="AnimationPlayer" parent="Video" index="2"]
 
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
 anims/HoveringDown = ExtResource( 4 )
 anims/HoveringUp = ExtResource( 5 )
-playback/active = true
-playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
 
-[node name="KeyboardMode" type="TextureButton" parent="."]
+[node name="KeyboardMode" type="TextureButton" parent="." index="7"]
 
-rect/scale = Vector2( 0.2, 0.2 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 900.0
-margin/top = 500.0
-margin/right = 1412.0
-margin/bottom = 1012.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 900.0
+margin_top = 500.0
+margin_right = 1412.0
+margin_bottom = 1012.0
+rect_scale = Vector2( 0.2, 0.2 )
+rect_pivot_offset = Vector2( 0, 0 )
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 2
+size_flags_vertical = 2
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 22 )
-textures/pressed = ExtResource( 23 )
-params/resize_mode = 0
-params/stretch_mode = 0
+group = null
+texture_normal = ExtResource( 22 )
+texture_pressed = ExtResource( 23 )
 
-[node name="MenuTransitions" type="AnimationPlayer" parent="."]
+[node name="MenuTransitions" type="AnimationPlayer" parent="." index="8"]
 
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
 anims/SlideLeft0 = SubResource( 2 )
 anims/SlideLeft2 = SubResource( 3 )
 anims/SlideRight0 = SubResource( 4 )
 anims/SlideRight2 = SubResource( 5 )
-playback/active = true
-playback/speed = 1.0
 blend_times = [  ]
-autoplay = ""
 
 [connection signal="pressed" from="KeyboardMode" to="." method="_on_KeyboardMode_pressed"]
 
