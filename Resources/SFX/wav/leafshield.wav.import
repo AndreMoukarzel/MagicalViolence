@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/leafshield.wav-189d18db96d8155947eed5cafa2a103c.sample"
+
+[deps]
+
+source_file="res://Resources/SFX/wav/leafshield.wav"
+source_md5="a1dc07c9cf1484a10a5398f77814a8c9"
+
+dest_files=[ "res://.import/leafshield.wav-189d18db96d8155947eed5cafa2a103c.sample" ]
+dest_md5="a93b61a8e221fabf5772a5d555a3a0a9"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

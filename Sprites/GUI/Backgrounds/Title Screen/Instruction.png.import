@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Instruction.png-708d25119dc1a90cb7169503d6068212.stex"
+
+[deps]
+
+source_file="res://Sprites/GUI/Backgrounds/Title Screen/Instruction.png"
+source_md5="06357995a14e17e788f01db901f500c4"
+
+dest_files=[ "res://.import/Instruction.png-708d25119dc1a90cb7169503d6068212.stex" ]
+dest_md5="91db961e8f3d5c8b2f66b39be229fa12"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

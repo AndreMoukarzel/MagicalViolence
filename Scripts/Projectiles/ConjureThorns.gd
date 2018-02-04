@@ -30,7 +30,7 @@ func _process(delta):
 func _on_Area2D_body_enter( body ):
 	if body != parent:
 		grow()
-		get_node( "GrowTimer" ).queue_free()
+		get_node( "GrowTimer" ).stop()
 		get_node( "LifeTimer" ).start()
 		if body.has_method( "take_damage" ):
 			# If the thorns are grown, play death animation

@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/VersusHover.png-d33b828cdcfc3c115461ad0fdbcc3853.stex"
+
+[deps]
+
+source_file="res://Sprites/GUI/Buttons/Main Menu/VersusHover.png"
+source_md5="6d56b2b3480ed8d05024cb3ca41dbde2"
+
+dest_files=[ "res://.import/VersusHover.png-d33b828cdcfc3c115461ad0fdbcc3853.stex" ]
+dest_md5="4b6f20abd46a57a9fb6d6664a3e6b4b7"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

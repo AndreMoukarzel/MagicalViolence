@@ -8,14 +8,14 @@ var level = 1
 
 var direction = Vector2( 0, 0 ) # direction that the fireball flies to
 var parent
-var owner
+var caster
 var shot = false
 var id
 
 
-func start( parent, owner, id ):
+func start( parent, caster, id ):
 	self.parent = parent
-	self.owner = owner
+	self.caster = caster
 	self.id = id
 
 
@@ -50,7 +50,7 @@ func die():
 	if get_node( "AnimationPlayer" ).get_current_animation() != "death":
 		get_node( "AnimationPlayer" ).play( "death" )
 		if (not shot):
-			owner.leaf_death(id-1)
+			caster.leaf_death(id-1)
 	set_process( false )
 
 

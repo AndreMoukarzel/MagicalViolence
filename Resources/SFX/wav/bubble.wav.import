@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bubble.wav-692f69a95d936dc05c4add7c4109ca5e.sample"
+
+[deps]
+
+source_file="res://Resources/SFX/wav/bubble.wav"
+source_md5="1e1e6c3f9bf75b3bbb284babffa02220"
+
+dest_files=[ "res://.import/bubble.wav-692f69a95d936dc05c4add7c4109ca5e.sample" ]
+dest_md5="cdb00499eefe5226eb6b0abf878f79b9"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

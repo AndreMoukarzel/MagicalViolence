@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=1]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Scripts/Test Scripts/CSSTest.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/prototype32.fnt" type="BitmapFont" id=2]
@@ -8,14 +8,14 @@
 [ext_resource path="res://Sprites/Characters/Skeleton/rundown2.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Characters/Skeleton/rundown3.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Characters/Skeleton/rundown4.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown1.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown2.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown3.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/Characters/Broleton/rundown4.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown1.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown2.png" type="Texture" id=14]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown3.png" type="Texture" id=15]
-[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown4.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown1.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown2.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown3.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Characters/Bloodyskel/rundown4.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown1.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown2.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown3.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Characters/Broleton/rundown4.png" type="Texture" id=16]
 [ext_resource path="res://Sprites/Characters/Sealeton/rundown1.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/Characters/Sealeton/rundown2.png" type="Texture" id=18]
 [ext_resource path="res://Sprites/Characters/Sealeton/rundown3.png" type="Texture" id=19]
@@ -24,127 +24,169 @@
 [ext_resource path="res://Sprites/GUI/Loading/Loading2.png" type="Texture" id=22]
 [ext_resource path="res://Sprites/GUI/Loading/Loading3.png" type="Texture" id=23]
 [ext_resource path="res://Sprites/GUI/Loading/Loading4.png" type="Texture" id=24]
-[ext_resource path="res://Scenes/Test Scenes/BattleTest.tscn" type="PackedScene" id=25]
 
 [sub_resource type="SpriteFrames" id=1]
 
-animations = [ { "frames":[ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ], "loop":true, "name":"Skeleton", "speed":5.0 }, { "frames":[ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ], "loop":true, "name":"Broleton", "speed":5.0 }, { "frames":[ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ], "loop":true, "name":"Bloodyskel", "speed":5.0 }, { "frames":[ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ], "loop":true, "name":"Sealeton", "speed":5.0 } ]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "Skeleton",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "Bloodyskel",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"loop": true,
+"name": "Broleton",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"loop": true,
+"name": "Sealeton",
+"speed": 5.0
+} ]
 
 [sub_resource type="SpriteFrames" id=2]
 
-animations = [ { "frames":[ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ], "loop":true, "name":"Loading", "speed":4.0 } ]
+animations = [ {
+"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ) ],
+"loop": true,
+"name": "Loading",
+"speed": 4.0
+} ]
 
 [node name="CSSTest" type="Control"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1024.0
-margin/bottom = 600.0
-script/script = ExtResource( 1 )
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1024.0
+margin_bottom = 600.0
+script = ExtResource( 1 )
 
 [node name="P1" type="Container" parent="."]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 256.0
-margin/bottom = 600.0
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 256.0
+margin_bottom = 600.0
 
 [node name="Inactive" type="Container" parent="P1"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="Text" type="Label" parent="P1/Inactive"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 50.0
-margin/top = 300.0
-margin/right = 212.0
-margin/bottom = 334.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 50.0
+margin_top = 300.0
+margin_right = 212.0
+margin_bottom = 334.0
 custom_fonts/font = ExtResource( 2 )
 text = "Press Start"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Background" type="TextureFrame" parent="P1/Inactive"]
+[node name="Background" type="TextureRect" parent="P1/Inactive"]
 
 visibility/opacity = 0.7
-rect/scale = Vector2( 0.133333, 0.8 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1920.0
-margin/bottom = 1080.0
+rect_scale = Vector2( 0.133333, 0.8 )
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 texture = ExtResource( 3 )
 stretch_mode = 0
 
 [node name="Active" type="Container" parent="P1"]
 
-editor/display_folded = true
-visibility/visible = false
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 256.0
-margin/bottom = 600.0
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 256.0
+margin_bottom = 600.0
+
+[node name="Tag" type="Label" parent="P1/Active"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 200.0
+margin_right = 258.0
+margin_bottom = 234.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Player 1"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="LeftArrow" type="Sprite" parent="P1/Active"]
 
-transform/pos = Vector2( 58, 300 )
-transform/scale = Vector2( -0.25, 0.25 )
+position = Vector2( 58, 300 )
+scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 4 )
 
 [node name="Character" type="AnimatedSprite" parent="P1/Active"]
 
-transform/pos = Vector2( 128, 300 )
-transform/scale = Vector2( 0.2, 0.2 )
+position = Vector2( 128, 300 )
+scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 3
+frame = 1
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P1/Active"]
 
-transform/pos = Vector2( 198, 300 )
-transform/scale = Vector2( 0.25, 0.25 )
+position = Vector2( 198, 300 )
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 4 )
 
 [node name="Confirmation" type="Label" parent="P1/Active"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 400.0
-margin/right = 258.0
-margin/bottom = 434.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 400.0
+margin_right = 258.0
+margin_bottom = 434.0
 custom_fonts/font = ExtResource( 2 )
 text = "Select Character"
 align = 1
@@ -154,117 +196,258 @@ max_lines_visible = -1
 
 [node name="Options" type="Container" parent="P1/Active"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+editor/display_folded = true
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 450.0
+margin_right = 256.0
+margin_bottom = 600.0
+
+[node name="Lock" type="Label" parent="P1/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 256.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Lock"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Create Tag" type="Label" parent="P1/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 40.0
+margin_right = 256.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 2 )
+text = "Create Tag"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Select Tag" type="Label" parent="P1/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 80.0
+margin_right = 256.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 2 )
+text = "Select Tag"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="P2" type="Container" parent="."]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 256.0
-margin/top = 0.0
-margin/right = 512.0
-margin/bottom = 600.0
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 256.0
+margin_top = 0.0
+margin_right = 512.0
+margin_bottom = 600.0
 
 [node name="Inactive" type="Container" parent="P2"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="Text" type="Label" parent="P2/Inactive"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 48.0
-margin/top = 298.0
-margin/right = 210.0
-margin/bottom = 332.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 48.0
+margin_top = 298.0
+margin_right = 210.0
+margin_bottom = 332.0
 custom_fonts/font = ExtResource( 2 )
 text = "Press Start"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Background" type="TextureFrame" parent="P2/Inactive"]
+[node name="Background" type="TextureRect" parent="P2/Inactive"]
 
 visibility/opacity = 0.7
-rect/scale = Vector2( 0.133333, 0.8 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1920.0
-margin/bottom = 1080.0
+rect_scale = Vector2( 0.133333, 0.8 )
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 texture = ExtResource( 3 )
 stretch_mode = 0
 
 [node name="Active" type="Container" parent="P2"]
 
-editor/display_folded = true
-visibility/visible = false
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 256.0
-margin/bottom = 600.0
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 256.0
+margin_bottom = 600.0
+
+[node name="Tag" type="Label" parent="P2/Active"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 200.0
+margin_right = 258.0
+margin_bottom = 234.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.101563, 0, 1, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Player 2"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="LeftArrow" type="Sprite" parent="P2/Active"]
 
-transform/pos = Vector2( 58, 300 )
-transform/scale = Vector2( -0.25, 0.25 )
+position = Vector2( 58, 300 )
+scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 4 )
 
 [node name="Character" type="AnimatedSprite" parent="P2/Active"]
 
-transform/pos = Vector2( 128, 300 )
-transform/scale = Vector2( 0.2, 0.2 )
+position = Vector2( 128, 300 )
+scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P2/Active"]
 
-transform/pos = Vector2( 198, 300 )
-transform/scale = Vector2( 0.25, 0.25 )
+position = Vector2( 198, 300 )
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 4 )
 
 [node name="Confirmation" type="Label" parent="P2/Active"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 400.0
-margin/right = 258.0
-margin/bottom = 434.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 400.0
+margin_right = 258.0
+margin_bottom = 434.0
 custom_fonts/font = ExtResource( 2 )
 text = "Select Character"
 align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Options" type="Container" parent="P2/Active"]
+
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 450.0
+margin_right = 256.0
+margin_bottom = 600.0
+
+[node name="Lock" type="Label" parent="P2/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 256.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Lock"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Create Tag" type="Label" parent="P2/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 40.0
+margin_right = 256.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 2 )
+text = "Create Tag"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Select Tag" type="Label" parent="P2/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 80.0
+margin_right = 256.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 2 )
+text = "Select Tag"
+align = 1
+valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -272,105 +455,189 @@ max_lines_visible = -1
 [node name="P3" type="Container" parent="."]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 512.0
-margin/top = 0.0
-margin/right = 768.0
-margin/bottom = 600.0
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 512.0
+margin_top = 0.0
+margin_right = 768.0
+margin_bottom = 600.0
 
 [node name="Inactive" type="Container" parent="P3"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="Text" type="Label" parent="P3/Inactive"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 48.0
-margin/top = 298.0
-margin/right = 210.0
-margin/bottom = 332.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 48.0
+margin_top = 298.0
+margin_right = 210.0
+margin_bottom = 332.0
 custom_fonts/font = ExtResource( 2 )
 text = "Press Start"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Background" type="TextureFrame" parent="P3/Inactive"]
+[node name="Background" type="TextureRect" parent="P3/Inactive"]
 
 visibility/opacity = 0.7
-rect/scale = Vector2( 0.133333, 0.8 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1920.0
-margin/bottom = 1080.0
+rect_scale = Vector2( 0.133333, 0.8 )
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 texture = ExtResource( 3 )
 stretch_mode = 0
 
 [node name="Active" type="Container" parent="P3"]
 
-editor/display_folded = true
-visibility/visible = false
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 256.0
-margin/bottom = 600.0
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 256.0
+margin_bottom = 600.0
+
+[node name="Tag" type="Label" parent="P3/Active"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 200.0
+margin_right = 258.0
+margin_bottom = 234.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.941406, 0.772247, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Player 3"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="LeftArrow" type="Sprite" parent="P3/Active"]
 
-transform/pos = Vector2( 58, 300 )
-transform/scale = Vector2( -0.25, 0.25 )
+position = Vector2( 58, 300 )
+scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 4 )
 
 [node name="Character" type="AnimatedSprite" parent="P3/Active"]
 
-transform/pos = Vector2( 128, 300 )
-transform/scale = Vector2( 0.2, 0.2 )
+position = Vector2( 128, 300 )
+scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 2
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P3/Active"]
 
-transform/pos = Vector2( 198, 300 )
-transform/scale = Vector2( 0.25, 0.25 )
+position = Vector2( 198, 300 )
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 4 )
 
 [node name="Confirmation" type="Label" parent="P3/Active"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 400.0
-margin/right = 258.0
-margin/bottom = 434.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 400.0
+margin_right = 258.0
+margin_bottom = 434.0
 custom_fonts/font = ExtResource( 2 )
 text = "Select Character"
 align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Options" type="Container" parent="P3/Active"]
+
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 450.0
+margin_right = 256.0
+margin_bottom = 600.0
+
+[node name="Lock" type="Label" parent="P3/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 256.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Lock"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Create Tag" type="Label" parent="P3/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 40.0
+margin_right = 256.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 2 )
+text = "Create Tag"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Select Tag" type="Label" parent="P3/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 80.0
+margin_right = 256.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 2 )
+text = "Select Tag"
+align = 1
+valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
@@ -378,102 +645,120 @@ max_lines_visible = -1
 [node name="P4" type="Container" parent="."]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 768.0
-margin/top = 0.0
-margin/right = 1024.0
-margin/bottom = 600.0
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 768.0
+margin_top = 0.0
+margin_right = 1024.0
+margin_bottom = 600.0
 
 [node name="Inactive" type="Container" parent="P4"]
 
 editor/display_folded = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 40.0
-margin/bottom = 40.0
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
 
 [node name="Text" type="Label" parent="P4/Inactive"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 48.0
-margin/top = 298.0
-margin/right = 210.0
-margin/bottom = 332.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 48.0
+margin_top = 298.0
+margin_right = 210.0
+margin_bottom = 332.0
 custom_fonts/font = ExtResource( 2 )
 text = "Press Start"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Background" type="TextureFrame" parent="P4/Inactive"]
+[node name="Background" type="TextureRect" parent="P4/Inactive"]
 
 visibility/opacity = 0.7
-rect/scale = Vector2( 0.133333, 0.8 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1920.0
-margin/bottom = 1080.0
+rect_scale = Vector2( 0.133333, 0.8 )
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 texture = ExtResource( 3 )
 stretch_mode = 0
 
 [node name="Active" type="Container" parent="P4"]
 
-editor/display_folded = true
-visibility/visible = false
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 256.0
-margin/bottom = 600.0
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 256.0
+margin_bottom = 600.0
+
+[node name="Tag" type="Label" parent="P4/Active"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 200.0
+margin_right = 258.0
+margin_bottom = 234.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 0.17688, 0.808594, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Player 4"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="LeftArrow" type="Sprite" parent="P4/Active"]
 
-transform/pos = Vector2( 58, 300 )
-transform/scale = Vector2( -0.25, 0.25 )
+position = Vector2( 58, 300 )
+scale = Vector2( -0.25, 0.25 )
 texture = ExtResource( 4 )
 
 [node name="Character" type="AnimatedSprite" parent="P4/Active"]
 
-transform/pos = Vector2( 128, 300 )
-transform/scale = Vector2( 0.2, 0.2 )
+position = Vector2( 128, 300 )
+scale = Vector2( 0.2, 0.2 )
 frames = SubResource( 1 )
 animation = "Skeleton"
-frame = 1
+frame = 3
 playing = true
 
 [node name="RightArrow" type="Sprite" parent="P4/Active"]
 
-transform/pos = Vector2( 198, 300 )
-transform/scale = Vector2( 0.25, 0.25 )
+position = Vector2( 198, 300 )
+scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 4 )
 
 [node name="Confirmation" type="Label" parent="P4/Active"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 400.0
-margin/right = 258.0
-margin/bottom = 434.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 400.0
+margin_right = 258.0
+margin_bottom = 434.0
 custom_fonts/font = ExtResource( 2 )
 text = "Select Character"
 align = 1
@@ -481,18 +766,78 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="Options" type="Container" parent="P4/Active"]
+
+visible = false
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 450.0
+margin_right = 256.0
+margin_bottom = 600.0
+
+[node name="Lock" type="Label" parent="P4/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 256.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+text = "Lock"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Create Tag" type="Label" parent="P4/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 40.0
+margin_right = 256.0
+margin_bottom = 80.0
+custom_fonts/font = ExtResource( 2 )
+text = "Create Tag"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Select Tag" type="Label" parent="P4/Active/Options"]
+
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 0
+margin_left = 0.0
+margin_top = 80.0
+margin_right = 256.0
+margin_bottom = 120.0
+custom_fonts/font = ExtResource( 2 )
+text = "Select Tag"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="Loading Animation" type="AnimatedSprite" parent="."]
 
-visibility/visible = false
-transform/pos = Vector2( 64, 64 )
+visible = false
+position = Vector2( 64, 64 )
 frames = SubResource( 2 )
 animation = "Loading"
-frame = 3
+frame = 1
 playing = true
-
-[node name="BattleTest" parent="." instance=ExtResource( 25 )]
-
-editor/display_folded = true
-
-
-[editable path="BattleTest"]

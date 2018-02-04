@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Sprites/Scenery/ground only.jpg" type="Texture" id=1]
 [ext_resource path="res://Sprites/Scenery/tree.png" type="Texture" id=2]
@@ -14,16 +14,16 @@ extents = Vector2( 600, 20 )
 custom_solver_bias = 0.0
 extents = Vector2( 40, 300 )
 
-[node name="Ground" type="TextureFrame"]
+[node name="Ground" type="TextureRect"]
 
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1024.0
-margin/bottom = 600.0
+focus_ignore_mouse = true
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1024.0
+margin_bottom = 600.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 0
@@ -31,12 +31,12 @@ stretch_mode = 0
 [node name="Top" type="StaticBody2D" parent="."]
 
 editor/display_folded = true
-input/pickable = false
+input_pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 500, 0 )
+shapes/0/transform = Transform2D( 1, 0, 0, 1, 500, 0 )
 shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
+collision_layer = 1
+collision_mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
@@ -44,48 +44,48 @@ bounce = 0.0
 
 [node name="Tree8" type="Sprite" parent="Top"]
 
-transform/pos = Vector2( 857.869, -127.98 )
+position = Vector2( 857.869, -127.98 )
 texture = ExtResource( 2 )
 
 [node name="Tree9" type="Sprite" parent="Top"]
 
-transform/pos = Vector2( 973.105, -155.681 )
-transform/scale = Vector2( 1, 1 )
+position = Vector2( 973.105, -155.681 )
+scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 
 [node name="Tree10" type="Sprite" parent="Top"]
 
-transform/pos = Vector2( 739.309, -134.628 )
+position = Vector2( 739.309, -134.628 )
 texture = ExtResource( 2 )
 
 [node name="Tree11" type="Sprite" parent="Top"]
 
-transform/pos = Vector2( 615.209, -125.764 )
+position = Vector2( 615.209, -125.764 )
 texture = ExtResource( 2 )
 
 [node name="Tree12" type="Sprite" parent="Top"]
 
-transform/pos = Vector2( 503.298, -149.033 )
+position = Vector2( 503.298, -149.033 )
 texture = ExtResource( 2 )
 
 [node name="Tree13" type="Sprite" parent="Top"]
 
-transform/pos = Vector2( 379.198, -136.844 )
+position = Vector2( 379.198, -136.844 )
 texture = ExtResource( 2 )
 
 [node name="Tree14" type="Sprite" parent="Top"]
 
-transform/pos = Vector2( 257.314, -164.545 )
+position = Vector2( 257.314, -164.545 )
 texture = ExtResource( 2 )
 
 [node name="Tree15" type="Sprite" parent="Top"]
 
-transform/pos = Vector2( 117.701, -143.492 )
+position = Vector2( 117.701, -143.492 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
 
-transform/pos = Vector2( 500, 0 )
+position = Vector2( 500, 0 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
@@ -94,12 +94,12 @@ _update_shape_index = 0
 
 editor/display_folded = true
 visibility/opacity = 0.6
-input/pickable = false
+input_pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 500, 600 )
+shapes/0/transform = Transform2D( 1, 0, 0, 1, 500, 600 )
 shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
+collision_layer = 1
+collision_mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
@@ -107,55 +107,55 @@ bounce = 0.0
 
 [node name="Tree" type="Sprite" parent="Bottom"]
 
-transform/pos = Vector2( 90, 600 )
-z/z = 3
+position = Vector2( 90, 600 )
+z = 3
 texture = ExtResource( 2 )
 
 [node name="Tree1" type="Sprite" parent="Bottom"]
 
-transform/pos = Vector2( 250.665, 633.241 )
-z/z = 3
+position = Vector2( 250.665, 633.241 )
+z = 3
 texture = ExtResource( 2 )
 
 [node name="Tree2" type="Sprite" parent="Bottom"]
 
-transform/pos = Vector2( 383.63, 607.756 )
-z/z = 3
+position = Vector2( 383.63, 607.756 )
+z = 3
 texture = ExtResource( 2 )
 
 [node name="Tree3" type="Sprite" parent="Bottom"]
 
-transform/pos = Vector2( 1005.24, 632.133 )
-z/z = 3
+position = Vector2( 1005.24, 632.133 )
+z = 3
 texture = ExtResource( 2 )
 
 [node name="Tree4" type="Sprite" parent="Bottom"]
 
-transform/pos = Vector2( 884.462, 660.942 )
-z/z = 3
+position = Vector2( 884.462, 660.942 )
+z = 3
 texture = ExtResource( 2 )
 
 [node name="Tree5" type="Sprite" parent="Bottom"]
 
-transform/pos = Vector2( 743.741, 625.485 )
-z/z = 3
+position = Vector2( 743.741, 625.485 )
+z = 3
 texture = ExtResource( 2 )
 
 [node name="Tree6" type="Sprite" parent="Bottom"]
 
-transform/pos = Vector2( 599.697, 645.43 )
-z/z = 3
+position = Vector2( 599.697, 645.43 )
+z = 3
 texture = ExtResource( 2 )
 
 [node name="Tree7" type="Sprite" parent="Bottom"]
 
-transform/pos = Vector2( 498.865, 658.726 )
-z/z = 3
+position = Vector2( 498.865, 658.726 )
+z = 3
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
 
-transform/pos = Vector2( 500, 600 )
+position = Vector2( 500, 600 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
@@ -163,12 +163,12 @@ _update_shape_index = 0
 [node name="Right" type="StaticBody2D" parent="."]
 
 editor/display_folded = true
-input/pickable = false
+input_pickable = false
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 30, 300 )
+shapes/0/transform = Transform2D( 1, 0, 0, 1, 30, 300 )
 shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
+collision_layer = 1
+collision_mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
@@ -176,37 +176,37 @@ bounce = 0.0
 
 [node name="Rock" type="Sprite" parent="Right"]
 
-transform/pos = Vector2( 1000.16, 139.907 )
+position = Vector2( 1000.16, 139.907 )
 texture = ExtResource( 3 )
 
 [node name="Rock1" type="Sprite" parent="Right"]
 
-transform/pos = Vector2( 976.889, 215.253 )
+position = Vector2( 976.889, 215.253 )
 texture = ExtResource( 3 )
 
 [node name="Rock2" type="Sprite" parent="Right"]
 
-transform/pos = Vector2( 994.618, 283.951 )
+position = Vector2( 994.618, 283.951 )
 texture = ExtResource( 3 )
 
 [node name="Rock3" type="Sprite" parent="Right"]
 
-transform/pos = Vector2( 974.673, 365.946 )
+position = Vector2( 974.673, 365.946 )
 texture = ExtResource( 3 )
 
 [node name="Rock4" type="Sprite" parent="Right"]
 
-transform/pos = Vector2( 985.754, 443.508 )
+position = Vector2( 985.754, 443.508 )
 texture = ExtResource( 3 )
 
 [node name="Rock5" type="Sprite" parent="Right"]
 
-transform/pos = Vector2( 981.321, 525.503 )
+position = Vector2( 981.321, 525.503 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
 
-transform/pos = Vector2( 30, 300 )
+position = Vector2( 30, 300 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
@@ -214,12 +214,12 @@ _update_shape_index = 0
 [node name="Left" type="StaticBody2D" parent="."]
 
 editor/display_folded = true
-input/pickable = false
+input_pickable = false
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, 990, 300 )
+shapes/0/transform = Transform2D( 1, 0, 0, 1, 990, 300 )
 shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
+collision_layer = 1
+collision_mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
@@ -227,44 +227,42 @@ bounce = 0.0
 
 [node name="Rock6" type="Sprite" parent="Left"]
 
-transform/pos = Vector2( -8.15503, 122.178 )
+position = Vector2( -8.15503, 122.178 )
 texture = ExtResource( 3 )
 
 [node name="Rock7" type="Sprite" parent="Left"]
 
-transform/pos = Vector2( 4.03339, 187.552 )
+position = Vector2( 4.03339, 187.552 )
 texture = ExtResource( 3 )
 
 [node name="Rock8" type="Sprite" parent="Left"]
 
-transform/pos = Vector2( -0.398743, 262.899 )
+position = Vector2( -0.398743, 262.899 )
 texture = ExtResource( 3 )
 
 [node name="Rock9" type="Sprite" parent="Left"]
 
-transform/pos = Vector2( -13.6952, 334.921 )
+position = Vector2( -13.6952, 334.921 )
 texture = ExtResource( 3 )
 
 [node name="Rock10" type="Sprite" parent="Left"]
 
-transform/pos = Vector2( -14.8032, 395.863 )
+position = Vector2( -14.8032, 395.863 )
 texture = ExtResource( 3 )
 
 [node name="Rock11" type="Sprite" parent="Left"]
 
-transform/pos = Vector2( -13.6952, 472.317 )
+position = Vector2( -13.6952, 472.317 )
 texture = ExtResource( 3 )
 
 [node name="Rock12" type="Sprite" parent="Left"]
 
-transform/pos = Vector2( -5.93893, 553.204 )
+position = Vector2( -5.93893, 553.204 )
 texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
 
-transform/pos = Vector2( 990, 300 )
+position = Vector2( 990, 300 )
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
-
-

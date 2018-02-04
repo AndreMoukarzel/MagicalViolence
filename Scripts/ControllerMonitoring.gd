@@ -20,7 +20,7 @@ func _ready():
 	Input.connect("joy_connection_changed", self, "joysticks_changed")
 
 	# So we acknowledge controllers connected on game startup
-	for joy in Input.get_connected_joysticks():
+	for joy in Input.get_connected_joypads():
 		joysticks_changed(joy, true)
 
 func joysticks_changed(index, connected):

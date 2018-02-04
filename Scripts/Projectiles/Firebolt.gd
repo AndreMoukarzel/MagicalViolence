@@ -56,8 +56,10 @@ func die():
 	alive = false
 	get_node( "SFX" ).play( "firebolt" )
 	get_node( "AnimationPlayer" ).play( "explosion" )
-	parent.spell_ended() # Alerts player that spell is finished
 	set_process( false )
+	if !weakref(parent).get_ref(): # Parent was freed
+		return
+	parent.spell_ended() # Alerts player that spell is finished
 
 
 func free_scn():

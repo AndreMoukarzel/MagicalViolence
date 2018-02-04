@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Title.png-dc2b9e0c100fe1cc298c75805f3d4335.stex"
+
+[deps]
+
+source_file="res://Sprites/GUI/Backgrounds/Title Screen/Title.png"
+source_md5="b7f829b96843a6554eadc4880fd7fd4b"
+
+dest_files=[ "res://.import/Title.png-dc2b9e0c100fe1cc298c75805f3d4335.stex" ]
+dest_md5="74217b0aaee14dbd31b81eb9d8e97228"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

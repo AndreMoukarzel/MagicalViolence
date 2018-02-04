@@ -94,10 +94,10 @@ func _input(event):
 		# Temos que resetar o mapa para o global antes de toda partida,
 		# antes de carregar as tags novas.
 
-		config.set_value("Joystick Button", str("char_", input_name), event.button_index)
+		config.set_value("Game Buttons", str("char_", input_name), event.button_index)
 
 		# Finished, update the modified config visually
-		check_repeat_button(event.button_index, input_name)
+		check_repeat_button(event.button_index, input_name, selected_input)
 
 		get_node(str("GameCustomization/", selected_input, "/Text")).set_text(str("[Button ", event.button_index, "]"))
 		get_node("GameCustomization/PressKey").hide()
@@ -105,7 +105,7 @@ func _input(event):
 
 		set_process_input(false)
 
-func check_repeat_button(button, input_name):
+func check_repeat_button(button, input_name, selected_input):
 	for node in get_node("GameCustomization").get_children():
 		for child in node.get_children():
 			if (child.get_name() == "Text"):
@@ -113,9 +113,9 @@ func check_repeat_button(button, input_name):
 				var find_index = child.get_text().find(str(button))
 				if (find_index != -1):
 					var check_num = child.get_text().substr(find_index, find_index + 1).to_int()
-					if (button == check_num):
+					if (button == check_num and child.get_parent().get_name() != selected_input):
 						child.set_text("[Unassigned]")
-						config.set_value("Joystick Button", str("char_", child.get_parent().get_name().to_lower()), "Unassigned")
+						config.set_value("Game Buttons", str("char_", child.get_parent().get_name().to_lower()), "Unassigned")
 
 
 ################### Menu Flow ###################
@@ -186,6 +186,7 @@ func _on_SelectTagBack_pressed():
 func _on_GCSave_pressed():
 	# Check if left any unassigned actions
 	for key in config.get_section_keys("Game Buttons"):
+		print (str("Key : ", key, " value: ", config.get_value("Game Buttons", key)))
 		if str(config.get_value("Game Buttons", key)) == "Unassigned":
 			print("You have left some controls unassigned!")
 			return

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/leaf.wav-ef5f93445505f2ec4412b9cf9195d7ea.sample"
+
+[deps]
+
+source_file="res://Resources/SFX/wav/leaf.wav"
+source_md5="aaf7652d4f3766778ccbc6bf8f81e5b0"
+
+dest_files=[ "res://.import/leaf.wav-ef5f93445505f2ec4412b9cf9195d7ea.sample" ]
+dest_md5="e4d731a9e7b7445e88c45e10f753f1a4"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

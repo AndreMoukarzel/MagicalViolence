@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/vines.wav-73744b330d6590d77cb26f8ce6e03b59.sample"
+
+[deps]
+
+source_file="res://Resources/SFX/wav/vines.wav"
+source_md5="66b1d62879eec979fd25372dd83cb5e9"
+
+dest_files=[ "res://.import/vines.wav-73744b330d6590d77cb26f8ce6e03b59.sample" ]
+dest_md5="0b11c2e4415d1ef9bb717fee7144ef24"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

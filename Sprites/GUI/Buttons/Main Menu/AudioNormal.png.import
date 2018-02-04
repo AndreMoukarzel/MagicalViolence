@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/AudioNormal.png-66aa2ecffb9f7b035b536d82a9b7b3cf.stex"
+
+[deps]
+
+source_file="res://Sprites/GUI/Buttons/Main Menu/AudioNormal.png"
+source_md5="e5c24406d24f00f199648ff14d28b4f4"
+
+dest_files=[ "res://.import/AudioNormal.png-66aa2ecffb9f7b035b536d82a9b7b3cf.stex" ]
+dest_md5="3523bca07ff4e158fd269d6fda9e73bf"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

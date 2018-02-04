@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Test Scripts/BattleTest.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Stages/Forest.tscn" type="PackedScene" id=2]
@@ -6,17 +6,18 @@
 
 [node name="BattleTest" type="Control"]
 
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-script/script = ExtResource( 1 )
+focus_ignore_mouse = false
+focus_stop_mouse = true
+size_flags_horizontal = 2
+size_flags_vertical = 2
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
+script = ExtResource( 1 )
 
 [node name="Ground" parent="." instance=ExtResource( 2 )]
+
 
 [node name="WinTimer" type="Timer" parent="."]
 
@@ -27,11 +28,9 @@ autostart = false
 
 [node name="RainbowLabel" parent="." instance=ExtResource( 3 )]
 
-visibility/visible = false
-rect/scale = Vector2( 1.5, 1.5 )
-margin/left = -235.0
-margin/top = 50.0
-margin/right = 785.0
-margin/bottom = 84.0
-
-
+visible = false
+rect_scale = Vector2( 1.5, 1.5 )
+margin_left = -235.0
+margin_top = 50.0
+margin_right = 785.0
+margin_bottom = 84.0
